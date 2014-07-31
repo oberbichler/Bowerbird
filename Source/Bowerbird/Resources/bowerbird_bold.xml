@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<bbfont name="Normschrift Bold" style="Bowerbird Font 1.0" version="1.0">
+<bbfont name="Bowerbird" style="bold" version="1.0">
   <!-- SPACE -->
   <letter code="32" start="0.2" end="0.5" />
   <!-- NULL -->
