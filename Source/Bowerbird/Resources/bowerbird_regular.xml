@@ -1,0 +1,2831 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<bbfont name="Normschrift" style="Bowerbird Font 1.0" version="1.0">
+  <!-- SPACE -->
+  <letter code="32" start="0.20" end="0.50" />
+  <!-- NULL -->
+  <letter code="0" start="0" end="0.7">
+    <path x="0.05" y="0.95">
+      <to x="0.65" y="0.95" />
+      <to x="0.65" y="0.05" />
+      <to x="0.05" y="0.05" />
+      <to x="0.05" y="0.95" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER A -->
+  <letter code="65" start="0.00" end="0.70">
+    <path x="0.133333333333333" y="0.30">
+      <to x="0.566666666666667" y="0.30" />
+    </path>
+    <path x="0.05" y="0.05">
+      <to x="0.35" y="0.95" />
+      <to x="0.65" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER B -->
+  <letter code="66" start="0.05" end="0.65">
+    <path x="0.10" y="0.55">
+      <to x="0.35" y="0.55" />
+      <to x="0.35" y="0.05" b="1.00" />
+      <to x="0.10" y="0.05" />
+      <to x="0.10" y="0.95" />
+      <to x="0.35" y="0.95" />
+      <to x="0.35" y="0.55" b="1.00" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER C -->
+  <letter code="67" start="0.10" end="0.60">
+    <path x="0.55" y="0.95">
+      <to x="0.30" y="0.95" />
+      <to x="0.15" y="0.80" b="-0.414213562373095" />
+      <to x="0.15" y="0.20" />
+      <to x="0.30" y="0.05" b="-0.414213562373095" />
+      <to x="0.55" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER D -->
+  <letter code="68" start="0.05" end="0.65">
+    <path x="0.40" y="0.95">
+      <to x="0.10" y="0.95" />
+      <to x="0.10" y="0.05" />
+      <to x="0.40" y="0.05" />
+      <to x="0.60" y="0.25" b="-0.414213562373095" />
+      <to x="0.60" y="0.75" />
+      <to x="0.40" y="0.95" b="-0.414213562373095" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER E -->
+  <letter code="69" start="0.10" end="0.60">
+    <path x="0.45" y="0.55">
+      <to x="0.15" y="0.55" />
+    </path>
+    <path x="0.55" y="0.95">
+      <to x="0.15" y="0.95" />
+      <to x="0.15" y="0.05" />
+      <to x="0.55" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER F -->
+  <letter code="70" start="0.10" end="0.60">
+    <path x="0.55" y="0.55">
+      <to x="0.15" y="0.55" />
+    </path>
+    <path x="0.55" y="0.95">
+      <to x="0.15" y="0.95" />
+      <to x="0.15" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER G -->
+  <letter code="71" start="0.05" end="0.65">
+    <path x="0.60" y="0.95">
+      <to x="0.30" y="0.95" />
+      <to x="0.10" y="0.75" b="-0.414213562373095" />
+      <to x="0.10" y="0.25" />
+      <to x="0.30" y="0.05" b="-0.414213562373095" />
+      <to x="0.60" y="0.05" />
+      <to x="0.60" y="0.55" />
+      <to x="0.45" y="0.55" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER H -->
+  <letter code="72" start="0.05" end="0.65">
+    <path x="0.10" y="0.05">
+      <to x="0.10" y="0.95" />
+    </path>
+    <path x="0.60" y="0.95">
+      <to x="0.60" y="0.05" />
+    </path>
+    <path x="0.10" y="0.55">
+      <to x="0.60" y="0.55" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER I -->
+  <letter code="73" start="0.3" end="0.4">
+    <path x="0.35" y="0.05">
+      <to x="0.35" y="0.95" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER J -->
+  <letter code="74" start="0.15" end="0.55">
+    <path x="0.50" y="0.95">
+      <to x="0.50" y="0.25" />
+      <to x="0.30" y="0.05" b="0.414213562373095" />
+      <to x="0.20" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER K -->
+  <letter code="75" start="-0.05" end="0.55">
+    <path x="0.50" y="0.95">
+      <to x="0.00" y="0.40" />
+    </path>
+    <path x="0.19318181818182" y="0.6125">
+      <to x="0.50" y="0.05" />
+    </path>
+    <path x="0.00" y="0.05">
+      <to x="0.00" y="0.95" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER L -->
+  <letter code="76" start="0.1" end="0.6">
+    <path x="0.15" y="0.95">
+      <to x="0.15" y="0.05" />
+      <to x="0.55" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER M -->
+  <letter code="77" start="0" end="0.7">
+    <path x="0.05" y="0.05">
+      <to x="0.05" y="0.95" />
+      <to x="0.35" y="0.45" />
+      <to x="0.65" y="0.95" />
+      <to x="0.65" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER N -->
+  <letter code="78" start="0.05" end="0.65">
+    <path x="0.10" y="0.05">
+      <to x="0.10" y="0.95" />
+      <to x="0.60" y="0.05" />
+      <to x="0.60" y="0.95" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER O -->
+  <letter code="79" start="0.05" end="0.65">
+    <path x="0.10" y="0.30">
+      <to x="0.60" y="0.30" b="-1.00" />
+      <to x="0.60" y="0.70" />
+      <to x="0.10" y="0.70" b="-1.00" />
+      <to x="0.10" y="0.30" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER P -->
+  <letter code="80" start="0.05" end="0.65">
+    <path x="0.10" y="0.45">
+      <to x="0.35" y="0.45" />
+      <to x="0.35" y="0.95" b="-1.00" />
+      <to x="0.10" y="0.95" />
+      <to x="0.10" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER Q -->
+  <letter code="81" start="0" end="0.7">
+    <path x="0.05" y="0.30">
+      <to x="0.55" y="0.30" b="-1.00" />
+      <to x="0.55" y="0.70" />
+      <to x="0.05" y="0.70" b="-1.00" />
+      <to x="0.05" y="0.30" />
+    </path>
+    <path x="0.65" y="0.05">
+      <to x="0.45" y="0.25" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER R -->
+  <letter code="82" start="0.05" end="0.65">
+    <path x="0.10" y="0.45">
+      <to x="0.35" y="0.45" />
+      <to x="0.35" y="0.95" b="-1.00" />
+      <to x="0.10" y="0.95" />
+      <to x="0.10" y="0.05" />
+    </path>
+    <path x="0.60" y="0.05">
+      <to x="0.39770329614268" y="0.45459340771462" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER S -->
+  <letter code="83" start="0.05" end="0.7">
+    <path x="0.10" y="0.15">
+      <to x="0.33189281854556" y="0.05324180024931" b="-0.13655494223801" />
+      <to x="0.46018241012934" y="0.0557215185426" b="-0.07171610110852" />
+      <to x="0.5758466402048" y="0.10848600269414" b="-0.13352166900163" />
+      <to x="0.62720133843308" y="0.34399739168407" b="-0.34400090956972" />
+      <to x="0.5400685761957" y="0.4369584324502" b="-0.15374523955686" />
+      <to x="0.4222083695488" y="0.48263892589091" b="-0.07156794952425" />
+      <to x="0.29361373024117" y="0.51480454822942" b="0.00912000386068" />
+      <to x="0.17908356569808" y="0.56929494397917" b="0.09061519839341" />
+      <to x="0.10917561769754" y="0.80366044455099" b="0.3403457848119" />
+      <to x="0.30163107329055" y="0.95016307308041" b="0.28427348215993" />
+      <to x="0.42690022587123" y="0.93911717125121" b="0.09259556729682" />
+      <to x="0.55" y="0.90" b="0.017533062906" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER T -->
+  <letter code="84" start="0.05" end="0.6499999999999716">
+    <path x="0.10" y="0.95">
+      <to x="0.60" y="0.95" />
+    </path>
+    <path x="0.35" y="0.95">
+      <to x="0.35" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER U -->
+  <letter code="85" start="0.05" end="0.64999999999997726">
+    <path x="0.10" y="0.95">
+      <to x="0.10" y="0.30" />
+      <to x="0.60" y="0.30" b="-1.00" />
+      <to x="0.60" y="0.95" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER V -->
+  <letter code="86" start="-0.012330802540509467" end="0.68766919745947919">
+    <path x="0.03766919745949" y="0.95">
+      <to x="0.33766919745947" y="0.05" />
+      <to x="0.63766919745949" y="0.95" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER W -->
+  <letter code="87" start="-0.1" end="0.8">
+    <path x="-0.05" y="0.95">
+      <to x="0.15" y="0.05" />
+      <to x="0.35" y="0.65" />
+      <to x="0.55" y="0.05" />
+      <to x="0.75" y="0.95" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER X -->
+  <letter code="88" start="-2.2737367544323207E-14" end="0.7">
+    <path x="0.05" y="0.05">
+      <to x="0.65" y="0.95" />
+    </path>
+    <path x="0.65" y="0.05">
+      <to x="0.05" y="0.95" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER Y -->
+  <letter code="89" start="-2.2737367544323207E-14" end="0.7">
+    <path x="0.35" y="0.50">
+      <to x="0.05" y="0.95" />
+    </path>
+    <path x="0.65" y="0.95">
+      <to x="0.35" y="0.50" />
+    </path>
+    <path x="0.35" y="0.50">
+      <to x="0.35" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER Z -->
+  <letter code="90" start="0.05" end="0.65">
+    <path x="0.10" y="0.95">
+      <to x="0.60" y="0.95" />
+      <to x="0.10" y="0.05" />
+      <to x="0.60" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER A -->
+  <letter code="97" start="0.10" end="0.60">
+    <path x="0.20" y="0.65">
+      <to x="0.40" y="0.65" />
+      <to x="0.55" y="0.50" b="0.414213562373095" />
+      <to x="0.55" y="0.05" />
+      <to x="0.30" y="0.05" />
+      <to x="0.30" y="0.35" b="1.00" />
+      <to x="0.55" y="0.35" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER B -->
+  <letter code="98" start="0.1" end="0.6">
+    <path x="0.15" y="0.95">
+      <to x="0.15" y="0.05" />
+      <to x="0.40" y="0.05" />
+      <to x="0.55" y="0.20" b="-0.414213562373095" />
+      <to x="0.55" y="0.50" />
+      <to x="0.40" y="0.65" b="-0.414213562373095" />
+      <to x="0.15" y="0.65" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER C -->
+  <letter code="99" start="0.15" end="0.55">
+    <path x="0.50" y="0.65">
+      <to x="0.35" y="0.65" />
+      <to x="0.20" y="0.50" b="-0.414213562373095" />
+      <to x="0.20" y="0.20" />
+      <to x="0.35" y="0.05" b="-0.414213562373095" />
+      <to x="0.50" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER D -->
+  <letter code="100" start="0.1" end="0.6">
+    <path x="0.55" y="0.95">
+      <to x="0.55" y="0.05" />
+      <to x="0.30" y="0.05" />
+      <to x="0.15" y="0.20" b="0.414213562373095" />
+      <to x="0.15" y="0.50" />
+      <to x="0.30" y="0.65" b="0.414213562373095" />
+      <to x="0.55" y="0.65" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER E -->
+  <letter code="101" start="0.1" end="0.6">
+    <path x="0.15" y="0.35">
+      <to x="0.55" y="0.35" />
+      <to x="0.55" y="0.45" />
+      <to x="0.15" y="0.45" b="-1.00" />
+      <to x="0.15" y="0.20" />
+      <to x="0.30" y="0.05" b="-0.414213562373095" />
+      <to x="0.55" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER F -->
+  <letter code="102" start="0.2" end="0.55">
+    <path x="0.25" y="0.65">
+      <to x="0.50" y="0.65" />
+    </path>
+    <path x="0.35" y="0.05">
+      <to x="0.35" y="0.80" />
+      <to x="0.50" y="0.95" b="0.414213562373095" />
+      <to x="0.55" y="0.95" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER G -->
+  <letter code="103" start="0.1" end="0.6">
+    <path x="0.20" y="-0.25">
+      <to x="0.40" y="-0.25" />
+      <to x="0.55" y="-0.10" b="-0.414213562373095" />
+      <to x="0.55" y="0.65" />
+      <to x="0.25" y="0.65" />
+      <to x="0.15" y="0.55" b="-0.414213562373095" />
+      <to x="0.15" y="0.15" />
+      <to x="0.25" y="0.05" b="-0.414213562373095" />
+      <to x="0.55" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER H -->
+  <letter code="104" start="0.1" end="0.6">
+    <path x="0.15" y="0.65">
+      <to x="0.40" y="0.65" />
+      <to x="0.55" y="0.50" b="0.414213562373095" />
+      <to x="0.55" y="0.05" />
+    </path>
+    <path x="0.15" y="0.05">
+      <to x="0.15" y="0.95" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER I -->
+  <letter code="105" start="0.30" end="0.40">
+    <path x="0.35" y="0.90">
+      <to x="0.35" y="0.95" />
+    </path>
+    <path x="0.35" y="0.05">
+      <to x="0.35" y="0.65" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER J -->
+  <letter code="106" start="0.20" end="0.50">
+    <path x="0.45" y="0.95">
+      <to x="0.45" y="0.90" />
+    </path>
+    <path x="0.25" y="-0.25">
+      <to x="0.30" y="-0.25" />
+      <to x="0.45" y="-0.10" b="-0.414213562373095" />
+      <to x="0.45" y="0.65" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER K -->
+  <letter code="107" start="0.1" end="0.6">
+    <path x="0.31470588235294" y="0.47352941176471">
+      <to x="0.55" y="0.05" />
+    </path>
+    <path x="0.15" y="0.35">
+      <to x="0.55" y="0.65" />
+    </path>
+    <path x="0.15" y="0.95">
+      <to x="0.15" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER L -->
+  <letter code="108" start="0.3" end="0.5">
+    <path x="0.35" y="0.95">
+      <to x="0.35" y="0.15" />
+      <to x="0.45" y="0.05" b="-0.414213562373095" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER M -->
+  <letter code="109" start="0" end="0.69999999999997731">
+    <path x="0.34999999999997" y="0.65">
+      <to x="0.34999999999997" y="0.05" />
+    </path>
+    <path x="0.05" y="0.05">
+      <to x="0.05" y="0.65" />
+      <to x="0.50" y="0.65" />
+      <to x="0.64999999999996" y="0.50" b="0.414213562373095" />
+      <to x="0.64999999999996" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER N -->
+  <letter code="110" start="0.1" end="0.6">
+    <path x="0.15" y="0.05">
+      <to x="0.15" y="0.65" />
+      <to x="0.40" y="0.65" />
+      <to x="0.54999999999999" y="0.50" b="0.414213562373095" />
+      <to x="0.54999999999999" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER O -->
+  <letter code="111" start="0.1" end="0.6">
+    <path x="0.15" y="0.25">
+      <to x="0.55" y="0.25" b="-1.00" />
+      <to x="0.55" y="0.45" />
+      <to x="0.15" y="0.45" b="-1.00" />
+      <to x="0.15" y="0.25" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER P -->
+  <letter code="112" start="0.1" end="0.6">
+    <path x="0.15" y="-0.25">
+      <to x="0.15" y="0.65" />
+      <to x="0.40" y="0.65" />
+      <to x="0.55" y="0.50" b="0.414213562373095" />
+      <to x="0.55" y="0.20" />
+      <to x="0.40" y="0.05" b="0.414213562373095" />
+      <to x="0.15" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER Q -->
+  <letter code="113" start="0.1" end="0.6">
+    <path x="0.55" y="-0.25">
+      <to x="0.55" y="0.65" />
+      <to x="0.30" y="0.65" />
+      <to x="0.15" y="0.50" b="-0.414213562373095" />
+      <to x="0.15" y="0.20" />
+      <to x="0.30" y="0.05" b="-0.414213562373095" />
+      <to x="0.55" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER R -->
+  <letter code="114" start="0.2" end="0.6">
+    <path x="0.25" y="0.05">
+      <to x="0.25" y="0.65" />
+      <to x="0.55" y="0.65" />
+      <to x="0.55" y="0.55" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER S -->
+  <letter code="115" start="0.1" end="0.6">
+    <path x="0.15" y="0.10">
+      <to x="0.42291666666668" y="0.04791666666669" b="-0.09131289619955" />
+      <to x="0.4772019039056" y="0.28990555525746" b="-0.80052355535476" />
+      <to x="0.2227980960944" y="0.41009444474254" />
+      <to x="0.27708333333333" y="0.65208333333331" b="0.80052355535482" />
+      <to x="0.50" y="0.60" b="0.11053785049268" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER T -->
+  <letter code="116" start="0.2" end="0.6">
+    <path x="0.35" y="0.05">
+      <to x="0.35" y="0.95" />
+    </path>
+    <path x="0.25" y="0.65">
+      <to x="0.55" y="0.65" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER U -->
+  <letter code="117" start="0.1" end="0.6">
+    <path x="0.15" y="0.65">
+      <to x="0.15" y="0.20" />
+      <to x="0.30" y="0.05" b="-0.414213562373095" />
+      <to x="0.55" y="0.05" />
+      <to x="0.55" y="0.65" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER V -->
+  <letter code="118" start="0.1" end="0.6">
+    <path x="0.15" y="0.65">
+      <to x="0.35" y="0.05" />
+      <to x="0.55" y="0.65" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER W -->
+  <letter code="119" start="0" end="0.7">
+    <path x="0.05" y="0.65">
+      <to x="0.20" y="0.05000000000001" />
+      <to x="0.35" y="0.45" />
+      <to x="0.50" y="0.05" />
+      <to x="0.65" y="0.65" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER X -->
+  <letter code="120" start="0.1" end="0.6">
+    <path x="0.15" y="0.65">
+      <to x="0.55" y="0.05" />
+    </path>
+    <path x="0.15" y="0.05">
+      <to x="0.55" y="0.65" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER Y -->
+  <letter code="121" start="0.1" end="0.6">
+    <path x="0.15" y="-0.25">
+      <to x="0.25" y="-0.25" />
+      <to x="0.55" y="0.65" />
+    </path>
+    <path x="0.15" y="0.65">
+      <to x="0.35" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER Z -->
+  <letter code="122" start="0.1" end="0.6">
+    <path x="0.15" y="0.65">
+      <to x="0.55" y="0.65" />
+      <to x="0.15" y="0.05" />
+      <to x="0.55" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER SHARP S -->
+  <letter code="223" start="0.05" end="0.65">
+    <path x="0.10" y="0.05">
+      <to x="0.10" y="0.80" />
+      <to x="0.25" y="0.95" b="0.4142135623731" />
+      <to x="0.45" y="0.95" />
+      <to x="0.60" y="0.80" b="0.4142135623731" />
+      <to x="0.60" y="0.75" />
+      <to x="0.45" y="0.60" b="0.4142135623731" />
+      <to x="0.60" y="0.45" b="0.4142135623731" />
+      <to x="0.60" y="0.20" />
+      <to x="0.45" y="0.05" b="0.4142135623731" />
+    </path>
+  </letter>
+  <!-- DIGIT ZERO -->
+  <letter code="48" start="0.1" end="0.6">
+    <path x="0.2650943396226" y="0.90283018867925">
+      <to x="0.2650943396226" y="0.09716981132075" b="-0.28571428571429" />
+      <to x="0.43490566037731" y="0.09716981132075" b="-0.55555555555554" />
+      <to x="0.43490566037731" y="0.90283018867925" b="-0.28571428571429" />
+      <to x="0.2650943396226" y="0.90283018867925" b="-0.55555555555554" />
+    </path>
+  </letter>
+  <!-- DIGIT ONE -->
+  <letter code="49" start="0.2" end="0.5">
+    <path x="0.25" y="0.75">
+      <to x="0.45" y="0.95" />
+      <to x="0.45" y="0.05" />
+    </path>
+  </letter>
+  <!-- DIGIT TWO -->
+  <letter code="50" start="0.1" end="0.6">
+    <path x="0.55" y="0.05">
+      <to x="0.15" y="0.05" />
+      <to x="0.51891730682301" y="0.63825409294735" />
+      <to x="0.15000000000001" y="0.80" b="-1.15890289382278" />
+    </path>
+  </letter>
+  <!-- DIGIT THREE -->
+  <letter code="51" start="0.1" end="0.6">
+    <path x="0.15" y="0.95">
+      <to x="0.35" y="0.95" />
+      <to x="0.55" y="0.75" b="0.4142135623731" />
+      <to x="0.35" y="0.55" b="0.4142135623731" />
+      <to x="0.25" y="0.55" />
+    </path>
+    <path x="0.35" y="0.55">
+      <to x="0.55" y="0.35" b="0.4142135623731" />
+      <to x="0.55" y="0.25" />
+      <to x="0.35" y="0.05" b="0.4142135623731" />
+      <to x="0.15" y="0.05" />
+    </path>
+  </letter>
+  <!-- DIGIT FOUR -->
+  <letter code="52" start="0.05" end="0.65">
+    <path x="0.30" y="0.95">
+      <to x="0.10" y="0.25" />
+      <to x="0.60" y="0.25" />
+    </path>
+    <path x="0.45" y="0.45">
+      <to x="0.45" y="0.05" />
+    </path>
+  </letter>
+  <!-- DIGIT FIVE -->
+  <letter code="53" start="0.1" end="0.6">
+    <path x="0.55" y="0.95">
+      <to x="0.15" y="0.95" />
+      <to x="0.15" y="0.55" />
+      <to x="0.35" y="0.55" />
+      <to x="0.55" y="0.35" b="0.4142135623731" />
+      <to x="0.55" y="0.25" />
+      <to x="0.35" y="0.05" b="0.4142135623731" />
+      <to x="0.15" y="0.05" />
+    </path>
+  </letter>
+  <!-- DIGIT SIX -->
+  <letter code="54" start="0.1" end="0.6">
+    <path x="0.15" y="0.55">
+      <to x="0.35" y="0.55" />
+      <to x="0.55" y="0.35" b="0.4142135623731" />
+      <to x="0.55" y="0.25" />
+      <to x="0.35" y="0.05" b="0.4142135623731" />
+      <to x="0.15" y="0.25" b="0.4142135623731" />
+      <to x="0.15" y="0.55" />
+      <to x="0.45000000000001" y="0.95" b="0.33333333333333" />
+    </path>
+  </letter>
+  <!-- DIGIT SEVEN -->
+  <letter code="55" start="0.1" end="0.6">
+    <path x="0.15" y="0.85">
+      <to x="0.15" y="0.95" />
+      <to x="0.55" y="0.95" />
+      <to x="0.35" y="0.05" />
+    </path>
+  </letter>
+  <!-- DIGIT EIGHT -->
+  <letter code="56" start="0.1" end="0.6">
+    <path x="0.35" y="0.55">
+      <to x="0.55" y="0.35" b="0.4142135623731" />
+      <to x="0.55" y="0.25" />
+      <to x="0.15" y="0.25" b="1.00" />
+      <to x="0.15" y="0.35" />
+      <to x="0.35" y="0.55" b="0.4142135623731" />
+      <to x="0.35" y="0.95" b="-1.00" />
+      <to x="0.35" y="0.55" b="-1.00" />
+    </path>
+  </letter>
+  <!-- DIGIT NINE -->
+  <letter code="57" start="0.1" end="0.6">
+    <path x="0.55" y="0.45">
+      <to x="0.35" y="0.45" />
+      <to x="0.15" y="0.65" b="0.4142135623731" />
+      <to x="0.15" y="0.75" />
+      <to x="0.35" y="0.95" b="0.4142135623731" />
+      <to x="0.55" y="0.75" b="0.4142135623731" />
+      <to x="0.55" y="0.45" />
+      <to x="0.24999999999999" y="0.05" b="0.33333333333333" />
+    </path>
+  </letter>
+  <!-- PLUS SIGN -->
+  <letter code="43" start="0.1" end="0.6">
+    <path x="0.35" y="0.15">
+      <to x="0.35" y="0.55" />
+    </path>
+    <path x="0.55" y="0.35">
+      <to x="0.15" y="0.35" />
+    </path>
+  </letter>
+  <!-- HYPHEN-MINUS -->
+  <letter code="45" start="0.1" end="0.6">
+    <path x="0.15" y="0.35">
+      <to x="0.55" y="0.35" />
+    </path>
+  </letter>
+  <!-- ASTERISK -->
+  <letter code="42" start="0.1" end="0.6">
+    <path x="0.15" y="0.15">
+      <to x="0.55" y="0.55" />
+    </path>
+    <path x="0.15" y="0.55">
+      <to x="0.55" y="0.15" />
+    </path>
+  </letter>
+  <!-- SOLIDUS -->
+  <letter code="47" start="0.1" end="0.6">
+    <path x="0.15" y="0.05">
+      <to x="0.55" y="0.95" />
+    </path>
+  </letter>
+  <!-- PLUS-MINUS SIGN -->
+  <letter code="177" start="0.1" end="0.6">
+    <path x="0.15" y="0.05">
+      <to x="0.55" y="0.05" />
+    </path>
+    <path x="0.35" y="0.25">
+      <to x="0.35" y="0.65" />
+    </path>
+    <path x="0.55" y="0.45">
+      <to x="0.15" y="0.45" />
+    </path>
+  </letter>
+  <!-- EQUALS SIGN -->
+  <letter code="61" start="0.1" end="0.6">
+    <path x="0.15" y="0.20">
+      <to x="0.55" y="0.20" />
+    </path>
+    <path x="0.15" y="0.50">
+      <to x="0.55" y="0.50" />
+    </path>
+  </letter>
+  <!-- IDENTICAL TO -->
+  <letter code="8801" start="0.1" end="0.6">
+    <path x="0.15" y="0.10">
+      <to x="0.55" y="0.10" />
+    </path>
+    <path x="0.15" y="0.35">
+      <to x="0.55" y="0.35" />
+    </path>
+    <path x="0.15" y="0.60">
+      <to x="0.55" y="0.60" />
+    </path>
+  </letter>
+  <!-- DIVISION SIGN -->
+  <letter code="247" start="0.1" end="0.6">
+    <path x="0.15" y="0.35">
+      <to x="0.55" y="0.35" />
+    </path>
+    <path x="0.35" y="0.55">
+      <to x="0.35" y="0.60" />
+    </path>
+    <path x="0.35" y="0.10">
+      <to x="0.35" y="0.15" />
+    </path>
+  </letter>
+  <!-- LESS-THAN SIGN -->
+  <letter code="60" start="0.1" end="0.6">
+    <path x="0.55" y="0.50">
+      <to x="0.15" y="0.35" />
+      <to x="0.55" y="0.20" />
+    </path>
+  </letter>
+  <!-- GREATER-THAN SIGN -->
+  <letter code="62" start="0.1" end="0.6">
+    <path x="0.15" y="0.50">
+      <to x="0.55" y="0.35" />
+      <to x="0.15" y="0.20" />
+    </path>
+  </letter>
+  <!-- LESS-THAN OR EQUAL TO -->
+  <letter code="8804" start="0.1" end="0.6">
+    <path x="0.55" y="0.65">
+      <to x="0.15" y="0.50" />
+      <to x="0.55" y="0.35" />
+    </path>
+    <path x="0.15" y="0.10">
+      <to x="0.55" y="0.10" />
+    </path>
+  </letter>
+  <!-- GREATER-THAN OR EQUAL TO -->
+  <letter code="8805" start="0.1" end="0.6">
+    <path x="0.15" y="0.65">
+      <to x="0.55" y="0.50" />
+      <to x="0.15" y="0.35" />
+    </path>
+    <path x="0.15" y="0.10">
+      <to x="0.55" y="0.10" />
+    </path>
+  </letter>
+  <!-- LEFT-POINTING DOUBLE ANGLE QUOTATION MARK -->
+  <letter code="171" start="0.05" end="0.65">
+    <path x="0.30" y="0.10">
+      <to x="0.10" y="0.35" />
+      <to x="0.30" y="0.60" />
+    </path>
+    <path x="0.60" y="0.10">
+      <to x="0.40" y="0.35" />
+      <to x="0.60" y="0.60" />
+    </path>
+  </letter>
+  <!-- RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK -->
+  <letter code="187" start="0.05" end="0.65">
+    <path x="0.40" y="0.10">
+      <to x="0.60" y="0.35" />
+      <to x="0.40" y="0.60" />
+    </path>
+    <path x="0.10" y="0.10">
+      <to x="0.30" y="0.35" />
+      <to x="0.10" y="0.60" />
+    </path>
+  </letter>
+  <!-- LEFT PARENTHESIS -->
+  <letter code="40" start="0.3" end="0.45">
+    <path x="0.40" y="1.05">
+      <to x="0.40" y="-0.05" b="-0.09090909090909" />
+    </path>
+  </letter>
+  <!-- RIGHT PARENTHESIS -->
+  <letter code="41" start="0.25" end="0.4">
+    <path x="0.30000000000002" y="-0.0499999999999">
+      <to x="0.30000000000002" y="1.0499999999999" b="-0.09090909090907" />
+    </path>
+  </letter>
+  <!-- LEFT SQUARE BRACKET -->
+  <letter code="91" start="0.25" end="0.45">
+    <path x="0.40" y="-0.05">
+      <to x="0.30" y="-0.05" />
+      <to x="0.30" y="1.05" />
+      <to x="0.40" y="1.05" />
+    </path>
+  </letter>
+  <!-- RIGHT SQUARE BRACKET -->
+  <letter code="93" start="0.25" end="0.45">
+    <path x="0.30" y="-0.05">
+      <to x="0.40" y="-0.05" />
+      <to x="0.40" y="1.05" />
+      <to x="0.30" y="1.05" />
+    </path>
+  </letter>
+  <!-- LEFT CURLY BRACKET -->
+  <letter code="123" start="0.2" end="0.5">
+    <path x="0.45" y="1.05">
+      <to x="0.35" y="0.95" b="-0.4142135623731" />
+      <to x="0.35" y="0.60" />
+      <to x="0.25" y="0.50" b="0.4142135623731" />
+      <to x="0.35" y="0.40" b="0.4142135623731" />
+      <to x="0.35" y="0.05" />
+      <to x="0.45" y="-0.05" b="-0.4142135623731" />
+    </path>
+  </letter>
+  <!-- RIGHT CURLY BRACKET -->
+  <letter code="125" start="0.2" end="0.5">
+    <path x="0.25" y="1.05">
+      <to x="0.35" y="0.95" b="0.4142135623731" />
+      <to x="0.35" y="0.60" />
+      <to x="0.45" y="0.50" b="-0.4142135623731" />
+      <to x="0.35" y="0.40" b="-0.4142135623731" />
+      <to x="0.35" y="0.05" />
+      <to x="0.25" y="-0.05" b="0.4142135623731" />
+    </path>
+  </letter>
+  <!-- PERCENT SIGN -->
+  <letter code="37" start="-0.1" end="0.8">
+    <path x="-0.05" y="0.05">
+      <to x="0.75" y="0.95" />
+    </path>
+    <path x="0.25" y="0.80">
+      <to x="-0.05" y="0.80" b="-1.00" />
+      <to x="0.25" y="0.80" b="-1.00" />
+    </path>
+    <path x="0.75" y="0.20">
+      <to x="0.45" y="0.20" b="-1.00" />
+      <to x="0.75" y="0.20" b="-1.00" />
+    </path>
+  </letter>
+  <!-- INFINITY -->
+  <letter code="8734" start="-0.05" end="0.75">
+    <path x="0.70" y="0.50">
+      <to x="0.35" y="0.50" b="-1.00000000000001" />
+      <to x="0.00" y="0.50" b="1.00000000000001" />
+      <to x="0.35" y="0.50" b="1.00000000000001" />
+      <to x="0.70" y="0.50" b="-1.00000000000001" />
+    </path>
+  </letter>
+  <!-- SQUARE ROOT -->
+  <letter code="8730" start="-0.1" end="0.95">
+    <path x="-0.05" y="0.65">
+      <to x="0.15" y="0.05" />
+      <to x="0.55" y="1.35" />
+      <to x="0.90" y="1.35" />
+    </path>
+  </letter>
+  <!-- ALMOST EQUAL TO -->
+  <letter code="8776" start="0.1" end="0.6">
+    <path x="0.15" y="0.50">
+      <to x="0.35" y="0.50" b="0.50" />
+      <to x="0.55" y="0.50" b="-0.50" />
+    </path>
+    <path x="0.15" y="0.20">
+      <to x="0.35" y="0.20" b="0.50" />
+      <to x="0.55" y="0.20" b="-0.50" />
+    </path>
+  </letter>
+  <!-- SMALL TILDE -->
+  <letter code="732" start="0.1" end="0.6">
+    <path x="0.15" y="0.30">
+      <to x="0.35" y="0.30" b="0.50" />
+      <to x="0.55" y="0.30" b="-0.50" />
+    </path>
+  </letter>
+  <!-- EXCLAMATION MARK -->
+  <letter code="33" start="0.3" end="0.4">
+    <path x="0.34999999999991" y="0.10">
+      <to x="0.34999999999991" y="0.05" />
+    </path>
+    <path x="0.34999999999991" y="0.95">
+      <to x="0.34999999999991" y="0.35" />
+    </path>
+  </letter>
+  <!-- QUESTION MARK -->
+  <letter code="63" start="0.1" end="0.6">
+    <path x="0.15" y="0.90">
+      <to x="0.40" y="0.95" b="0.09901951359279" />
+      <to x="0.5045322014493" y="0.69242203357488" b="0.67338335432498" />
+      <to x="0.3803118657004" y="0.57171864428342" />
+      <to x="0.34999999999999" y="0.50" b="-0.20264666780302" />
+      <to x="0.35" y="0.35" />
+    </path>
+    <path x="0.34999999999991" y="0.10">
+      <to x="0.34999999999991" y="0.05" />
+    </path>
+  </letter>
+  <!-- AMPERSAND -->
+  <letter code="38" start="0" end="0.7">
+    <path x="0.55" y="0.05">
+      <to x="0.12349562184149" y="0.7193982487366" />
+      <to x="0.37339690838639" y="0.71471692430113" b="1.86406484806808" />
+      <to x="0.07660309161349" y="0.28528307569887" />
+      <to x="0.29" y="0.08" b="-0.8504600223352" />
+      <to x="0.65" y="0.35" />
+    </path>
+  </letter>
+  <!-- APOSTROPHE -->
+  <letter code="39" start="0.275" end="0.425">
+    <path x="0.325" y="0.75">
+      <to x="0.375" y="0.95" />
+    </path>
+  </letter>
+  <!-- QUOTATION MARK -->
+  <letter code="34" start="0.15" end="0.55">
+    <path x="0.20" y="0.75">
+      <to x="0.25" y="0.95" />
+    </path>
+    <path x="0.45" y="0.75">
+      <to x="0.50" y="0.95" />
+    </path>
+  </letter>
+  <!-- COMMA -->
+  <letter code="44" start="0.275" end="0.425">
+    <path x="0.325" y="-0.15">
+      <to x="0.375" y="0.05" />
+    </path>
+  </letter>
+  <!-- SEMICOLON -->
+  <letter code="59" start="0.25" end="0.4">
+    <path x="0.30" y="-0.15">
+      <to x="0.35" y="0.05" />
+    </path>
+    <path x="0.35" y="0.45">
+      <to x="0.35" y="0.40" />
+    </path>
+  </letter>
+  <!-- FULL STOP -->
+  <letter code="46" start="0.3" end="0.4">
+    <path x="0.35" y="0.10">
+      <to x="0.35" y="0.05" />
+    </path>
+  </letter>
+  <!-- COLON -->
+  <letter code="58" start="0.3" end="0.4">
+    <path x="0.35" y="0.10">
+      <to x="0.35" y="0.05" />
+    </path>
+    <path x="0.35" y="0.55">
+      <to x="0.35" y="0.50" />
+    </path>
+  </letter>
+  <!-- REVERSE SOLIDUS -->
+  <letter code="92" start="0.1" end="0.6">
+    <path x="0.55" y="0.05">
+      <to x="0.15" y="0.95" />
+    </path>
+  </letter>
+  <!-- LOW LINE -->
+  <letter code="95" start="-0.15" end="0.85">
+    <path x="-0.10" y="-0.25">
+      <to x="0.80" y="-0.25" />
+    </path>
+  </letter>
+  <!-- N-ARY SUMMATION -->
+  <letter code="8721" start="0" end="0.7">
+    <path x="0.55" y="0.95">
+      <to x="0.05" y="0.95" />
+      <to x="0.30" y="0.50" />
+      <to x="0.05" y="0.05" />
+      <to x="0.55" y="0.05" />
+      <to x="0.65" y="0.15" b="-0.4142135623731" />
+    </path>
+  </letter>
+  <!-- INTEGRAL -->
+  <letter code="8747" start="0.1" end="0.6">
+    <path x="0.15" y="-0.25">
+      <to x="0.20" y="-0.25" />
+      <to x="0.35" y="-0.10" b="-0.4142135623731" />
+      <to x="0.35" y="1.10" />
+      <to x="0.50" y="1.25" b="0.4142135623731" />
+      <to x="0.55" y="1.25" />
+    </path>
+  </letter>
+  <!-- SPHERICAL ANGLE -->
+  <letter code="8738" start="0" end="0.7">
+    <path x="0.65" y="0.05">
+      <to x="0.05" y="0.35" />
+      <to x="0.65" y="0.65" />
+    </path>
+    <path x="0.45" y="0.65">
+      <to x="0.45" y="0.05" />
+    </path>
+  </letter>
+  <!-- WHITE RIGHT-POINTING SMALL TRIANGLE -->
+  <letter code="9657" start="0" end="0.7">
+    <path x="0.05" y="0.05">
+      <to x="0.65" y="0.35" />
+      <to x="0.05" y="0.65" />
+      <to x="0.05" y="0.05" />
+    </path>
+  </letter>
+  <!-- WHITE LEFT-POINTING SMALL TRIANGLE -->
+  <letter code="9667" start="0" end="0.7">
+    <path x="0.65" y="0.05">
+      <to x="0.05" y="0.35" />
+      <to x="0.65" y="0.65" />
+      <to x="0.65" y="0.05" />
+    </path>
+  </letter>
+  <!-- NOT EQUAL TO -->
+  <letter code="8800" start="0.1" end="0.6">
+    <path x="0.15" y="0.20">
+      <to x="0.55" y="0.20" />
+    </path>
+    <path x="0.15" y="0.50">
+      <to x="0.55" y="0.50" />
+    </path>
+    <path x="0.25" y="0.05">
+      <to x="0.45" y="0.65" />
+    </path>
+  </letter>
+  <!-- NUMBER SIGN -->
+  <letter code="35" start="0" end="0.7">
+    <path x="0.05" y="0.35">
+      <to x="0.65" y="0.35" />
+    </path>
+    <path x="0.20" y="0.05">
+      <to x="0.20" y="0.95" />
+    </path>
+    <path x="0.05" y="0.65">
+      <to x="0.65" y="0.65" />
+    </path>
+    <path x="0.50" y="0.05">
+      <to x="0.50" y="0.95" />
+    </path>
+  </letter>
+  <!-- ESTIMATES -->
+  <letter code="8793" start="0.1" end="0.6">
+    <path x="0.15" y="0.15">
+      <to x="0.55" y="0.15" />
+    </path>
+    <path x="0.15" y="0.45">
+      <to x="0.55" y="0.45" />
+    </path>
+    <path x="0.15" y="0.75">
+      <to x="0.35" y="0.95" />
+      <to x="0.55" y="0.75" />
+    </path>
+  </letter>
+  <!-- WHITE SQUARE -->
+  <letter code="9633" start="0" end="0.7">
+    <path x="0.05" y="0.05">
+      <to x="0.65" y="0.05" />
+      <to x="0.65" y="0.65" />
+      <to x="0.05" y="0.65" />
+      <to x="0.05" y="0.05" />
+    </path>
+  </letter>
+  <!-- DIAMETER SIGN -->
+  <letter code="8960" start="0" end="0.7">
+    <path x="0.65" y="0.50000000000002">
+      <to x="0.05" y="0.50000000000002" b="-1.00" />
+      <to x="0.65" y="0.50000000000002" b="-1.00" />
+    </path>
+    <path x="0.20" y="0.05000000000002">
+      <to x="0.50" y="0.95000000000002" />
+    </path>
+  </letter>
+  <!-- LOWER RIGHT TRIANGLE -->
+  <letter code="9727" start="-0.1" end="0.8">
+    <path x="0.75" y="0.05">
+      <to x="-0.05" y="0.05" />
+      <to x="-0.05" y="0.45" />
+      <to x="0.75" y="0.05" />
+    </path>
+  </letter>
+  <!-- WHITE LEFT-POINTING POINTER -->
+  <letter code="9669" start="-0.1" end="0.8">
+    <path x="0.75" y="0.25">
+      <to x="-0.05" y="0.05" />
+      <to x="-0.05" y="0.45" />
+      <to x="0.75" y="0.25" />
+    </path>
+  </letter>
+  <!-- DOLLAR SIGN -->
+  <letter code="36" start="0.1" end="0.6">
+    <path x="0.55" y="0.80">
+      <to x="0.30" y="0.85" b="-0.09901951359278" />
+      <to x="0.22664374853838" y="0.56916093713459" b="-0.7723470257161" />
+      <to x="0.47335625146161" y="0.43083906286541" />
+      <to x="0.39999999999998" y="0.15" b="0.77234702571601" />
+      <to x="0.15000000000009" y="0.19999999999997" b="0.09901951359275" />
+    </path>
+    <path x="0.35" y="0.05">
+      <to x="0.35" y="0.95" />
+    </path>
+  </letter>
+  <!-- CENT SIGN -->
+  <letter code="162" start="0.1" end="0.6">
+    <path x="0.55" y="0.65">
+      <to x="0.30" y="0.65" />
+      <to x="0.15" y="0.50" b="-0.414213562373095" />
+      <to x="0.15" y="0.20" />
+      <to x="0.30" y="0.05" b="-0.414213562373095" />
+      <to x="0.55" y="0.05" />
+    </path>
+    <path x="0.40" y="-0.10">
+      <to x="0.40" y="0.80" />
+    </path>
+  </letter>
+  <!-- EURO SIGN -->
+  <letter code="8364" start="-0.05" end="0.65">
+    <path x="0.00" y="0.60">
+      <to x="0.40" y="0.60" />
+    </path>
+    <path x="0.00" y="0.40">
+      <to x="0.40" y="0.40" />
+    </path>
+    <path x="0.60" y="0.70">
+      <to x="0.10" y="0.70" b="-1.00" />
+      <to x="0.10" y="0.30" />
+      <to x="0.60" y="0.30" b="-1.00" />
+    </path>
+  </letter>
+  <!-- PER MILLE SIGN -->
+  <letter code="8240" start="-0.3" end="1.05">
+    <path x="-0.25" y="0.05">
+      <to x="0.55" y="0.95" />
+    </path>
+    <path x="0.05" y="0.80">
+      <to x="-0.25" y="0.80" b="-1.00" />
+      <to x="0.05" y="0.80" b="-1.00" />
+    </path>
+    <path x="0.55" y="0.20">
+      <to x="0.25" y="0.20" b="-1.00" />
+      <to x="0.55" y="0.20" b="-1.00" />
+    </path>
+    <path x="1.00" y="0.20">
+      <to x="0.70" y="0.20" b="-1.00" />
+      <to x="1.00" y="0.20" b="-1.00" />
+    </path>
+  </letter>
+  <!-- COMMERCIAL AT -->
+  <letter code="64" start="-0.1" end="0.8">
+    <path x="0.50" y="0.20">
+      <to x="0.20" y="0.20" b="1.00" />
+      <to x="0.20" y="0.50" />
+      <to x="0.35" y="0.65" b="0.4142135623731" />
+      <to x="0.50" y="0.65" />
+      <to x="0.50" y="0.175" />
+      <to x="0.75" y="0.175" b="-1.00" />
+      <to x="0.75" y="0.55" />
+      <to x="-0.05" y="0.55" b="-1.00" />
+      <to x="-0.05" y="0.15" />
+      <to x="0.30" y="-0.24686269665969" b="-0.37796447300923" />
+    </path>
+  </letter>
+  <!-- COPYRIGHT SIGN -->
+  <letter code="169" start="-0.1" end="0.8">
+    <path x="0.75" y="0.55">
+      <to x="-0.05" y="0.55" b="-1.00" />
+      <to x="0.75" y="0.55" b="-1.00" />
+    </path>
+    <path x="0.45" y="0.75">
+      <to x="0.30" y="0.75" />
+      <to x="0.20" y="0.65" b="-0.4142135623731" />
+      <to x="0.20" y="0.45" />
+      <to x="0.30" y="0.35" b="-0.4142135623731" />
+      <to x="0.45" y="0.35" />
+    </path>
+  </letter>
+  <!-- REGISTERED SIGN -->
+  <letter code="174" start="-0.1" end="0.8">
+    <path x="0.75" y="0.55">
+      <to x="-0.05" y="0.55" b="-1.00" />
+      <to x="0.75" y="0.55" b="-1.00" />
+    </path>
+    <path x="0.25" y="0.35">
+      <to x="0.25" y="0.75" />
+      <to x="0.35" y="0.75" />
+      <to x="0.35" y="0.55" b="1.00" />
+      <to x="0.25" y="0.55" />
+    </path>
+    <path x="0.45" y="0.35">
+      <to x="0.35" y="0.55" />
+    </path>
+  </letter>
+  <!-- SUPERSCRIPT TWO -->
+  <letter code="178" start="0.2" end="0.48888888888886867">
+    <path x="0.43888888888887" y="0.55">
+      <to x="0.26111111111113" y="0.55" />
+      <to x="0.42507435858797" y="0.81144626353216" />
+      <to x="0.26111111111113" y="0.88333333333333" b="-1.15890289382278" />
+    </path>
+  </letter>
+  <!-- SUPERSCRIPT THREE -->
+  <letter code="179" start="0.2" end="0.5">
+    <path x="0.26111111111113" y="0.95">
+      <to x="0.35" y="0.95" />
+      <to x="0.43888888888889" y="0.86111111111111" b="0.4142135623731" />
+      <to x="0.35" y="0.77222222222222" b="0.4142135623731" />
+      <to x="0.30555555555557" y="0.77222222222222" />
+    </path>
+    <path x="0.35" y="0.77222222222222">
+      <to x="0.43888888888889" y="0.68333333333334" b="0.4142135623731" />
+      <to x="0.43888888888887" y="0.63888888888889" />
+      <to x="0.35" y="0.55" b="0.4142135623731" />
+      <to x="0.26111111111113" y="0.55" />
+    </path>
+  </letter>
+  <!-- HORIZONTAL ELLIPSIS -->
+  <letter code="8230" start="0.125" end="0.575">
+    <path x="0.35" y="0.10">
+      <to x="0.35" y="0.05" />
+    </path>
+    <path x="0.175" y="0.10">
+      <to x="0.175" y="0.05" />
+    </path>
+    <path x="0.525" y="0.10">
+      <to x="0.525" y="0.05" />
+    </path>
+  </letter>
+  <!-- CIRCUMFLEX ACCENT -->
+  <letter code="94" start="0.15" end="0.55">
+    <path x="0.20" y="0.80">
+      <to x="0.35" y="0.95" />
+      <to x="0.50" y="0.80" />
+    </path>
+  </letter>
+  <!-- DEGREE SIGN -->
+  <letter code="176" start="0.175" end="0.525">
+    <path x="0.475" y="0.825">
+      <to x="0.225" y="0.825" b="-1.00" />
+      <to x="0.475" y="0.825" b="-1.00" />
+    </path>
+  </letter>
+  <!-- GREEK CAPITAL LETTER ALPHA -->
+  <letter code="913" start="0" end="0.7">
+    <path x="0.1333333333333" y="0.30">
+      <to x="0.56666666666661" y="0.30" />
+    </path>
+    <path x="0.05" y="0.05">
+      <to x="0.35" y="0.95" />
+      <to x="0.65" y="0.05" />
+    </path>
+  </letter>
+  <!-- GREEK CAPITAL LETTER BETA -->
+  <letter code="914" start="0.05" end="0.65">
+    <path x="0.10" y="0.55">
+      <to x="0.35" y="0.55" />
+      <to x="0.35" y="0.05" b="1.00" />
+      <to x="0.10" y="0.05" />
+      <to x="0.10" y="0.95" />
+      <to x="0.35" y="0.95" />
+      <to x="0.35" y="0.55" b="1.00" />
+    </path>
+  </letter>
+  <!-- GREEK CAPITAL LETTER GAMMA -->
+  <letter code="915" start="0.1" end="0.65">
+    <path x="0.15" y="0.05">
+      <to x="0.15" y="0.95" />
+      <to x="0.60" y="0.95" />
+    </path>
+  </letter>
+  <!-- GREEK CAPITAL LETTER DELTA -->
+  <letter code="916" start="0" end="0.7">
+    <path x="0.05" y="0.05">
+      <to x="0.35" y="0.95" />
+      <to x="0.65" y="0.05" />
+      <to x="0.05" y="0.05" />
+    </path>
+  </letter>
+  <!-- GREEK CAPITAL LETTER EPSILON -->
+  <letter code="917" start="0.1" end="0.65">
+    <path x="0.45" y="0.50">
+      <to x="0.15" y="0.50" />
+    </path>
+    <path x="0.60" y="0.95">
+      <to x="0.15" y="0.95" />
+      <to x="0.15" y="0.05" />
+      <to x="0.60" y="0.05" />
+    </path>
+  </letter>
+  <!-- GREEK CAPITAL LETTER ZETA -->
+  <letter code="918" start="0.05" end="0.65">
+    <path x="0.10" y="0.95">
+      <to x="0.60" y="0.95" />
+      <to x="0.10" y="0.05" />
+      <to x="0.60" y="0.05" />
+    </path>
+  </letter>
+  <!-- GREEK CAPITAL LETTER ETA -->
+  <letter code="919" start="0.05" end="0.65">
+    <path x="0.10" y="0.05">
+      <to x="0.10" y="0.95" />
+    </path>
+    <path x="0.60" y="0.95">
+      <to x="0.60" y="0.05" />
+    </path>
+    <path x="0.10" y="0.50">
+      <to x="0.60" y="0.50" />
+    </path>
+  </letter>
+  <!-- GREEK CAPITAL LETTER THETA -->
+  <letter code="920" start="0.05" end="0.65">
+    <path x="0.10" y="0.30">
+      <to x="0.60" y="0.30" b="-1.00" />
+      <to x="0.60" y="0.70" />
+      <to x="0.10" y="0.70" b="-1.00" />
+      <to x="0.10" y="0.30" />
+    </path>
+    <path x="0.30" y="0.50">
+      <to x="0.40" y="0.50" />
+    </path>
+  </letter>
+  <!-- GREEK CAPITAL LETTER IOTA -->
+  <letter code="921" start="0.3" end="0.4">
+    <path x="0.35" y="0.05">
+      <to x="0.35" y="0.95" />
+    </path>
+  </letter>
+  <!-- GREEK CAPITAL LETTER KAPPA -->
+  <letter code="922" start="0.1" end="0.65">
+    <path x="0.15" y="0.05">
+      <to x="0.15" y="0.95" />
+    </path>
+    <path x="0.60" y="0.95">
+      <to x="0.15" y="0.40" />
+    </path>
+    <path x="0.60" y="0.05">
+      <to x="0.30773195876291" y="0.59278350515464" />
+    </path>
+  </letter>
+  <!-- GREEK CAPITAL LETTER LAMDA -->
+  <letter code="923" start="0" end="0.7">
+    <path x="0.05" y="0.05">
+      <to x="0.35" y="0.95" />
+      <to x="0.65" y="0.05" />
+    </path>
+  </letter>
+  <!-- GREEK CAPITAL LETTER MU -->
+  <letter code="924" start="0" end="0.7">
+    <path x="0.05" y="0.05">
+      <to x="0.05" y="0.95" />
+      <to x="0.35" y="0.45" />
+      <to x="0.65" y="0.95" />
+      <to x="0.65" y="0.05" />
+    </path>
+  </letter>
+  <!-- GREEK CAPITAL LETTER NU -->
+  <letter code="925" start="0.05" end="0.65">
+    <path x="0.10" y="0.05">
+      <to x="0.10" y="0.95" />
+      <to x="0.60" y="0.05" />
+      <to x="0.60" y="0.95" />
+    </path>
+  </letter>
+  <!-- GREEK CAPITAL LETTER XI -->
+  <letter code="926" start="0.05" end="0.65">
+    <path x="0.10" y="0.05">
+      <to x="0.60" y="0.05" />
+    </path>
+    <path x="0.25" y="0.50">
+      <to x="0.45" y="0.50" />
+    </path>
+    <path x="0.10" y="0.95">
+      <to x="0.60" y="0.95" />
+    </path>
+  </letter>
+  <!-- GREEK CAPITAL LETTER OMICRON -->
+  <letter code="927" start="0.05" end="0.65">
+    <path x="0.10" y="0.30">
+      <to x="0.60" y="0.30" b="-1.00" />
+      <to x="0.60" y="0.70" />
+      <to x="0.10" y="0.70" b="-1.00" />
+      <to x="0.10" y="0.30" />
+    </path>
+  </letter>
+  <!-- GREEK CAPITAL LETTER PI -->
+  <letter code="928" start="0.05" end="0.65">
+    <path x="0.10" y="0.05">
+      <to x="0.10" y="0.95" />
+      <to x="0.60" y="0.95" />
+      <to x="0.60" y="0.05" />
+    </path>
+  </letter>
+  <!-- GREEK CAPITAL LETTER RHO -->
+  <letter code="929" start="0.05" end="0.65">
+    <path x="0.10" y="0.05">
+      <to x="0.10" y="0.95" />
+      <to x="0.375" y="0.95" />
+      <to x="0.375" y="0.50" b="1.00" />
+      <to x="0.10" y="0.50" />
+    </path>
+  </letter>
+  <!-- GREEK CAPITAL LETTER SIGMA -->
+  <letter code="931" start="0.05" end="0.65">
+    <path x="0.60" y="0.95">
+      <to x="0.10" y="0.95" />
+      <to x="0.30" y="0.50" />
+      <to x="0.10" y="0.05" />
+      <to x="0.60" y="0.05" />
+    </path>
+  </letter>
+  <!-- GREEK CAPITAL LETTER TAU -->
+  <letter code="932" start="0.05" end="0.65">
+    <path x="0.35" y="0.95">
+      <to x="0.35" y="0.05" />
+    </path>
+    <path x="0.10" y="0.95">
+      <to x="0.60" y="0.95" />
+    </path>
+  </letter>
+  <!-- GREEK CAPITAL LETTER UPSILON -->
+  <letter code="933" start="0.05" end="0.65">
+    <path x="0.35" y="0.55">
+      <to x="0.10" y="0.95" />
+    </path>
+    <path x="0.60" y="0.95">
+      <to x="0.35" y="0.55" />
+    </path>
+    <path x="0.35" y="0.55">
+      <to x="0.35" y="0.05" />
+    </path>
+  </letter>
+  <!-- GREEK CAPITAL LETTER PHI -->
+  <letter code="934" start="-0.05" end="0.75">
+    <path x="0.15" y="0.05">
+      <to x="0.35" y="0.05" />
+      <to x="0.35" y="0.95" />
+      <to x="0.55" y="0.95" />
+    </path>
+    <path x="0.40" y="0.80">
+      <to x="0.40" y="0.20" b="1.00" />
+      <to x="0.30" y="0.20" />
+      <to x="0.30000000000001" y="0.80" b="0.99944787336284" />
+      <to x="0.40" y="0.80" />
+    </path>
+  </letter>
+  <!-- GREEK CAPITAL LETTER CHI -->
+  <letter code="935" start="0.05" end="0.65">
+    <path x="0.10" y="0.05">
+      <to x="0.60" y="0.95" />
+    </path>
+    <path x="0.10" y="0.95">
+      <to x="0.60" y="0.05" />
+    </path>
+  </letter>
+  <!-- GREEK CAPITAL LETTER PSI -->
+  <letter code="936" start="0" end="0.7">
+    <path x="0.35" y="0.05">
+      <to x="0.35" y="0.95" />
+    </path>
+    <path x="0.05" y="0.95">
+      <to x="0.05" y="0.60" />
+      <to x="0.65" y="0.60" b="-0.9994478733632" />
+      <to x="0.65" y="0.95" />
+    </path>
+  </letter>
+  <!-- GREEK CAPITAL LETTER OMEGA -->
+  <letter code="937" start="0" end="0.70000000000018192">
+    <path x="0.65000000000009" y="0.05">
+      <to x="0.50" y="0.05" />
+      <to x="0.50" y="0.29019237886467" />
+      <to x="0.65000000000009" y="0.55" b="-0.26794919243112" />
+      <to x="0.65000000000009" y="0.65" />
+      <to x="0.05" y="0.65" b="-1.00" />
+      <to x="0.05" y="0.55" />
+      <to x="0.20" y="0.29019237886467" b="-0.26794919243112" />
+      <to x="0.20" y="0.05" />
+      <to x="0.05" y="0.05" />
+    </path>
+  </letter>
+  <!-- GREEK SMALL LETTER ALPHA -->
+  <letter code="945" start="0.05" end="0.7">
+    <path x="0.65000000000009" y="0.05">
+      <to x="0.60" y="0.05" />
+      <to x="0.38846153846148" y="0.5576923076923" />
+      <to x="0.09999999999999" y="0.50" b="-0.81980390271867" />
+      <to x="0.10" y="0.20" />
+      <to x="0.38846153846146" y="0.14230769230769" b="-0.81980390271856" />
+      <to x="0.60" y="0.65" />
+    </path>
+  </letter>
+  <!-- GREEK SMALL LETTER BETA -->
+  <letter code="946" start="0.05" end="0.65">
+    <path x="0.10" y="-0.25">
+      <to x="0.10" y="0.75" />
+      <to x="0.30" y="0.95" b="0.4142135623731" />
+      <to x="0.40" y="0.95" />
+      <to x="0.55" y="0.80" b="0.4142135623731" />
+      <to x="0.55" y="0.70" />
+      <to x="0.40" y="0.55" b="0.4142135623731" />
+      <to x="0.60" y="0.35" b="0.4142135623731" />
+      <to x="0.60" y="0.25" />
+      <to x="0.40" y="0.05" b="0.4142135623731" />
+    </path>
+  </letter>
+  <!-- GREEK SMALL LETTER GAMMA -->
+  <letter code="947" start="0" end="0.6">
+    <path x="0.55" y="0.65">
+      <to x="0.20" y="-0.10" b="-0.22184933674955" />
+      <to x="0.50" y="-0.10" b="-1.00" />
+      <to x="0.05" y="0.65" b="-0.27698396494843" />
+    </path>
+  </letter>
+  <!-- GREEK SMALL LETTER DELTA -->
+  <letter code="948" start="0.1" end="0.6">
+    <path x="0.50" y="0.95">
+      <to x="0.25" y="0.95" />
+      <to x="0.20109583235891" y="0.76277395808973" b="-0.7723470257161" />
+      <to x="0.44780833528221" y="0.62445208382054" />
+      <to x="0.54999999999999" y="0.45" b="0.27133037029769" />
+      <to x="0.55" y="0.25" />
+      <to x="0.15" y="0.25" b="1.00" />
+      <to x="0.15" y="0.45" />
+      <to x="0.44780833528219" y="0.62445208382054" b="0.57315521340979" />
+    </path>
+  </letter>
+  <!-- GREEK SMALL LETTER EPSILON -->
+  <letter code="949" start="0.1" end="0.6">
+    <path x="0.35" y="0.35">
+      <to x="0.30" y="0.35" />
+      <to x="0.30" y="0.05" b="-1.00" />
+      <to x="0.55" y="0.10" b="-0.09901951359278" />
+    </path>
+    <path x="0.55" y="0.60">
+      <to x="0.30" y="0.65" b="-0.09901951359278" />
+      <to x="0.30" y="0.35" b="-1.00" />
+    </path>
+  </letter>
+  <!-- GREEK SMALL LETTER ZETA -->
+  <letter code="950" start="0.1000000000001819" end="0.550000000000091">
+    <path x="0.45" y="-0.25">
+      <to x="0.55000000000018" y="-0.15" b="-0.4142135623731" />
+      <to x="0.55000000000018" y="-0.05" />
+      <to x="0.45" y="0.05" b="-0.4142135623731" />
+      <to x="0.30" y="0.05" />
+      <to x="0.16081707477536" y="0.25592953893882" b="0.53110697087264" />
+      <to x="0.50" y="1.10" />
+      <to x="0.25" y="1.10" />
+      <to x="0.15000000000018" y="1.20" b="0.4142135623731" />
+      <to x="0.15000000000018" y="1.25" />
+    </path>
+  </letter>
+  <!-- GREEK SMALL LETTER ETA -->
+  <letter code="951" start="0.05" end="0.65">
+    <path x="0.20" y="0.05">
+      <to x="0.20" y="0.55" />
+      <to x="0.10" y="0.65" b="-0.4142135623731" />
+    </path>
+    <path x="0.60" y="-0.25">
+      <to x="0.60" y="0.45" />
+      <to x="0.20" y="0.45" b="-1.00" />
+    </path>
+  </letter>
+  <!-- GREEK SMALL LETTER THETA -->
+  <letter code="952" start="0" end="0.75">
+    <path x="0.05" y="0.35">
+      <to x="0.10" y="0.35" />
+      <to x="0.20" y="0.25" b="0.4142135623731" />
+      <to x="0.60" y="0.25" b="-1.00" />
+      <to x="0.60" y="0.775" />
+      <to x="0.425" y="0.60" b="-2.414213562373095" />
+      <to x="0.70" y="0.60" />
+    </path>
+  </letter>
+  <!-- GREEK SMALL LETTER IOTA -->
+  <letter code="953" start="0.1" end="0.55">
+    <path x="0.15" y="0.65">
+      <to x="0.15" y="0.26249999999995" />
+      <to x="0.49999999999998" y="0.10048148253982" b="-0.63903628015248" />
+    </path>
+  </letter>
+  <!-- GREEK SMALL LETTER KAPPA -->
+  <letter code="954" start="0.05" end="0.65">
+    <path x="0.10" y="0.65">
+      <to x="0.20" y="0.55" b="0.4142135623731" />
+      <to x="0.20" y="0.05" />
+    </path>
+    <path x="0.55" y="0.65">
+      <to x="0.20" y="0.25" />
+    </path>
+    <path x="0.3162471648599" y="0.38285390269701">
+      <to x="0.51790294546472" y="0.09290294546463" />
+      <to x="0.59999999999999" y="0.05" b="-0.24554059370764" />
+    </path>
+  </letter>
+  <!-- GREEK SMALL LETTER LAMDA -->
+  <letter code="955" start="0.05" end="0.65">
+    <path x="0.14999999999998" y="0.94999999999998">
+      <to x="0.19599000021579" y="0.91961937512135" b="0.30047511499892" />
+      <to x="0.55400999978419" y="0.0803806248786" />
+      <to x="0.60000000000002" y="0.04999999999998" b="-0.30047511499892" />
+    </path>
+    <path x="0.10" y="0.04999999999998">
+      <to x="0.34088992048919" y="0.57995782507626" />
+    </path>
+  </letter>
+  <!-- GREEK SMALL LETTER MU -->
+  <letter code="956" start="0.050000000000090951" end="0.65">
+    <path x="0.10" y="0.65">
+      <to x="0.10" y="-0.25" />
+    </path>
+    <path x="0.10" y="0.25">
+      <to x="0.50" y="0.25" b="-1.00" />
+      <to x="0.50" y="0.65" />
+    </path>
+    <path x="0.59999999999999" y="0.05">
+      <to x="0.54" y="0.07" b="0.16227766016835" />
+      <to x="0.45999999999999" y="0.13" />
+    </path>
+  </letter>
+  <!-- GREEK SMALL LETTER NU -->
+  <letter code="957" start="0" end="0.6">
+    <path x="0.05000000000009" y="0.65">
+      <to x="0.14812935555378" y="0.56925174222158" b="0.35854549151588" />
+      <to x="0.25" y="0.05" />
+      <to x="0.55000000000002" y="0.65" b="-0.21463468882903" />
+    </path>
+  </letter>
+  <!-- GREEK SMALL LETTER XI -->
+  <letter code="958" start="0" end="0.6">
+    <path x="0.45" y="-0.25">
+      <to x="0.55" y="-0.15" b="-0.4142135623731" />
+      <to x="0.55" y="-0.05" />
+      <to x="0.45" y="0.05" b="-0.4142135623731" />
+      <to x="0.30" y="0.05" />
+      <to x="0.30" y="0.55" b="1.00" />
+      <to x="0.45" y="0.55" />
+    </path>
+    <path x="0.30" y="0.85">
+      <to x="0.30" y="0.55" b="-1.00" />
+    </path>
+    <path x="0.05" y="0.95">
+      <to x="0.15" y="0.85" b="-0.4142135623731" />
+      <to x="0.45" y="0.85" />
+    </path>
+  </letter>
+  <!-- GREEK SMALL LETTER OMICRON -->
+  <letter code="959" start="0.1000000000001819" end="0.60000000000009091">
+    <path x="0.15000000000009" y="0.25">
+      <to x="0.55000000000018" y="0.25" b="-1.00" />
+      <to x="0.55000000000018" y="0.45" />
+      <to x="0.15000000000009" y="0.45" b="-1.00" />
+      <to x="0.15000000000009" y="0.25" />
+    </path>
+  </letter>
+  <!-- GREEK SMALL LETTER PI -->
+  <letter code="960" start="0" end="0.7">
+    <path x="0.10" y="0.05">
+      <to x="0.20" y="0.15" b="-0.4142135623731" />
+      <to x="0.20" y="0.65" />
+    </path>
+    <path x="0.60" y="0.05">
+      <to x="0.50" y="0.15" b="0.4142135623731" />
+      <to x="0.50" y="0.65" />
+    </path>
+    <path x="0.05" y="0.65">
+      <to x="0.65" y="0.65" />
+    </path>
+  </letter>
+  <!-- GREEK SMALL LETTER RHO -->
+  <letter code="961" start="0.1" end="0.6">
+    <path x="0.25000000000001" y="-0.24534619684654">
+      <to x="0.21481327697962" y="0.10260749707322" b="-0.38085246250475" />
+      <to x="0.15000000000002" y="0.25" b="0.21015576906111" />
+      <to x="0.15" y="0.45" />
+      <to x="0.55" y="0.45" b="1.00" />
+      <to x="0.55" y="0.25" />
+      <to x="0.21481327697959" y="0.10260749707322" b="0.6526798046434" />
+    </path>
+  </letter>
+  <!-- GREEK SMALL LETTER SIGMA -->
+  <letter code="963" start="0" end="0.650000000000091">
+    <path x="0.45000000000009" y="0.45">
+      <to x="0.25000000000009" y="0.65" b="-0.4142135623731" />
+    </path>
+    <path x="0.45" y="0.45">
+      <to x="0.45" y="0.25" />
+    </path>
+    <path x="0.05000000000009" y="0.25">
+      <to x="0.45000000000009" y="0.25" b="-1.00" />
+    </path>
+    <path x="0.05" y="0.25">
+      <to x="0.05" y="0.45" />
+    </path>
+    <path x="0.25000000000009" y="0.65">
+      <to x="0.05000000000009" y="0.45" b="-0.4142135623731" />
+    </path>
+    <path x="0.25000000000009" y="0.65">
+      <to x="0.50" y="0.65" />
+    </path>
+    <path x="0.50" y="0.65">
+      <to x="0.60" y="0.75" b="-0.4142135623731" />
+    </path>
+  </letter>
+  <!-- GREEK SMALL LETTER TAU -->
+  <letter code="964" start="0" end="0.650000000000091">
+    <path x="0.05" y="0.65">
+      <to x="0.60" y="0.65" />
+    </path>
+    <path x="0.30" y="0.65">
+      <to x="0.29999999999991" y="0.20" />
+      <to x="0.44999999999998" y="0.04999999999998" b="-0.414213562373095" />
+    </path>
+  </letter>
+  <!-- GREEK SMALL LETTER UPSILON -->
+  <letter code="965" start="0" end="0.7">
+    <path x="0.05" y="0.65">
+      <to x="0.15" y="0.55" b="0.4142135623731" />
+      <to x="0.15" y="0.20" />
+      <to x="0.30" y="0.05" b="-0.4142135623731" />
+      <to x="0.50" y="0.05" />
+      <to x="0.65000000000009" y="0.20" b="-0.4142135623731" />
+      <to x="0.65000000000009" y="0.65" />
+    </path>
+  </letter>
+  <!-- GREEK SMALL LETTER PHI -->
+  <letter code="966" start="1.8189894035458566E-13" end="0.7">
+    <path x="0.05000000000018" y="0.65">
+      <to x="0.05000000000018" y="0.35" />
+      <to x="0.65" y="0.35" b="-1.00" />
+      <to x="0.65" y="0.50" />
+      <to x="0.35" y="0.50" b="-1.00" />
+      <to x="0.35" y="-0.25" />
+    </path>
+  </letter>
+  <!-- GREEK SMALL LETTER CHI -->
+  <letter code="967" start="0.05" end="0.6">
+    <path x="0.15" y="-0.25">
+      <to x="0.55" y="0.65" />
+    </path>
+    <path x="0.09999999999999" y="0.65">
+      <to x="0.14497002930188" y="0.62185626831362" b="0.28712030234634" />
+      <to x="0.5550299706983" y="-0.22185626831362" />
+      <to x="0.60" y="-0.25" b="-0.2871203023463" />
+    </path>
+  </letter>
+  <!-- GREEK SMALL LETTER PSI -->
+  <letter code="968" start="0" end="0.7">
+    <path x="0.05" y="0.65">
+      <to x="0.05" y="0.35" />
+      <to x="0.65" y="0.35" b="-1.00" />
+      <to x="0.65" y="0.65" />
+    </path>
+    <path x="0.35" y="-0.25">
+      <to x="0.35" y="0.85" />
+    </path>
+  </letter>
+  <!-- GREEK SMALL LETTER OMEGA -->
+  <letter code="969" start="-0.05" end="0.75">
+    <path x="0.10" y="0.65">
+      <to x="0.00" y="0.225" b="-0.11606229914325" />
+      <to x="0.35" y="0.225" b="-1.00" />
+      <to x="0.35" y="0.35" />
+    </path>
+    <path x="0.60" y="0.65">
+      <to x="0.70" y="0.225" b="0.11606229914325" />
+      <to x="0.35" y="0.225" b="1.00" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER A WITH GRAVE -->
+  <letter code="192" start="0" end="0.7">
+    <path x="0.133333333333333" y="0.30">
+      <to x="0.566666666666667" y="0.30" />
+    </path>
+    <path x="0.05" y="0.05">
+      <to x="0.35" y="0.95" />
+      <to x="0.65" y="0.05" />
+    </path>
+    <path x="0.25" y="1.35">
+      <to x="0.45" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER E WITH GRAVE -->
+  <letter code="200" start="0.1" end="0.6">
+    <path x="0.45" y="0.55">
+      <to x="0.15" y="0.55" />
+    </path>
+    <path x="0.55" y="0.95">
+      <to x="0.15" y="0.95" />
+      <to x="0.15" y="0.05" />
+      <to x="0.55" y="0.05" />
+    </path>
+    <path x="0.25" y="1.35">
+      <to x="0.45" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER I WITH GRAVE -->
+  <letter code="204" start="0.3" end="0.4">
+    <path x="0.35" y="0.05">
+      <to x="0.35" y="0.95" />
+    </path>
+    <path x="0.25" y="1.35">
+      <to x="0.45" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER O WITH GRAVE -->
+  <letter code="210" start="0.05" end="0.65">
+    <path x="0.10" y="0.30">
+      <to x="0.60" y="0.30" b="-1.00" />
+      <to x="0.60" y="0.70" />
+      <to x="0.10" y="0.70" b="-1.00" />
+      <to x="0.10" y="0.30" />
+    </path>
+    <path x="0.25" y="1.35">
+      <to x="0.45" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER U WITH GRAVE -->
+  <letter code="217" start="0.05" end="0.64999999999997726">
+    <path x="0.10" y="0.95">
+      <to x="0.10" y="0.30" />
+      <to x="0.60" y="0.30" b="-1.00" />
+      <to x="0.60" y="0.95" />
+    </path>
+    <path x="0.24999999999998" y="1.35">
+      <to x="0.45" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER A WITH GRAVE -->
+  <letter code="224" start="0.1" end="0.59999999999997722">
+    <path x="0.20" y="0.65">
+      <to x="0.40" y="0.65" />
+      <to x="0.54999999999998" y="0.50" b="0.414213562373095" />
+      <to x="0.54999999999998" y="0.05" />
+      <to x="0.30" y="0.05" />
+      <to x="0.30" y="0.35" b="1.00" />
+      <to x="0.54999999999998" y="0.35" />
+    </path>
+    <path x="0.25" y="1.05">
+      <to x="0.44999999999999" y="0.90" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER E WITH GRAVE -->
+  <letter code="232" start="0.1" end="0.6">
+    <path x="0.15" y="0.35">
+      <to x="0.55" y="0.35" />
+      <to x="0.55" y="0.45" />
+      <to x="0.15" y="0.45" b="-1.00" />
+      <to x="0.15" y="0.20" />
+      <to x="0.30" y="0.05" b="-0.414213562373095" />
+      <to x="0.55" y="0.05" />
+    </path>
+    <path x="0.25" y="1.05">
+      <to x="0.44999999999997" y="0.90" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER I WITH GRAVE -->
+  <letter code="236" start="0.2" end="0.5">
+    <path x="0.34999999999997" y="0.05">
+      <to x="0.34999999999997" y="0.65" />
+    </path>
+    <path x="0.25" y="1.05">
+      <to x="0.45" y="0.90" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER O WITH GRAVE -->
+  <letter code="242" start="0.1" end="0.6">
+    <path x="0.14999999999999" y="0.25">
+      <to x="0.55000000000001" y="0.25" b="-1.00" />
+      <to x="0.55" y="0.45" />
+      <to x="0.14999999999999" y="0.45" b="-1.00" />
+      <to x="0.14999999999999" y="0.25" />
+    </path>
+    <path x="0.25" y="1.05">
+      <to x="0.45" y="0.90" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER U WITH GRAVE -->
+  <letter code="249" start="0.1" end="0.6">
+    <path x="0.15" y="0.65">
+      <to x="0.15" y="0.20" />
+      <to x="0.30" y="0.05" b="-0.414213562373095" />
+      <to x="0.54999999999999" y="0.05" />
+      <to x="0.54999999999999" y="0.65" />
+    </path>
+    <path x="0.25" y="1.05">
+      <to x="0.45" y="0.90" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER A WITH ACUTE -->
+  <letter code="193" start="0" end="0.7">
+    <path x="0.133333333333333" y="0.30">
+      <to x="0.566666666666667" y="0.30" />
+    </path>
+    <path x="0.05" y="0.05">
+      <to x="0.35" y="0.95" />
+      <to x="0.65" y="0.05" />
+    </path>
+    <path x="0.45" y="1.35">
+      <to x="0.25" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER C WITH ACUTE -->
+  <letter code="262" start="0.1" end="0.6">
+    <path x="0.55" y="0.95">
+      <to x="0.30" y="0.95" />
+      <to x="0.15" y="0.80" b="-0.4142135623731" />
+      <to x="0.15" y="0.20" />
+      <to x="0.30" y="0.05" b="-0.414213562373095" />
+      <to x="0.55" y="0.05" />
+    </path>
+    <path x="0.45" y="1.35">
+      <to x="0.25" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER E WITH ACUTE -->
+  <letter code="201" start="0.1" end="0.6">
+    <path x="0.45" y="0.55">
+      <to x="0.15" y="0.55" />
+    </path>
+    <path x="0.55" y="0.95">
+      <to x="0.15" y="0.95" />
+      <to x="0.15" y="0.05" />
+      <to x="0.55" y="0.05" />
+    </path>
+    <path x="0.45" y="1.35">
+      <to x="0.25" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER I WITH ACUTE -->
+  <letter code="205" start="0.3" end="0.4">
+    <path x="0.35" y="0.05">
+      <to x="0.35" y="0.95" />
+    </path>
+    <path x="0.45" y="1.35">
+      <to x="0.25" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER L WITH ACUTE -->
+  <letter code="313" start="0.1" end="0.6">
+    <path x="0.15" y="0.95">
+      <to x="0.15" y="0.05" />
+      <to x="0.55" y="0.05" />
+    </path>
+    <path x="0.25" y="1.35">
+      <to x="0.05" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER N WITH ACUTE -->
+  <letter code="323" start="0.05" end="0.65">
+    <path x="0.10" y="0.05">
+      <to x="0.10" y="0.95" />
+      <to x="0.60" y="0.05" />
+      <to x="0.60" y="0.95" />
+    </path>
+    <path x="0.45" y="1.35">
+      <to x="0.25" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER O WITH ACUTE -->
+  <letter code="211" start="0.05" end="0.65">
+    <path x="0.10" y="0.30">
+      <to x="0.60" y="0.30" b="-1.00" />
+      <to x="0.60" y="0.70" />
+      <to x="0.10" y="0.70" b="-1.00" />
+      <to x="0.10" y="0.30" />
+    </path>
+    <path x="0.45" y="1.35">
+      <to x="0.25" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER R WITH ACUTE -->
+  <letter code="340" start="0.05" end="0.65">
+    <path x="0.10" y="0.45">
+      <to x="0.35" y="0.45" />
+      <to x="0.35" y="0.95" b="-1.00" />
+      <to x="0.10" y="0.95" />
+      <to x="0.10" y="0.05" />
+    </path>
+    <path x="0.60" y="0.05">
+      <to x="0.39770329614268" y="0.45459340771462" />
+    </path>
+    <path x="0.45" y="1.35">
+      <to x="0.25" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER S WITH ACUTE -->
+  <letter code="346" start="0.05" end="0.7">
+    <path x="0.10000000000002" y="0.14999999999999">
+      <to x="0.33189281854556" y="0.05324180024931" b="-0.13655494223801" />
+      <to x="0.46018241012934" y="0.0557215185426" b="-0.07171610110852" />
+      <to x="0.5758466402048" y="0.10848600269414" b="-0.13352166900163" />
+      <to x="0.62720133843308" y="0.34399739168407" b="-0.34400090956972" />
+      <to x="0.5400685761957" y="0.4369584324502" b="-0.15374523955686" />
+      <to x="0.4222083695488" y="0.48263892589091" b="-0.07156794952425" />
+      <to x="0.29361373024117" y="0.51480454822942" b="0.00912000386068" />
+      <to x="0.17908356569808" y="0.56929494397917" b="0.09061519839341" />
+      <to x="0.10917561769754" y="0.80366044455099" b="0.3403457848119" />
+      <to x="0.30163107329055" y="0.95016307308041" b="0.28427348215993" />
+      <to x="0.42690022587123" y="0.93911717125121" b="0.09259556729682" />
+      <to x="0.54999999999995" y="0.90000000000002" b="0.017533062906" />
+    </path>
+    <path x="0.45" y="1.35">
+      <to x="0.25" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER U WITH ACUTE -->
+  <letter code="218" start="0.05" end="0.64999999999997726">
+    <path x="0.10" y="0.95">
+      <to x="0.10" y="0.30" />
+      <to x="0.60" y="0.30" b="-1.00" />
+      <to x="0.60" y="0.95" />
+    </path>
+    <path x="0.45" y="1.35">
+      <to x="0.24999999999998" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER Z WITH ACUTE -->
+  <letter code="377" start="0.04999999999998863" end="0.65">
+    <path x="0.10" y="0.95">
+      <to x="0.60" y="0.95" />
+      <to x="0.10" y="0.05" />
+      <to x="0.60" y="0.05" />
+    </path>
+    <path x="0.44999999999999" y="1.35">
+      <to x="0.25" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER A WITH ACUTE -->
+  <letter code="225" start="0.1" end="0.59999999999997722">
+    <path x="0.20" y="0.65">
+      <to x="0.40" y="0.65" />
+      <to x="0.54999999999998" y="0.50" b="0.414213562373095" />
+      <to x="0.54999999999998" y="0.05" />
+      <to x="0.30" y="0.05" />
+      <to x="0.30" y="0.35" b="1.00" />
+      <to x="0.54999999999998" y="0.35" />
+    </path>
+    <path x="0.44999999999999" y="1.05">
+      <to x="0.25" y="0.90" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER E WITH ACUTE -->
+  <letter code="233" start="0.1" end="0.6">
+    <path x="0.15" y="0.35">
+      <to x="0.55" y="0.35" />
+      <to x="0.55" y="0.45" />
+      <to x="0.15" y="0.45" b="-1.00" />
+      <to x="0.15" y="0.20" />
+      <to x="0.30" y="0.05" b="-0.414213562373095" />
+      <to x="0.55" y="0.05" />
+    </path>
+    <path x="0.44999999999997" y="1.05">
+      <to x="0.25" y="0.90" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER I WITH ACUTE -->
+  <letter code="237" start="0.2" end="0.5">
+    <path x="0.34999999999997" y="0.05">
+      <to x="0.34999999999997" y="0.65" />
+    </path>
+    <path x="0.45" y="1.05">
+      <to x="0.25" y="0.90" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER O WITH ACUTE -->
+  <letter code="243" start="0.1" end="0.6">
+    <path x="0.14999999999999" y="0.25">
+      <to x="0.55000000000001" y="0.25" b="-1.00" />
+      <to x="0.55" y="0.45" />
+      <to x="0.14999999999999" y="0.45" b="-1.00" />
+      <to x="0.14999999999999" y="0.25" />
+    </path>
+    <path x="0.44999999999996" y="1.05">
+      <to x="0.24999999999997" y="0.90" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER U WITH ACUTE -->
+  <letter code="250" start="0.1" end="0.6">
+    <path x="0.15" y="0.65">
+      <to x="0.15" y="0.20" />
+      <to x="0.30" y="0.05" b="-0.414213562373095" />
+      <to x="0.54999999999999" y="0.05" />
+      <to x="0.54999999999999" y="0.65" />
+    </path>
+    <path x="0.45" y="1.05">
+      <to x="0.25" y="0.90" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER A WITH CIRCUMFLEX -->
+  <letter code="194" start="0" end="0.7">
+    <path x="0.133333333333333" y="0.30">
+      <to x="0.566666666666667" y="0.30" />
+    </path>
+    <path x="0.05" y="0.05">
+      <to x="0.35" y="0.95" />
+      <to x="0.65" y="0.05" />
+    </path>
+    <path x="0.20" y="1.20">
+      <to x="0.35" y="1.35" />
+      <to x="0.50" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER C WITH CIRCUMFLEX -->
+  <letter code="264" start="0.1" end="0.6">
+    <path x="0.55" y="0.95">
+      <to x="0.30" y="0.95" />
+      <to x="0.15" y="0.80" b="-0.4142135623731" />
+      <to x="0.15" y="0.20" />
+      <to x="0.30" y="0.05" b="-0.414213562373095" />
+      <to x="0.55" y="0.05" />
+    </path>
+    <path x="0.20" y="1.20">
+      <to x="0.35" y="1.35" />
+      <to x="0.50" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER E WITH CIRCUMFLEX -->
+  <letter code="202" start="0.099999999999998576" end="0.6">
+    <path x="0.45" y="0.55">
+      <to x="0.15" y="0.55" />
+    </path>
+    <path x="0.55" y="0.95">
+      <to x="0.15" y="0.95" />
+      <to x="0.15" y="0.05" />
+      <to x="0.55" y="0.05" />
+    </path>
+    <path x="0.20" y="1.20">
+      <to x="0.35" y="1.35" />
+      <to x="0.50" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER G WITH CIRCUMFLEX -->
+  <letter code="284" start="0.05" end="0.65">
+    <path x="0.60" y="0.95">
+      <to x="0.30" y="0.95" />
+      <to x="0.10" y="0.75" b="-0.414213562373095" />
+      <to x="0.10" y="0.25" />
+      <to x="0.30" y="0.05" b="-0.414213562373095" />
+      <to x="0.60" y="0.05" />
+      <to x="0.60" y="0.55" />
+      <to x="0.45" y="0.55" />
+    </path>
+    <path x="0.20" y="1.20">
+      <to x="0.35" y="1.35" />
+      <to x="0.50" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER H WITH CIRCUMFLEX -->
+  <letter code="292" start="0.05" end="0.65">
+    <path x="0.10" y="0.05">
+      <to x="0.10" y="0.95" />
+    </path>
+    <path x="0.60" y="0.95">
+      <to x="0.60" y="0.05" />
+    </path>
+    <path x="0.10" y="0.55">
+      <to x="0.60" y="0.55" />
+    </path>
+    <path x="0.20" y="1.20">
+      <to x="0.35" y="1.35" />
+      <to x="0.50" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER I WITH CIRCUMFLEX -->
+  <letter code="206" start="0.3" end="0.4">
+    <path x="0.35" y="0.05">
+      <to x="0.35" y="0.95" />
+    </path>
+    <path x="0.20" y="1.20">
+      <to x="0.35" y="1.35" />
+      <to x="0.50" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER J WITH CIRCUMFLEX -->
+  <letter code="308" start="0.15" end="0.55">
+    <path x="0.50" y="0.95">
+      <to x="0.50" y="0.25" />
+      <to x="0.30" y="0.05" b="0.414213562373095" />
+      <to x="0.20" y="0.05" />
+    </path>
+    <path x="0.35" y="1.20">
+      <to x="0.50" y="1.35" />
+      <to x="0.65" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER O WITH CIRCUMFLEX -->
+  <letter code="212" start="0.05" end="0.65">
+    <path x="0.10" y="0.30">
+      <to x="0.60" y="0.30" b="-1.00" />
+      <to x="0.60" y="0.70" />
+      <to x="0.10" y="0.70" b="-1.00" />
+      <to x="0.10" y="0.30" />
+    </path>
+    <path x="0.20" y="1.20">
+      <to x="0.35" y="1.35" />
+      <to x="0.50" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER S WITH CIRCUMFLEX -->
+  <letter code="348" start="0.05" end="0.7">
+    <path x="0.10000000000002" y="0.14999999999999">
+      <to x="0.33189281854556" y="0.05324180024931" b="-0.13655494223801" />
+      <to x="0.46018241012934" y="0.0557215185426" b="-0.07171610110852" />
+      <to x="0.5758466402048" y="0.10848600269414" b="-0.13352166900163" />
+      <to x="0.62720133843308" y="0.34399739168407" b="-0.34400090956972" />
+      <to x="0.5400685761957" y="0.4369584324502" b="-0.15374523955686" />
+      <to x="0.4222083695488" y="0.48263892589091" b="-0.07156794952425" />
+      <to x="0.29361373024117" y="0.51480454822942" b="0.00912000386068" />
+      <to x="0.17908356569808" y="0.56929494397917" b="0.09061519839341" />
+      <to x="0.10917561769754" y="0.80366044455099" b="0.3403457848119" />
+      <to x="0.30163107329055" y="0.95016307308041" b="0.28427348215993" />
+      <to x="0.42690022587123" y="0.9391171712512" b="0.09259556729682" />
+      <to x="0.54999999999995" y="0.90000000000002" b="0.017533062906" />
+    </path>
+    <path x="0.20" y="1.20">
+      <to x="0.35" y="1.35" />
+      <to x="0.50" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER U WITH CIRCUMFLEX -->
+  <letter code="219" start="0.05" end="0.64999999999997726">
+    <path x="0.10" y="0.95">
+      <to x="0.10" y="0.30" />
+      <to x="0.60" y="0.30" b="-1.00" />
+      <to x="0.60" y="0.95" />
+    </path>
+    <path x="0.20" y="1.20">
+      <to x="0.35" y="1.35" />
+      <to x="0.50" y="1.20" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER A WITH TILDE -->
+  <letter code="195" start="0" end="0.69999999999999929">
+    <path x="0.133333333333333" y="0.30">
+      <to x="0.566666666666667" y="0.30" />
+    </path>
+    <path x="0.05" y="0.05">
+      <to x="0.35" y="0.95" />
+      <to x="0.65" y="0.05" />
+    </path>
+    <path x="0.15" y="1.30">
+      <to x="0.35" y="1.30" b="0.50" />
+      <to x="0.55" y="1.30" b="-0.50" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER I WITH TILDE -->
+  <letter code="296" start="0.3" end="0.4">
+    <path x="0.35" y="0.05">
+      <to x="0.35" y="0.95" />
+    </path>
+    <path x="0.15" y="1.30">
+      <to x="0.35" y="1.30" b="0.50" />
+      <to x="0.55" y="1.30" b="-0.50" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER N WITH TILDE -->
+  <letter code="209" start="0.05" end="0.65">
+    <path x="0.10" y="0.05">
+      <to x="0.10" y="0.95" />
+      <to x="0.60" y="0.05" />
+      <to x="0.60" y="0.95" />
+    </path>
+    <path x="0.15" y="1.30">
+      <to x="0.35" y="1.30" b="0.50" />
+      <to x="0.55" y="1.30" b="-0.50" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER O WITH TILDE -->
+  <letter code="213" start="0.05" end="0.65">
+    <path x="0.10" y="0.30">
+      <to x="0.60" y="0.30" b="-1.00" />
+      <to x="0.60" y="0.70" />
+      <to x="0.10" y="0.70" b="-1.00" />
+      <to x="0.10" y="0.30" />
+    </path>
+    <path x="0.15" y="1.30">
+      <to x="0.35" y="1.30" b="0.50" />
+      <to x="0.55" y="1.30" b="-0.50" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER U WITH TILDE -->
+  <letter code="360" start="0.05" end="0.6499999999999716">
+    <path x="0.10" y="0.95">
+      <to x="0.10" y="0.30" />
+      <to x="0.60" y="0.30" b="-1.00" />
+      <to x="0.60" y="0.95" />
+    </path>
+    <path x="0.14999999999998" y="1.30">
+      <to x="0.35" y="1.30" b="0.50" />
+      <to x="0.54999999999998" y="1.30" b="-0.50" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER A WITH DIAERESIS -->
+  <letter code="196" start="-7.1054273576010023E-16" end="0.69999999999999929">
+    <path x="0.133333333333333" y="0.30">
+      <to x="0.566666666666667" y="0.30" />
+    </path>
+    <path x="0.05" y="0.05">
+      <to x="0.35" y="0.95" />
+      <to x="0.65" y="0.05" />
+    </path>
+    <path x="0.20" y="1.35">
+      <to x="0.20" y="1.30" />
+    </path>
+    <path x="0.50" y="1.35">
+      <to x="0.50" y="1.30" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER E WITH DIAERESIS -->
+  <letter code="203" start="0.1" end="0.6">
+    <path x="0.45" y="0.55">
+      <to x="0.15" y="0.55" />
+    </path>
+    <path x="0.55" y="0.95">
+      <to x="0.15" y="0.95" />
+      <to x="0.15" y="0.05" />
+      <to x="0.55" y="0.05" />
+    </path>
+    <path x="0.20" y="1.35">
+      <to x="0.20" y="1.30" />
+    </path>
+    <path x="0.50" y="1.35">
+      <to x="0.50" y="1.30" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER O WITH DIAERESIS -->
+  <letter code="214" start="0.05" end="0.65">
+    <path x="0.10" y="0.30">
+      <to x="0.60" y="0.30" b="-1.00" />
+      <to x="0.60" y="0.70" />
+      <to x="0.10" y="0.70" b="-1.00" />
+      <to x="0.10" y="0.30" />
+    </path>
+    <path x="0.20" y="1.35">
+      <to x="0.20" y="1.30" />
+    </path>
+    <path x="0.50" y="1.35">
+      <to x="0.50" y="1.30" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER U WITH DIAERESIS -->
+  <letter code="220" start="0.05" end="0.6499999999999716">
+    <path x="0.10" y="0.95">
+      <to x="0.10" y="0.30" />
+      <to x="0.60" y="0.30" b="-1.00" />
+      <to x="0.60" y="0.95" />
+    </path>
+    <path x="0.20" y="1.35">
+      <to x="0.20" y="1.30" />
+    </path>
+    <path x="0.50" y="1.35">
+      <to x="0.50" y="1.30" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER A WITH DIAERESIS -->
+  <letter code="228" start="0.1" end="0.59999999999997722">
+    <path x="0.20" y="0.65">
+      <to x="0.40" y="0.65" />
+      <to x="0.54999999999998" y="0.50" b="0.414213562373095" />
+      <to x="0.54999999999998" y="0.05" />
+      <to x="0.30" y="0.05" />
+      <to x="0.30" y="0.35" b="1.00" />
+      <to x="0.54999999999998" y="0.35" />
+    </path>
+    <path x="0.20" y="0.95">
+      <to x="0.20" y="0.90" />
+    </path>
+    <path x="0.50" y="0.95">
+      <to x="0.50" y="0.90" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER O WITH DIAERESIS -->
+  <letter code="246" start="0.1" end="0.6">
+    <path x="0.14999999999999" y="0.25">
+      <to x="0.55000000000001" y="0.25" b="-1.00" />
+      <to x="0.55" y="0.45" />
+      <to x="0.14999999999999" y="0.45" b="-1.00" />
+      <to x="0.14999999999999" y="0.25" />
+    </path>
+    <path x="0.20" y="0.95">
+      <to x="0.20" y="0.90" />
+    </path>
+    <path x="0.50" y="0.95">
+      <to x="0.50" y="0.90" />
+    </path>
+  </letter>
+  <!-- LATIN SMALL LETTER U WITH DIAERESIS -->
+  <letter code="252" start="0.1" end="0.6">
+    <path x="0.15" y="0.65">
+      <to x="0.15" y="0.20" />
+      <to x="0.30" y="0.05" b="-0.414213562373095" />
+      <to x="0.54999999999999" y="0.05" />
+      <to x="0.54999999999999" y="0.65" />
+    </path>
+    <path x="0.20" y="0.95">
+      <to x="0.20" y="0.90" />
+    </path>
+    <path x="0.50" y="0.95">
+      <to x="0.50" y="0.90" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER A WITH RING ABOVE -->
+  <letter code="197" start="-7.1054273576010023E-16" end="0.69999999999999929">
+    <path x="0.133333333333333" y="0.30">
+      <to x="0.566666666666667" y="0.30" />
+    </path>
+    <path x="0.05" y="0.05">
+      <to x="0.35" y="0.95" />
+      <to x="0.65" y="0.05" />
+    </path>
+    <path x="0.475" y="1.225">
+      <to x="0.225" y="1.225" b="-1.00" />
+      <to x="0.475" y="1.225" b="-1.00" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER U WITH RING ABOVE -->
+  <letter code="366" start="0.05" end="0.6499999999999716">
+    <path x="0.10" y="0.95">
+      <to x="0.10" y="0.30" />
+      <to x="0.60" y="0.30" b="-1.00" />
+      <to x="0.60" y="0.95" />
+    </path>
+    <path x="0.475" y="1.225">
+      <to x="0.225" y="1.225" b="-1.00" />
+      <to x="0.475" y="1.225" b="-1.00" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER O WITH DOUBLE ACUTE -->
+  <letter code="336" start="0.05" end="0.65">
+    <path x="0.10" y="0.30">
+      <to x="0.60" y="0.30" b="-1.00" />
+      <to x="0.60" y="0.70" />
+      <to x="0.10" y="0.70" b="-1.00" />
+      <to x="0.10" y="0.30" />
+    </path>
+    <path x="0.15" y="1.20">
+      <to x="0.25" y="1.35" />
+    </path>
+    <path x="0.45" y="1.20">
+      <to x="0.55" y="1.35" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER U WITH DOUBLE ACUTE -->
+  <letter code="368" start="0.05" end="0.6499999999999716">
+    <path x="0.10" y="0.95">
+      <to x="0.10" y="0.30" />
+      <to x="0.60" y="0.30" b="-1.00" />
+      <to x="0.60" y="0.95" />
+    </path>
+    <path x="0.14999999999998" y="1.20">
+      <to x="0.24999999999998" y="1.35" />
+    </path>
+    <path x="0.45" y="1.20">
+      <to x="0.54999999999998" y="1.35" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER C WITH CARON -->
+  <letter code="268" start="0.1" end="0.6">
+    <path x="0.55" y="0.95">
+      <to x="0.30" y="0.95" />
+      <to x="0.15" y="0.80" b="-0.414213562373095" />
+      <to x="0.15" y="0.20" />
+      <to x="0.30" y="0.05" b="-0.414213562373095" />
+      <to x="0.55" y="0.05" />
+    </path>
+    <path x="0.20" y="1.35">
+      <to x="0.35" y="1.20" />
+      <to x="0.50" y="1.35" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER D WITH CARON -->
+  <letter code="270" start="0.05" end="0.65">
+    <path x="0.40" y="0.95">
+      <to x="0.10" y="0.95" />
+      <to x="0.10" y="0.05" />
+      <to x="0.40" y="0.05" />
+      <to x="0.60" y="0.25" b="-0.414213562373095" />
+      <to x="0.60" y="0.75" />
+      <to x="0.40" y="0.95" b="-0.414213562373095" />
+    </path>
+    <path x="0.20" y="1.35">
+      <to x="0.35" y="1.20" />
+      <to x="0.50" y="1.35" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER E WITH CARON -->
+  <letter code="282" start="0.10" end="0.6">
+    <path x="0.45" y="0.55">
+      <to x="0.15" y="0.55" />
+    </path>
+    <path x="0.55" y="0.95">
+      <to x="0.15" y="0.95" />
+      <to x="0.15" y="0.05" />
+      <to x="0.55" y="0.05" />
+    </path>
+    <path x="0.20" y="1.35">
+      <to x="0.35" y="1.20" />
+      <to x="0.50" y="1.35" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER R WITH CARON -->
+  <letter code="344" start="0.05" end="0.65">
+    <path x="0.10" y="0.45">
+      <to x="0.35" y="0.45" />
+      <to x="0.35" y="0.95" b="-1.00" />
+      <to x="0.10" y="0.95" />
+      <to x="0.10" y="0.05" />
+    </path>
+    <path x="0.60" y="0.05">
+      <to x="0.39770329614268" y="0.45459340771462" />
+    </path>
+    <path x="0.20" y="1.35">
+      <to x="0.35" y="1.20" />
+      <to x="0.50" y="1.35" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER S WITH CARON -->
+  <letter code="352" start="0.05" end="0.7">
+    <path x="0.10000000000002" y="0.14999999999999">
+      <to x="0.33189281854556" y="0.05324180024931" b="-0.13655494223801" />
+      <to x="0.46018241012933" y="0.0557215185426" b="-0.07171610110852" />
+      <to x="0.5758466402048" y="0.10848600269415" b="-0.13352166900163" />
+      <to x="0.62720133843308" y="0.34399739168407" b="-0.34400090956972" />
+      <to x="0.5400685761957" y="0.4369584324502" b="-0.15374523955686" />
+      <to x="0.4222083695488" y="0.48263892589091" b="-0.07156794952425" />
+      <to x="0.29361373024115" y="0.51480454822942" b="0.00912000386068" />
+      <to x="0.17908356569808" y="0.56929494397917" b="0.09061519839341" />
+      <to x="0.10917561769754" y="0.80366044455099" b="0.3403457848119" />
+      <to x="0.30163107329055" y="0.95016307308041" b="0.28427348215993" />
+      <to x="0.42690022587121" y="0.93911717125121" b="0.09259556729682" />
+      <to x="0.54999999999994" y="0.90000000000002" b="0.017533062906" />
+    </path>
+    <path x="0.20" y="1.35">
+      <to x="0.35" y="1.20" />
+      <to x="0.50" y="1.35" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER T WITH CARON -->
+  <letter code="356" start="0.05" end="0.65">
+    <path x="0.10" y="0.95">
+      <to x="0.60" y="0.95" />
+    </path>
+    <path x="0.35" y="0.95">
+      <to x="0.35" y="0.05" />
+    </path>
+    <path x="0.20" y="1.35">
+      <to x="0.35" y="1.20" />
+      <to x="0.50" y="1.35" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER Z WITH CARON -->
+  <letter code="381" start="0.05" end="0.65">
+    <path x="0.10" y="0.95">
+      <to x="0.60" y="0.95" />
+      <to x="0.10" y="0.05" />
+      <to x="0.60" y="0.05" />
+    </path>
+    <path x="0.20" y="1.35">
+      <to x="0.35" y="1.20" />
+      <to x="0.50" y="1.35" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER A WITH BREVE -->
+  <letter code="258" start="0.00" end="0.70">
+    <path x="0.133333333333333" y="0.30">
+      <to x="0.566666666666667" y="0.30" />
+    </path>
+    <path x="0.05" y="0.05">
+      <to x="0.35" y="0.95" />
+      <to x="0.65" y="0.05" />
+    </path>
+    <path x="0.20" y="1.35">
+      <to x="0.50" y="1.35" b="-1.00" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER U WITH BREVE -->
+  <letter code="364" start="0.05" end="0.65">
+    <path x="0.10" y="0.95">
+      <to x="0.10" y="0.30" />
+      <to x="0.60" y="0.30" b="-1.00" />
+      <to x="0.60" y="0.95" />
+    </path>
+    <path x="0.20" y="1.35">
+      <to x="0.50" y="1.35" b="-1.00" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER A WITH MACRON -->
+  <letter code="256" start="0.00" end="0.70">
+    <path x="0.133333333333333" y="0.30">
+      <to x="0.566666666666667" y="0.30" />
+    </path>
+    <path x="0.05" y="0.05">
+      <to x="0.35" y="0.95" />
+      <to x="0.65" y="0.05" />
+    </path>
+    <path x="0.10" y="1.25">
+      <to x="0.60" y="1.25" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER E WITH MACRON -->
+  <letter code="274" start="0.10" end="0.60">
+    <path x="0.45" y="0.55">
+      <to x="0.15" y="0.55" />
+    </path>
+    <path x="0.55" y="0.95">
+      <to x="0.15" y="0.95" />
+      <to x="0.15" y="0.05" />
+      <to x="0.55" y="0.05" />
+    </path>
+    <path x="0.10" y="1.25">
+      <to x="0.60" y="1.25" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER O WITH MACRON -->
+  <letter code="332" start="0.05" end="0.65">
+    <path x="0.10" y="0.30">
+      <to x="0.60" y="0.30" b="-1.00" />
+      <to x="0.60" y="0.70" />
+      <to x="0.10" y="0.70" b="-1.00" />
+      <to x="0.10" y="0.30" />
+    </path>
+    <path x="0.10" y="1.25">
+      <to x="0.60" y="1.25" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER U WITH MACRON -->
+  <letter code="362" start="0.05" end="0.65">
+    <path x="0.10" y="0.95">
+      <to x="0.10" y="0.30" />
+      <to x="0.60" y="0.30" b="-1.00" />
+      <to x="0.60" y="0.95" />
+    </path>
+    <path x="0.10" y="1.25">
+      <to x="0.60" y="1.25" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER C WITH DOT ABOVE -->
+  <letter code="266" start="0.10" end="0.60">
+    <path x="0.55" y="0.95">
+      <to x="0.30" y="0.95" />
+      <to x="0.15" y="0.80" b="-0.414213562373095" />
+      <to x="0.15" y="0.20" />
+      <to x="0.30" y="0.05" b="-0.414213562373095" />
+      <to x="0.55" y="0.05" />
+    </path>
+    <path x="0.45" y="1.25">
+      <to x="0.35" y="1.25" b="-1.00" />
+      <to x="0.45" y="1.25" b="-1.00" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER E WITH DOT ABOVE -->
+  <letter code="278" start="0.10" end="0.60">
+    <path x="0.45" y="0.55">
+      <to x="0.15" y="0.55" />
+    </path>
+    <path x="0.55" y="0.95">
+      <to x="0.15" y="0.95" />
+      <to x="0.15" y="0.05" />
+      <to x="0.55" y="0.05" />
+    </path>
+    <path x="0.40" y="1.25">
+      <to x="0.30" y="1.25" b="-1.00" />
+      <to x="0.40" y="1.25" b="-1.00" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER Z WITH DOT ABOVE -->
+  <letter code="379" start="0.05" end="0.65">
+    <path x="0.10" y="0.95">
+      <to x="0.60" y="0.95" />
+      <to x="0.10" y="0.05" />
+      <to x="0.60" y="0.05" />
+    </path>
+    <path x="0.40" y="1.25">
+      <to x="0.30" y="1.25" b="-1.00" />
+      <to x="0.40" y="1.25" b="-1.00" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER A WITH OGONEK -->
+  <letter code="260" start="0.00" end="0.70">
+    <path x="0.133333333333333" y="0.30">
+      <to x="0.566666666666667" y="0.30" />
+    </path>
+    <path x="0.05" y="0.05">
+      <to x="0.35" y="0.95" />
+      <to x="0.65" y="0.05" />
+    </path>
+    <path x="0.60" y="-0.15">
+      <to x="0.65" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER C WITH CEDILLA -->
+  <letter code="199" start="0.10" end="0.60">
+    <path x="0.55" y="0.95">
+      <to x="0.30" y="0.95" />
+      <to x="0.15" y="0.80" b="-0.4142135623731" />
+      <to x="0.15" y="0.20" />
+      <to x="0.30" y="0.05" b="-0.414213562373095" />
+      <to x="0.55" y="0.05" />
+    </path>
+    <path x="0.30" y="-0.15">
+      <to x="0.35" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER E WITH OGONEK -->
+  <letter code="280" start="0.10" end="0.6">
+    <path x="0.45" y="0.55">
+      <to x="0.15" y="0.55" />
+    </path>
+    <path x="0.55" y="0.95">
+      <to x="0.15" y="0.95" />
+      <to x="0.15" y="0.05" />
+      <to x="0.55" y="0.05" />
+    </path>
+    <path x="0.30" y="-0.15">
+      <to x="0.35" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER K WITH CEDILLA -->
+  <letter code="310" start="-0.05" end="0.55">
+    <path x="0.50" y="0.95">
+      <to x="0.00" y="0.40" />
+    </path>
+    <path x="0.19318181818182" y="0.6125">
+      <to x="0.50" y="0.05" />
+    </path>
+    <path x="0.00" y="0.05">
+      <to x="0.00" y="0.95" />
+    </path>
+    <path x="0.20" y="-0.15">
+      <to x="0.25" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER L WITH CEDILLA -->
+  <letter code="315" start="0.1" end="0.6">
+    <path x="0.15" y="0.95">
+      <to x="0.15" y="0.05" />
+      <to x="0.55" y="0.05" />
+    </path>
+    <path x="0.30" y="-0.15">
+      <to x="0.35" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER N WITH CEDILLA -->
+  <letter code="325" start="0.05" end="0.65">
+    <path x="0.10" y="0.05">
+      <to x="0.10" y="0.95" />
+      <to x="0.60" y="0.05" />
+      <to x="0.60" y="0.95" />
+    </path>
+    <path x="0.30" y="-0.15">
+      <to x="0.35" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER T WITH CEDILLA -->
+  <letter code="354" start="0.05" end="0.65">
+    <path x="0.10" y="0.95">
+      <to x="0.60" y="0.95" />
+    </path>
+    <path x="0.35" y="0.95">
+      <to x="0.35" y="0.05" />
+    </path>
+    <path x="0.30" y="-0.15">
+      <to x="0.35" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER U WITH OGONEK -->
+  <letter code="370" start="0.05" end="0.65">
+    <path x="0.10" y="0.95">
+      <to x="0.10" y="0.30" />
+      <to x="0.60" y="0.30" b="-1.00" />
+      <to x="0.60" y="0.95" />
+    </path>
+    <path x="0.30" y="-0.15">
+      <to x="0.35" y="0.05" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER O WITH STROKE -->
+  <letter code="216" start="0.05" end="0.65">
+    <path x="0.10" y="0.30">
+      <to x="0.60" y="0.30" b="-1.00" />
+      <to x="0.60" y="0.70" />
+      <to x="0.10" y="0.70" b="-1.00" />
+      <to x="0.10" y="0.30" />
+    </path>
+    <path x="0.00" y="0.10">
+      <to x="0.70" y="0.90" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER T WITH STROKE -->
+  <letter code="358" start="0.05" end="0.65">
+    <path x="0.10" y="0.95">
+      <to x="0.60" y="0.95" />
+    </path>
+    <path x="0.35" y="0.95">
+      <to x="0.35" y="0.05" />
+    </path>
+    <path x="0.15" y="0.35">
+      <to x="0.55" y="0.65" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER D WITH STROKE -->
+  <letter code="272" start="-0.10" end="0.65">
+    <path x="0.40" y="0.95">
+      <to x="0.10" y="0.95" />
+      <to x="0.10" y="0.05" />
+      <to x="0.40" y="0.05" />
+      <to x="0.60" y="0.25" b="-0.414213562373095" />
+      <to x="0.60" y="0.75" />
+      <to x="0.40" y="0.95" b="-0.414213562373095" />
+    </path>
+    <path x="-0.05" y="0.50">
+      <to x="0.25" y="0.50" />
+    </path>
+  </letter>
+  <!-- LATIN CAPITAL LETTER AE -->
+  <letter code="198" start="-0.10" end="0.80">
+    <path x="-0.05" y="0.05">
+      <to x="0.25" y="0.95" />
+      <to x="0.75" y="0.95" />
+    </path>
+    <path x="0.03333333333334" y="0.30">
+      <to x="0.45" y="0.30" />
+    </path>
+    <path x="0.45" y="0.95">
+      <to x="0.45" y="0.05" />
+      <to x="0.75" y="0.05" />
+    </path>
+    <path x="0.45" y="0.55">
+      <to x="0.75" y="0.55" />
+    </path>
+  </letter>
+</bbfont>
