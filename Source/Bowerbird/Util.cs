@@ -164,7 +164,7 @@ namespace Bowerbird
         {
             var tree = new DataTree<T>();
 
-            var basePath = DA.ParameterTargetPath(index).AppendElement(DA.ParameterTargetIndex(index));
+            var basePath = DA.ParameterTargetPath(index);
 
             foreach (var entry in data.Select((o, i) => new { Index = i, Item = o }))
             {
@@ -184,7 +184,7 @@ namespace Bowerbird
 
             foreach (var entry in data.Select((o, i) => new { Index = i, Item = o }))
             {
-                var path = basePath.AppendElement(index);
+                var path = basePath.AppendElement(entry.Index);
 
                 tree.Add(entry.Item, path);
             }
