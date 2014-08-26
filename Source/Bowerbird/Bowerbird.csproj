@@ -55,6 +55,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BBPolyline.cs" />
     <Compile Include="clipper.cs" />
     <Compile Include="Components\BBSectionComponent.cs" />
     <Compile Include="Components\BBLayerComponent.cs" />
