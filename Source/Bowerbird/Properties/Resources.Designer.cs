@@ -62,7 +62,7 @@ namespace Bowerbird.Properties {
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-        ///&lt;bbfont name=&quot;Normschrift Bold&quot; style=&quot;Bowerbird Font 1.0&quot; version=&quot;1.0&quot;&gt;
+        ///&lt;bbfont name=&quot;Bowerbird&quot; style=&quot;bold&quot; version=&quot;1.0&quot;&gt;
         ///  &lt;!-- SPACE --&gt;
         ///  &lt;letter code=&quot;32&quot; start=&quot;0.2&quot; end=&quot;0.5&quot; /&gt;
         ///  &lt;!-- NULL --&gt;
@@ -75,7 +75,8 @@ namespace Bowerbird.Properties {
         ///    &lt;/path&gt;
         ///    &lt;path x=&quot;0.05&quot; y=&quot;1.00&quot;&gt;
         ///      &lt;to x=&quot;0.65&quot; y=&quot;1.00&quot; /&gt;
-        ///      &lt;to x=&quot;0.70&quot; y=&quot;0.95&quot; b=&quot;0.414213562 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///      &lt;to x=&quot;0.70&quot; y=&quot;0.95&quot; b=&quot;0.414213562373095&quot; /&gt;
+        ///      &lt;to [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         internal static string bowerbird_bold {
             get {
@@ -85,7 +86,7 @@ namespace Bowerbird.Properties {
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-        ///&lt;bbfont name=&quot;Normschrift&quot; style=&quot;Bowerbird Font 1.0&quot; version=&quot;1.0&quot;&gt;
+        ///&lt;bbfont name=&quot;Bowerbird&quot; style=&quot;regular&quot; version=&quot;1.0&quot;&gt;
         ///  &lt;!-- SPACE --&gt;
         ///  &lt;letter code=&quot;32&quot; start=&quot;0.20&quot; end=&quot;0.50&quot; /&gt;
         ///  &lt;!-- NULL --&gt;
@@ -99,11 +100,21 @@ namespace Bowerbird.Properties {
         ///  &lt;/letter&gt;
         ///  &lt;!-- LATIN CAPITAL LETTER A --&gt;
         ///  &lt;letter code=&quot;65&quot; start=&quot;0.00&quot; end=&quot;0.70&quot;&gt;
-        ///    &lt;path x=&quot; [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        ///    &lt;path x=&quot;0.13333333333 [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         /// </summary>
         internal static string bowerbird_regular {
             get {
                 return ResourceManager.GetString("bowerbird_regular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_boolean {
+            get {
+                object obj = ResourceManager.GetObject("icon_boolean", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
