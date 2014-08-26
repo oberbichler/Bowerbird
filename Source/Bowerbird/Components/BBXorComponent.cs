@@ -40,23 +40,9 @@ namespace Bowerbird.Components
 
 
             // --- Execute
-
-            var unit = DocumentTolerance() / 10;
-
-            var clipper = new Clipper();
-
-            var polygonsA = curvesA.Where(o => o.IsClosed).ToPolygons(ref plane, unit);
-            var polygonsB = curvesB.Where(o => o.IsClosed).ToPolygons(ref plane, unit);
-
-            clipper.AddPaths(polygonsA, PolyType.ptSubject, true);
-            clipper.AddPaths(polygonsB, PolyType.ptClip, true);
-
-            var solution = new List<List<IntPoint>>();
-
-            clipper.Execute(ClipType.ctXor, solution, PolyFillType.pftNonZero, PolyFillType.pftNonZero);
-
-            var result = solution.Select(o => o.ToCurve(plane.Value, unit));
-
+            
+            var result = BBPolyline.Boolean(ClipType.ctXor, PolyFillType.pftNonZero, curvesA, curvesB, plane);
+            
 
             // --- Output
 

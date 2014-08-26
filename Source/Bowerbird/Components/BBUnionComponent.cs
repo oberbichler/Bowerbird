@@ -10,7 +10,10 @@ namespace Bowerbird.Components
 {
     public class BBUnionComponent : GH_Component
     {
-        public BBUnionComponent() : base("BB Union", "BBUnion", "Union of a set of planar closed polylines" + Util.InfoString, "Bowerbird", "Polyline") { }
+        public BBUnionComponent() : base("BB Union", "BBUnion", "Union of a set of planar closed polylines" + Util.InfoString, "Bowerbird", "Polyline") 
+        {
+            FillType = PolyFillType.pftNonZero;
+        }
 
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
@@ -27,6 +30,8 @@ namespace Bowerbird.Components
 
         protected override void SolveInstance(IGH_DataAccess DA)
         {
+            // --- Input
+
             var curves = new List<Curve>();
             var plane = default(Plane?);
 
@@ -34,26 +39,55 @@ namespace Bowerbird.Components
             DA.GetData(1, ref plane);
 
 
-            var unit = DocumentTolerance() / 10;
+            // --- Execute
 
-            var polygons = curves.Where(o => o.IsClosed).ToPolygons(ref plane, unit);
+            var result = BBPolyline.Boolean(ClipType.ctUnion, PolyFillType.pftNonZero, curves, new Curve[0], plane);
 
-            if (polygons.Count == 0)
-                return;
 
-            var clipper = new Clipper();
-
-            clipper.AddPath(polygons.First(), PolyType.ptSubject, true);
-            clipper.AddPaths(polygons.Skip(1).ToList(), PolyType.ptClip, true);
-
-            var solution = new List<List<IntPoint>>();
-
-            clipper.Execute(ClipType.ctUnion, solution, PolyFillType.pftNonZero, PolyFillType.pftNonZero);
-
-            var result = solution.Select(o => o.ToCurve(plane.Value, unit));
+            // --- Output
 
             DA.SetDataList(0, result);
         }
+
+        private PolyFillType _fillType;
+
+        public PolyFillType FillType
+        {
+            get 
+            { 
+                return _fillType; 
+            }
+            set 
+            { 
+                _fillType = value;
+
+                switch (_fillType)
+                {
+                    case PolyFillType.pftEvenOdd:
+                        Message = "Even-Odd";
+                        break;
+                    case PolyFillType.pftNonZero:
+                        Message = "Non-Zero";
+                        break;
+                    case PolyFillType.pftPositive:
+                        Message = "Positive";
+                        break;
+                    case PolyFillType.pftNegative:
+                        Message = "Negative";
+                        break;
+                }
+            }
+        }
+
+
+        protected override void AppendAdditionalComponentMenuItems(System.Windows.Forms.ToolStripDropDown menu)
+        {
+            Menu_AppendItem(menu, "Even-Odd", (s, e) => { FillType = PolyFillType.pftEvenOdd; ExpireSolution(true); }, true, FillType == PolyFillType.pftEvenOdd);
+            Menu_AppendItem(menu, "Non-Zero", (s, e) => { FillType = PolyFillType.pftNonZero; ExpireSolution(true); }, true, FillType == PolyFillType.pftNonZero);
+            Menu_AppendItem(menu, "Positive", (s, e) => { FillType = PolyFillType.pftPositive; ExpireSolution(true); }, true, FillType == PolyFillType.pftPositive);
+            Menu_AppendItem(menu, "Negative", (s, e) => { FillType = PolyFillType.pftNegative; ExpireSolution(true); }, true, FillType == PolyFillType.pftNegative);
+        }
+
 
         protected override System.Drawing.Bitmap Icon
         {
