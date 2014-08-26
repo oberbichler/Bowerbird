@@ -59,6 +59,7 @@
     <Compile Include="clipper.cs" />
     <Compile Include="Components\BBSectionComponent.cs" />
     <Compile Include="Components\BBLayerComponent.cs" />
+    <Compile Include="Components\BBBooleanComponent.cs" />
     <Compile Include="Components\BBWaffleComponent.cs" />
     <Compile Include="Components\BBXorComponent.cs" />
     <Compile Include="Components\BBIntersectionComponent.cs" />
