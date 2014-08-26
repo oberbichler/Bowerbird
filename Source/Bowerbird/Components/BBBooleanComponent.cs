@@ -10,7 +10,7 @@ namespace Bowerbird.Components
 {
     public class BBBooleanComponent : GH_Component
     {
-        public BBBooleanComponent() : base("BB Boolean", "BBBool", "Boolean operation of two sets of planar closed polylines" + Util.InfoString, "Bowerbird", "Polyline") 
+        public BBBooleanComponent() : base("BB Boolean", "BBBool", "Boolean operation between two sets of planar closed polylines" + Util.InfoString, "Bowerbird", "Polyline") 
         {
             Operation = ClipType.ctUnion;
             FillType = PolyFillType.pftEvenOdd;
