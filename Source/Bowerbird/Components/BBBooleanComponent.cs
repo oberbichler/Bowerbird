@@ -150,9 +150,9 @@ namespace Bowerbird.Components
             Menu_AppendItem(menu, text, (s, e) => { RecordUndoEvent("Operation"); Operation = operation; ExpireSolution(true); }, true, Operation == operation);
         }
 
-        private void AppendFillTypeMenuItem(System.Windows.Forms.ToolStripDropDown menu, string text, PolyFillType fillTyle)
+        private void AppendFillTypeMenuItem(System.Windows.Forms.ToolStripDropDown menu, string text, PolyFillType fillType)
         {
-            Menu_AppendItem(menu, text, (s, e) => { RecordUndoEvent("FillType"); FillType = fillTyle; ExpireSolution(true); }, true, FillType == fillTyle);
+            Menu_AppendItem(menu, text, (s, e) => { RecordUndoEvent("FillType"); FillType = fillType; ExpireSolution(true); }, true, FillType == fillType);
         }
 
 
