@@ -23,6 +23,29 @@ namespace Bowerbird.Crafting
         }
 
 
+        public void Clip(double x0, double x1, double y0, double y1)
+        {
+            var p00 = new Point3d(x0, y0, 0.0);
+            var p01 = new Point3d(x0, y1, 0.0);
+            var p11 = new Point3d(x1, y1, 0.0);
+            var p10 = new Point3d(x1, y0, 0.0);
+
+            var clip = new[] { p00, p10, p11, p01, p00 }.ToPolygon(Plane.WorldXY, Unit);
+
+            var clipper = new Clipper();
+
+            clipper.AddPaths(Polygons, PolyType.ptSubject, true);
+            clipper.AddPath(clip, PolyType.ptClip, true);
+
+            var solution = new List<List<IntPoint>>();
+
+            clipper.Execute(ClipType.ctIntersection, solution, PolyFillType.pftEvenOdd, PolyFillType.pftNonZero);
+
+            Polygons = solution;
+            Curves = Polygons.ToCurves(Plane, Unit);
+        }
+
+
         public Plane Plane { get; set; }
 
         private double Unit { get; set; }
