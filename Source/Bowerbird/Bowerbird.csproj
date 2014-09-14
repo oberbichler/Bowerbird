@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="BBPolyline.cs" />
     <Compile Include="clipper.cs" />
+    <Compile Include="Components\BBRadialComponent.cs" />
     <Compile Include="Components\BBSectionComponent.cs" />
     <Compile Include="Components\BBLayerComponent.cs" />
     <Compile Include="Components\BBBooleanComponent.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Components\BBTextComponent.cs" />
     <Compile Include="BowerbirdInfo.cs" />
     <Compile Include="Components\BBUnionComponent.cs" />
+    <Compile Include="Crafting\Radial.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -126,6 +128,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_boolean.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_radial.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
