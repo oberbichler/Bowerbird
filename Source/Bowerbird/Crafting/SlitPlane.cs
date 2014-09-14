@@ -91,7 +91,10 @@ namespace Bowerbird.Crafting
         IEnumerable<SlitPoint> SlitPoints(Curve curve, LineCurve line)
         {
             if (curve.IsClosed)
-                foreach (var item in Rhino.Geometry.Intersect.Intersection.CurveCurve(line, curve, Unit, Unit))
+            {
+                var points = Rhino.Geometry.Intersect.Intersection.CurveCurve(line, curve, Unit, Unit);
+                
+                foreach (var item in points)
                 {
                     if (item.IsOverlap)
                         if (item.OverlapA.T0 < item.OverlapA.T1)
@@ -101,6 +104,10 @@ namespace Bowerbird.Crafting
                     else
                         yield return new SlitPoint(item.ParameterA, item.PointA);
                 }
+
+                if (points.Count % 2 == 1)
+                    yield return new SlitPoint(line.GetLength(), line.PointAtEnd);
+            }
             else
                 foreach (var item in Rhino.Geometry.Intersect.Intersection.CurveCurve(line, curve, Unit, Unit))
                 {
