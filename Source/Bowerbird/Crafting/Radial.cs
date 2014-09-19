@@ -8,7 +8,7 @@ namespace Bowerbird.Crafting
 {
     class Radial
     {
-        protected Radial(Mesh mesh, Plane plane, double thickness, double deeper, double radius, int countA, int countZ, double unit)
+        protected Radial(Mesh mesh, Plane plane, double thickness, double deeper, double radius, int countA, int countZ, double unit, bool project, double projectSpace)
         {
             var box = mesh.Box(plane);
 
@@ -45,15 +45,47 @@ namespace Bowerbird.Crafting
                     sltZ[j].AddSlit(p1, p0, thickness, deeper);
                 }
             }
-            
+
             CurvesA = sltA.Select(o => o.GetResult()).ToArray();
             CurvesZ = sltZ.Select(o => o.GetResult()).ToArray();
+
+            if (project)
+            {
+                var dx1 = (r2 - r1) + projectSpace;
+
+                for (var i = 0; i < CurvesA.Length; i++)
+                {
+                    var target = new Plane(new Point3d(i * dx1, 0, 0), Vector3d.XAxis, Vector3d.YAxis);
+                    var transform = Transform.PlaneToPlane(plnA[i], target);
+
+                    TransformCurves(CurvesA[i], transform);
+                }
+
+                var dx2 = Math.Abs(box.X.Length) + projectSpace;
+                var y2 = Math.Abs(box.Z.Length - box.Y.Min) + projectSpace;
+
+                for (var i = 0; i < CurvesZ.Length; i++)
+                {
+                    var target = new Plane(new Point3d(i * dx2, y2, 0), Vector3d.XAxis, Vector3d.YAxis);
+                    var transform = Transform.PlaneToPlane(plnZ[i], target);
+
+                    TransformCurves(CurvesZ[i], transform);
+                }
+            }
+            
             PlanesA = plnA;
             PlanesZ = plnZ;
         }
 
+        public void TransformCurves(IEnumerable<Curve> curves, Transform transform)
+        {
+            foreach (var curve in curves)
+            {
+                curve.Transform(transform);
+            }
+        }
 
-        public static Radial Create(Mesh mesh, Plane plane, double thickness, double deeper, double radius, int countA, int countZ, double unit)
+        public static Radial Create(Mesh mesh, Plane plane, double thickness, double deeper, double radius, int countA, int countZ, double unit, bool project = false, double projectSpace = 0.0)
         {
             if (thickness <= 0)
                 throw new Exception(@"Thickness must be a positive value!");
@@ -66,9 +98,9 @@ namespace Bowerbird.Crafting
 
             if (!mesh.IsClosed)
                 throw new Exception(@"Mesh is not closed!");
-            
 
-            return new Radial(mesh, plane, thickness, deeper, radius, countA, countZ, unit);
+
+            return new Radial(mesh, plane, thickness, deeper, radius, countA, countZ, unit, project, projectSpace);
         }
 
 
