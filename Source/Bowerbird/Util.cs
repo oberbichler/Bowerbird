@@ -143,6 +143,17 @@ namespace Bowerbird
             return new PolylineCurve(polyline);
         }
 
+        public static Curve ToCurve(this List<IntPoint> polylineInt, Plane plane, Point2d origin, double unit)
+        {
+            var points = polylineInt.Select(p => plane.Origin + (p.X * unit + origin.X) * plane.XAxis + (p.Y * unit + origin.Y) * plane.YAxis)
+                                    .ToList();
+
+            if (points.Count > 0 && points.First() != points.Last())
+                points.Add(points[0]);
+
+            return new PolylineCurve(points);
+        }
+
         public static Polyline ToPolyline(this List<IntPoint> polygon, Plane plane, double unit)
         {
             var points = polygon.Select(o => plane.Origin + o.X * unit * plane.XAxis + o.Y * unit * plane.YAxis)
