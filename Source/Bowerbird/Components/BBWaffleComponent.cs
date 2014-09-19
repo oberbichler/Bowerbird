@@ -21,6 +21,8 @@ namespace Bowerbird.Components
             pManager.AddNumberParameter("Thickness", "T", "Thickness of the parts", GH_ParamAccess.item);
             pManager.AddPlaneParameter("Plane", "P", "Base Plane", GH_ParamAccess.item, Plane.WorldXY);
             pManager.AddNumberParameter("Deeper", "D", "Makes the slits deeper", GH_ParamAccess.item, 0);
+            pManager.AddBooleanParameter("Project", "p", "Project slices to xy plane", GH_ParamAccess.item, false);
+            pManager.AddNumberParameter("Distance", "d", "Minimal distance between projected slices", GH_ParamAccess.item, 1.0);
         }
 
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
@@ -44,6 +46,8 @@ namespace Bowerbird.Components
             var thickness = default(double);
             var plane = default(Plane);
             var deeper = default(double);
+            var project = default(bool);
+            var projectDistance = default(double);
 
             DA.GetData(0, ref mesh);
             DA.GetData(1, ref countX);
@@ -51,13 +55,15 @@ namespace Bowerbird.Components
             DA.GetData(3, ref thickness);
             DA.GetData(4, ref plane);
             DA.GetData(5, ref deeper);
+            DA.GetData(6, ref project);
+            DA.GetData(7, ref projectDistance);
 
 
             // --- Execute
 
             var unit = DocumentTolerance();
 
-            var result = Waffle.Create(mesh, plane, thickness, deeper, countX, countY, unit);
+            var result = Waffle.Create(mesh, plane, thickness, deeper, countX, countY, unit, project, projectDistance);
 
 
             // --- Output

@@ -23,6 +23,8 @@ namespace Bowerbird.Components
             pManager.AddPlaneParameter("Plane", "P", "Base Plane", GH_ParamAccess.item, Plane.WorldXY);
             pManager.AddNumberParameter("Radius", "R", "Inner radius", GH_ParamAccess.item, 0.0);
             pManager.AddNumberParameter("Deeper", "D", "Makes the slits deeper", GH_ParamAccess.item, 0.0);
+            pManager.AddBooleanParameter("Project", "p", "Project slices to xy plane", GH_ParamAccess.item, false);
+            pManager.AddNumberParameter("Distance", "d", "Minimal distance between projected slices", GH_ParamAccess.item, 1.0);
         }
 
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
@@ -47,6 +49,8 @@ namespace Bowerbird.Components
             var plane = default(Plane);
             var radius = default(double);
             var deeper = default(double);
+            var project = default(bool);
+            var projectDistance = default(double);
 
             DA.GetData(0, ref mesh);
             DA.GetData(1, ref countA);
@@ -55,13 +59,15 @@ namespace Bowerbird.Components
             DA.GetData(4, ref plane);
             DA.GetData(5, ref radius);
             DA.GetData(6, ref deeper);
+            DA.GetData(7, ref project);
+            DA.GetData(8, ref projectDistance);
 
 
             // --- Execute
 
             var unit = DocumentTolerance();
 
-            var result = Radial.Create(mesh, plane, thickness, deeper, radius, countA, countZ, unit);
+            var result = Radial.Create(mesh, plane, thickness, deeper, radius, countA, countZ, unit, project, projectDistance);
 
 
             // --- Output
