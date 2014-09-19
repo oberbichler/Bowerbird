@@ -6,7 +6,7 @@ using Rhino.Geometry;
 
 namespace Bowerbird.Crafting
 {
-    internal class Waffle
+    internal class Waffle : CraftingBase
     {
         protected Waffle(Mesh mesh, Plane plane, double thickness, double deeper, int countX, int countY, double unit, bool project, double projectSpace)
         {
@@ -54,26 +54,12 @@ namespace Bowerbird.Crafting
 
             for (var i = 0; i < CurvesX.Length; i++)
             {
-                var target = new Plane(new Point3d(i * (lenY + projectSpace), 0, 0), Vector3d.XAxis, Vector3d.YAxis);
-                var transform = Transform.PlaneToPlane(PlanesX[i], target);
-
-                TransformCurves(CurvesX[i], transform);
+                Project(CurvesX[i], PlanesX[i], i * (lenY + projectSpace), 0.0);
             }
 
             for (var i = 0; i < CurvesY.Length; i++)
             {
-                var target = new Plane(new Point3d(i * (lenX + projectSpace), lenZ + projectSpace, 0), Vector3d.XAxis, Vector3d.YAxis);
-                var transform = Transform.PlaneToPlane(PlanesY[i], target);
-
-                TransformCurves(CurvesY[i], transform);
-            }
-        }
-
-        public void TransformCurves(IEnumerable<Curve> curves, Transform transform)
-        {
-            foreach (var curve in curves)
-            {
-                curve.Transform(transform);
+                Project(CurvesY[i], PlanesY[i], i * (lenX + projectSpace), lenZ + projectSpace);
             }
         }
 
