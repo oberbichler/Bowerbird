@@ -17,7 +17,7 @@ namespace Bowerbird
 
         public static Box Box(this Mesh mesh, Plane plane)
         {
-            var box = default(Box);
+            Box box;
             mesh.GetBoundingBox(plane, out box);
             return box;
         }
@@ -65,7 +65,7 @@ namespace Bowerbird
 
             foreach (var curve in curves)
             {
-                var curvePlane = default(Plane);
+                Plane curvePlane;
 
                 if (!curve.TryGetPlane(out curvePlane))
                     continue;
@@ -86,41 +86,21 @@ namespace Bowerbird
 
         public static List<List<IntPoint>> ToPolygons(this IEnumerable<Curve> curves, Plane plane, double unit)
         {
-            var polygons = new List<List<IntPoint>>();
-
-            foreach (var curve in curves)
-            {
-                var polygon = curve.ToPolygon(plane, unit);
-
-                if (polygon == null)
-                    continue;
-
-                polygons.Add(polygon);
-            }
-
-            return polygons;
+            return curves.Select(curve => curve.ToPolygon(plane, unit))
+                         .Where(polygon => polygon != null)
+                         .ToList();
         }
 
         public static List<List<IntPoint>> ToPolygons(this IEnumerable<Polyline> polylines, Plane plane, double unit)
         {
-            var polygons = new List<List<IntPoint>>();
-
-            foreach (var polyline in polylines)
-            {
-                var polygon = polyline.ToPolygon(plane, unit);
-
-                if (polygon == null)
-                    continue;
-
-                polygons.Add(polygon);
-            }
-
-            return polygons;
+            return polylines.Select(polyline => polyline.ToPolygon(plane, unit))
+                            .Where(polygon => polygon != null)
+                            .ToList();
         }
 
         public static List<IntPoint> ToPolygon(this Curve curve, Plane plane, double unit)
         {
-            var polyline = default(Polyline);
+            Polyline polyline;
 
             if (!curve.TryGetPolyline(out polyline))
                 return null;
