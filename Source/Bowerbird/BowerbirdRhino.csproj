@@ -52,10 +52,20 @@
   <ItemGroup>
     <Compile Include="BBPolyline.cs" />
     <Compile Include="clipper.cs" />
+    <Compile Include="Commands\BBTextCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Crafting\CraftingBase.cs" />
     <Compile Include="Crafting\Radial.cs" />
     <Compile Include="Crafting\SlitPlane.cs" />
     <Compile Include="Crafting\Waffle.cs" />
+    <Compile Include="Dialogs\BBTextDialog.xaml.cs">
+      <DependentUpon>BBTextDialog.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Converters\ParamToIntConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs" />
     <Compile Include="RhinoPlugin.cs" />
@@ -72,6 +82,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Dialogs\BBTextDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
