@@ -83,6 +83,7 @@
     <Compile Include="Text\Font.cs" />
     <Compile Include="Text\Letter.cs" />
     <Compile Include="Text\Typewriter.cs" />
+    <Compile Include="UtilGh.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
