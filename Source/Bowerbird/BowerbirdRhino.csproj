@@ -52,6 +52,9 @@
   <ItemGroup>
     <Compile Include="BBPolyline.cs" />
     <Compile Include="clipper.cs" />
+    <Compile Include="Commands\BBRadialCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Commands\BBTextCommand.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -64,6 +67,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Dialogs\Converters\ParamToIntConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Getters\PlaneGetter.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
