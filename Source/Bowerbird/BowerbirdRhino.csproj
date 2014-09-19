@@ -58,6 +58,7 @@
     <Compile Include="Commands\BBTextCommand.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commands\BBWaffleCommand.cs" />
     <Compile Include="Crafting\CraftingBase.cs" />
     <Compile Include="Crafting\Radial.cs" />
     <Compile Include="Crafting\SlitPlane.cs" />
