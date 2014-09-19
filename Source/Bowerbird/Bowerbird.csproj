@@ -69,6 +69,7 @@
     <Compile Include="Components\BBTextComponent.cs" />
     <Compile Include="BowerbirdInfo.cs" />
     <Compile Include="Components\BBUnionComponent.cs" />
+    <Compile Include="Crafting\CraftingBase.cs" />
     <Compile Include="Crafting\Radial.cs" />
     <Compile Include="Crafting\Waffle.cs" />
     <Compile Include="Util.cs" />
