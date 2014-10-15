@@ -20,7 +20,7 @@ namespace Bowerbird.Components
             pManager.AddIntegerParameter("End Type", "E", "0 = Round\n1 = Square\n2 = Butt", GH_ParamAccess.item, 0);
             pManager.AddIntegerParameter("Join Type", "J", "0 = Round\n1 = Square\n2 = Miter", GH_ParamAccess.item, 0);
             pManager.AddNumberParameter("Miter Limit", "M", "", GH_ParamAccess.item, 10.0);
-            pManager.AddNumberParameter("Arc Tolerance", "A", "", GH_ParamAccess.item, 72.0);
+            pManager.AddNumberParameter("Arc Tolerance", "A", "The maximum distance that the flattened path will deviate from the 'true' arc", GH_ParamAccess.item, 0.01);
 
             pManager[2].Optional = true;
         }

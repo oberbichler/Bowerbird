@@ -95,7 +95,7 @@ namespace Bowerbird
             });
         }
 
-        public static IEnumerable<Curve> Offset(IEnumerable<Curve> curves, double distance, JoinType joinType, EndType endType, double miter, double arcDivision, Plane? plane)
+        public static IEnumerable<Curve> Offset(IEnumerable<Curve> curves, double distance, JoinType joinType, EndType endType, double miter, double arcTolerance, Plane? plane)
         {
             var curveList = curves as IList<Curve> ?? curves.ToList();
 
@@ -115,9 +115,6 @@ namespace Bowerbird
 
             var polylinesInt = polylines2D.Select(o => PolylineInt.FromPolyline2D(o, center, unit))
                                           .ToList();
-
-
-            var arcTolerance = Math.Abs(distance) - Math.Abs(distance) * Math.Cos(Math.PI / arcDivision);
 
 
             var clipper = new ClipperOffset(miter, arcTolerance / unit);
