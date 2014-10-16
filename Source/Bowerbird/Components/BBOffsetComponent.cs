@@ -14,13 +14,13 @@ namespace Bowerbird.Components
 
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddCurveParameter("Curve", "C", "Curve to offset", GH_ParamAccess.item);
+            pManager.AddCurveParameter("Curves", "C", "Curves to offset", GH_ParamAccess.list);
             pManager.AddNumberParameter("Distance", "D", "Offset distance", GH_ParamAccess.item);
             pManager.AddPlaneParameter("Plane", "P", "Plane for offset operation", GH_ParamAccess.item);
             pManager.AddIntegerParameter("End Type", "E", "0 = Round\n1 = Square\n2 = Butt", GH_ParamAccess.item, 0);
             pManager.AddIntegerParameter("Join Type", "J", "0 = Round\n1 = Square\n2 = Miter", GH_ParamAccess.item, 0);
-            pManager.AddNumberParameter("Miter Limit", "M", "", GH_ParamAccess.item, 10);
-            pManager.AddNumberParameter("Arc Tolerance", "A", "", GH_ParamAccess.item, 0.25);
+            pManager.AddNumberParameter("Miter Limit", "M", "", GH_ParamAccess.item, 10.0);
+            pManager.AddNumberParameter("Arc Tolerance", "A", "The maximum distance that the flattened path will deviate from the 'true' arc", GH_ParamAccess.item, 0.01);
 
             pManager[2].Optional = true;
         }
@@ -34,24 +34,20 @@ namespace Bowerbird.Components
         {
             // --- Input
 
-            var curve = default(Curve);
+            var curves = new List<Curve>();
             var distance = default(double);
-            var plane = default(Plane);
+            var plane = default(Plane?);
             var endTypeInt = default(int);
             var joinTypeInt = default(int);
-            var miterLimit = default(double);
+            var miter = default(double);
             var arcTolerance = default(double);
 
-            DA.GetData(0, ref curve);
+            DA.GetDataList(0, curves);
             DA.GetData(1, ref distance);
-
-            if (!DA.GetData(2, ref plane))
-                if (!curve.TryGetPlane(out plane))
-                    throw new Exception("Curve is not planar!");
-
+            DA.GetData(2, ref plane);
             DA.GetData(3, ref endTypeInt);
             DA.GetData(4, ref joinTypeInt);
-            DA.GetData(5, ref miterLimit);
+            DA.GetData(5, ref miter);
             DA.GetData(6, ref arcTolerance);
 
 
@@ -70,7 +66,7 @@ namespace Bowerbird.Components
                     break;
             }
 
-            var endType = default(EndType);
+            EndType endType;
 
             switch (endTypeInt)
             {
@@ -88,23 +84,7 @@ namespace Bowerbird.Components
 
             // --- Execute
 
-            var unit = DocumentTolerance() / 10;
-
-            var polygon = curve.ToPolygon(plane, unit);
-
-            var clipper = new ClipperOffset(miterLimit, arcTolerance);
-
-            if (curve.IsClosed)
-                clipper.AddPath(polygon, joinType, ClipperLib.EndType.etClosedPolygon);
-            else
-                clipper.AddPath(polygon, joinType, endType);
-
-
-            var solution = new List<List<IntPoint>>();
-
-            clipper.Execute(ref solution, distance / unit);
-
-            var result = solution.Select(o => o.ToCurve(plane, unit));
+            var result = BBPolyline.Offset(curves, distance, joinType, endType, miter, arcTolerance, plane);
 
 
             // --- Output

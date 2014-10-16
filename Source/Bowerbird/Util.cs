@@ -1,6 +1,4 @@
 ﻿using ClipperLib;
-using Grasshopper;
-using Grasshopper.Kernel.Data;
 using Rhino.Geometry;
 using Rhino.Geometry.Intersect;
 using System;
@@ -17,7 +15,7 @@ namespace Bowerbird
 
         public static Box Box(this Mesh mesh, Plane plane)
         {
-            var box = default(Box);
+            Box box;
             mesh.GetBoundingBox(plane, out box);
             return box;
         }
@@ -65,7 +63,7 @@ namespace Bowerbird
 
             foreach (var curve in curves)
             {
-                var curvePlane = default(Plane);
+                Plane curvePlane;
 
                 if (!curve.TryGetPlane(out curvePlane))
                     continue;
@@ -86,41 +84,21 @@ namespace Bowerbird
 
         public static List<List<IntPoint>> ToPolygons(this IEnumerable<Curve> curves, Plane plane, double unit)
         {
-            var polygons = new List<List<IntPoint>>();
-
-            foreach (var curve in curves)
-            {
-                var polygon = curve.ToPolygon(plane, unit);
-
-                if (polygon == null)
-                    continue;
-
-                polygons.Add(polygon);
-            }
-
-            return polygons;
+            return curves.Select(curve => curve.ToPolygon(plane, unit))
+                         .Where(polygon => polygon != null)
+                         .ToList();
         }
 
         public static List<List<IntPoint>> ToPolygons(this IEnumerable<Polyline> polylines, Plane plane, double unit)
         {
-            var polygons = new List<List<IntPoint>>();
-
-            foreach (var polyline in polylines)
-            {
-                var polygon = polyline.ToPolygon(plane, unit);
-
-                if (polygon == null)
-                    continue;
-
-                polygons.Add(polygon);
-            }
-
-            return polygons;
+            return polylines.Select(polyline => polyline.ToPolygon(plane, unit))
+                            .Where(polygon => polygon != null)
+                            .ToList();
         }
 
         public static List<IntPoint> ToPolygon(this Curve curve, Plane plane, double unit)
         {
-            var polyline = default(Polyline);
+            Polyline polyline;
 
             if (!curve.TryGetPolyline(out polyline))
                 return null;
@@ -143,6 +121,17 @@ namespace Bowerbird
             return new PolylineCurve(polyline);
         }
 
+        public static Curve ToCurve(this List<IntPoint> polylineInt, Plane plane, Point2d origin, double unit)
+        {
+            var points = polylineInt.Select(p => plane.Origin + (p.X * unit + origin.X) * plane.XAxis + (p.Y * unit + origin.Y) * plane.YAxis)
+                                    .ToList();
+
+            if (points.Count > 0 && points.First() != points.Last())
+                points.Add(points[0]);
+
+            return new PolylineCurve(points);
+        }
+
         public static Polyline ToPolyline(this List<IntPoint> polygon, Plane plane, double unit)
         {
             var points = polygon.Select(o => plane.Origin + o.X * unit * plane.XAxis + o.Y * unit * plane.YAxis)
@@ -157,39 +146,6 @@ namespace Bowerbird
         public static List<Curve> ToCurves(this List<List<IntPoint>> polygons, Plane plane, double unit)
         {
             return polygons.Select(o => o.ToCurve(plane, unit)).ToList();
-        }
-        
-
-        public static void SetEnum2D<T>(this Grasshopper.Kernel.IGH_DataAccess DA, int index, IEnumerable<IEnumerable<T>> data)
-        {
-            var tree = new DataTree<T>();
-
-            var basePath = DA.ParameterTargetPath(index);
-
-            foreach (var entry in data.Select((o, i) => new { Index = i, Item = o }))
-            {
-                var path = basePath.AppendElement(entry.Index);
-
-                tree.AddRange(entry.Item, path);
-            }
-
-            DA.SetDataTree(index, tree);
-        }
-
-        public static void SetEnum1D<T>(this Grasshopper.Kernel.IGH_DataAccess DA, int index, IEnumerable<T> data)
-        {
-            var tree = new DataTree<T>();
-
-            var basePath = DA.ParameterTargetPath(index);
-
-            foreach (var entry in data.Select((o, i) => new { Index = i, Item = o }))
-            {
-                var path = basePath.AppendElement(entry.Index);
-
-                tree.Add(entry.Item, path);
-            }
-
-            DA.SetDataTree(index, tree);
         }
     }
 }

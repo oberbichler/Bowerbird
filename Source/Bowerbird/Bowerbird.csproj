@@ -43,12 +43,12 @@
     </Reference>
     <Reference Include="Grasshopper">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\Thomas\AppData\Roaming\McNeel\Rhinoceros\5.0\Plug-ins\Grasshopper {B45A29B1-4343-4035-989E-044E8580D9CF}\0.9.72.0\Grasshopper.dll</HintPath>
+      <HintPath>..\..\..\..\..\AppData\Roaming\McNeel\Rhinoceros\5.0\Plug-ins\Grasshopper (b45a29b1-4343-4035-989e-044e8580d9cf)\0.9.76.0\Grasshopper.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="GH_IO">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\Thomas\AppData\Roaming\McNeel\Rhinoceros\5.0\Plug-ins\Grasshopper {B45A29B1-4343-4035-989E-044E8580D9CF}\0.9.72.0\GH_IO.dll</HintPath>
+      <HintPath>..\..\..\..\..\AppData\Roaming\McNeel\Rhinoceros\5.0\Plug-ins\Grasshopper (b45a29b1-4343-4035-989e-044e8580d9cf)\0.9.76.0\GH_IO.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.XML" />
@@ -69,7 +69,9 @@
     <Compile Include="Components\BBTextComponent.cs" />
     <Compile Include="BowerbirdInfo.cs" />
     <Compile Include="Components\BBUnionComponent.cs" />
+    <Compile Include="Crafting\CraftingBase.cs" />
     <Compile Include="Crafting\Radial.cs" />
+    <Compile Include="Crafting\Waffle.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -81,6 +83,7 @@
     <Compile Include="Text\Font.cs" />
     <Compile Include="Text\Letter.cs" />
     <Compile Include="Text\Typewriter.cs" />
+    <Compile Include="UtilGh.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
