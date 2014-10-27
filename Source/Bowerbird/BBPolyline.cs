@@ -172,7 +172,7 @@ namespace Bowerbird
 
             center = new Point2d(centerX, centerY);
 
-            unit = (Math.Max(maxX - minX, maxY - minY) + 2.0 * margin) / (2.0 * 4.6e+18);
+            unit = (Math.Max(maxX - minX, maxY - minY) + Math.Max(0.0, 2.0 * margin)) / (2.0 * 4.6e+18);
         }
 
 
