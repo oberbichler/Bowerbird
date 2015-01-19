@@ -49,6 +49,9 @@ namespace Bowerbird.Components
             for (int i = 0; i < planes.Count; i++)
                 slitPlanes[i] = new SlitPlane(mesh, planes[i], tolerance);
 
+            var bbox = mesh.GetBoundingBox(false);
+            var dmax = bbox.Diagonal.Length;
+                      
             for (int i = 0; i < planes.Count; i++)
             {
                 for (int j = i + 1; j < planes.Count; j++)
@@ -64,13 +67,16 @@ namespace Bowerbird.Components
 
                     IntersectPlanes(a, b, out origin, out direction);
 
+                    var cPlane = new Plane(bbox.Center, direction);
+                    origin = (Vector3d)cPlane.ClosestPoint((Point3d)origin);                    
+
                     var originA = origin.Map2D(a);
                     var directionA = direction.Map2D(a);
 
                     var originB = origin.Map2D(b);
                     var directionB = direction.Map2D(b);
 
-                    var line = new LineCurve((Point3d)(origin - 100 * direction), ((Point3d)origin + 100 * direction));
+                    var line = new LineCurve((Point3d)(origin - dmax * direction), ((Point3d)origin + dmax * direction));
 
                     var alpha = Vector3d.VectorAngle(a.Normal, b.Normal);
                     var t = thickness * Math.Tan(alpha / 2);
