@@ -1,0 +1,20 @@
+version: 0.6.3.{build}
+environment:
+  MY_LIB_PASSWORD:
+    secure: 2PoPfJS9BemYi1ezidIjtw==
+build_script:
+  - build.cmd
+artifacts:
+  - path: build\*.*
+    name: output
+deploy:
+  - provider: GitHub
+    release: Bowerbird-v$(appveyor_build_version)
+    auth_token:
+      secure: SC6KIAfiwbX7ETfKEct7LkHILk4ni6rFBDFToSYT9p1OkOiUwf5eO2Ak29ZXlhlM
+    artifact: output
+    draft: true
+    prerelease: false
+    on:
+      branch: master
+      appveyor_repo_tag: true

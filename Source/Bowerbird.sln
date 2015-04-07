@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowerbird", "Bowerbird\Bowerbird.csproj", "{C6081406-7CCF-4CA9-939D-B9A021B885BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowerbird.Grasshopper", "Bowerbird\Bowerbird.Grasshopper.csproj", "{C6081406-7CCF-4CA9-939D-B9A021B885BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowerbirdRhino", "Bowerbird\BowerbirdRhino.csproj", "{78A0A59A-8293-488F-BCAD-883B8C62D496}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowerbird.Rhino", "Bowerbird\Bowerbird.Rhino.csproj", "{78A0A59A-8293-488F-BCAD-883B8C62D496}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
