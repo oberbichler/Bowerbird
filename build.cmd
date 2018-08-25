@@ -3,6 +3,6 @@ cls
 
 nuget install FAKE -Version 3.26.7 -o packages\ -ExcludeVersion
 
-nuget restore .\Source\Bowerbird
+nuget restore -SolutionDirectory .\Source\
 
 packages\FAKE\tools\FAKE.exe build.fsx
