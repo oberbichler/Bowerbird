@@ -155,11 +155,13 @@ Erase "$(TargetPath)"</PostBuildEvent>
     <StartAction>Program</StartAction>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <Import Project="..\packages\Grasshopper.6.6.18177.16151\build\net45\Grasshopper.targets" Condition="Exists('..\packages\Grasshopper.6.6.18177.16151\build\net45\Grasshopper.targets')" />
+  <Import Project="..\packages\RhinoCommon.6.6.18177.16151\build\net45\RhinoCommon.targets" Condition="Exists('..\packages\RhinoCommon.6.6.18177.16151\build\net45\RhinoCommon.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>Dieses Projekt verweist auf mindestens ein NuGet-Paket, das auf diesem Computer fehlt. Verwenden Sie die Wiederherstellung von NuGet-Paketen, um die fehlenden Dateien herunterzuladen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=322105". Die fehlende Datei ist "{0}".</ErrorText>
     </PropertyGroup>
+    <Error Condition="!Exists('..\packages\RhinoCommon.6.6.18177.16151\build\net45\RhinoCommon.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\RhinoCommon.6.6.18177.16151\build\net45\RhinoCommon.targets'))" />
     <Error Condition="!Exists('..\packages\Grasshopper.6.6.18177.16151\build\net45\Grasshopper.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Grasshopper.6.6.18177.16151\build\net45\Grasshopper.targets'))" />
   </Target>
+  <Import Project="..\packages\Grasshopper.6.6.18177.16151\build\net45\Grasshopper.targets" Condition="Exists('..\packages\Grasshopper.6.6.18177.16151\build\net45\Grasshopper.targets')" />
 </Project>
