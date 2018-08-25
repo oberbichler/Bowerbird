@@ -9,7 +9,7 @@ deploy:
   - provider: GitHub
     release: Bowerbird-v$(appveyor_build_version)
     auth_token:
-      secure: SC6KIAfiwbX7ETfKEct7LkHILk4ni6rFBDFToSYT9p1OkOiUwf5eO2Ak29ZXlhlM
+      secure: H5/paY7Xgci80KI5ACZO3cdEbq5ucRzAjaoTfVOWJjHzK5ELkECUnEcUrpne+Lqw
     artifact: output
     draft: true
     prerelease: false
