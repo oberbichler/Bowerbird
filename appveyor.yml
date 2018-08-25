@@ -1,4 +1,5 @@
 version: 0.6.3.{build}
+image: Visual Studio 2017
 environment:
   MY_LIB_PASSWORD:
     secure: 2PoPfJS9BemYi1ezidIjtw==
