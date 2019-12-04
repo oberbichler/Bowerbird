@@ -1,4 +1,5 @@
 ﻿using Rhino.Geometry;
+using System;
 
 namespace Bowerbird
 {
@@ -20,6 +21,16 @@ namespace Bowerbird
                 return v * scale;
             else
                 return v * -scale;
+        }
+
+        protected static Vector3d Choose(Vector3d dir1, Vector3d dir2, Vector3d sample)
+        {
+            sample.Unitize();
+
+            if (Math.Abs(dir1 * sample) > Math.Abs(dir2 * sample))
+                return dir1;
+            else
+                return dir2;
         }
     }
 }

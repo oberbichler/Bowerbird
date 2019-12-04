@@ -21,12 +21,12 @@ namespace Bowerbird.Components
             pManager.AddSurfaceParameter("Surface", "S", "", GH_ParamAccess.item);
             pManager.AddParameter(new PathParameter(), "Path", "P", "", GH_ParamAccess.item);
             pManager.AddVectorParameter("Parameter Point", "uv", "", GH_ParamAccess.item);
+            pManager.AddVectorParameter("Initial Direction", "V", "", GH_ParamAccess.item);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddPointParameter("Points 1", "P1", "", GH_ParamAccess.list);
-            pManager.AddPointParameter("Points 2", "P2", "", GH_ParamAccess.list);
+            pManager.AddPointParameter("Points", "P", "", GH_ParamAccess.list);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)
@@ -36,14 +36,16 @@ namespace Bowerbird.Components
             var surface = default(Surface);
             var path = default(Path);
             var uv = default(Vector3d);
+            var initialDirection = default(Vector3d);
 
             if (!DA.GetData(0, ref surface)) return;
             if (!DA.GetData(1, ref path)) return;
             if (!DA.GetData(2, ref uv)) return;
+            if (!DA.GetData(3, ref initialDirection)) return;
 
             // --- Execute
 
-            var pathFinder = Pathfinder.Create(path, surface, uv);
+            var pathFinder = Pathfinder.Create(path, surface, uv, initialDirection);
 
             // --- Output
 

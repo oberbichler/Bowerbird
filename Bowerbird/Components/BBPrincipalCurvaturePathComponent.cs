@@ -18,7 +18,6 @@ namespace Bowerbird.Components
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            pManager.AddBooleanParameter("Type", "T", "", GH_ParamAccess.item, true);
             pManager.AddNumberParameter("Angle", "A", "", GH_ParamAccess.item, 0.0);
             pManager.AddNumberParameter("Step Size", "H", "", GH_ParamAccess.item, 0.1);
         }
@@ -33,16 +32,14 @@ namespace Bowerbird.Components
             // --- Input
 
             var stepSize = default(double);
-            var type = default(bool);
             var angle = default(double);
 
-            DA.GetData(0, ref type);
-            DA.GetData(1, ref angle);
-            DA.GetData(2, ref stepSize);
+            DA.GetData(0, ref angle);
+            DA.GetData(1, ref stepSize);
 
             // --- Execute
 
-            var path = PrincipalCurvaturePath.Create(stepSize, type, angle);
+            var path = PrincipalCurvaturePath.Create(stepSize, angle);
 
             // --- Output
 
