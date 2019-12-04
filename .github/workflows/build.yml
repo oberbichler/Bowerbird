@@ -18,8 +18,7 @@ jobs:
         ./nuget restore .
     - name: Build
       run: |
-        setlocal enabledelayedexpansion
-        for /f "usebackq tokens=*" %%i in (`vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe`) do (
-          "%%i" %*
-          exit /b !errorlevel!
-        )
+        $path = vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
+        if ($path) {
+          & $path $args
+        }
