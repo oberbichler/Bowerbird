@@ -1,7 +1,7 @@
 Bowerbird
 =========
 
-[![Build status](https://ci.appveyor.com/api/projects/status/39llg2o9b6ik58i6?svg=true)](https://ci.appveyor.com/project/oberbichler/bowerbird) [![Download](https://img.shields.io/github/downloads/oberbichler/Bowerbird/total.svg)](https://github.com/oberbichler/Bowerbird/releases/latest)
+[![Actions Status](https://github.com/oberbichler/Bowerbird/workflows/CI/badge.svg?branch=master)](https://github.com/oberbichler/Bowerbird/actions) [![Download](https://img.shields.io/github/downloads/oberbichler/Bowerbird/total.svg)](https://github.com/oberbichler/Bowerbird/releases/latest)
 
 Bowerbird is a plugin for Rhino and Grasshopper providing some tools for modeling.
 
