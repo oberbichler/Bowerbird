@@ -5,6 +5,13 @@ namespace Bowerbird
 {
     public abstract class Path
     {
+        public enum Type
+        {
+            First = 1,
+            Second = 2,
+            Both = 3
+        }
+
         public abstract Vector3d InitialDirection(Surface surface, Vector2d uv, bool type);
 
         public abstract Vector2d Direction(Surface surface, Vector2d uv, Vector3d lastDirection);

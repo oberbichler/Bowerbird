@@ -1,5 +1,6 @@
 ﻿using Bowerbird.Parameters;
 using Grasshopper.Kernel;
+using Grasshopper.Kernel.Parameters;
 using Rhino.Geometry;
 using System;
 using System.Collections.Generic;
@@ -21,12 +22,15 @@ namespace Bowerbird.Components
             pManager.AddSurfaceParameter("Surface", "S", "", GH_ParamAccess.item);
             pManager.AddParameter(new PathParameter(), "Path", "P", "", GH_ParamAccess.item);
             pManager.AddVectorParameter("Parameter Point", "uv", "", GH_ParamAccess.item);
-            pManager.AddBooleanParameter("Type", "T", "", GH_ParamAccess.item);
+            pManager.AddIntegerParameter("Type", "T", "", GH_ParamAccess.item, 3);
+            (pManager[3] as Param_Integer).AddNamedValue("First", 1);
+            (pManager[3] as Param_Integer).AddNamedValue("Second", 2);
+            (pManager[3] as Param_Integer).AddNamedValue("Both", 3);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddPointParameter("Points", "P", "", GH_ParamAccess.list);
+            pManager.AddCurveParameter("Paths", "P", "", GH_ParamAccess.list);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)
@@ -36,20 +40,36 @@ namespace Bowerbird.Components
             var surface = default(Surface);
             var path = default(Path);
             var uv = default(Vector3d);
-            var type = default(bool);
+            var typeValue = default(int);
 
             if (!DA.GetData(0, ref surface)) return;
             if (!DA.GetData(1, ref path)) return;
             if (!DA.GetData(2, ref uv)) return;
-            if (!DA.GetData(3, ref type)) return;
+            if (!DA.GetData(3, ref typeValue)) return;
+
+            var type = (Path.Type)typeValue;
 
             // --- Execute
 
-            var pathFinder = Pathfinder.Create(path, surface, uv, type);
+            var paths = new List<Polyline>();
+
+            if (type.HasFlag(Path.Type.First))
+            {
+                var pathfinder = Pathfinder.Create(path, surface, uv, false);
+                var polyline = new Polyline(pathfinder.Points);
+                paths.Add(polyline);
+            }
+
+            if (type.HasFlag(Path.Type.Second))
+            {
+                var pathfinder = Pathfinder.Create(path, surface, uv, true);
+                var polyline = new Polyline(pathfinder.Points);
+                paths.Add(polyline);
+            }
 
             // --- Output
 
-            DA.SetDataList(0, pathFinder.Points);
+            DA.SetDataList(0, paths);
         }
 
         protected override Bitmap Icon => null;
