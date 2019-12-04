@@ -104,11 +104,14 @@
   <ItemGroup>
     <Content Include="Resources\bowerbird_bold.xml" />
     <Content Include="Resources\bowerbird_regular.xml" />
+    <None Include="Resources\icon_asymptotic_path.png" />
     <Content Include="Resources\icon_boolean.png" />
     <Content Include="Resources\icon_difference.png" />
     <Content Include="Resources\icon_intersection.png" />
     <Content Include="Resources\icon_layer.png" />
     <Content Include="Resources\icon_offset.png" />
+    <None Include="Resources\icon_pathfinder.png" />
+    <None Include="Resources\icon_principal_path.png" />
     <Content Include="Resources\icon_radial.png" />
     <Content Include="Resources\icon_section.png" />
     <Content Include="Resources\icon_text.png" />

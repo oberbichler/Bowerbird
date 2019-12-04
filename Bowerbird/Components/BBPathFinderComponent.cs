@@ -72,7 +72,7 @@ namespace Bowerbird.Components
             DA.SetDataList(0, paths);
         }
 
-        protected override Bitmap Icon => null;
+        protected override Bitmap Icon => Properties.Resources.icon_pathfinder;
 
         public override GH_Exposure Exposure => GH_Exposure.primary;
 
