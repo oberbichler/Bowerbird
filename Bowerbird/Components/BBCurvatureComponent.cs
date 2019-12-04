@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Bowerbird.Components
 {
-    private class BBCurvatureComponent : GH_Component
+    internal class BBCurvatureComponent : GH_Component
     {
         public BBCurvatureComponent() : base("BB Curvature", "BBCurv", "", "Bowerbird", "Curvature")
         {
