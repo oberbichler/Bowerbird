@@ -19,6 +19,16 @@ namespace Bowerbird
             return new PrincipalCurvaturePath(stepSize, angle);
         }
 
+        public override Vector3d InitialDirection(Surface surface, Vector2d uv, bool type)
+        {
+            var u = uv.X;
+            var v = uv.Y;
+
+            var curvature = Curvature.SurfaceCurvature.Create(surface, u, v);
+
+            return !type ? curvature.K1Direction : curvature.K2Direction;
+        }
+
         public override Vector2d Direction(Surface surface, Vector2d uv, Vector3d lastDirection)
         {
             var u = uv.X;
