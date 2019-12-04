@@ -2,7 +2,7 @@
 
 <p align="center"><i>Bowerbird is a plugin for Rhino and Grasshopper providing some tools for modeling.</i></p>
 
-<p align="center"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/oberbichler/Bowerbird?color=orange&label=Download&style=for-the-badge"></p>
+<p align="center"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/oberbichler/Bowerbird?color=blue&label=Download&style=for-the-badge"></p>
 
 ---
 
