@@ -18,7 +18,7 @@ jobs:
         ./nuget restore .
     - name: Build
       run: |
-        $path = vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
+        $path = ./vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
         if ($path) {
           & $path $args
         }
