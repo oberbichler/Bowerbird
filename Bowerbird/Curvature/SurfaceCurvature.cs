@@ -36,50 +36,39 @@ namespace Bowerbird.Curvature
 
         public static SurfaceCurvature Create(Surface surface, double u, double v)
         {
+            var curvature = surface.CurvatureAt(u, v);
             surface.Evaluate(u, v, 2, out var x, out var derivatives);
 
             var a1 = derivatives[0];
             var a2 = derivatives[1];
-            var a1_1 = derivatives[2];
-            var a1_2 = derivatives[3];
-            var a2_2 = derivatives[4];
 
             var n = Vector3d.CrossProduct(a1, a2);
             n.Unitize();
 
-            var a11 = a1 * a1;
-            var a12 = a1 * a2;
-            var a22 = a2 * a2;
+            var k1 = curvature.Kappa(0);
+            var k2 = curvature.Kappa(1);
 
-            var b11 = a1_1 * n;
-            var b12 = a1_2 * n;
-            var b22 = a2_2 * n;
-
-            var aDet = a12 * a12 - a11 * a22;
-
-            var p11 = (a12 * b12 - a22 * b11) / aDet;
-            var p12 = (a12 * b22 - a22 * b12) / aDet;
-            var p22 = (a12 * b12 - a11 * b22) / aDet;
-            var p21 = (a12 * b11 - a11 * b12) / aDet;
-
-            var d = Math.Sqrt(Math.Pow(p11 - p22, 2) + 4 * p12 * p21);
-
-            var k1 = 0.5 * (p11 + p22 - d);
-            var k2 = 0.5 * (p11 + p22 + d);
-
-            var k1ParameterDirection = new Vector2d((p11 - p22 - d) / (2 * p21), 1);
-            var k2ParameterDirection = new Vector2d((p11 - p22 + d) / (2 * p21), 1);
-
-            k1ParameterDirection.Unitize();
-            k2ParameterDirection.Unitize();
-
-            var k1Direction = k1ParameterDirection.X * a1 + k1ParameterDirection.Y * a2;
-            var k2Direction = k2ParameterDirection.X * a1 + k2ParameterDirection.Y * a2;
+            var k1Direction = curvature.Direction(0);
+            var k2Direction = curvature.Direction(1);
 
             k1Direction.Unitize();
             k2Direction.Unitize();
 
+            var k1ParameterDirection = ToUV(a1, a2, k1Direction);
+            var k2ParameterDirection = ToUV(a1, a2, k2Direction);
+
+            k1ParameterDirection.Unitize();
+            k2ParameterDirection.Unitize();
+
             return new SurfaceCurvature(x, a1, a2, n, k1, k2, k1ParameterDirection, k2ParameterDirection, k1Direction, k2Direction);
+        }
+
+        private static Vector2d ToUV(Vector3d a1, Vector3d a2, Vector3d d)
+        {
+            var det = a1.X * a2.Y - a2.X * a1.Y;
+            var u = (d.X * a2.Y - d.Y * a2.X) / det;
+            var v = (d.Y * a1.X - d.X * a1.Y) / det;
+            return new Vector2d(u, v);
         }
 
         public Point3d X { get; private set; }
@@ -111,7 +100,7 @@ namespace Bowerbird.Curvature
             var c = Complex.Sqrt(K2 - k) / Complex.Sqrt(K2 - K1);
             var s = Complex.Sqrt(K1 - k) / Complex.Sqrt(K1 - K2);
 
-            if (c.Imaginary != 0 || s.Imaginary != 0)
+            if (Math.Abs(c.Imaginary) > 1e-10 || Math.Abs(s.Imaginary) > 1e-10)
             {
                 angle1 = default;
                 angle2 = default;

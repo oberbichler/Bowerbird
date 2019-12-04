@@ -1,23 +1,22 @@
 ﻿using Rhino.Geometry;
+using System;
 
 namespace Bowerbird
 {
     public class PrincipalCurvaturePath : Path
     {
-        private bool _type;
         private double _stepSize = 0.1;
         private double _angle;
 
-        private PrincipalCurvaturePath(double stepSize, bool type, double angle)
+        private PrincipalCurvaturePath(double stepSize, double angle)
         {
             _stepSize = stepSize;
-            _type = type;
             _angle = angle;
         }
 
-        public static PrincipalCurvaturePath Create(double stepSize, bool type, double angle)
+        public static PrincipalCurvaturePath Create(double stepSize, double angle)
         {
-            return new PrincipalCurvaturePath(stepSize, type, angle);
+            return new PrincipalCurvaturePath(stepSize, angle);
         }
 
         public override Vector2d Direction(Surface surface, Vector2d uv, Vector3d lastDirection)
@@ -27,13 +26,17 @@ namespace Bowerbird
 
             var curvature = Curvature.SurfaceCurvature.Create(surface, u, v);
 
-            var direction3d = _type ? curvature.K2Direction : curvature.K1Direction;
+            var dir1 = curvature.K1Direction;
+            var dir2 = curvature.K2Direction;
 
-            direction3d.Rotate(_angle, curvature.N);
+            dir1.Rotate(_angle, curvature.N);
+            dir2.Rotate(_angle, curvature.N);
 
-            direction3d = Align(direction3d, lastDirection, _stepSize);
+            var direction = Choose(dir1, dir2, lastDirection);
 
-            return ToUV(curvature.A1, curvature.A2, direction3d);
+            direction = Align(direction, lastDirection, _stepSize);
+
+            return ToUV(curvature.A1, curvature.A2, direction);
         }
     }
 

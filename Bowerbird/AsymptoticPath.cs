@@ -1,25 +1,24 @@
 ﻿using Rhino.Geometry;
+using System;
 
 namespace Bowerbird
 {
     public class AsymptoticPath : Path
     {
         private double _stepSize;
-        private bool _type;
         private double _angle;
         private double _curvature;
 
-        private AsymptoticPath(double stepSize, bool type, double angle, double curvature)
+        private AsymptoticPath(double stepSize, double angle, double curvature)
         {
             _stepSize = stepSize;
-            _type = type;
             _angle = angle;
             _curvature = curvature;
         }
 
-        public static AsymptoticPath Create(double stepSize, bool type, double angle, double curvature)
+        public static AsymptoticPath Create(double stepSize, double angle, double curvature)
         {
-            return new AsymptoticPath(stepSize, type, angle, curvature);
+            return new AsymptoticPath(stepSize, angle, curvature);
         }
 
         public override Vector2d Direction(Surface surface, Vector2d uv, Vector3d lastDirection)
@@ -29,16 +28,20 @@ namespace Bowerbird
 
             var curvature = Curvature.SurfaceCurvature.Create(surface, u, v);
 
-            var direction3d = curvature.K1Direction;
-
             if (!curvature.AngleByCurvature(_curvature, out var angle1, out var angle2))
                 return Vector2d.Unset;
 
-            direction3d.Rotate((!_type ? angle1 : angle2) + _angle, curvature.N);
+            var dir1 = curvature.K1Direction;
+            var dir2 = curvature.K1Direction;
 
-            direction3d = Align(direction3d, lastDirection, _stepSize);
+            dir1.Rotate(angle1 + _angle, curvature.N);
+            dir2.Rotate(angle2 + _angle, curvature.N);
 
-            return ToUV(curvature.A1, curvature.A2, direction3d);
+            var direction = Choose(dir1, dir2, lastDirection);
+
+            direction = Align(direction, lastDirection, _stepSize);
+
+            return ToUV(curvature.A1, curvature.A2, direction);
         }
     }
 }

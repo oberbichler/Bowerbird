@@ -16,7 +16,7 @@ namespace Bowerbird
             Points = points;
         }
 
-        public static Pathfinder Create(Path path, Surface surface, Vector3d uv)
+        public static Pathfinder Create(Path path, Surface surface, Vector3d uv, Vector3d initialDirection)
         {
             var points = new List<Point3d>();
             var normals = new List<Vector3d>();
@@ -25,25 +25,20 @@ namespace Bowerbird
             var u = uv.X;
             var v = uv.Y;
 
-            var curvature = Curvature.SurfaceCurvature.Create(surface, u, v);
-
             points.Add(surface.PointAt(u, v));
 
-            if (!curvature.AngleByCurvature(0, out var angle1, out var angle2)) { }
-                //return;
-
-            foreach (var initialDirection in new[] { curvature.K1Direction, -curvature.K1Direction })
+            foreach (var initDir in new[] { initialDirection, -initialDirection })
             {
                 u = uv.X;
                 v = uv.Y;
 
                 points.Reverse();
 
-                var direction = initialDirection;
+                var direction = initDir;
 
                 while (true)
                 {
-                    var delta = RK4(o => path.Direction(surface, o, direction), u, v);
+                    var delta = path.Direction(surface, new Vector2d(u, v), direction);
 
                     if (!delta.IsValid)
                         break;
@@ -76,14 +71,14 @@ namespace Bowerbird
                     u += delta.X;
                     v += delta.Y;
 
-                    curvature = Curvature.SurfaceCurvature.Create(surface, u, v);
-
-                    var nextPt = curvature.X;
+                    var nextPt = surface.PointAt(u, v);
 
                     direction = nextPt - points.Last();
 
                     if (points.Last().DistanceTo(nextPt) < 1e-5)
                         break;
+
+                    var curvature = Curvature.SurfaceCurvature.Create(surface, u, v);
 
                     var normal = surface.NormalAt(u, v);
 
@@ -121,7 +116,7 @@ namespace Bowerbird
             if (!d.IsValid)
                 return Vector2d.Unset;
 
-            return d;
+            return d0;
         }
     }
 }
