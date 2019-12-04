@@ -29,6 +29,8 @@ namespace Bowerbird
 
             var direction3d = _type ? curvature.K2Direction : curvature.K1Direction;
 
+            direction3d.Rotate(_angle, curvature.N);
+
             direction3d = Align(direction3d, lastDirection, _stepSize);
 
             return ToUV(curvature.A1, curvature.A2, direction3d);

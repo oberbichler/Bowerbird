@@ -34,7 +34,7 @@ namespace Bowerbird
             if (!curvature.AngleByCurvature(_curvature, out var angle1, out var angle2))
                 return Vector2d.Unset;
 
-            direction3d.Rotate(!_type ? angle1 : angle2, surface.NormalAt(u, v));
+            direction3d.Rotate((!_type ? angle1 : angle2) + _angle, curvature.N);
 
             direction3d = Align(direction3d, lastDirection, _stepSize);
 
