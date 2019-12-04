@@ -1,5 +1,4 @@
-Bowerbird
-=========
+![](https://raw.githubusercontent.com/oberbichler/Bowerbird2/master/docs/bowerbird_logo.svg?sanitize=true)
 
 [![Actions Status](https://github.com/oberbichler/Bowerbird/workflows/CI/badge.svg?branch=master)](https://github.com/oberbichler/Bowerbird/actions) [![Download](https://img.shields.io/github/downloads/oberbichler/Bowerbird/total.svg)](https://github.com/oberbichler/Bowerbird/releases/latest)
 
