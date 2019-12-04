@@ -147,5 +147,7 @@ namespace Bowerbird
         {
             return polygons.Select(o => o.ToCurve(plane, unit)).ToList();
         }
+
+        public static Vector3d ToVector3d(this Vector2d self) => new Vector3d(self.X, self.Y, 0);
     }
 }
