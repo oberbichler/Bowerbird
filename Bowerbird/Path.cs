@@ -5,6 +5,8 @@ namespace Bowerbird
 {
     public abstract class Path
     {
+        public abstract Vector3d InitialDirection(Surface surface, Vector2d uv, bool type);
+
         public abstract Vector2d Direction(Surface surface, Vector2d uv, Vector3d lastDirection);
 
         protected static Vector2d ToUV(Vector3d a1, Vector3d a2, Vector3d d)

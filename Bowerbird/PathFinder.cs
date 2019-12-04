@@ -16,7 +16,7 @@ namespace Bowerbird
             Points = points;
         }
 
-        public static Pathfinder Create(Path path, Surface surface, Vector3d uv, Vector3d initialDirection)
+        public static Pathfinder Create(Path path, Surface surface, Vector3d uv, bool type)
         {
             var points = new List<Point3d>();
             var normals = new List<Vector3d>();
@@ -26,6 +26,8 @@ namespace Bowerbird
             var v = uv.Y;
 
             points.Add(surface.PointAt(u, v));
+
+            Vector3d initialDirection = path.InitialDirection(surface, new Vector2d(u, v), type);
 
             foreach (var initDir in new[] { initialDirection, -initialDirection })
             {
