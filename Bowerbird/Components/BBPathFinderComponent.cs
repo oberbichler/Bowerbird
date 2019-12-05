@@ -13,7 +13,7 @@ namespace Bowerbird.Components
 {
     public class BBPathfinderComponent : GH_Component
     {
-        public BBPathfinderComponent() : base("BB Pathfinder", "Pathfinder", "", "Bowerbird", "Paths")
+        public BBPathfinderComponent() : base("BB Pathfinder", "BBPathfinder", "", "Bowerbird", "Paths")
         {
         }
 
