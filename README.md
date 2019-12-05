@@ -1,4 +1,4 @@
-![](https://raw.githubusercontent.com/oberbichler/Bowerbird/master/doc/bowerbird_logo.svg?sanitize=true)
+![](https://raw.githubusercontent.com/oberbichler/Bowerbird/master/docs/bowerbird_logo.svg?sanitize=true)
 
 <p align="center"><i>Bowerbird is a plugin for Rhino and Grasshopper providing some tools for modeling.</i></p>
 
