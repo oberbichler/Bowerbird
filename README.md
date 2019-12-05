@@ -8,6 +8,8 @@
 
 [![Actions Status](https://github.com/oberbichler/Bowerbird/workflows/CI/badge.svg?branch=master)](https://github.com/oberbichler/Bowerbird/actions) [![Download](https://img.shields.io/github/downloads/oberbichler/Bowerbird/total.svg)](https://github.com/oberbichler/Bowerbird/releases/latest)
 
+Grasshopper Group: https://www.grasshopper3d.com/group/bowerbird
+
 ## Installation
 
 * [Download](https://github.com/oberbichler/Bowerbird/releases/latest/download/Bowerbird.gha) `Bowerbird.gha`
