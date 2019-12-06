@@ -18,8 +18,8 @@ namespace Bowerbird.Components
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            pManager.AddNumberParameter("Angle", "A", "", GH_ParamAccess.item, 0.0);
-            pManager.AddNumberParameter("Step Size", "H", "", GH_ParamAccess.item, 0.1);
+            pManager.AddNumberParameter("Angle", "a", "", GH_ParamAccess.item, 0.0);
+            pManager.AddNumberParameter("Step Size", "h", "", GH_ParamAccess.item, 0.1);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
