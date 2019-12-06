@@ -100,6 +100,7 @@
     <Compile Include="Types\GH_Path.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="UtilGh.cs" />
+    <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\bowerbird_bold.xml" />

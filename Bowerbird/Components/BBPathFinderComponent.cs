@@ -24,14 +24,20 @@ namespace Bowerbird.Components
             pManager.AddParameter(new PathParameter(), "Path", "P", "", GH_ParamAccess.item);
             pManager.AddVectorParameter("Point", "xyz", "", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Type", "T", "", GH_ParamAccess.item, 3);
-            (pManager[3] as Param_Integer).AddNamedValue("First", 1);
-            (pManager[3] as Param_Integer).AddNamedValue("Second", 2);
-            (pManager[3] as Param_Integer).AddNamedValue("Both", 3);
+
+            Utility.AddNamedValues<Path.Type>(Params.Input[3]);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddCurveParameter("Paths", "P", "", GH_ParamAccess.list);
+        }
+
+        protected override void BeforeSolveInstance()
+        {
+            Utility.SetInputValueList<Path.Type>(Params.Input[3]);
+
+            base.BeforeSolveInstance();
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)
