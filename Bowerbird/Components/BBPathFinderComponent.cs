@@ -21,7 +21,7 @@ namespace Bowerbird.Components
         {
             pManager.AddSurfaceParameter("Surface", "S", "", GH_ParamAccess.item);
             pManager.AddParameter(new PathParameter(), "Path", "P", "", GH_ParamAccess.item);
-            pManager.AddVectorParameter("Parameter Point", "uv", "", GH_ParamAccess.item);
+            pManager.AddVectorParameter("Point", "xyz", "", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Type", "T", "", GH_ParamAccess.item, 3);
             (pManager[3] as Param_Integer).AddNamedValue("First", 1);
             (pManager[3] as Param_Integer).AddNamedValue("Second", 2);
@@ -39,17 +39,25 @@ namespace Bowerbird.Components
 
             var surface = default(Surface);
             var path = default(Path);
-            var uv = default(Vector3d);
+            var startingPoint = default(Vector3d);
             var typeValue = default(int);
 
             if (!DA.GetData(0, ref surface)) return;
             if (!DA.GetData(1, ref path)) return;
-            if (!DA.GetData(2, ref uv)) return;
+            if (!DA.GetData(2, ref startingPoint)) return;
             if (!DA.GetData(3, ref typeValue)) return;
 
             var type = (Path.Type)typeValue;
 
             // --- Execute
+
+            surface = (Surface)surface.Duplicate();
+            surface.SetDomain(0, new Interval(0, 1));
+            surface.SetDomain(1, new Interval(0, 1));
+
+            surface.ClosestPoint((Point3d)startingPoint, out double u, out double v);
+
+            var uv = new Vector3d(u, v, 0);
 
             var paths = new List<Polyline>();
 
