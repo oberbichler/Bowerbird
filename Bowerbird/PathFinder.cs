@@ -40,7 +40,7 @@ namespace Bowerbird
 
                 while (true)
                 {
-                    var delta = path.Direction(surface, new Vector2d(u, v), direction);
+                    var delta = RK4(o => path.Direction(surface, o, direction), u, v);
 
                     if (!delta.IsValid)
                         break;
