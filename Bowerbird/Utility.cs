@@ -12,20 +12,16 @@ namespace Bowerbird
         {
             var intParameter = inputParameter as Param_Integer;
 
-            var names = Enum.GetNames(typeof(T));
-            var values = Enum.GetValues(typeof(T));
-
-            for (int i = 0; i < values.Length; i++)
+            foreach (var entry in Enum.GetValues(typeof(T)).Cast<T>())
             {
-                var name = names[i];
-                var value = (int)values.GetValue(i);    // FIXME: is not the int value
+                var name = entry.ToString();
+                var value = Convert.ToInt32(entry);
                 intParameter.AddNamedValue(name, value);
             }
         }
 
         public static void SetInputValueList<T>(IGH_Param inputParameter) where T : Enum
         {
-            var names = Enum.GetNames(typeof(T));
             var values = Enum.GetValues(typeof(T));
 
             foreach (var valueList in inputParameter.Sources.OfType<GH_ValueList>())
@@ -35,10 +31,10 @@ namespace Bowerbird
 
                 valueList.ListItems.Clear();
 
-                for (int i = 0; i < values.Length; i++)
+                foreach (var entry in Enum.GetValues(typeof(T)).Cast<T>())
                 {
-                    var name = names[i];
-                    var value = values.GetValue(i).ToString();    // FIXME: is not the int value
+                    var name = entry.ToString();
+                    var value = Convert.ToInt32(entry).ToString();
                     valueList.ListItems.Add(new GH_ValueListItem(name, value));
                 }
 
