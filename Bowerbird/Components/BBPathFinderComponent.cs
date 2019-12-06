@@ -1,6 +1,7 @@
 ﻿using Bowerbird.Parameters;
 using Grasshopper.Kernel;
 using Grasshopper.Kernel.Parameters;
+using Grasshopper.Kernel.Special;
 using Rhino.Geometry;
 using System;
 using System.Collections.Generic;
