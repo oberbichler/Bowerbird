@@ -20,7 +20,7 @@ namespace Bowerbird.Components
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            pManager.AddParameter(new PathParameter(), "Path Type", "T", "", GH_ParamAccess.item);
+            pManager.AddParameter(new PathParameter(), "Path Type", "P", "", GH_ParamAccess.item);
             pManager.AddSurfaceParameter("Surface", "S", "", GH_ParamAccess.item);
             pManager.AddVectorParameter("Point", "P", "", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Direction", "D", "", GH_ParamAccess.item, 3);
@@ -45,14 +45,14 @@ namespace Bowerbird.Components
         {
             // --- Input
 
-            var surface = default(Surface);
             var path = default(Path);
+            var surface = default(Surface);
             var startingPoint = default(Vector3d);
             var typeValue = default(int);
             var stepSize = default(double);
 
-            if (!DA.GetData(0, ref surface)) return;
-            if (!DA.GetData(1, ref path)) return;
+            if (!DA.GetData(0, ref path)) return;
+            if (!DA.GetData(1, ref surface)) return;
             if (!DA.GetData(2, ref startingPoint)) return;
             if (!DA.GetData(3, ref typeValue)) return;
             if (!DA.GetData(4, ref stepSize)) return;

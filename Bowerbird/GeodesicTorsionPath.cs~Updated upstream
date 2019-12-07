@@ -3,20 +3,20 @@ using System;
 
 namespace Bowerbird
 {
-    public class NormalCurvaturePath : Path
+    public class GeodesicTorsionPath : Path
     {
         public double Value { get; private set; }
         public double Angle { get; private set; }
 
-        private NormalCurvaturePath(double value, double angle)
+        private GeodesicTorsionPath(double value, double angle)
         {
             Value = value;
             Angle = angle;
         }
 
-        public static NormalCurvaturePath Create(double value, double angle)
+        public static GeodesicTorsionPath Create(double value, double angle)
         {
-            return new NormalCurvaturePath(value, angle);
+            return new GeodesicTorsionPath(value, angle);
         }
 
         public override Vector3d InitialDirection(Surface surface, Vector2d uv, bool type)
@@ -26,7 +26,7 @@ namespace Bowerbird
 
             var curvature = Curvature.SurfaceCurvature.Create(surface, u, v);
 
-            if (!curvature.FindAngleByNormalCurvature(Value, out var angle1, out var angle2))
+            if (!curvature.FindAngleByGeodesicTorsion(Value, out var angle1, out var angle2))
                 return Vector3d.Unset;
 
             var dir1 = curvature.K1Direction;
@@ -45,7 +45,7 @@ namespace Bowerbird
 
             var curvature = Curvature.SurfaceCurvature.Create(surface, u, v);
 
-            if (!curvature.FindAngleByNormalCurvature(Value, out var angle1, out var angle2))
+            if (!curvature.FindAngleByGeodesicTorsion(Value, out var angle1, out var angle2))
                 return Vector2d.Unset;
 
             var dir1 = curvature.K1Direction;
@@ -61,4 +61,5 @@ namespace Bowerbird
             return ToUV(curvature.A1, curvature.A2, direction);
         }
     }
+
 }

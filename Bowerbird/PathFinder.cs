@@ -91,7 +91,7 @@ namespace Bowerbird
                     if (alpha < 1.0)
                         break;
 
-                    if (points.Count > 10000)
+                    if (points.Count > 100000)  // FIXME: Find a better solution
                         break;
                 }
             }
