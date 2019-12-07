@@ -14,16 +14,17 @@ namespace Bowerbird.Components
 {
     public class BBPathfinderComponent : GH_Component
     {
-        public BBPathfinderComponent() : base("BB Pathfinder", "BBPathfinder", "", "Bowerbird", "Paths")
+        public BBPathfinderComponent() : base("BB Pathfinder", "BBPathfinder", "Beta! Interface might change!", "Bowerbird", "Paths")
         {
         }
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
+            pManager.AddParameter(new PathParameter(), "Path Type", "T", "", GH_ParamAccess.item);
             pManager.AddSurfaceParameter("Surface", "S", "", GH_ParamAccess.item);
-            pManager.AddParameter(new PathParameter(), "Path", "P", "", GH_ParamAccess.item);
-            pManager.AddVectorParameter("Point", "xyz", "", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("Type", "T", "", GH_ParamAccess.item, 3);
+            pManager.AddVectorParameter("Point", "P", "", GH_ParamAccess.item);
+            pManager.AddIntegerParameter("Direction", "D", "", GH_ParamAccess.item, 3);
+            pManager.AddNumberParameter("Step Size", "H", "", GH_ParamAccess.item, 0.1);
 
             Utility.AddNamedValues<Path.Type>(Params.Input[3]);
         }
@@ -48,11 +49,13 @@ namespace Bowerbird.Components
             var path = default(Path);
             var startingPoint = default(Vector3d);
             var typeValue = default(int);
+            var stepSize = default(double);
 
             if (!DA.GetData(0, ref surface)) return;
             if (!DA.GetData(1, ref path)) return;
             if (!DA.GetData(2, ref startingPoint)) return;
             if (!DA.GetData(3, ref typeValue)) return;
+            if (!DA.GetData(4, ref stepSize)) return;
 
             var type = (Path.Type)typeValue;
 
@@ -70,14 +73,14 @@ namespace Bowerbird.Components
 
             if (type.HasFlag(Path.Type.First))
             {
-                var pathfinder = Pathfinder.Create(path, surface, uv, false);
+                var pathfinder = Pathfinder.Create(path, surface, uv, false, stepSize);
                 var polyline = new Polyline(pathfinder.Points);
                 paths.Add(polyline);
             }
 
             if (type.HasFlag(Path.Type.Second))
             {
-                var pathfinder = Pathfinder.Create(path, surface, uv, true);
+                var pathfinder = Pathfinder.Create(path, surface, uv, true, stepSize);
                 var polyline = new Polyline(pathfinder.Points);
                 paths.Add(polyline);
             }

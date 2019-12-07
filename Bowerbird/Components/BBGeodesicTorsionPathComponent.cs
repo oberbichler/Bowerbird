@@ -10,17 +10,16 @@ using System.Threading.Tasks;
 
 namespace Bowerbird.Components
 {
-    public class BBAsymptoticPathComponent : GH_Component
+    public class BBGeodesicTorsionPathComponent : GH_Component
     {
-        public BBAsymptoticPathComponent() : base("BB Asymptotic Path", "BBAsym", "", "Bowerbird", "Paths")
+        public BBGeodesicTorsionPathComponent() : base("BB Geodesic Torsion Path", "BBGTrs", "Beta! Interface might change!", "Bowerbird", "Paths")
         {
         }
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            pManager.AddNumberParameter("Curvature", "K", "", GH_ParamAccess.item, 0.0);
+            pManager.AddNumberParameter("Value", "V", "", GH_ParamAccess.item, 0.0);
             pManager.AddNumberParameter("Angle", "A", "", GH_ParamAccess.item, 0.0);
-            pManager.AddNumberParameter("Step Size", "H", "", GH_ParamAccess.item, 0.1);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
@@ -32,27 +31,25 @@ namespace Bowerbird.Components
         {
             // --- Input
 
-            var curvature = default(double);
-            var stepSize = default(double);
+            var value = default(double);
             var angle = default(double);
 
-            DA.GetData(0, ref curvature);
+            DA.GetData(0, ref value);
             DA.GetData(1, ref angle);
-            DA.GetData(2, ref stepSize);
 
             // --- Execute
 
-            var path = AsymptoticPath.Create(stepSize, angle, curvature);
+            var path = GeodesicTorsionPath.Create(angle, value);
 
             // --- Output
 
             DA.SetData(0, path);
         }
 
-        protected override Bitmap Icon => Properties.Resources.icon_asymptotic_path;
+        protected override Bitmap Icon => Properties.Resources.icon_principal_path;
 
         public override GH_Exposure Exposure => GH_Exposure.secondary;
 
-        public override Guid ComponentGuid => new Guid("{F3B20CCE-C077-480E-A03D-48845AF2EF6F}");
+        public override Guid ComponentGuid => new Guid("{E540E209-EF00-4E66-9460-CC62C1D394AB}");
     }
 }

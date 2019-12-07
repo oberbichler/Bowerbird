@@ -16,7 +16,7 @@ namespace Bowerbird
             Points = points;
         }
 
-        public static Pathfinder Create(Path path, Surface surface, Vector3d uv, bool type)
+        public static Pathfinder Create(Path path, Surface surface, Vector3d uv, bool type, double stepSize)
         {
             var points = new List<Point3d>();
             var normals = new List<Vector3d>();
@@ -40,7 +40,7 @@ namespace Bowerbird
 
                 while (true)
                 {
-                    var delta = RK4(o => path.Direction(surface, o, direction), u, v);
+                    var delta = RK4(o => path.Direction(surface, o, direction, stepSize), u, v);
 
                     if (!delta.IsValid)
                         break;

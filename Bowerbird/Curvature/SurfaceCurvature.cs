@@ -45,20 +45,30 @@ namespace Bowerbird.Curvature
             var n = Vector3d.CrossProduct(a1, a2);
             n.Unitize();
 
-            var k1 = curvature.Kappa(0);
-            var k2 = curvature.Kappa(1);
+            var k1 = curvature?.Kappa(0) ?? double.NaN;
+            var k2 = curvature?.Kappa(1) ?? double.NaN;
 
-            var k1Direction = curvature.Direction(0);
-            var k2Direction = curvature.Direction(1);
+            var k1Direction = Vector3d.Unset;
+            var k2Direction = Vector3d.Unset;
 
-            k1Direction.Unitize();
-            k2Direction.Unitize();
+            var k1ParameterDirection = Vector2d.Unset;
+            var k2ParameterDirection = Vector2d.Unset;
 
-            var k1ParameterDirection = ToUV(a1, a2, k1Direction);
-            var k2ParameterDirection = ToUV(a1, a2, k2Direction);
+            if (!double.IsNaN(k1))
+            {
+                k1Direction = curvature.Direction(0);
+                k1Direction.Unitize();
+                k1ParameterDirection = ToUV(a1, a2, k1Direction);
+                k1ParameterDirection.Unitize();
+            }
 
-            k1ParameterDirection.Unitize();
-            k2ParameterDirection.Unitize();
+            if (!double.IsNaN(k2))
+            {
+                k2Direction = curvature.Direction(1);
+                k2Direction.Unitize();
+                k2ParameterDirection = ToUV(a1, a2, k2Direction);
+                k2ParameterDirection.Unitize();
+            }
 
             return new SurfaceCurvature(x, a1, a2, n, k1, k2, k1ParameterDirection, k2ParameterDirection, k1Direction, k2Direction);
         }
@@ -109,6 +119,31 @@ namespace Bowerbird.Curvature
 
             angle1 = Math.Atan2(s.Real, c.Real);
             angle2 = Math.Atan2(s.Real, -c.Real);
+
+            return true;
+        }
+
+        public bool FindAngleByGeodesicTorsion(double value, out double angle1, out double angle2)
+        {
+            var t = value / (K2 - K1);
+            var d = 1 - 4 * t * t;
+
+            if (d < 0)
+            {
+                angle1 = default;
+                angle2 = default;
+                return false;
+            }
+
+            var b = Math.Sqrt(d);
+            angle1 = Math.Atan2(2 * t / Math.Sqrt(1 - b), Math.Sqrt(1 - b));
+            angle2 = Math.Atan2(2 * t / Math.Sqrt(1 + b), Math.Sqrt(1 + b));
+
+            if (double.IsNaN(angle1))
+                angle1 = Math.PI / 2;
+
+            if (double.IsNaN(angle2))
+                angle2 = Math.PI / 2;
 
             return true;
         }
