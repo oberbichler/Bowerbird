@@ -10,16 +10,16 @@ using System.Threading.Tasks;
 
 namespace Bowerbird.Components
 {
-    public class BBPrincipalCurvaturePathComponent : GH_Component
+    public class BBGeodesicTorsionPathComponent : GH_Component
     {
-        public BBPrincipalCurvaturePathComponent() : base("BB Principal Curvature Path", "BBPrin", "", "Bowerbird", "Paths")
+        public BBGeodesicTorsionPathComponent() : base("BB Geodesic Torsion Path", "BBGTrs", "Beta! Interface might change!", "Bowerbird", "Paths")
         {
         }
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            pManager.AddNumberParameter("Angle", "a", "", GH_ParamAccess.item, 0.0);
-            pManager.AddNumberParameter("Step Size", "h", "", GH_ParamAccess.item, 0.1);
+            pManager.AddNumberParameter("Value", "V", "", GH_ParamAccess.item, 0.0);
+            pManager.AddNumberParameter("Angle", "A", "", GH_ParamAccess.item, 0.0);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
@@ -31,15 +31,15 @@ namespace Bowerbird.Components
         {
             // --- Input
 
-            var stepSize = default(double);
+            var value = default(double);
             var angle = default(double);
 
-            DA.GetData(0, ref angle);
-            DA.GetData(1, ref stepSize);
+            DA.GetData(0, ref value);
+            DA.GetData(1, ref angle);
 
             // --- Execute
 
-            var path = PrincipalCurvaturePath.Create(stepSize, angle);
+            var path = GeodesicTorsionPath.Create(angle, value);
 
             // --- Output
 

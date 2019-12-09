@@ -10,17 +10,16 @@ using System.Threading.Tasks;
 
 namespace Bowerbird.Components
 {
-    public class BBAsymptoticPathComponent : GH_Component
+    public class BBNormalCurvaturePathComponent : GH_Component
     {
-        public BBAsymptoticPathComponent() : base("BB Asymptotic Path", "BBAsym", "", "Bowerbird", "Paths")
+        public BBNormalCurvaturePathComponent() : base("BB Normal Curvature Path", "BBNCrv", "Beta! Interface might change!", "Bowerbird", "Paths")
         {
         }
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            pManager.AddNumberParameter("Curvature", "kn", "", GH_ParamAccess.item, 0.0);
-            pManager.AddNumberParameter("Angle", "a", "", GH_ParamAccess.item, 0.0);
-            pManager.AddNumberParameter("Step Size", "h", "", GH_ParamAccess.item, 0.1);
+            pManager.AddNumberParameter("Value", "V", "", GH_ParamAccess.item, 0.0);
+            pManager.AddNumberParameter("Angle", "A", "", GH_ParamAccess.item, 0.0);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
@@ -32,17 +31,15 @@ namespace Bowerbird.Components
         {
             // --- Input
 
-            var curvature = default(double);
-            var stepSize = default(double);
+            var value = default(double);
             var angle = default(double);
 
-            DA.GetData(0, ref curvature);
+            DA.GetData(0, ref value);
             DA.GetData(1, ref angle);
-            DA.GetData(2, ref stepSize);
 
             // --- Execute
 
-            var path = AsymptoticPath.Create(stepSize, angle, curvature);
+            var path = NormalCurvaturePath.Create(value, angle);
 
             // --- Output
 

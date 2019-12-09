@@ -60,11 +60,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BBPolyline.cs" />
-    <Compile Include="AsymptoticPath.cs" />
-    <Compile Include="Components\BBAsymptoticPathComponent.cs" />
-    <Compile Include="PrincipalCurvaturePath.cs" />
+    <Compile Include="NormalCurvaturePath.cs" />
+    <Compile Include="Components\BBNormalCurvaturePathComponent.cs" />
+    <Compile Include="GeodesicTorsionPath.cs" />
     <Compile Include="clipper.cs" />
-    <Compile Include="Components\BBPrincipalCurvaturePathComponent.cs" />
+    <Compile Include="Components\BBGeodesicTorsionPathComponent.cs" />
     <Compile Include="Components\BBPathfinderComponent.cs" />
     <Compile Include="Components\BBBooleanComponent.cs" />
     <Compile Include="Components\BBAngleAtCurvatureComponent.cs" />
