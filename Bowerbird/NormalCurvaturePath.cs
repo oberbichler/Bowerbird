@@ -6,17 +6,15 @@ namespace Bowerbird
     public class NormalCurvaturePath : Path
     {
         public double Value { get; private set; }
-        public double Angle { get; private set; }
 
-        private NormalCurvaturePath(double value, double angle)
+        private NormalCurvaturePath(double value)
         {
             Value = value;
-            Angle = angle;
         }
 
-        public static NormalCurvaturePath Create(double value, double angle)
+        public static NormalCurvaturePath Create(double value)
         {
-            return new NormalCurvaturePath(value, angle);
+            return new NormalCurvaturePath(value);
         }
 
         public override Vector3d InitialDirection(Surface surface, Vector2d uv, bool type)
@@ -32,8 +30,8 @@ namespace Bowerbird
             var dir1 = curvature.K1Direction;
             var dir2 = curvature.K1Direction;
 
-            dir1.Rotate(angle1 + Angle, curvature.N);
-            dir2.Rotate(angle2 + Angle, curvature.N);
+            dir1.Rotate(angle1, curvature.N);
+            dir2.Rotate(angle2, curvature.N);
 
             return !type ? dir1 : dir2;
         }
@@ -51,8 +49,8 @@ namespace Bowerbird
             var dir1 = curvature.K1Direction;
             var dir2 = curvature.K1Direction;
 
-            dir1.Rotate(angle1 + Angle, curvature.N);
-            dir2.Rotate(angle2 + Angle, curvature.N);
+            dir1.Rotate(angle1, curvature.N);
+            dir2.Rotate(angle2, curvature.N);
 
             var direction = Choose(dir1, dir2, lastDirection);
 

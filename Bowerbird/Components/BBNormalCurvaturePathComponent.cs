@@ -19,7 +19,6 @@ namespace Bowerbird.Components
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddNumberParameter("Value", "V", "", GH_ParamAccess.item, 0.0);
-            pManager.AddNumberParameter("Angle", "A", "", GH_ParamAccess.item, 0.0);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
@@ -32,14 +31,12 @@ namespace Bowerbird.Components
             // --- Input
 
             var value = default(double);
-            var angle = default(double);
 
             DA.GetData(0, ref value);
-            DA.GetData(1, ref angle);
 
             // --- Execute
 
-            var path = NormalCurvaturePath.Create(value, angle);
+            var path = NormalCurvaturePath.Create(value);
 
             // --- Output
 
