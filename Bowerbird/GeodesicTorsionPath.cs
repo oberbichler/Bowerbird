@@ -30,10 +30,10 @@ namespace Bowerbird
                 return Vector3d.Unset;
 
             var dir1 = curvature.K1Direction;
-            var dir2 = curvature.K1Direction;
+            var dir2 = curvature.K2Direction;
 
             dir1.Rotate(angle1 + Angle, curvature.N);
-            dir2.Rotate(angle2 + Angle, curvature.N);
+            dir2.Rotate(angle1 + Angle, curvature.N);
 
             return !type ? dir1 : dir2;
         }
@@ -49,7 +49,7 @@ namespace Bowerbird
                 return Vector2d.Unset;
 
             var dir1 = curvature.K1Direction;
-            var dir2 = curvature.K1Direction;
+            var dir2 = curvature.K2Direction;
 
             dir1.Rotate(angle1 + Angle, curvature.N);
             dir2.Rotate(angle2 + Angle, curvature.N);
