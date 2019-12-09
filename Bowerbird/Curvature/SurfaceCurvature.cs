@@ -105,7 +105,7 @@ namespace Bowerbird.Curvature
 
         public Vector3d MaxDirection => K1 < K2 ? K2Direction : K1Direction;
 
-        public bool FindAngleByNormalCurvature(double k, out double angle1, out double angle2)
+        public bool FindNormalCurvature(double k, out double angle1, out double angle2)
         {
             var c = Complex.Sqrt(K2 - k) / Complex.Sqrt(K2 - K1);
             var s = Complex.Sqrt(K1 - k) / Complex.Sqrt(K1 - K2);
@@ -123,7 +123,7 @@ namespace Bowerbird.Curvature
             return true;
         }
 
-        public bool FindAngleByGeodesicTorsion(double value, out double angle1, out double angle2)
+        public bool FindGeodesicTorsion(double value, out double angle1, out double angle2)
         {
             if (value == 0 || (K2 - K1) == 0)
             {

@@ -26,7 +26,7 @@ namespace Bowerbird
 
             var curvature = Curvature.SurfaceCurvature.Create(surface, u, v);
 
-            if (!curvature.FindAngleByNormalCurvature(Value, out var angle1, out var angle2))
+            if (!curvature.FindNormalCurvature(Value, out var angle1, out var angle2))
                 return Vector3d.Unset;
 
             var dir1 = curvature.K1Direction;
@@ -45,7 +45,7 @@ namespace Bowerbird
 
             var curvature = Curvature.SurfaceCurvature.Create(surface, u, v);
 
-            if (!curvature.FindAngleByNormalCurvature(Value, out var angle1, out var angle2))
+            if (!curvature.FindNormalCurvature(Value, out var angle1, out var angle2))
                 return Vector2d.Unset;
 
             var dir1 = curvature.K1Direction;
