@@ -12,13 +12,14 @@ namespace Bowerbird.Components
 {
     public class BBGeodesicTorsionPathComponent : GH_Component
     {
-        public BBGeodesicTorsionPathComponent() : base("BB Geodesic Torsion Path", "BBGTrs", "Beta! Interface might change!", "Bowerbird", "Paths")
+        public BBGeodesicTorsionPathComponent() : base("BB Geodesic Torsion Path", "BB τg", "Beta! Interface might change!", "Bowerbird", "Paths")
         {
         }
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddNumberParameter("Value", "V", "", GH_ParamAccess.item, 0.0);
+            pManager.AddNumberParameter("Angle", "A", "", GH_ParamAccess.item, 0.0);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
@@ -31,12 +32,14 @@ namespace Bowerbird.Components
             // --- Input
 
             var value = default(double);
+            var angle = default(double);
 
-            DA.GetData(0, ref value);
+            if (!DA.GetData(0, ref value)) return;
+            if (!DA.GetData(1, ref angle)) return;
 
             // --- Execute
 
-            var path = GeodesicTorsionPath.Create(value);
+            var path = GeodesicTorsionPath.Create(value, angle);
 
             // --- Output
 

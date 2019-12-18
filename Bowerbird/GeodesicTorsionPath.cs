@@ -7,14 +7,17 @@ namespace Bowerbird
     {
         public double Value { get; private set; }
 
-        private GeodesicTorsionPath(double value)
+        public double Angle { get; private set; }
+
+        private GeodesicTorsionPath(double value, double angle)
         {
             Value = value;
+            Angle = angle;
         }
 
-        public static GeodesicTorsionPath Create(double value)
+        public static GeodesicTorsionPath Create(double value, double angle)
         {
-            return new GeodesicTorsionPath(value);
+            return new GeodesicTorsionPath(value, angle);
         }
 
         public override Vector3d InitialDirection(Surface surface, Vector2d uv, bool type)
@@ -30,8 +33,8 @@ namespace Bowerbird
             var dir1 = curvature.K1Direction;
             var dir2 = curvature.K2Direction;
 
-            dir1.Rotate(angle1, curvature.N);
-            dir2.Rotate(angle1, curvature.N);
+            dir1.Rotate(angle1 + Angle, curvature.N);
+            dir2.Rotate(angle1 + Angle, curvature.N);
 
             return !type ? dir1 : dir2;
         }
