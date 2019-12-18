@@ -16,11 +16,9 @@ namespace Bowerbird
             Points = points;
         }
 
-        public static Pathfinder Create(Path path, Surface surface, Vector3d uv, bool type)
+        public static Pathfinder Create(Path path, Surface surface, Vector3d uv, bool type, double stepSize)
         {
             var points = new List<Point3d>();
-            var normals = new List<Vector3d>();
-            var uvs = new List<Point3d>();
 
             var u = uv.X;
             var v = uv.Y;
@@ -40,7 +38,7 @@ namespace Bowerbird
 
                 while (true)
                 {
-                    var delta = RK4(o => path.Direction(surface, o, direction), u, v);
+                    var delta = RK4(o => path.Direction(surface, o, direction, stepSize), u, v);
 
                     if (!delta.IsValid)
                         break;
@@ -73,25 +71,21 @@ namespace Bowerbird
                     u += delta.X;
                     v += delta.Y;
 
-                    var nextPt = surface.PointAt(u, v);
-
-                    direction = nextPt - points.Last();
-
-                    if (points.Last().DistanceTo(nextPt) < 1e-5)
-                        break;
-
                     var curvature = Curvature.SurfaceCurvature.Create(surface, u, v);
+
+                    direction = delta.X * curvature.A1 + delta.Y * curvature.A2;
+
+                    if (points.Last().DistanceTo(curvature.X) < 1e-5)
+                        break;
 
                     var normal = surface.NormalAt(u, v);
 
-                    points.Add(nextPt);
-                    normals.Add(normal);
-                    uvs.Add(new Point3d(u, v, 0));
+                    points.Add(curvature.X);
 
                     if (alpha < 1.0)
                         break;
 
-                    if (points.Count > 10000)
+                    if (points.Count > 100000)  // FIXME: Find a better solution
                         break;
                 }
             }

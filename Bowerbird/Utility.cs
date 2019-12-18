@@ -1,8 +1,10 @@
-﻿using Grasshopper.Kernel;
+﻿using GH_IO.Serialization;
+using Grasshopper.Kernel;
 using Grasshopper.Kernel.Parameters;
 using Grasshopper.Kernel.Special;
 using System;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace Bowerbird
 {
@@ -40,6 +42,45 @@ namespace Bowerbird
 
                 valueList.ExpireSolution(true);
             }
+        }
+        
+        public static void SetMenuList<T>(GH_DocumentObject obj, ToolStrip menu, string record, Func<T> getValue, Action<T> setValue) where T : Enum
+        {
+            foreach (var entry in Enum.GetValues(typeof(T)).Cast<T>())
+            {
+                var name = entry.ToString();
+                var value = Convert.ToInt32(entry);
+
+                GH_DocumentObject.Menu_AppendItem(menu, name, (s, e) => {
+                    obj.RecordUndoEvent(record);
+                    setValue(entry);
+                    obj.ExpireSolution(true);
+                }, true, entry.Equals(getValue()));
+            }
+        }
+
+        public static int GetOrDefault(this GH_IReader reader, string key, int defaultValue = default)
+        {
+            int value = defaultValue;
+
+            reader.TryGetInt32(key, ref value);
+
+            return value;
+        }
+
+        public static void Set<T>(this GH_IWriter writer, string key, T value) where T : Enum
+        {
+            writer.SetInt32(key, Convert.ToInt32(value));
+        }
+
+        public static T GetOrDefault<T>(this GH_IReader reader, string key, T defaultValue = default) where T : Enum
+        {
+            var value = default(int);
+
+            if (!reader.TryGetInt32(key, ref value))
+                return defaultValue;
+            
+            return (T)Enum.ToObject(typeof(T), value);
         }
     }
 }

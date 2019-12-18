@@ -45,20 +45,30 @@ namespace Bowerbird.Curvature
             var n = Vector3d.CrossProduct(a1, a2);
             n.Unitize();
 
-            var k1 = curvature.Kappa(0);
-            var k2 = curvature.Kappa(1);
+            var k1 = curvature?.Kappa(0) ?? double.NaN;
+            var k2 = curvature?.Kappa(1) ?? double.NaN;
 
-            var k1Direction = curvature.Direction(0);
-            var k2Direction = curvature.Direction(1);
+            var k1Direction = Vector3d.Unset;
+            var k2Direction = Vector3d.Unset;
 
-            k1Direction.Unitize();
-            k2Direction.Unitize();
+            var k1ParameterDirection = Vector2d.Unset;
+            var k2ParameterDirection = Vector2d.Unset;
 
-            var k1ParameterDirection = ToUV(a1, a2, k1Direction);
-            var k2ParameterDirection = ToUV(a1, a2, k2Direction);
+            if (!double.IsNaN(k1))
+            {
+                k1Direction = curvature.Direction(0);
+                k1Direction.Unitize();
+                k1ParameterDirection = ToUV(a1, a2, k1Direction);
+                k1ParameterDirection.Unitize();
+            }
 
-            k1ParameterDirection.Unitize();
-            k2ParameterDirection.Unitize();
+            if (!double.IsNaN(k2))
+            {
+                k2Direction = curvature.Direction(1);
+                k2Direction.Unitize();
+                k2ParameterDirection = ToUV(a1, a2, k2Direction);
+                k2ParameterDirection.Unitize();
+            }
 
             return new SurfaceCurvature(x, a1, a2, n, k1, k2, k1ParameterDirection, k2ParameterDirection, k1Direction, k2Direction);
         }
@@ -95,20 +105,43 @@ namespace Bowerbird.Curvature
 
         public Vector3d MaxDirection => K1 < K2 ? K2Direction : K1Direction;
 
-        public bool AngleByCurvature(double k, out double angle1, out double angle2)
+        private bool Within(double bound1, double bound2, double value)
         {
-            var c = Complex.Sqrt(K2 - k) / Complex.Sqrt(K2 - K1);
-            var s = Complex.Sqrt(K1 - k) / Complex.Sqrt(K1 - K2);
+            if (bound1 <= value && value <= bound2)
+                return true;
+            if (bound2 <= value && value <= bound1)
+                return true;
+            return false;
+        }
 
-            if (Math.Abs(c.Imaginary) > 1e-10 || Math.Abs(s.Imaginary) > 1e-10)
+        public bool FindNormalCurvature(double k, out double angle1, out double angle2)
+        {
+            if (!Within(K1, K2, k))
             {
                 angle1 = default;
                 angle2 = default;
                 return false;
             }
 
-            angle1 = Math.Atan2(s.Real, c.Real);
-            angle2 = Math.Atan2(s.Real, -c.Real);
+            angle2 = 0.5 * Math.Acos((2 * k - K1 - K2) / (K1 - K2));
+            angle1 = -angle2;
+
+            return true;
+        }
+
+        public bool FindGeodesicTorsion(double k, out double angle1, out double angle2)
+        {
+            var d = 2 * k / (K2 - K1);
+
+            if (Math.Abs(d) > 1)
+            {
+                angle1 = default;
+                angle2 = default;
+                return false;
+            }
+
+            angle2 = 0.5 * Math.Asin(-d);
+            angle1 = -angle2;
 
             return true;
         }

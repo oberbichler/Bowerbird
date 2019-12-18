@@ -47,7 +47,7 @@ namespace Bowerbird.Components
 
             var curvature = Curvature.SurfaceCurvature.Create(surface, uv.X, uv.Y);
 
-            if (!curvature.AngleByCurvature(k, out var angle1, out var angle2))
+            if (!curvature.FindNormalCurvature(k, out var angle1, out var angle2))
                 return;
 
             Vector3d direction1 = curvature.K1Direction;
