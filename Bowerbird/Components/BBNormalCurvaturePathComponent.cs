@@ -1,4 +1,4 @@
-﻿using Bowerbird.Parameters;
+using Bowerbird.Parameters;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 using System;
@@ -12,7 +12,7 @@ namespace Bowerbird.Components
 {
     public class BBNormalCurvaturePathComponent : GH_Component
     {
-        public BBNormalCurvaturePathComponent() : base("BB Normal Curvature Path", "BB κn", "Beta! Interface might change!", "Bowerbird", "Paths")
+        public BBNormalCurvaturePathComponent() : base("BB Normal Curvature Path", "BBκn", "Beta! Interface might change!", "Bowerbird", "Paths")
         {
         }
 
