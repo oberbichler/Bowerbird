@@ -5,7 +5,7 @@ namespace Bowerbird
 {
     public abstract class Path
     {
-        public enum Type
+        public enum Types
         {
             First = 1,
             Second = 2,

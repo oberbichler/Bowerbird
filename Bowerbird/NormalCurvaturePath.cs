@@ -9,15 +9,18 @@ namespace Bowerbird
 
         public double Angle { get; private set; }
 
-        private NormalCurvaturePath(double value, double angle)
+        public Types Type { get; private set; }
+
+        private NormalCurvaturePath(double value, double angle, Types type)
         {
             Value = value;
             Angle = angle;
+            Type = type;
         }
 
-        public static NormalCurvaturePath Create(double value, double angle)
+        public static NormalCurvaturePath Create(double value, double angle, Types type)
         {
-            return new NormalCurvaturePath(value, angle);
+            return new NormalCurvaturePath(value, angle, type);
         }
 
         public override Vector3d InitialDirection(Surface surface, Vector2d uv, bool type)
