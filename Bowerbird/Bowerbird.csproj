@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="BBPolyline.cs" />
     <Compile Include="CurveOnSurface\CurveOnSurface.cs" />
+    <Compile Include="CurveOnSurface\ConstructCurveOnSurfaceComponent.cs" />
     <Compile Include="NormalCurvaturePath.cs" />
     <Compile Include="Components\BBNormalCurvaturePathComponent.cs" />
     <Compile Include="GeodesicTorsionPath.cs" />
