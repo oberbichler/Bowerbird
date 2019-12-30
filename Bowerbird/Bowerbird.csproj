@@ -86,6 +86,7 @@
     <Compile Include="Crafting\Waffle.cs" />
     <Compile Include="Curvature\SurfaceCurvature.cs" />
     <Compile Include="Info.cs" />
+    <Compile Include="Parameters\CurveOnSurfaceParameter.cs" />
     <Compile Include="Parameters\PathParameter.cs" />
     <Compile Include="Path.cs" />
     <Compile Include="Pathfinder.cs" />
