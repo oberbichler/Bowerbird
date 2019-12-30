@@ -98,6 +98,7 @@
     <Compile Include="Text\Font.cs" />
     <Compile Include="Text\Letter.cs" />
     <Compile Include="Text\Typewriter.cs" />
+    <Compile Include="Types\GH_CurveOnSurface.cs" />
     <Compile Include="Types\GH_Path.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="UtilGh.cs" />
