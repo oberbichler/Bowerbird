@@ -62,6 +62,7 @@
     <Compile Include="BBPolyline.cs" />
     <Compile Include="CurveOnSurface\CurveOnSurface.cs" />
     <Compile Include="CurveOnSurface\CurvatureComponent.cs" />
+    <Compile Include="CurveOnSurface\EvaluateComponent.cs" />
     <Compile Include="CurveOnSurface\ConstructCurveOnSurfaceComponent.cs" />
     <Compile Include="NormalCurvaturePath.cs" />
     <Compile Include="Components\BBNormalCurvaturePathComponent.cs" />
