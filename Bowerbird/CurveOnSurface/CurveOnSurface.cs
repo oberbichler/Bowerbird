@@ -73,11 +73,7 @@ namespace Bowerbird
             var x1 = u1 * su + v1 * sv;
             var x2 = u2 * su + v2 * sv + Math.Pow(u1, 2) * suu + Math.Pow(v1, 2) * svv + 2 * u1 * v1 * suv;
 
-            var kappa = Vector3d.CrossProduct(x1, x2).Length / Math.Pow(x1.Length, 3);
-
-            var t1 = (x2 * (x1 * x1) - x1 * (x1 * x2)) / Math.Pow(x1 * x1, 1.5);
-            
-            return t1 / t1.Length * kappa;
+            return (x2 * x1.SquareLength - x1 * (x1 * x2)) / Math.Pow(x1.SquareLength, 2);
         }
 
         public bool ClosestPoint(Point3d sample, out double t)
@@ -106,19 +102,44 @@ namespace Bowerbird
             var suv = ss[3];
             var svv = ss[4];
 
-            var n = Vector3d.CrossProduct(su, sv);
-            n /= n.Length;
-
             var x1 = u1 * su + v1 * sv;
             var x2 = suu * Math.Pow(u1, 2) + su * u2 + 2 * suv * u1 * v1 + svv * Math.Pow(v1, 2) + sv * v2;
 
-            return x2 * n / x1.SquareLength * n;
+            var n = Vector3d.CrossProduct(su, sv);
+            n.Unitize();
+
+            var c = (x2 * x1.SquareLength - x1 * (x1 * x2)) / Math.Pow(x1.SquareLength, 2);
+
+            return c * n * n; //x2 * n / x1.SquareLength * n;
         }
 
-        //public double GeodesicCurvatureAt(double t, out Vector3d n)
-        //{
+        public Vector3d GeodesicCurvatureAt(double t)
+        {
+            var x_c = Curve.DerivativeAt(t, 2);
+            var u = x_c[0].X;
+            var v = x_c[0].Y;
+            var u1 = x_c[1].X;
+            var v1 = x_c[1].Y;
+            var u2 = x_c[2].X;
+            var v2 = x_c[2].Y;
 
-        //}
+            Surface.Evaluate(u, v, 2, out var _, out var x_s);
+            var su = x_s[0];
+            var sv = x_s[1];
+            var suu = x_s[2];
+            var suv = x_s[3];
+            var svv = x_s[4];
+
+            var x1 = u1 * su + v1 * sv;
+            var x2 = u2 * su + v2 * sv + Math.Pow(u1, 2) * suu + Math.Pow(v1, 2) * svv + 2 * u1 * v1 * suv;
+
+            var b = Vector3d.CrossProduct(Vector3d.CrossProduct(su, sv), x1);
+            b.Unitize();
+
+            var c = (x2 * x1.SquareLength - x1 * (x1 * x2)) / Math.Pow(x1.SquareLength, 2);
+
+            return c * b * b;
+        }
 
         public Vector3d GeodesicTorsionAt(double t)
         {
