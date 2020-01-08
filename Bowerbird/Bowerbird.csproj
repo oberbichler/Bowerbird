@@ -122,6 +122,7 @@
     <Content Include="Resources\icon_difference.png" />
     <Content Include="Resources\icon_intersection.png" />
     <Content Include="Resources\icon_layer.png" />
+    <None Include="Resources\icon_normalize.png" />
     <Content Include="Resources\icon_offset.png" />
     <None Include="Resources\icon_pathfinder.png" />
     <None Include="Resources\icon_principal_path.png" />

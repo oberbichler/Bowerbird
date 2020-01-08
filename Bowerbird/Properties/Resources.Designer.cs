@@ -161,6 +161,16 @@ namespace Bowerbird.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_normalize {
+            get {
+                object obj = ResourceManager.GetObject("icon_normalize", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_offset {
             get {
                 object obj = ResourceManager.GetObject("icon_offset", resourceCulture);
