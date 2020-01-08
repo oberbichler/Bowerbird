@@ -31,7 +31,7 @@ namespace Bowerbird.Components
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddCurveParameter("Paths", "P", "", GH_ParamAccess.list);
+            pManager.AddParameter(new CurveOnSurfaceParameter(), "Paths", "P", "", GH_ParamAccess.list);
         }
         
         protected override void SolveInstance(IGH_DataAccess DA)
@@ -87,7 +87,15 @@ namespace Bowerbird.Components
 
             // --- Output
 
-            DA.SetDataList(0, paths);
+            var curves = new List<CurveOnSurface>();
+
+            foreach (var p in paths)
+            {
+                var curve = new PolylineCurve(p.Select(o => { surface.ClosestPoint(o, out var u, out var v); return new Point3d(u, v, 0); }));
+                curves.Add(CurveOnSurface.Create(surface, curve));
+            }
+
+            DA.SetDataList(0, curves);
         }
 
         public enum StartPointTypes
