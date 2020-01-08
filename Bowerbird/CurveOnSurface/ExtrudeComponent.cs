@@ -1,4 +1,5 @@
-﻿using Bowerbird.Parameters;
+using Bowerbird.Parameters;
+using GH_IO.Serialization;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 using System;
@@ -7,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Bowerbird
 {
@@ -65,62 +67,106 @@ namespace Bowerbird
                 mesh.Faces.AddFace(a, b, c, d);
             }
 
-            //var m = mesh.DuplicateMesh();
+            if (Unroll)
+            {
+                var m = mesh.DuplicateMesh();
 
-            //var p = polyline.Point(0);
+                var p = points3d[0];
 
-            //var oldA = m.Vertices[0];
-            //var oldB = m.Vertices[1];
+                var oldA = m.Vertices[0];
+                var oldB = m.Vertices[1];
 
-            //var newA = new Point3d(0, offset + 0.5 * thickness, 0);
-            //var newB = new Point3d(0, offset - 0.5 * thickness, 0);
+                var newA = new Point3d(0, offset + 0.5 * thickness, 0);
+                var newB = new Point3d(0, offset - 0.5 * thickness, 0);
 
-            //m.Vertices.SetVertex(0, newA);
-            //m.Vertices.SetVertex(1, newB);
+                m.Vertices.SetVertex(0, newA);
+                m.Vertices.SetVertex(1, newB);
 
-            //var outOfPlane = 0.0;
+                var outOfPlane = 0.0;
 
-            //for (int i = 1; i < polyline.PointCount; i++)
-            //{
-            //    var t = polyline.Point(i) - polyline.Point(i - 1);
+                for (int i = 1; i < polyline.PointCount; i++)
+                {
+                    var t = points3d[i] - points3d[i - 1];
 
-            //    var n = new Vector3d(oldA.X - oldB.X, oldA.Y - oldB.Y, oldA.Z - oldB.Z);
-                
-            //    var c = i * 2 + 1;
-            //    var d = i * 2;
+                    var n = new Vector3d(oldA.X - oldB.X, oldA.Y - oldB.Y, oldA.Z - oldB.Z);
 
-            //    var oldC = m.Vertices[c];
-            //    var oldD = m.Vertices[d];
+                    var c = i * 2 + 1;
+                    var d = i * 2;
 
-            //    var oldPlane = new Plane(p, t, n);
-            //    var newPlane = new Plane(newB + (0.5 * thickness - offset) * (newA - newB) / (newA - newB).Length, Vector3d.CrossProduct(newA - newB, Vector3d.ZAxis), newA - newB);
+                    var oldC = m.Vertices[c];
+                    var oldD = m.Vertices[d];
 
-            //    var xf = Transform.PlaneToPlane(oldPlane, newPlane);
+                    var oldPlane = new Plane(p, t, n);
+                    var newPlane = new Plane(newB + (0.5 * thickness - offset) * (newA - newB) / (newA - newB).Length, Vector3d.CrossProduct(newA - newB, Vector3d.ZAxis), newA - newB);
 
-            //    var newC = new Point3f(oldC.X, oldC.Y, oldC.Z);
-            //    newC.Transform(xf);
-            //    outOfPlane = Math.Max(outOfPlane, Math.Abs(newC.Z));
-            //    newC.Z = 0;
+                    var xf = Transform.PlaneToPlane(oldPlane, newPlane);
 
-            //    var newD = new Point3f(oldD.X, oldD.Y, oldD.Z);
-            //    newD.Transform(xf);
-            //    outOfPlane = Math.Max(outOfPlane, Math.Abs(newD.Z));
-            //    newD.Z = 0;
+                    var newC = new Point3f(oldC.X, oldC.Y, oldC.Z);
+                    newC.Transform(xf);
+                    outOfPlane = Math.Max(outOfPlane, Math.Abs(newC.Z));
+                    newC.Z = 0;
 
-            //    m.Vertices.SetVertex(c, newC);
-            //    m.Vertices.SetVertex(d, newD);
+                    var newD = new Point3f(oldD.X, oldD.Y, oldD.Z);
+                    newD.Transform(xf);
+                    outOfPlane = Math.Max(outOfPlane, Math.Abs(newD.Z));
+                    newD.Z = 0;
 
-            //    oldA = oldD;
-            //    oldB = oldC;
-            //    newA = newD;
-            //    newB = newC;
+                    m.Vertices.SetVertex(c, newC);
+                    m.Vertices.SetVertex(d, newD);
 
-            //    p = polyline.Point(i);
-            //}
+                    oldA = oldD;
+                    oldB = oldC;
+                    newA = newD;
+                    newB = newC;
+
+                    p = points3d[i];
+                }
+
+                mesh = m;
+            }
 
             // --- Output
 
             DA.SetData(0, mesh);
+        }
+
+        private bool _unroll;
+
+        public bool Unroll
+        { 
+            get
+            {
+                return _unroll;
+            }
+            set
+            {
+                _unroll = value;
+                UpdateMessage();
+            }
+        }
+
+        private void UpdateMessage()
+        {
+            Message = Unroll ? "Unroll" : null;
+        }
+
+        protected override void AppendAdditionalComponentMenuItems(ToolStripDropDown menu)
+        {
+            Utility.SetMenuToggle(this, menu, "Unroll", () => Unroll, o => Unroll = o);
+        }
+
+        public override bool Write(GH_IWriter writer)
+        {
+            writer.Set("Unroll", Unroll);
+
+            return base.Write(writer);
+        }
+
+        public override bool Read(GH_IReader reader)
+        {
+            Unroll = reader.GetOrDefault("Unroll", false);
+
+            return base.Read(reader);
         }
 
         protected override Bitmap Icon => null;
