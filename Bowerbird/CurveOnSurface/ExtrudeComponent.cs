@@ -1,4 +1,4 @@
-using Bowerbird.Parameters;
+﻿using Bowerbird.Parameters;
 using GH_IO.Serialization;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
@@ -45,13 +45,23 @@ namespace Bowerbird
 
             // --- Execute
 
-            var polyline = curveOnSurface.ToCurve(DocumentTolerance()).ToPolyline(DocumentTolerance(), DocumentAngleTolerance(), 0, 0);
+            var polyline = default(PolylineCurve);
+
+            if (curveOnSurface.Curve.TryGetPolyline(out var points))
+                polyline = new PolylineCurve(points);
+            else
+                polyline = curveOnSurface.Curve.ToPolyline(DocumentTolerance(), DocumentAngleTolerance(), 0, 0);
+            
+            var points3d = new List<Point3d>(polyline.PointCount);
+
             var mesh = new Mesh();
 
             for (int i = 0; i < polyline.PointCount; i++)
             {
-                var point = polyline.Point(i);
-                curveOnSurface.ClosestPoint(point, out var t);
+                var point2d = polyline.Point(i);
+                curveOnSurface.Curve.ClosestPoint(point2d, out var t);
+                var point = curveOnSurface.PointAt(t);
+                points3d.Add(point);
                 var normal = curveOnSurface.NormalAt(t);
                 var d = 0.5 * thickness;
                 mesh.Vertices.Add(point + (offset + d) * normal);
