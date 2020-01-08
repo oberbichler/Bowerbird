@@ -1,4 +1,4 @@
-using Bowerbird.Parameters;
+﻿using Bowerbird.Parameters;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 using System;
@@ -41,6 +41,8 @@ namespace Bowerbird
 
 
             // --- Execute
+
+            surface = (Surface)surface.Duplicate();
 
             var curveOnSurface = CurveOnSurface.Create(surface, curve);
 
