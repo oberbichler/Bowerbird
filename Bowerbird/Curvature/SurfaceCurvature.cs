@@ -105,53 +105,43 @@ namespace Bowerbird.Curvature
 
         public Vector3d MaxDirection => K1 < K2 ? K2Direction : K1Direction;
 
-        public bool FindAngleByNormalCurvature(double k, out double angle1, out double angle2)
+        private bool Within(double bound1, double bound2, double value)
         {
-            var c = Complex.Sqrt(K2 - k) / Complex.Sqrt(K2 - K1);
-            var s = Complex.Sqrt(K1 - k) / Complex.Sqrt(K1 - K2);
+            if (bound1 <= value && value <= bound2)
+                return true;
+            if (bound2 <= value && value <= bound1)
+                return true;
+            return false;
+        }
 
-            if (Math.Abs(c.Imaginary) > 1e-10 || Math.Abs(s.Imaginary) > 1e-10)
+        public bool FindNormalCurvature(double k, out double angle1, out double angle2)
+        {
+            if (!Within(K1, K2, k))
             {
                 angle1 = default;
                 angle2 = default;
                 return false;
             }
 
-            angle1 = Math.Atan2(s.Real, c.Real);
-            angle2 = Math.Atan2(s.Real, -c.Real);
+            angle2 = 0.5 * Math.Acos((2 * k - K1 - K2) / (K1 - K2));
+            angle1 = -angle2;
 
             return true;
         }
 
-        public bool FindAngleByGeodesicTorsion(double value, out double angle1, out double angle2)
+        public bool FindGeodesicTorsion(double k, out double angle1, out double angle2)
         {
-            if (value == 0 || (K2 - K1) == 0)
-            {
-                angle1 = 0.0;
-                angle2 = Math.PI / 2;
-                return true;
-            }
+            var d = 2 * k / (K2 - K1);
 
-            var t = value / (K2 - K1);
-            var d = 1 - 4 * t * t;
-
-            if (d < 0)
+            if (Math.Abs(d) > 1)
             {
                 angle1 = default;
                 angle2 = default;
                 return false;
             }
 
-            var b = Math.Sqrt(d);
-
-            angle1 = Math.Atan2(2 * t / Math.Sqrt(1 - b), Math.Sqrt(1 - b));
-            angle2 = Math.Atan2(2 * t / Math.Sqrt(1 + b), Math.Sqrt(1 + b));
-
-            if (double.IsNaN(angle1))
-                angle1 = Math.PI / 2;
-
-            if (double.IsNaN(angle2))
-                angle2 = Math.PI / 2;
+            angle2 = 0.5 * Math.Asin(-d);
+            angle1 = -angle2;
 
             return true;
         }
