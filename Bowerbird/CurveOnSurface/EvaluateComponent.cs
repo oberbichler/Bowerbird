@@ -1,4 +1,4 @@
-﻿using Bowerbird.Parameters;
+using Bowerbird.Parameters;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 using System;
@@ -12,7 +12,7 @@ namespace Bowerbird
 {
     public class EvaluateComponent : GH_Component
     {
-        public EvaluateComponent() : base("BB Evaluate Curve on Surface", "BBEval", "", "Bowerbird", "Curve on Surface")
+        public EvaluateComponent() : base("BB Evaluate CurveOnSurface", "BBEval", "", "Bowerbird", "Curve on Surface")
         {
         }
 

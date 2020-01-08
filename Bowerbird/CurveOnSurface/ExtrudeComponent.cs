@@ -1,4 +1,4 @@
-﻿using Bowerbird.Parameters;
+using Bowerbird.Parameters;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 using System;
@@ -12,7 +12,7 @@ namespace Bowerbird
 {
     public class ExtrudeComponent : GH_Component
     {
-        public ExtrudeComponent() : base("BB Extrude Curve on Surface", "BBExtrude", "", "Bowerbird", "Curve on Surface")
+        public ExtrudeComponent() : base("BB Extrude CurveOnSurface", "Extrude", "", "Bowerbird", "Curve on Surface")
         {
         }
 
