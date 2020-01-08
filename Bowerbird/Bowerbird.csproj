@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BBPolyline.cs" />
+    <Compile Include="CurveOnSurface\DeconstructCurveOnSurfaceComponent.cs" />
     <Compile Include="CurveOnSurface\GeodesicCurvatureComponent.cs" />
     <Compile Include="CurveOnSurface\NormalCurvatureComponent.cs" />
     <Compile Include="CurveOnSurface\GeodesicTorsionComponent.cs" />
