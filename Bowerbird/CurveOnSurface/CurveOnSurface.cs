@@ -37,7 +37,8 @@ namespace Bowerbird
             var c_t = Curve.TangentAt(t);
             var uv = Curve.PointAt(t);
             Surface.Evaluate(uv.X, uv.Y, 1, out var _, out var s_uv);
-            return c_t.X * s_uv[0] + c_t.Y * s_uv[1];
+            var x_t = c_t.X * s_uv[0] + c_t.Y * s_uv[1];
+            return x_t / x_t.Length;
         }
 
         public Vector3d NormalAt(double t)
