@@ -26,8 +26,8 @@ namespace Bowerbird
         {
             pManager.AddPointParameter("Point", "P", "", GH_ParamAccess.item);
             pManager.AddVectorParameter("Tangent", "T", "", GH_ParamAccess.item);
-            pManager.AddVectorParameter("Tangent", "B", "", GH_ParamAccess.item);
-            pManager.AddVectorParameter("Tangent", "N", "", GH_ParamAccess.item);
+            pManager.AddVectorParameter("Binormal", "B", "", GH_ParamAccess.item);
+            pManager.AddVectorParameter("Normal", "N", "", GH_ParamAccess.item);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)
