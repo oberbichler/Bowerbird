@@ -1,4 +1,4 @@
-using Bowerbird.Parameters;
+﻿using Bowerbird.Parameters;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 using System;
@@ -59,7 +59,7 @@ namespace Bowerbird
 
         protected override Bitmap Icon => null;
 
-        public override GH_Exposure Exposure => GH_Exposure.primary;
+        public override GH_Exposure Exposure => GH_Exposure.secondary;
 
         public override Guid ComponentGuid => new Guid("{B5702539-C9E3-4EFB-9DEF-445515F304D7}");
     }
