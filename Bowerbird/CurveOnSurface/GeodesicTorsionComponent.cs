@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Bowerbird
 {
-    private class GeodesicTorsionComponent : GH_Component
+    class GeodesicTorsionComponent : GH_Component
     {
         public GeodesicTorsionComponent() : base("BB Geodesic Torsion CurveOnSurface", "τg", "", "Bowerbird", "Curve on Surface")
         {
