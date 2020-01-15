@@ -57,7 +57,7 @@ namespace Bowerbird
             DA.SetData(3, normal);
         }
 
-        protected override Bitmap Icon => null;
+        protected override Bitmap Icon => Properties.Resources.icon_curve_on_surface_evaluate;
 
         public override GH_Exposure Exposure => GH_Exposure.secondary;
 

@@ -130,6 +130,30 @@
   <data name="icon_boolean" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_boolean.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icon_curve_on_surface_construct" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_curve_on_surface_construct.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_curve_on_surface_curvature" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_curve_on_surface_curvature.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_curve_on_surface_deconstruct" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_curve_on_surface_deconstruct.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_curve_on_surface_evaluate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_curve_on_surface_evaluate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_curve_on_surface_extrude" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_curve_on_surface_extrude.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_curve_on_surface_geodesic_curvature" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_curve_on_surface_geodesic_curvature.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_curve_on_surface_geodesic_torsion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_curve_on_surface_geodesic_torsion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_curve_on_surface_normal_curvature" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_curve_on_surface_normal_curvature.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icon_difference" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_difference.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

@@ -131,6 +131,86 @@ namespace Bowerbird.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_curve_on_surface_construct {
+            get {
+                object obj = ResourceManager.GetObject("icon_curve_on_surface_construct", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_curve_on_surface_curvature {
+            get {
+                object obj = ResourceManager.GetObject("icon_curve_on_surface_curvature", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_curve_on_surface_deconstruct {
+            get {
+                object obj = ResourceManager.GetObject("icon_curve_on_surface_deconstruct", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_curve_on_surface_evaluate {
+            get {
+                object obj = ResourceManager.GetObject("icon_curve_on_surface_evaluate", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_curve_on_surface_extrude {
+            get {
+                object obj = ResourceManager.GetObject("icon_curve_on_surface_extrude", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_curve_on_surface_geodesic_curvature {
+            get {
+                object obj = ResourceManager.GetObject("icon_curve_on_surface_geodesic_curvature", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_curve_on_surface_geodesic_torsion {
+            get {
+                object obj = ResourceManager.GetObject("icon_curve_on_surface_geodesic_torsion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_curve_on_surface_normal_curvature {
+            get {
+                object obj = ResourceManager.GetObject("icon_curve_on_surface_normal_curvature", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_difference {
             get {
                 object obj = ResourceManager.GetObject("icon_difference", resourceCulture);
