@@ -59,6 +59,15 @@ namespace Bowerbird
             }
         }
 
+        public static void SetMenuToggle(GH_DocumentObject obj, ToolStrip menu, string name, Func<bool> getValue, Action<bool> setValue)
+        {
+            GH_DocumentObject.Menu_AppendItem(menu, name, (s, e) => {
+                obj.RecordUndoEvent($"Change {name}");
+                setValue(!getValue());
+                obj.ExpireSolution(true);
+            }, true, getValue());
+        }
+
         public static int GetOrDefault(this GH_IReader reader, string key, int defaultValue = default)
         {
             int value = defaultValue;
@@ -66,6 +75,11 @@ namespace Bowerbird
             reader.TryGetInt32(key, ref value);
 
             return value;
+        }
+
+        public static void Set(this GH_IWriter writer, string key, bool value)
+        {
+            writer.SetBoolean(key, value);
         }
 
         public static void Set<T>(this GH_IWriter writer, string key, T value) where T : Enum
@@ -81,6 +95,16 @@ namespace Bowerbird
                 return defaultValue;
             
             return (T)Enum.ToObject(typeof(T), value);
+        }
+
+        public static bool GetOrDefault(this GH_IReader reader, string key, bool defaultValue = default)
+        {
+            var value = default(bool);
+
+            if (!reader.TryGetBoolean(key, ref value))
+                return defaultValue;
+
+            return value;
         }
     }
 }

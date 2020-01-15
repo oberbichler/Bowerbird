@@ -35,19 +35,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Eto, Version=2.5.0.0, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
-      <HintPath>..\packages\RhinoCommon.6.11.18348.17061\lib\net45\Eto.dll</HintPath>
+      <HintPath>..\packages\RhinoCommon.6.18.19266.14201\lib\net45\Eto.dll</HintPath>
     </Reference>
-    <Reference Include="GH_IO, Version=6.11.18348.17060, Culture=neutral, PublicKeyToken=6a29997d2e6b4f97, processorArchitecture=MSIL">
-      <HintPath>..\packages\Grasshopper.6.11.18348.17061\lib\net45\GH_IO.dll</HintPath>
+    <Reference Include="GH_IO, Version=6.18.19266.14200, Culture=neutral, PublicKeyToken=6a29997d2e6b4f97, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grasshopper.6.18.19266.14201\lib\net45\GH_IO.dll</HintPath>
     </Reference>
-    <Reference Include="Grasshopper, Version=6.11.18348.17060, Culture=neutral, PublicKeyToken=dda4f5ec2cd80803, processorArchitecture=MSIL">
-      <HintPath>..\packages\Grasshopper.6.11.18348.17061\lib\net45\Grasshopper.dll</HintPath>
+    <Reference Include="Grasshopper, Version=6.18.19266.14200, Culture=neutral, PublicKeyToken=dda4f5ec2cd80803, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grasshopper.6.18.19266.14201\lib\net45\Grasshopper.dll</HintPath>
     </Reference>
-    <Reference Include="Rhino.UI, Version=6.11.18348.17060, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
-      <HintPath>..\packages\RhinoCommon.6.11.18348.17061\lib\net45\Rhino.UI.dll</HintPath>
+    <Reference Include="Rhino.UI, Version=6.18.19266.14200, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
+      <HintPath>..\packages\RhinoCommon.6.18.19266.14201\lib\net45\Rhino.UI.dll</HintPath>
     </Reference>
-    <Reference Include="RhinoCommon, Version=6.11.18348.17060, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
-      <HintPath>..\packages\RhinoCommon.6.11.18348.17061\lib\net45\RhinoCommon.dll</HintPath>
+    <Reference Include="RhinoCommon, Version=6.18.19266.14200, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
+      <HintPath>..\packages\RhinoCommon.6.18.19266.14201\lib\net45\RhinoCommon.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -60,6 +60,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BBPolyline.cs" />
+    <Compile Include="CurveOnSurface\DeconstructCurveOnSurfaceComponent.cs" />
+    <Compile Include="CurveOnSurface\GeodesicCurvatureComponent.cs" />
+    <Compile Include="CurveOnSurface\NormalCurvatureComponent.cs" />
+    <Compile Include="CurveOnSurface\GeodesicTorsionComponent.cs" />
+    <Compile Include="CurveOnSurface\ExtrudeComponent.cs" />
+    <Compile Include="CurveOnSurface\CurveOnSurface.cs" />
+    <Compile Include="CurveOnSurface\CurvatureComponent.cs" />
+    <Compile Include="CurveOnSurface\EvaluateComponent.cs" />
+    <Compile Include="CurveOnSurface\ConstructCurveOnSurfaceComponent.cs" />
     <Compile Include="NormalCurvaturePath.cs" />
     <Compile Include="Components\BBNormalCurvaturePathComponent.cs" />
     <Compile Include="GeodesicTorsionPath.cs" />
@@ -85,6 +94,7 @@
     <Compile Include="Crafting\Waffle.cs" />
     <Compile Include="Curvature\SurfaceCurvature.cs" />
     <Compile Include="Info.cs" />
+    <Compile Include="Parameters\CurveOnSurfaceParameter.cs" />
     <Compile Include="Parameters\PathParameter.cs" />
     <Compile Include="Path.cs" />
     <Compile Include="Pathfinder.cs" />
@@ -97,6 +107,7 @@
     <Compile Include="Text\Font.cs" />
     <Compile Include="Text\Letter.cs" />
     <Compile Include="Text\Typewriter.cs" />
+    <Compile Include="Types\GH_CurveOnSurface.cs" />
     <Compile Include="Types\GH_Path.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="UtilGh.cs" />
@@ -105,11 +116,21 @@
   <ItemGroup>
     <Content Include="Resources\bowerbird_bold.xml" />
     <Content Include="Resources\bowerbird_regular.xml" />
+    <None Include="packages.config" />
     <None Include="Resources\icon_asymptotic_path.png" />
     <Content Include="Resources\icon_boolean.png" />
+    <None Include="Resources\icon_curve_on_surface_construct.png" />
+    <None Include="Resources\icon_curve_on_surface_deconstruct.png" />
+    <None Include="Resources\icon_curve_on_surface_extrude.png" />
+    <None Include="Resources\icon_curve_on_surface_geodesic_torsion.png" />
+    <None Include="Resources\icon_curve_on_surface_normal_curvature.png" />
+    <None Include="Resources\icon_curve_on_surface_curvature.png" />
+    <None Include="Resources\icon_curve_on_surface_geodesic_curvature.png" />
+    <None Include="Resources\icon_curve_on_surface_evaluate.png" />
     <Content Include="Resources\icon_difference.png" />
     <Content Include="Resources\icon_intersection.png" />
     <Content Include="Resources\icon_layer.png" />
+    <None Include="Resources\icon_normalize.png" />
     <Content Include="Resources\icon_offset.png" />
     <None Include="Resources\icon_pathfinder.png" />
     <None Include="Resources\icon_principal_path.png" />
@@ -127,9 +148,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -152,13 +170,13 @@ Erase "$(TargetPath)"</PostBuildEvent>
     </StartArguments>
     <StartAction>Program</StartAction>
   </PropertyGroup>
-  <Import Project="..\packages\RhinoCommon.6.11.18348.17061\build\net45\RhinoCommon.targets" Condition="Exists('..\packages\RhinoCommon.6.11.18348.17061\build\net45\RhinoCommon.targets')" />
+  <Import Project="..\packages\RhinoCommon.6.18.19266.14201\build\net45\RhinoCommon.targets" Condition="Exists('..\packages\RhinoCommon.6.18.19266.14201\build\net45\RhinoCommon.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>Dieses Projekt verweist auf mindestens ein NuGet-Paket, das auf diesem Computer fehlt. Verwenden Sie die Wiederherstellung von NuGet-Paketen, um die fehlenden Dateien herunterzuladen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=322105". Die fehlende Datei ist "{0}".</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\RhinoCommon.6.11.18348.17061\build\net45\RhinoCommon.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\RhinoCommon.6.11.18348.17061\build\net45\RhinoCommon.targets'))" />
-    <Error Condition="!Exists('..\packages\Grasshopper.6.11.18348.17061\build\net45\Grasshopper.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Grasshopper.6.11.18348.17061\build\net45\Grasshopper.targets'))" />
+    <Error Condition="!Exists('..\packages\RhinoCommon.6.18.19266.14201\build\net45\RhinoCommon.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\RhinoCommon.6.18.19266.14201\build\net45\RhinoCommon.targets'))" />
+    <Error Condition="!Exists('..\packages\Grasshopper.6.18.19266.14201\build\net45\Grasshopper.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Grasshopper.6.18.19266.14201\build\net45\Grasshopper.targets'))" />
   </Target>
-  <Import Project="..\packages\Grasshopper.6.11.18348.17061\build\net45\Grasshopper.targets" Condition="Exists('..\packages\Grasshopper.6.11.18348.17061\build\net45\Grasshopper.targets')" />
+  <Import Project="..\packages\Grasshopper.6.18.19266.14201\build\net45\Grasshopper.targets" Condition="Exists('..\packages\Grasshopper.6.18.19266.14201\build\net45\Grasshopper.targets')" />
 </Project>
