@@ -26,6 +26,7 @@ namespace Bowerbird
         {
             pManager.AddSurfaceParameter("Surface", "S", "", GH_ParamAccess.item);
             pManager.AddCurveParameter("Curve", "C", "", GH_ParamAccess.item);
+            pManager.AddCurveParameter("Approximation", "A", "", GH_ParamAccess.item);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)
@@ -47,6 +48,7 @@ namespace Bowerbird
 
             DA.SetData(0, surface);
             DA.SetData(1, curve);
+            DA.SetData(2, curveOnSurface.ToCurve(DocumentTolerance()));
         }
 
         protected override Bitmap Icon => Properties.Resources.icon_curve_on_surface_deconstruct;
