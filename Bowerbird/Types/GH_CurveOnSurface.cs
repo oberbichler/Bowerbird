@@ -61,14 +61,6 @@ namespace Bowerbird.Types
 
         public override bool CastTo<Q>(ref Q target)
         {
-            if (typeof(Q) == typeof(GH_Curve))
-            {
-                var curve = m_value.ToCurve(RhinoDoc.ActiveDoc.ModelAbsoluteTolerance);
-                var obj = (object)new GH_Curve(curve);
-                target = (Q)obj;
-                return true;
-            }
-
             if (typeof(Q).IsAssignableFrom(m_value.GetType()))
             {
                 var obj = (object)m_value;

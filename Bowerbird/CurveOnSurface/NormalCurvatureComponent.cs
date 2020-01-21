@@ -12,7 +12,7 @@ namespace Bowerbird
 {
     public class NormalCurvatureComponent : GH_Component
     {
-        public NormalCurvatureComponent() : base("BB Normal Curvature CurveOnSurface", "κn", "", "Bowerbird", "Curve on Surface")
+        public NormalCurvatureComponent() : base("BB Normal Curvature CurveOnSurface", "κn", "Beta! Interface might change!", "Bowerbird", "Curve on Surface")
         {
         }
 
@@ -55,7 +55,7 @@ namespace Bowerbird
             DA.SetData(2, circle);
         }
 
-        protected override Bitmap Icon => null;
+        protected override Bitmap Icon => Properties.Resources.icon_curve_on_surface_normal_curvature;
 
         public override GH_Exposure Exposure => GH_Exposure.secondary;
 

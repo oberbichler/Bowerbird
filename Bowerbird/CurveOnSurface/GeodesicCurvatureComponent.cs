@@ -12,7 +12,7 @@ namespace Bowerbird
 {
     public class GeodesicCurvatureComponent : GH_Component
     {
-        public GeodesicCurvatureComponent() : base("BB Geodesic Curvature CurveOnSurface", "κg", "", "Bowerbird", "Curve on Surface")
+        public GeodesicCurvatureComponent() : base("BB Geodesic Curvature CurveOnSurface", "κg", "Beta! Interface might change!", "Bowerbird", "Curve on Surface")
         {
         }
 

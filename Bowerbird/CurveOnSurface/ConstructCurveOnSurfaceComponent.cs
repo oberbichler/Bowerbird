@@ -1,4 +1,4 @@
-﻿using Bowerbird.Parameters;
+using Bowerbird.Parameters;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 using System;
@@ -13,7 +13,7 @@ namespace Bowerbird
 {
     public class ConstructCurveOnSurfaceComponent : GH_Component
     {
-        public ConstructCurveOnSurfaceComponent() : base("BB Construct CurveOnSurface", "BBCrvOnSrf", "", "Bowerbird", "Curve on Surface")
+        public ConstructCurveOnSurfaceComponent() : base("BB Construct CurveOnSurface", "BBCrvOnSrf", "Beta! Interface might change!", "Bowerbird", "Curve on Surface")
         {
         }
 
@@ -26,7 +26,7 @@ namespace Bowerbird
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddParameter(new CurveOnSurfaceParameter(), "Curve on Surface", "C", "", GH_ParamAccess.item);
-            pManager.AddCurveParameter("Curve", "C", "", GH_ParamAccess.item);
+            pManager.AddCurveParameter("Approximation", "A", "", GH_ParamAccess.item);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)

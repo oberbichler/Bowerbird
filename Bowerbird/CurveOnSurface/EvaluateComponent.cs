@@ -12,7 +12,7 @@ namespace Bowerbird
 {
     public class EvaluateComponent : GH_Component
     {
-        public EvaluateComponent() : base("BB Evaluate CurveOnSurface", "BBEval", "", "Bowerbird", "Curve on Surface")
+        public EvaluateComponent() : base("BB Evaluate CurveOnSurface", "BBEval", "Beta! Interface might change!", "Bowerbird", "Curve on Surface")
         {
         }
 
