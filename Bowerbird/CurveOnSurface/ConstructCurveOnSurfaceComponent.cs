@@ -1,4 +1,4 @@
-﻿using Bowerbird.Parameters;
+using Bowerbird.Parameters;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 using System;
@@ -26,6 +26,7 @@ namespace Bowerbird
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddParameter(new CurveOnSurfaceParameter(), "Curve on Surface", "C", "", GH_ParamAccess.item);
+            pManager.AddCurveParameter("Approximation", "A", "", GH_ParamAccess.item);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)
@@ -49,6 +50,7 @@ namespace Bowerbird
             // --- Output
 
             DA.SetData(0, curveOnSurface);
+            DA.SetData(1, curveOnSurface.ToCurve(DocumentTolerance()));
         }
 
         protected override Bitmap Icon => Properties.Resources.icon_curve_on_surface_construct;
