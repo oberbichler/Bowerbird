@@ -129,6 +129,15 @@ namespace Bowerbird.Curvature
             return true;
         }
 
+        public void ComputeDirections(double angle1, double angle2, out Vector3d direction1, out Vector3d direction2)
+        {
+            direction1 = K1Direction;
+            direction2 = K1Direction;
+
+            direction1.Rotate(angle1, N);
+            direction2.Rotate(angle2, N);
+        }
+
         public bool FindGeodesicTorsion(double k, out double angle1, out double angle2)
         {
             var d = 2 * k / (K2 - K1);
