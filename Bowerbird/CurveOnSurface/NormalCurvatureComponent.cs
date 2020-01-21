@@ -12,7 +12,7 @@ namespace Bowerbird
 {
     public class NormalCurvatureComponent : GH_Component
     {
-        public NormalCurvatureComponent() : base("BB Normal Curvature CurveOnSurface", "κn", "", "Bowerbird", "Curve on Surface")
+        public NormalCurvatureComponent() : base("BB Normal Curvature CurveOnSurface", "κn", "Beta! Interface might change!", "Bowerbird", "Curve on Surface")
         {
         }
 

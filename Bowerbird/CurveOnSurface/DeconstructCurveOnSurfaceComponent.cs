@@ -13,7 +13,7 @@ namespace Bowerbird
 {
     public class DeconstructCurveOnSurfaceComponent : GH_Component
     {
-        public DeconstructCurveOnSurfaceComponent() : base("BB Deconstruct CurveOnSurface", "Deconstruct", "", "Bowerbird", "Curve on Surface")
+        public DeconstructCurveOnSurfaceComponent() : base("BB Deconstruct CurveOnSurface", "Deconstruct", "Beta! Interface might change!", "Bowerbird", "Curve on Surface")
         {
         }
 

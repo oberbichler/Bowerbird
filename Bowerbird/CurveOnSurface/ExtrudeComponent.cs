@@ -14,7 +14,7 @@ namespace Bowerbird
 {
     public class ExtrudeComponent : GH_Component
     {
-        public ExtrudeComponent() : base("BB Extrude CurveOnSurface", "Extrude", "", "Bowerbird", "Curve on Surface")
+        public ExtrudeComponent() : base("BB Extrude CurveOnSurface", "Extrude", "Beta! Interface might change!", "Bowerbird", "Curve on Surface")
         {
         }
 
