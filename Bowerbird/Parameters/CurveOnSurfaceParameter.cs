@@ -1,4 +1,5 @@
 ﻿using Bowerbird.Types;
+using GH_IO.Serialization;
 using Grasshopper.Kernel;
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
@@ -132,5 +133,24 @@ namespace Bowerbird.Parameters
         public void DrawViewportMeshes(IGH_PreviewArgs args) => Preview_DrawMeshes(args);
 
         public void DrawViewportWires(IGH_PreviewArgs args) => Preview_DrawWires(args);
+
+        public override bool Read(GH_IReader reader)
+        {
+            var success = base.Read(reader);
+
+            reader.TryGetBoolean("Reparameterize", ref m_reparameterize);
+
+            return success;
+        }
+
+        public override bool Write(GH_IWriter writer)
+        {
+            var success = base.Write(writer);
+
+            if (m_reparameterize)            
+                writer.SetBoolean("Reparameterize", m_reparameterize);
+            
+            return success;
+        }
     }
 }
