@@ -1,4 +1,5 @@
-﻿using Rhino.Geometry;
+﻿using Grasshopper.Kernel.Types;
+using Rhino.Geometry;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bowerbird
 {
-    public class CurveOnSurface
+    public class CurveOnSurface : IOrientableCurve
     {
         private CurveOnSurface(Surface surface, Curve curve)
         {
@@ -208,6 +209,40 @@ namespace Bowerbird
         public Curve ToCurve(double tolerance)
         {
             return Surface.Pushup(Curve, tolerance);
+        }
+
+        public IOrientableCurve Reparameterized()
+        {
+            if (Domain.T0 == 0.0 && Domain.T1 == 1.0)
+                return this;
+
+            var curve = (Curve)Curve.Duplicate();
+
+            curve.Domain = new Interval(0.0, 1.0);
+
+            var domain = curve.Domain;
+
+            if (domain.T0 != 0.0 || domain.T1 != 1.0)
+            {
+                curve = curve.ToNurbsCurve();
+                curve.Domain = new Interval(0.0, 1.0);
+            }
+
+            return Create(Surface, curve);
+        }
+
+        public IOrientableCurve Transform(Transform xform)
+        {
+            var surface = (Surface)Surface.Duplicate();
+            surface.Transform(xform);
+            return Create(surface, Curve);
+        }
+
+        public IOrientableCurve Morph(SpaceMorph xmorph)
+        {
+            var surface = (Surface)Surface.Duplicate();
+            xmorph.Morph(surface);
+            return Create(surface, Curve);
         }
     }
 }

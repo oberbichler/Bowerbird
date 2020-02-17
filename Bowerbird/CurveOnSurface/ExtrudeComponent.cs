@@ -34,7 +34,7 @@ namespace Bowerbird
         {
             // --- Input
 
-            var curveOnSurface = default(CurveOnSurface);
+            var curveOnSurface = default(IOrientableCurve);
             var thickness = default(double);
             var offset = default(double);
 
@@ -47,10 +47,12 @@ namespace Bowerbird
 
             var polyline = default(PolylineCurve);
 
-            if (curveOnSurface.Curve.TryGetPolyline(out var points))
+            var curve = curveOnSurface.ToCurve(DocumentTolerance());
+
+            if (curve.TryGetPolyline(out var points))
                 polyline = new PolylineCurve(points);
             else
-                polyline = curveOnSurface.Curve.ToPolyline(DocumentTolerance(), DocumentAngleTolerance(), 0, 0);
+                polyline = curve.ToPolyline(DocumentTolerance(), DocumentAngleTolerance(), 0, 0);
             
             var points3d = new List<Point3d>(polyline.PointCount);
 
@@ -59,7 +61,7 @@ namespace Bowerbird
             for (int i = 0; i < polyline.PointCount; i++)
             {
                 var point2d = polyline.Point(i);
-                curveOnSurface.Curve.ClosestPoint(point2d, out var t);
+                curve.ClosestPoint(point2d, out var t);
                 var point = curveOnSurface.PointAt(t);
                 points3d.Add(point);
                 var normal = curveOnSurface.NormalAt(t);

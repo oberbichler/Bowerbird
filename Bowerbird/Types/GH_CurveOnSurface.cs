@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace Bowerbird.Types
 {
-    public class GH_CurveOnSurface : GH_GeometricGoo<CurveOnSurface>, IGH_PreviewData, IGH_BakeAwareData
+    public class GH_CurveOnSurface : GH_GeometricGoo<IOrientableCurve>, IGH_PreviewData, IGH_BakeAwareData
     {
         public GH_CurveOnSurface() : base()
         {
         }
 
-        public GH_CurveOnSurface(CurveOnSurface value) : base(value)
+        public GH_CurveOnSurface(IOrientableCurve value) : base(value)
         {
         }
 
@@ -48,7 +48,7 @@ namespace Bowerbird.Types
         {
             switch (source)
             {
-                case CurveOnSurface curveOnSurface:
+                case IOrientableCurve curveOnSurface:
                     Value = curveOnSurface;
                     return true;
                 case GH_CurveOnSurface ghCurveOnSurface:
@@ -103,18 +103,12 @@ namespace Bowerbird.Types
 
         public override IGH_GeometricGoo Transform(Transform xform)
         {
-            var surface = (Surface)Value.Surface.Duplicate();
-            var curve = Value.Curve;
-            surface.Transform(xform);
-            return new GH_CurveOnSurface(CurveOnSurface.Create(surface, curve));
+            return new GH_CurveOnSurface(Value.Transform(xform));
         }
 
         public override IGH_GeometricGoo Morph(SpaceMorph xmorph)
         {
-            var surface = (Surface)Value.Surface.Duplicate();
-            var curve = Value.Curve;
-            xmorph.Morph(surface);
-            return new GH_CurveOnSurface(CurveOnSurface.Create(surface, curve));
+            return new GH_CurveOnSurface(Value.Morph(xmorph));
         }
     }
 }

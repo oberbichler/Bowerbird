@@ -69,24 +69,7 @@ namespace Bowerbird.Parameters
                     if (ghCurveOnSurface?.Value == null)
                         continue;
 
-                    var domain = ghCurveOnSurface.Value.Domain;
-
-                    if (domain.T0 == 0.0 && domain.T1 == 1.0)
-                        continue;
-
-                    var curve = (Curve)ghCurveOnSurface.Value.Curve.Duplicate();
-
-                    curve.Domain = new Interval(0.0, 1.0);
-
-                    domain = curve.Domain;
-
-                    if (domain.T0 != 0.0 || domain.T1 != 1.0)
-                    {
-                        curve = curve.ToNurbsCurve();
-                        curve.Domain = new Interval(0.0, 1.0);
-                    }
-
-                    var reparameterized = CurveOnSurface.Create(ghCurveOnSurface.Value.Surface, curve);
+                    var reparameterized = ghCurveOnSurface.Value.Reparameterized();
 
                     branch[i] = new GH_CurveOnSurface(reparameterized);
                 }
