@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BBPolyline.cs" />
+    <Compile Include="CurveOnSurface\ProjectCurveOnSurfaceComponent.cs" />
     <Compile Include="CurveOnSurface\ConstructZeroTwistingCurveComponent.cs" />
     <Compile Include="CurveOnSurface\ZeroTwistingCurve.cs" />
     <Compile Include="CurveOnSurface\CurvatureFieldComponent.cs" />
