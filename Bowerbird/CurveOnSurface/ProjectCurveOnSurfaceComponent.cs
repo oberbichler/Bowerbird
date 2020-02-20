@@ -6,9 +6,9 @@ using System.Drawing;
 
 namespace Bowerbird
 {
-    public class ConstructCurveOnSurfaceComponent : GH_Component
+    public class ProjectCurveOnSurfaceComponent : GH_Component
     {
-        public ConstructCurveOnSurfaceComponent() : base("BB Construct CurveOnSurface", "BBCrvOnSrf", "Beta! Interface might change!", "Bowerbird", "Curve on Surface")
+        public ProjectCurveOnSurfaceComponent() : base("BB Project CurveOnSurface", "ProjCrvOnSrf", "Beta! Interface might change!", "Bowerbird", "Curve on Surface")
         {
         }
 
@@ -21,7 +21,6 @@ namespace Bowerbird
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
             pManager.AddParameter(new CurveOnSurfaceParameter(), "Curve on Surface", "C", "", GH_ParamAccess.item);
-            pManager.AddCurveParameter("Approximation", "A", "", GH_ParamAccess.item);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)
@@ -38,6 +37,7 @@ namespace Bowerbird
             // --- Execute
 
             surface = (Surface)surface.Duplicate();
+            curve = surface.Pullback(curve, DocumentTolerance());
 
             var curveOnSurface = CurveOnSurface.Create(surface, curve);
 
@@ -45,13 +45,12 @@ namespace Bowerbird
             // --- Output
 
             DA.SetData(0, curveOnSurface);
-            DA.SetData(1, curveOnSurface.ToCurve(DocumentTolerance()));
         }
 
-        protected override Bitmap Icon => Properties.Resources.icon_curve_on_surface_construct;
+        protected override Bitmap Icon => null;
 
         public override GH_Exposure Exposure => GH_Exposure.primary;
 
-        public override Guid ComponentGuid => new Guid("{DE62F1CD-5E5C-4372-B1BB-2494ED62D349}");
+        public override Guid ComponentGuid => new Guid("{DD3B810B-4292-45C0-B35C-C8252E7552FD}");
     }
 }

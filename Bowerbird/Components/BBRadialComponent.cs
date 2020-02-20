@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Security;
-using System.Text;
-using System.Threading;
 using Bowerbird.Crafting;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
