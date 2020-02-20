@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BBPolyline.cs" />
+    <Compile Include="CurveOnSurface\IntegrateComponent.cs" />
     <Compile Include="CurveOnSurface\ProjectCurveOnSurfaceComponent.cs" />
     <Compile Include="CurveOnSurface\ConstructZeroTwistingCurveComponent.cs" />
     <Compile Include="CurveOnSurface\ZeroTwistingCurve.cs" />
@@ -133,6 +134,7 @@
     <None Include="Resources\icon_curve_on_surface_curvature.png" />
     <None Include="Resources\icon_curve_on_surface_geodesic_curvature.png" />
     <None Include="Resources\icon_curve_on_surface_evaluate.png" />
+    <None Include="Resources\icon_curve_on_surface_integrate.png" />
     <Content Include="Resources\icon_difference.png" />
     <Content Include="Resources\icon_intersection.png" />
     <Content Include="Resources\icon_layer.png" />
