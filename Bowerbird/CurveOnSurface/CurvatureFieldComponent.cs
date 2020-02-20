@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Bowerbird
 {
-    public class CurvatureFieldComponent : GH_Component
+    class CurvatureFieldComponent : GH_Component
     {
         public CurvatureFieldComponent() : base("BB Curvature Field", "Field", "Beta! Interface might change!", "Bowerbird", "Curvature")
         {
