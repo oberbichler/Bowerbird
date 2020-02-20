@@ -6,7 +6,7 @@ using System.Drawing;
 
 namespace Bowerbird.Components
 {
-    public class ConstructZeroTwistingCurveComponent : GH_Component
+    class ConstructZeroTwistingCurveComponent : GH_Component
     {
         public ConstructZeroTwistingCurveComponent() : base("BB Construct Zero-Twisting Curve", "Zero-Twist", "Beta! Interface might change!", "Bowerbird", "Curve on Surface")
         {
