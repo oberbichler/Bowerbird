@@ -1,4 +1,4 @@
-﻿using Rhino.Geometry;
+using Rhino.Geometry;
 using Rhino.Geometry.Collections;
 using System;
 using System.Collections.Generic;
@@ -135,7 +135,7 @@ namespace Bowerbird
             return !type ? dir1 : dir2;
         }
 
-        public override Vector2d Direction(Surface surface, Vector2d uv, Vector3d lastDirection, double stepSize, List<Point3d> points)
+        public override Vector2d Direction(Surface surface, Vector2d uv, Vector3d lastDirection, double stepSize)
         {
             var u = uv.X;
             var v = uv.Y;
