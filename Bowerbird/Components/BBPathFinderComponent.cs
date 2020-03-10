@@ -65,7 +65,7 @@ namespace Bowerbird.Components
 
             var paths = new List<Polyline>();
             
-            var type = (path as NormalCurvaturePath)?.Type ?? (path as GeodesicTorsionPath).Type;
+            var type = (path as NormalCurvaturePath)?.Type ?? (path as GeodesicTorsionPath)?.Type ?? (path as DGridPath).Type;
 
             if (type.HasFlag(Path.Types.First))
             {

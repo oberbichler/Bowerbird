@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BBPolyline.cs" />
+    <Compile Include="Components\BBDGridPathComponent.cs" />
     <Compile Include="CurveOnSurface\IntegrateComponent.cs" />
     <Compile Include="CurveOnSurface\ProjectCurveOnSurfaceComponent.cs" />
     <Compile Include="CurveOnSurface\ConstructZeroTwistingCurveComponent.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="CurveOnSurface\EvaluateComponent.cs" />
     <Compile Include="CurveOnSurface\ConstructCurveOnSurfaceComponent.cs" />
     <Compile Include="Integrate.cs" />
+    <Compile Include="DGridPath.cs" />
     <Compile Include="NormalCurvaturePath.cs" />
     <Compile Include="Components\BBNormalCurvaturePathComponent.cs" />
     <Compile Include="GeodesicTorsionPath.cs" />
