@@ -239,5 +239,22 @@ namespace Bowerbird
             xmorph.Morph(surface);
             return Create(surface, Curve);
         }
+
+        public double Ds(double t)
+        {
+            var uv = Curve.DerivativeAt(t, 2);
+            var u = uv[0].X;
+            var v = uv[0].Y;
+            var u1 = uv[1].X;
+            var v1 = uv[1].Y;
+
+            Surface.Evaluate(u, v, 1, out var _, out var xyz);
+            var s10 = xyz[0];
+            var s01 = xyz[1];
+
+            var x1 = u1 * s10 + v1 * s01;
+
+            return x1.Length;
+        }
     }
 }

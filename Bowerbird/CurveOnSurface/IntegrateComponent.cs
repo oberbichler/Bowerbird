@@ -39,11 +39,11 @@ namespace Bowerbird
                 switch (ValueType)
                 {
                     case ValueTypes.NormalCurvature:
-                        return o => curve.NormalCurvatureAt(o).Length;
+                        return o => curve.NormalCurvatureAt(o).Length * curve.Ds(o);
                     case ValueTypes.GeodesicCurvature:
-                        return o => curve.GeodesicCurvatureAt(o).Length;
+                        return o => curve.GeodesicCurvatureAt(o).Length * curve.Ds(o);
                     case ValueTypes.GeodesicTorsion:
-                        return o => curve.GeodesicTorsionAt(o).Length;
+                        return o => curve.GeodesicTorsionAt(o).Length * curve.Ds(o);
                     default:
                         throw new Exception();
                 }
@@ -53,11 +53,11 @@ namespace Bowerbird
                 switch (ValueType)
                 {
                     case ValueTypes.NormalCurvature:
-                        return o => curve.NormalCurvatureAt(o).SquareLength;
+                        return o => curve.NormalCurvatureAt(o).SquareLength * curve.Ds(o);
                     case ValueTypes.GeodesicCurvature:
-                        return o => curve.GeodesicCurvatureAt(o).SquareLength;
+                        return o => curve.GeodesicCurvatureAt(o).SquareLength * curve.Ds(o);
                     case ValueTypes.GeodesicTorsion:
-                        return o => curve.GeodesicTorsionAt(o).SquareLength;
+                        return o => curve.GeodesicTorsionAt(o).SquareLength * curve.Ds(o);
                     default:
                         throw new Exception();
                 }

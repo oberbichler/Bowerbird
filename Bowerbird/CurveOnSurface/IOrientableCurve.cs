@@ -10,6 +10,8 @@ namespace Bowerbird
 
         Vector3d TangentAt(double t);
 
+        double Ds(double t);
+
         Vector3d NormalAt(double t);
 
         Vector3d BinormalAt(double t);
