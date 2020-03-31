@@ -190,5 +190,10 @@ namespace Bowerbird
             xmorph.Morph(curve);
             return Create(curve);
         }
+
+        public double Ds(double t)
+        {
+            return Curve.DerivativeAt(t, 1)[1].Length;
+        }
     }
 }
