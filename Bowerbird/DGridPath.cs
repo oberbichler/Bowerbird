@@ -1,4 +1,4 @@
-using Rhino.Geometry;
+﻿using Rhino.Geometry;
 using Rhino.Geometry.Collections;
 using System;
 using System.Collections.Generic;
@@ -110,9 +110,18 @@ namespace Bowerbird
                 return false;
             }
 
-            var d1 = (e[0] - e[1] + tmp) / (2 * e[2]) * refA1 + refA2;
+            if (Math.Abs(e[2]) < 1e-8)
+            {
+                dir1 = refA1 / refA1.Length;
+            }
+            else
+            {
+                var d1 = (e[0] - e[1] + tmp) / (2 * e[2]) * refA1 + refA2;
 
-            dir1 = dir2 = d1 / d1.Length;
+                dir1 = d1 / d1.Length;
+            }
+
+            dir2 = dir1;
 
             var normal = Vector3d.CrossProduct(refA1, refA2);
 
