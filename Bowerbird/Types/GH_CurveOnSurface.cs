@@ -20,7 +20,7 @@ namespace Bowerbird.Types
         public void UpdateGeometry()
         {
             Geometry = Value.ToCurve(RhinoDoc.ActiveDoc.ModelAbsoluteTolerance);
-            ClippingBox = Geometry.GetBoundingBox(false);
+            ClippingBox = Geometry?.GetBoundingBox(false) ?? BoundingBox.Empty;
         }
 
         public Curve Geometry { get; private set; }
@@ -74,7 +74,8 @@ namespace Bowerbird.Types
             if (Geometry == null)
                 UpdateGeometry();
 
-            args.Pipeline.DrawCurve(Geometry, args.Color, args.Thickness);
+            if (Geometry != null)
+                args.Pipeline.DrawCurve(Geometry, args.Color, args.Thickness);
         }
 
         public void DrawViewportMeshes(GH_PreviewMeshArgs args)

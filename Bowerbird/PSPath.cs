@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Bowerbird
 {
-    public class DGridPath : Path
+    public class PSPath : Path
     {
         public NurbsSurface RefSurface { get; private set; }
 
@@ -15,7 +15,7 @@ namespace Bowerbird
 
         public Types Type { get; private set; }
 
-        private DGridPath(NurbsSurface refSurface, NurbsSurface actSurface, Transform material, Types type)
+        private PSPath(NurbsSurface refSurface, NurbsSurface actSurface, Transform material, Types type)
         {
             RefSurface = refSurface;
             ActSurface = actSurface;
@@ -23,10 +23,10 @@ namespace Bowerbird
             Type = type;
         }
 
-        public static DGridPath Create(NurbsSurface refSurface, NurbsSurface actSurface, double youngsModulus, double poissonsRatio, double thickness, Types type)
+        public static PSPath Create(NurbsSurface refSurface, NurbsSurface actSurface, double youngsModulus, double poissonsRatio, double thickness, Types type)
         {
             var material = MaterialMatrix(youngsModulus, poissonsRatio, thickness);
-            return new DGridPath(refSurface, actSurface, material, type);
+            return new PSPath(refSurface, actSurface, material, type);
         }
 
         static Transform TransformToLocalCartesian(Vector3d a1, Vector3d a2)
@@ -113,22 +113,16 @@ namespace Bowerbird
             if (Math.Abs(e[2]) < 1e-8)
             {
                 dir1 = refA1 / refA1.Length;
+                dir2 = refA2 / refA2.Length;
             }
             else
             {
                 var d1 = (e[0] - e[1] + tmp) / (2 * e[2]) * refA1 + refA2;
+                var d2 = (e[0] - e[1] - tmp) / (2 * e[2]) * refA1 + refA2;
 
                 dir1 = d1 / d1.Length;
+                dir2 = d2 / d2.Length;
             }
-
-            dir2 = dir1;
-
-            var normal = Vector3d.CrossProduct(refA1, refA2);
-
-            var angle = Math.Atan(Math.Sqrt(n2 / n1));
-            
-            dir1.Rotate(angle, normal);
-            dir2.Rotate(-angle, normal);
 
             return true;
         }
