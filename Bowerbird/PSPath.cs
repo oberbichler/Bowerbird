@@ -103,13 +103,6 @@ namespace Bowerbird
             var n1 = 0.5 * (e[0] + e[1] + tmp);
             var n2 = 0.5 * (e[0] + e[1] - tmp);
 
-            if (n1 * n2 < 0)
-            {
-                dir1 = Vector3d.Unset;
-                dir2 = Vector3d.Unset;
-                return false;
-            }
-
             if (Math.Abs(e[2]) < 1e-8)
             {
                 dir1 = refA1 / refA1.Length;
