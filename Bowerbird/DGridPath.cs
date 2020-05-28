@@ -110,20 +110,21 @@ namespace Bowerbird
                 return false;
             }
 
+            var normal = Vector3d.CrossProduct(refA1, refA2);
+
             if (Math.Abs(e[2]) < 1e-8)
             {
                 dir1 = refA1 / refA1.Length;
             }
             else
             {
-                var d1 = (e[0] - e[1] + tmp) / (2 * e[2]) * refA1 + refA2;
+                var alpha = Math.Atan2(2 * e[2], e[0] - e[1]) / 2;
 
-                dir1 = d1 / d1.Length;
+                dir1 = refA1 / refA1.Length;
+                dir1.Rotate(alpha, normal);
             }
 
             dir2 = dir1;
-
-            var normal = Vector3d.CrossProduct(refA1, refA2);
 
             var angle = Math.Atan(Math.Sqrt(n2 / n1));
             
