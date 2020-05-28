@@ -99,23 +99,22 @@ namespace Bowerbird
             e.Transform(TransformToLocalCartesian(refA1, refA2));
             e.Transform(Material);
 
-            var tmp = Math.Sqrt(Math.Pow(e[0] - e[1], 2) + 4 * Math.Pow(e[2], 2));
-            var n1 = 0.5 * (e[0] + e[1] + tmp);
-            var n2 = 0.5 * (e[0] + e[1] - tmp);
+            var normal = Vector3d.CrossProduct(refA1, refA2);
 
             if (Math.Abs(e[2]) < 1e-8)
             {
                 dir1 = refA1 / refA1.Length;
-                dir2 = refA2 / refA2.Length;
             }
             else
             {
-                var d1 = (e[0] - e[1] + tmp) / (2 * e[2]) * refA1 + refA2;
-                var d2 = (e[0] - e[1] - tmp) / (2 * e[2]) * refA1 + refA2;
+                var alpha = Math.Atan2(2 * e[2], e[0] - e[1]) / 2;
 
-                dir1 = d1 / d1.Length;
-                dir2 = d2 / d2.Length;
+                dir1 = refA1 / refA1.Length;
+                dir1.Rotate(alpha, normal);
             }
+
+            dir2 = dir1;
+            dir2.Rotate(Math.PI / 2, normal);
 
             return true;
         }
