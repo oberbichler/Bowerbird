@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BBPolyline.cs" />
+    <Compile Include="Components\BBEvalPathComponent.cs" />
     <Compile Include="Components\BBPSPathComponent.cs" />
     <Compile Include="Components\BBDGridPathComponent.cs" />
     <Compile Include="CurveOnSurface\IntegrateComponent.cs" />
