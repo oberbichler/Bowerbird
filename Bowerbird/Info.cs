@@ -17,5 +17,9 @@ namespace Bowerbird
         public override string AuthorName => "Thomas Oberbichler";
 
         public override string AuthorContact => "thomas.oberbichler@gmail.com";
+
+        public override string Version => "2.1.4";
+
+        public override string AssemblyVersion => this.Version;
     }
 }
