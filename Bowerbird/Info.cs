@@ -1,6 +1,7 @@
-﻿using System;
-using System.Drawing;
 using Grasshopper.Kernel;
+using System;
+using System.Drawing;
+using System.Reflection;
 
 namespace Bowerbird
 {
@@ -17,5 +18,9 @@ namespace Bowerbird
         public override string AuthorName => "Thomas Oberbichler";
 
         public override string AuthorContact => "thomas.oberbichler@gmail.com";
+
+        public override string Version => Assembly.GetAssembly(typeof(PluginInfo)).GetName().Version.ToString();
+
+        public override string AssemblyVersion => Version;
     }
 }
