@@ -19,7 +19,7 @@ namespace Bowerbird
 
         public override string AuthorContact => "thomas.oberbichler@gmail.com";
 
-        public override string Version => Assembly.GetAssembly(typeof(PluginInfo)).GetName().Version.ToString();
+        public override string Version => Assembly.GetAssembly(typeof(Info)).GetName().Version.ToString();
 
         public override string AssemblyVersion => Version;
     }
