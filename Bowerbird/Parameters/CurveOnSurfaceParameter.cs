@@ -128,9 +128,9 @@ namespace Bowerbird.Parameters
         {
             var success = base.Write(writer);
 
-            if (m_reparameterize)            
+            if (m_reparameterize)
                 writer.SetBoolean("Reparameterize", m_reparameterize);
-            
+
             return success;
         }
     }

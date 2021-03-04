@@ -25,7 +25,7 @@ namespace Bowerbird.Text
         {
             Letters = font.Letters.ToDictionary(o => o.Character);
         }
-        
+
         private Dictionary<char, Letter> Letters { get; set; }
 
         public IEnumerable<Curve> Write(string text, Point3d position, Vector3d unitX, Vector3d unitY, int hAlign, int vAlign)

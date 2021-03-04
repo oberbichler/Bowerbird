@@ -90,7 +90,7 @@ namespace Bowerbird.Crafting
             if (curve.IsClosed)
             {
                 var points = Rhino.Geometry.Intersect.Intersection.CurveCurve(line, curve, Unit, Unit);
-                
+
                 foreach (var item in points)
                 {
                     if (item.IsOverlap)
@@ -148,7 +148,7 @@ namespace Bowerbird.Crafting
         public List<Curve> GetResult()
         {
             var clipper = new Clipper();
-            
+
             clipper.AddPaths(Polygons, PolyType.ptSubject, true);
             clipper.AddPaths(Slits, PolyType.ptClip, true);
 

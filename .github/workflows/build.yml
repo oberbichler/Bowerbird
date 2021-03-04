@@ -6,19 +6,9 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Download vswhere
-      run: |
-        curl -L https://github.com/microsoft/vswhere/releases/download/2.7.1/vswhere.exe --output vswhere.exe
-    - name: Download nuget
-      run: |
-        curl -L https://dist.nuget.org/win-x86-commandline/latest/nuget.exe --output nuget.exe
-    - name: Restore packages
-      run: |
-        ./nuget restore .
-    - name: Build
-      run: |
-        $path = ./vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
-        if ($path) {
-          & $path $args
-        }
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Restore
+        run: dotnet restore
+      - name: Build
+        run: msbuild -t:Build -p:Configuration=Release

@@ -1,195 +1,54 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CCD51300-086E-4F5B-9179-3F63A8962CB8}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bowerbird</RootNamespace>
-    <AssemblyName>Bowerbird</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <TargetFramework>net45</TargetFramework>
+
+    <Version>0.0.0</Version>
+    <Authors>Thomas Oberbichler</Authors>
+    <Company />
+    <Copyright>Copyright © Thomas Oberbichler 2013-2021</Copyright>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>bin\build\</OutputPath>
+    <PublishDir>bin\publish\</PublishDir>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>bin\build\</OutputPath>
+    <PublishDir>bin\publish\</PublishDir>
   </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Eto, Version=2.5.0.0, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
-      <HintPath>..\packages\RhinoCommon.6.18.19266.14201\lib\net45\Eto.dll</HintPath>
-    </Reference>
-    <Reference Include="GH_IO, Version=6.18.19266.14200, Culture=neutral, PublicKeyToken=6a29997d2e6b4f97, processorArchitecture=MSIL">
-      <HintPath>..\packages\Grasshopper.6.18.19266.14201\lib\net45\GH_IO.dll</HintPath>
-    </Reference>
-    <Reference Include="Grasshopper, Version=6.18.19266.14200, Culture=neutral, PublicKeyToken=dda4f5ec2cd80803, processorArchitecture=MSIL">
-      <HintPath>..\packages\Grasshopper.6.18.19266.14201\lib\net45\Grasshopper.dll</HintPath>
-    </Reference>
-    <Reference Include="Rhino.UI, Version=6.18.19266.14200, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
-      <HintPath>..\packages\RhinoCommon.6.18.19266.14201\lib\net45\Rhino.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="RhinoCommon, Version=6.18.19266.14200, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
-      <HintPath>..\packages\RhinoCommon.6.18.19266.14201\lib\net45\RhinoCommon.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Drawing" />
+    <PackageReference Include="Grasshopper" Version="6.29.20238.11501" ExcludeAssets="runtime" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="BBPolyline.cs" />
-    <Compile Include="Components\BBEvalPathComponent.cs" />
-    <Compile Include="Components\BBPSPathComponent.cs" />
-    <Compile Include="Components\BBDGridPathComponent.cs" />
-    <Compile Include="CurveOnSurface\IntegrateComponent.cs" />
-    <Compile Include="CurveOnSurface\ProjectCurveOnSurfaceComponent.cs" />
-    <Compile Include="CurveOnSurface\ConstructZeroTwistingCurveComponent.cs" />
-    <Compile Include="CurveOnSurface\ZeroTwistingCurve.cs" />
-    <Compile Include="CurveOnSurface\CurvatureFieldComponent.cs" />
-    <Compile Include="CurveOnSurface\DeconstructCurveOnSurfaceComponent.cs" />
-    <Compile Include="CurveOnSurface\GeodesicCurvatureComponent.cs" />
-    <Compile Include="CurveOnSurface\IOrientableCurve.cs" />
-    <Compile Include="CurveOnSurface\NormalCurvatureComponent.cs" />
-    <Compile Include="CurveOnSurface\GeodesicTorsionComponent.cs" />
-    <Compile Include="CurveOnSurface\ExtrudeComponent.cs" />
-    <Compile Include="CurveOnSurface\CurveOnSurface.cs" />
-    <Compile Include="CurveOnSurface\CurvatureComponent.cs" />
-    <Compile Include="CurveOnSurface\EvaluateComponent.cs" />
-    <Compile Include="CurveOnSurface\ConstructCurveOnSurfaceComponent.cs" />
-    <Compile Include="PSPath.cs" />
-    <Compile Include="Integrate.cs" />
-    <Compile Include="DGridPath.cs" />
-    <Compile Include="NormalCurvaturePath.cs" />
-    <Compile Include="Components\BBNormalCurvaturePathComponent.cs" />
-    <Compile Include="GeodesicTorsionPath.cs" />
-    <Compile Include="clipper.cs" />
-    <Compile Include="Components\BBGeodesicTorsionPathComponent.cs" />
-    <Compile Include="Components\BBPathfinderComponent.cs" />
-    <Compile Include="Components\BBBooleanComponent.cs" />
-    <Compile Include="Components\BBAngleAtCurvatureComponent.cs" />
-    <Compile Include="Components\BBCurvatureComponent.cs" />
-    <Compile Include="Components\BBDifferenceComponent.cs" />
-    <Compile Include="Components\BBIntersectionComponent.cs" />
-    <Compile Include="Components\BBLayerComponent.cs" />
-    <Compile Include="Components\BBOffsetComponent.cs" />
-    <Compile Include="Components\BBRadialComponent.cs" />
-    <Compile Include="Components\BBSectionComponent.cs" />
-    <Compile Include="Components\BBTextComponent.cs" />
-    <Compile Include="Components\BBUnionComponent.cs" />
-    <Compile Include="Components\BBWaffleComponent.cs" />
-    <Compile Include="Components\BBXorComponent.cs" />
-    <Compile Include="Crafting\CraftingBase.cs" />
-    <Compile Include="Crafting\Radial.cs" />
-    <Compile Include="Crafting\SlitPlane.cs" />
-    <Compile Include="Crafting\Waffle.cs" />
-    <Compile Include="Curvature\SurfaceCurvature.cs" />
-    <Compile Include="Info.cs" />
-    <Compile Include="Parameters\CurveOnSurfaceParameter.cs" />
-    <Compile Include="Parameters\PathParameter.cs" />
-    <Compile Include="Path.cs" />
-    <Compile Include="Pathfinder.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
+    <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Text\Font.cs" />
-    <Compile Include="Text\Letter.cs" />
-    <Compile Include="Text\Typewriter.cs" />
-    <Compile Include="Types\GH_CurveOnSurface.cs" />
-    <Compile Include="Types\GH_Path.cs" />
-    <Compile Include="Util.cs" />
-    <Compile Include="UtilGh.cs" />
-    <Compile Include="Utility.cs" />
   </ItemGroup>
+
   <ItemGroup>
-    <Content Include="Resources\bowerbird_bold.xml" />
-    <Content Include="Resources\bowerbird_regular.xml" />
-    <None Include="packages.config" />
-    <None Include="Resources\icon_asymptotic_path.png" />
-    <Content Include="Resources\icon_boolean.png" />
-    <None Include="Resources\icon_curve_on_surface_construct.png" />
-    <None Include="Resources\icon_curve_on_surface_deconstruct.png" />
-    <None Include="Resources\icon_curve_on_surface_extrude.png" />
-    <None Include="Resources\icon_curve_on_surface_geodesic_torsion.png" />
-    <None Include="Resources\icon_curve_on_surface_normal_curvature.png" />
-    <None Include="Resources\icon_curve_on_surface_curvature.png" />
-    <None Include="Resources\icon_curve_on_surface_geodesic_curvature.png" />
-    <None Include="Resources\icon_curve_on_surface_evaluate.png" />
-    <None Include="Resources\icon_curve_on_surface_integrate.png" />
-    <Content Include="Resources\icon_difference.png" />
-    <Content Include="Resources\icon_intersection.png" />
-    <Content Include="Resources\icon_layer.png" />
-    <None Include="Resources\icon_normalize.png" />
-    <Content Include="Resources\icon_offset.png" />
-    <None Include="Resources\icon_pathfinder.png" />
-    <None Include="Resources\icon_principal_path.png" />
-    <Content Include="Resources\icon_radial.png" />
-    <Content Include="Resources\icon_section.png" />
-    <Content Include="Resources\icon_text.png" />
-    <Content Include="Resources\icon_union.png" />
-    <Content Include="Resources\icon_waffle.png" />
-    <Content Include="Resources\icon_xor.png" />
-    <Content Include="Resources\logo_24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
+
+  <Target Name="BuildGrasshopperPlugin" AfterTargets="PostBuildEvent">
+    <Move SourceFiles="$(TargetDir)$(TargetName).dll" DestinationFiles="$(TargetDir)$(TargetName).gha" OverwriteReadOnlyFiles="true" />
   </Target>
-  <Target Name="AfterBuild">
+
+  <Target Name="PublishGrasshopperPlugin" AfterTargets="Publish">
+    <Move SourceFiles="$(PublishDir)$(TargetName).dll" DestinationFiles="$(PublishDir)$(TargetName).gha" OverwriteReadOnlyFiles="true" />
+    <ZipDirectory SourceDirectory="$(SolutionDir)\Examples" DestinationFile="$(PublishDir)\examples.zip" />
   </Target>
-  -->
-  <PropertyGroup>
-    <PostBuildEvent>Copy "$(TargetPath)" "$(TargetDir)$(ProjectName).gha"
-Erase "$(TargetPath)"</PostBuildEvent>
-  </PropertyGroup>
-  <PropertyGroup>
-    <FallbackCulture>en-US</FallbackCulture>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartProgram>C:\Program Files\Rhino 6\System\Rhino.exe</StartProgram>
-    <StartArguments>
-    </StartArguments>
-    <StartAction>Program</StartAction>
-  </PropertyGroup>
-  <Import Project="..\packages\RhinoCommon.6.18.19266.14201\build\net45\RhinoCommon.targets" Condition="Exists('..\packages\RhinoCommon.6.18.19266.14201\build\net45\RhinoCommon.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>Dieses Projekt verweist auf mindestens ein NuGet-Paket, das auf diesem Computer fehlt. Verwenden Sie die Wiederherstellung von NuGet-Paketen, um die fehlenden Dateien herunterzuladen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=322105". Die fehlende Datei ist "{0}".</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\RhinoCommon.6.18.19266.14201\build\net45\RhinoCommon.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\RhinoCommon.6.18.19266.14201\build\net45\RhinoCommon.targets'))" />
-    <Error Condition="!Exists('..\packages\Grasshopper.6.18.19266.14201\build\net45\Grasshopper.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Grasshopper.6.18.19266.14201\build\net45\Grasshopper.targets'))" />
-  </Target>
-  <Import Project="..\packages\Grasshopper.6.18.19266.14201\build\net45\Grasshopper.targets" Condition="Exists('..\packages\Grasshopper.6.18.19266.14201\build\net45\Grasshopper.targets')" />
+
 </Project>
