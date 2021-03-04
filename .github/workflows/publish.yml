@@ -1,5 +1,3 @@
-name: Publish
-
 on:
   push:
     tags:
@@ -16,8 +14,10 @@ jobs:
       - name: Build
         run: |
           $path = vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
+          $version = $($GITHUB_REF).Substring("11")
+          echo $version
           if ($path) {
-            & $path -t:Publish -p:Configuration=Release -p:Version=$($GITHUB_REF).Substring("11")
+            & $path -t:Publish -p:Configuration=Release -p:Version=$version
           }
       - name: Publish
         uses: softprops/action-gh-release@v1
