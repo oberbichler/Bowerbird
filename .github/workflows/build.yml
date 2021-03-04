@@ -11,4 +11,8 @@ jobs:
       - name: Restore
         run: dotnet restore
       - name: Build
-        run: msbuild -t:Build -p:Configuration=Release
+        run: |
+          $path = vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
+          if ($path) {
+            & $path -t:Build -p:Configuration=Release
+          }
