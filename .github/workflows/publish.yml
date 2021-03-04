@@ -12,7 +12,11 @@ jobs:
       - name: Restore
         run: dotnet restore
       - name: Build
-        run: msbuild -t:Publish -p:Configuration=Release -p:Version=$("${{ github.ref }}").Substring("11")
+        run: |
+          $path = vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
+          if ($path) {
+            & $path -t:Publish -p:Configuration=Release -p:Version=$("${{ github.ref }}").Substring("11")
+          }
       - name: Publish
         uses: softprops/action-gh-release@v1
         with:
