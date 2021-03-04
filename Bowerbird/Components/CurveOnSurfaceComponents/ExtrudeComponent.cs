@@ -32,7 +32,7 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
         {
             // --- Input
 
-            var curveOnSurface = default(IOrientableCurve);
+            var curveOnSurface = default(CurveOnSurface);
             var thickness = default(double);
             var offset = default(double);
 

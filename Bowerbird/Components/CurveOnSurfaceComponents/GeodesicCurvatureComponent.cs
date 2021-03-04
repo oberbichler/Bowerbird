@@ -30,7 +30,7 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
         {
             // --- Input
 
-            var curveOnSurface = default(IOrientableCurve);
+            var curveOnSurface = default(CurveOnSurface);
             var t = default(double);
 
             if (!DA.GetData(0, ref curveOnSurface)) return;

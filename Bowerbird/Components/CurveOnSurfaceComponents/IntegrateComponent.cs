@@ -69,7 +69,7 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
         {
             // --- Input
 
-            var curveOnSurface = default(IOrientableCurve);
+            var curveOnSurface = default(CurveOnSurface);
             var a = default(double);
             var b = default(double);
             var tolerance = default(double);
