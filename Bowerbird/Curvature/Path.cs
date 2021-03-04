@@ -13,6 +13,8 @@ namespace Bowerbird.Curvature
             Both = 3
         }
 
+        public Types Type { get; protected set; }
+
         public abstract Vector3d InitialDirection(Surface surface, Vector2d uv, bool type);
 
         public abstract Vector2d Direction(Surface surface, Vector2d uv, Vector3d lastDirection, double stepSize);

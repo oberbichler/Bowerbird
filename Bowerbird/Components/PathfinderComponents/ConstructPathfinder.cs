@@ -23,6 +23,7 @@ namespace Bowerbird.Components.PathfinderComponents
             pManager.AddBrepParameter("Surface", "S", "", GH_ParamAccess.item);
             pManager.AddVectorParameter("Point", "P", "", GH_ParamAccess.item);
             pManager.AddNumberParameter("Step Size", "H", "", GH_ParamAccess.item, 0.1);
+            pManager.AddIntegerParameter("Maximum number of Points", "N", "", GH_ParamAccess.item, 10000);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
@@ -38,11 +39,13 @@ namespace Bowerbird.Components.PathfinderComponents
             var brep = default(Brep);
             var startingPoint = default(Vector3d);
             var stepSize = default(double);
+            var maxPoints = default(int);
 
             if (!DA.GetData(0, ref path)) return;
             if (!DA.GetData(1, ref brep)) return;
             if (!DA.GetData(2, ref startingPoint)) return;
             if (!DA.GetData(3, ref stepSize)) return;
+            if (!DA.GetData(4, ref maxPoints)) return;
 
             if (brep.Faces.Count > 1)
                 throw new Exception("Multipatches not yet supported");
@@ -122,24 +125,20 @@ namespace Bowerbird.Components.PathfinderComponents
                 uv = new Vector2d(u, v);
             }
 
-            //var type = (path as NormalCurvaturePath)?.Type ?? (path as GeodesicTorsionPath)?.Type ?? (path as DGridPath)?.Type ?? (path as PSPath).Type;
-
-            var type = (path as NormalCurvaturePath)?.Type ?? Path.Types.Both;
-
             var curves = new List<CurveOnSurface>(2);
 
-            if (type.HasFlag(Path.Types.First))
+            if (path.Type.HasFlag(Path.Types.First))
             {
-                var pathfinder = Pathfinder.Create(path, face, uv, false, stepSize, tolerance);
+                var pathfinder = Pathfinder.Create(path, face, uv, false, stepSize, tolerance, maxPoints);
 
                 var curve = new PolylineCurve(pathfinder.Parameters);
 
                 curves.Add(CurveOnSurface.Create(surface, curve));
             }
 
-            if (type.HasFlag(Path.Types.Second))
+            if (path.Type.HasFlag(Path.Types.Second))
             {
-                var pathfinder = Pathfinder.Create(path, face, uv, true, stepSize, tolerance);
+                var pathfinder = Pathfinder.Create(path, face, uv, true, stepSize, tolerance, maxPoints);
 
                 var curve = new PolylineCurve(pathfinder.Parameters);
 
