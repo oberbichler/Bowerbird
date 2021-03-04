@@ -1,4 +1,4 @@
-using Bowerbird.Curvature;
+﻿using Bowerbird.Curvature;
 using Bowerbird.Parameters;
 using GH_IO.Serialization;
 using Grasshopper.Kernel;
@@ -23,7 +23,7 @@ namespace Bowerbird.Components.PathfinderComponents
             pManager.AddBrepParameter("Surface", "S", "", GH_ParamAccess.item);
             pManager.AddVectorParameter("Point", "P", "", GH_ParamAccess.item);
             pManager.AddNumberParameter("Step Size", "H", "", GH_ParamAccess.item, 0.1);
-            pManager.AddNumberParameter("Maximum number of Points", "N", "", GH_ParamAccess.item, 10000);
+            pManager.AddIntegerParameter("Maximum number of Points", "N", "", GH_ParamAccess.item, 10000);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
