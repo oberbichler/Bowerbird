@@ -9,7 +9,7 @@ namespace Bowerbird.Components.CraftingComponents
 {
     public class BBSectionComponent : GH_Component
     {
-        public BBSectionComponent() : base("BB Section", "BBSection", "Create a section model from a mesh" + Util.InfoString, "Bowerbird", "Crafting") { } 
+        public BBSectionComponent() : base("BB Section", "BBSection", "Create a section model from a mesh" + Util.InfoString, "Bowerbird", "Crafting") { }
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
@@ -50,7 +50,7 @@ namespace Bowerbird.Components.CraftingComponents
 
             var bbox = mesh.GetBoundingBox(false);
             var dmax = bbox.Diagonal.Length;
-                      
+
             for (int i = 0; i < planes.Count; i++)
             {
                 for (int j = i + 1; j < planes.Count; j++)
@@ -64,7 +64,7 @@ namespace Bowerbird.Components.CraftingComponents
                     IntersectPlanes(a, b, out var origin, out var direction);
 
                     var cPlane = new Plane(bbox.Center, direction);
-                    origin = (Vector3d)cPlane.ClosestPoint((Point3d)origin);                    
+                    origin = (Vector3d)cPlane.ClosestPoint((Point3d)origin);
 
                     var originA = origin.Map2D(a);
                     var directionA = direction.Map2D(a);
