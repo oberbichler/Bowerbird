@@ -91,7 +91,7 @@ namespace Bowerbird.Curvature
             e[0] = actA1 * refA1 - refA1.SquareLength;
             e[1] = actA2 * refA2 - refA2.SquareLength;
             e[2] = 0.5 * (actA1 * refA2 + actA2 * refA1) - refA1 * refA2;
-            
+
             e.Transform(TransformToLocalCartesian(refA1, refA2));
             e.Transform(Material);
 
@@ -123,7 +123,7 @@ namespace Bowerbird.Curvature
             dir2 = dir1;
 
             var angle = Math.Atan(Math.Sqrt(n2 / n1));
-            
+
             dir1.Rotate(angle, normal);
             dir2.Rotate(-angle, normal);
 
