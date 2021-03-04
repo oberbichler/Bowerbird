@@ -48,7 +48,7 @@
 
   <Target Name="PublishGrasshopperPlugin" AfterTargets="Publish">
     <Move SourceFiles="$(PublishDir)$(TargetName).dll" DestinationFiles="$(PublishDir)$(TargetName).gha" OverwriteReadOnlyFiles="true" />
-    <ZipDirectory SourceDirectory="$(SolutionDir)\Examples" DestinationFile="$(PublishDir)\examples.zip" />
+    <ZipDirectory SourceDirectory="$(SolutionDir)\Examples" DestinationFile="$(PublishDir)\examples.zip" Overwrite="true" />
   </Target>
 
 </Project>
