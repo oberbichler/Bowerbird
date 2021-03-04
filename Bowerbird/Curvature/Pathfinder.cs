@@ -16,7 +16,7 @@ namespace Bowerbird.Curvature
             Points = points;
         }
 
-        public static Pathfinder Create(Path path, BrepFace face, Vector2d uv, bool type, double stepSize, double tolerance, int maxPoints = 10000)
+        public static Pathfinder Create(Path path, BrepFace face, Vector2d uv, bool type, double stepSize, double tolerance, int maxPoints)
         {
             var parameters = new List<Point3d>();
             var points = new List<Point3d>();
