@@ -48,7 +48,7 @@ namespace Bowerbird.Crafting
             PlanesX = plnX;
             PlanesY = plnY;
 
-            if (!project) 
+            if (!project)
                 return;
 
             for (var i = 0; i < CurvesX.Length; i++)

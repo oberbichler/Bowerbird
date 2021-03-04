@@ -11,7 +11,7 @@ namespace Bowerbird.Text
 
         public double End { get; set; }
 
-        public double Width 
+        public double Width
         {
             get { return End - Start; }
         }
@@ -57,11 +57,11 @@ namespace Bowerbird.Text
                     lastPoint = nextPoint;
                 }
 
-                curves.Add( curve);
+                curves.Add(curve);
             }
 
             position += End * unitX;
-            
+
             return curves;
         }
     }

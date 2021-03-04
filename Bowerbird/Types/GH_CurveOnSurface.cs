@@ -1,4 +1,5 @@
-﻿using Grasshopper.Kernel;
+﻿using Bowerbird.Curvature;
+using Grasshopper.Kernel;
 using Grasshopper.Kernel.Types;
 using Rhino;
 using Rhino.DocObjects;
@@ -25,7 +26,7 @@ namespace Bowerbird.Types
 
         public Curve Geometry { get; private set; }
 
-        public override bool IsValid => Value != null;
+        public override bool IsValid => Value.IsValid;
 
         public override string TypeName => "BBCurveOnSurface";
 

@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.29009.5
-MinimumVisualStudioVersion = 10.0.40219.1
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 15.0.26124.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowerbird", "Bowerbird\Bowerbird.csproj", "{CCD51300-086E-4F5B-9179-3F63A8962CB8}"
 EndProject
 Global

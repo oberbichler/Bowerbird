@@ -1,0 +1,29 @@
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Restore
+        run: dotnet restore
+      - name: Build
+        run: |
+          $path = vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
+          if ($path) {
+            & $path -t:Publish -p:Configuration=Release -p:Version=$("${{ github.ref }}").Substring("11")
+          }
+      - name: Publish
+        uses: softprops/action-gh-release@v1
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: |
+            ./Bowerbird/bin/publish/Bowerbird.gha
+            ./Bowerbird/bin/publish/examples.zip
+          overwrite: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

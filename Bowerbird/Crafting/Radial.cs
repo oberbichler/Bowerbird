@@ -17,7 +17,7 @@ namespace Bowerbird.Crafting
             var center = box.Plane.Origin + box.Z.Min * unitZ;
 
             var corners = box.GetCorners();
-            
+
             var r1 = Math.Max(radius, thickness / 2.0 / Math.Tan(Math.PI / countA));
             var r2 = Enumerable.Range(0, 4).Select(i => corners[i].DistanceTo(center)).Max();
 
@@ -57,7 +57,7 @@ namespace Bowerbird.Crafting
             PlanesA = plnA;
             PlanesZ = plnZ;
 
-            if (!project) 
+            if (!project)
                 return;
 
             for (var i = 0; i < CurvesA.Length; i++)

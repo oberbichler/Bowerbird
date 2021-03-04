@@ -1,4 +1,5 @@
-﻿using Grasshopper.Kernel.Types;
+﻿using Bowerbird.Curvature;
+using Grasshopper.Kernel.Types;
 
 namespace Bowerbird.Types
 {
