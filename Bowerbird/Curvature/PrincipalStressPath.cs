@@ -11,8 +11,6 @@ namespace Bowerbird.Curvature
 
         public Transform Material { get; private set; }
 
-        public Types Type { get; private set; }
-
         private PrincipalStressPath(NurbsSurface refSurface, NurbsSurface actSurface, Transform material, Types type)
         {
             RefSurface = refSurface;

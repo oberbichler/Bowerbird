@@ -1,4 +1,4 @@
-﻿using Bowerbird.Curvature;
+using Bowerbird.Curvature;
 using Bowerbird.Parameters;
 using GH_IO.Serialization;
 using Grasshopper.Kernel;
@@ -125,13 +125,9 @@ namespace Bowerbird.Components.PathfinderComponents
                 uv = new Vector2d(u, v);
             }
 
-            //var type = (path as NormalCurvaturePath)?.Type ?? (path as GeodesicTorsionPath)?.Type ?? (path as DGridPath)?.Type ?? (path as PSPath).Type;
-
-            var type = (path as NormalCurvaturePath)?.Type ?? Path.Types.Both;
-
             var curves = new List<CurveOnSurface>(2);
 
-            if (type.HasFlag(Path.Types.First))
+            if (path.Type.HasFlag(Path.Types.First))
             {
                 var pathfinder = Pathfinder.Create(path, face, uv, false, stepSize, tolerance, maxPoints);
 
@@ -140,7 +136,7 @@ namespace Bowerbird.Components.PathfinderComponents
                 curves.Add(CurveOnSurface.Create(surface, curve));
             }
 
-            if (type.HasFlag(Path.Types.Second))
+            if (path.Type.HasFlag(Path.Types.Second))
             {
                 var pathfinder = Pathfinder.Create(path, face, uv, true, stepSize, tolerance, maxPoints);
 

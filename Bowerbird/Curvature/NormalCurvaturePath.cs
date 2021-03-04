@@ -9,8 +9,6 @@ namespace Bowerbird.Curvature
 
         public double Angle { get; private set; }
 
-        public Types Type { get; private set; }
-
         private NormalCurvaturePath(double value, double angle, Types type)
         {
             Value = value;
