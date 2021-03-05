@@ -16,6 +16,8 @@ namespace Bowerbird.Curvature
 
         static readonly int[] mask = new int[] { 0, 1, 2, 2, 4, 0, 4, 4, 8, 1, 0, 2, 8, 1, 8, 0 };
 
+        public BrepFace AdjacentFace => throw new System.NotImplementedException();
+
         private UntrimmedBoundary(Interval intervalX, Interval intervalY)
         {
             intervalX.MakeIncreasing();
