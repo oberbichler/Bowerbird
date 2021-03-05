@@ -52,8 +52,12 @@ namespace Bowerbird.Curvature
             D1 = K12 * A1 + (K1 - K11) * A2;
             D1 /= D1.Length;
 
+            Debug.Assert(D1.IsValid);
+
             D2 = (K2 - K22) * A1 + K21 * A2;
             D2 /= D2.Length;
+
+            Debug.Assert(D1.IsValid);
 
             return true;
         }
