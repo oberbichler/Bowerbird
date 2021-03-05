@@ -69,10 +69,7 @@ namespace Bowerbird.Curvature
                 IBoundary boundary;
 
                 if (face.IsSurface)
-                {
-                    var surface = face.UnderlyingSurface();
-                    boundary = UntrimmedBoundary.Create(surface);
-                }
+                    boundary = UntrimmedBoundary.Create(face);
                 else
                     boundary = TrimmedBoundary.Create(face);
 
@@ -124,10 +121,7 @@ namespace Bowerbird.Curvature
                 IBoundary boundary;
 
                 if (taskFace.IsSurface)
-                {
-                    var surface = taskFace.UnderlyingSurface();
-                    boundary = UntrimmedBoundary.Create(surface);
-                }
+                    boundary = UntrimmedBoundary.Create(face);
                 else
                     boundary = TrimmedBoundary.Create(taskFace);
 
