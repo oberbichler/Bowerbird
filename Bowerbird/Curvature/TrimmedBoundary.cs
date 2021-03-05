@@ -47,16 +47,9 @@ namespace Bowerbird.Curvature
 
                     BoundingEdge = trim.Edge;
 
-                    foreach (var adjacentFaceIndex in trim.Edge.AdjacentFaces())
-                    {
-                        // Skip current face
-                        if (adjacentFaceIndex == _face.FaceIndex)
-                            continue;
+                    var adjacentFaces = trim.Edge.AdjacentFaces();
 
-                        // Take first adjacent face (assuming Edge.FaceCount = 1 or 2)
-                        AdjacentFace = trim.Brep.Faces[adjacentFaceIndex];
-                        break;
-                    }
+                    AdjacentFace = adjacentFaces.Length == 1 ? null : _face.Brep.Faces[adjacentFaces[0] == _face.FaceIndex ? adjacentFaces[1] : adjacentFaces[0]];
 
                     return true;
                 }
