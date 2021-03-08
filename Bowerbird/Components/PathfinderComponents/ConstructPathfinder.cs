@@ -1,4 +1,4 @@
-using Bowerbird.Curvature;
+﻿using Bowerbird.Curvature;
 using Bowerbird.Parameters;
 using GH_IO.Serialization;
 using Grasshopper.Kernel;
@@ -77,7 +77,7 @@ namespace Bowerbird.Components.PathfinderComponents
 
             brep = brep.DuplicateBrep();
 
-            // normalize parameter space. This allows hard-coded tolerances.
+            // Normalize parameter space. This allows hard-coded tolerances.
             foreach (var f in brep.Faces)
             {
                 f.SetDomain(0, new Interval(0, 1)).AssertTrue();
@@ -90,7 +90,7 @@ namespace Bowerbird.Components.PathfinderComponents
 
             if (StartPointType == StartPointTypes.UV)
             {
-                // convert UV to normalized parameter space
+                // Convert UV to normalized parameter space
                 var u = face.Domain(0).NormalizedParameterAt(startingPoint.X);
                 var v = face.Domain(1).NormalizedParameterAt(startingPoint.Y);
 
