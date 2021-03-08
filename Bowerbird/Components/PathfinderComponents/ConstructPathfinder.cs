@@ -1,4 +1,4 @@
-﻿using Bowerbird.Curvature;
+using Bowerbird.Curvature;
 using Bowerbird.Parameters;
 using GH_IO.Serialization;
 using Grasshopper.Kernel;
@@ -78,8 +78,11 @@ namespace Bowerbird.Components.PathfinderComponents
             brep = brep.DuplicateBrep();
 
             // normalize parameter space. This allows hard-coded tolerances.
-            face.SetDomain(0, new Interval(0, 1)).AssertTrue();
-            face.SetDomain(1, new Interval(0, 1)).AssertTrue();
+            foreach (var f in brep.Faces)
+            {
+                f.SetDomain(0, new Interval(0, 1)).AssertTrue();
+                f.SetDomain(1, new Interval(0, 1)).AssertTrue();
+            }
 
             var surface = face.UnderlyingSurface();
 
