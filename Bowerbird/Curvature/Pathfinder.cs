@@ -112,22 +112,19 @@ namespace Bowerbird.Curvature
                 var parameters = new List<Point3d>();
                 var points = new List<Point3d>();
 
-
-                var taskFace = task.Face;
-
                 parameters.Add(new Point3d(task.Parameter.X, task.Parameter.Y, 0));
                 points.Add(task.Location);
 
                 IBoundary boundary;
 
-                if (taskFace.IsSurface)
-                    boundary = UntrimmedBoundary.Create(face);
+                if (task.Face.IsSurface)
+                    boundary = UntrimmedBoundary.Create(task.Face);
                 else
-                    boundary = TrimmedBoundary.Create(taskFace);
+                    boundary = TrimmedBoundary.Create(task.Face);
 
-                var endDirection = FindPath(parameters, points, path, taskFace, task.Parameter, task.Direction, boundary, stepSize, tolerance, maxPoints);
+                var endDirection = FindPath(parameters, points, path, task.Face, task.Parameter, task.Direction, boundary, stepSize, tolerance, maxPoints);
 
-                results.Add(new Pathfinder(taskFace, parameters, points));
+                results.Add(new Pathfinder(task.Face, parameters, points));
 
                 var endLocation = points[points.Count - 1];
                 var adjacentFace = boundary.AdjacentFace;
