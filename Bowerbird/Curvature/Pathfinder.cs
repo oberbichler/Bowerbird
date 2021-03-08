@@ -124,6 +124,10 @@ namespace Bowerbird.Curvature
 
                 var endDirection = FindPath(parameters, points, path, task.Face, task.Parameter, task.Direction, boundary, stepSize, tolerance, maxPoints);
 
+                // Skip empty paths
+                if (points.Count < 2)
+                    continue;
+
                 results.Add(new Pathfinder(task.Face, parameters, points));
 
                 var endLocation = points[points.Count - 1];
