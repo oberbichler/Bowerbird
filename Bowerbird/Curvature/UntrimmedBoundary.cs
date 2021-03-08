@@ -1,4 +1,4 @@
-﻿using Rhino.Geometry;
+using Rhino.Geometry;
 
 namespace Bowerbird.Curvature
 {
@@ -54,6 +54,8 @@ namespace Bowerbird.Curvature
 
         private void SetAdjacentFace(Vector2d uv)
         {
+            AdjacentFace = null;
+
             var location = _face.PointAt(uv.X, uv.Y);
 
             var adjacentEdges = _face.AdjacentEdges();
