@@ -103,7 +103,8 @@ namespace Bowerbird.Components.PathfinderComponents
             {
                 var sample = (Point3d)startingPoint;
 
-                face.ClosestPoint(sample, out double u, out double v);
+                if (!face.ClosestPoint(sample, out double u, out double v))
+                    throw new Exception("Projection failed");
 
                 // If untrimmed CP is outside boundaries -> compute boundary CP
                 if (face.IsPointOnFace(u, v) == PointFaceRelation.Exterior)
