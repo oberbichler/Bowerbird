@@ -1,4 +1,4 @@
-using Rhino.Geometry;
+﻿using Rhino.Geometry;
 
 namespace Bowerbird.Curvature
 {
@@ -19,6 +19,8 @@ namespace Bowerbird.Curvature
         static readonly int[] mask = new int[] { 0, 1, 2, 2, 4, 0, 4, 4, 8, 1, 0, 2, 8, 1, 8, 0 };
 
         public BrepFace AdjacentFace { get; private set; }
+
+        public Vector3d AdjacentTangent { get; private set; }
 
         private UntrimmedBoundary(BrepFace face, Interval intervalX, Interval intervalY)
         {
@@ -62,6 +64,7 @@ namespace Bowerbird.Curvature
 
             var minDistance = double.PositiveInfinity;
             var minEdge = default(BrepEdge);
+            var minT = default(double);
 
             foreach (var edgeIndex in adjacentEdges)
             {
@@ -76,11 +79,12 @@ namespace Bowerbird.Curvature
                     continue;
 
                 minEdge = edge;
-
                 minDistance = distance;
+                minT = t;
             }
 
             AdjacentFace = PickOppositeFace(_face, minEdge);
+            AdjacentTangent = minEdge.TangentAt(minT);
         }
 
         public static UntrimmedBoundary Create(BrepFace face)

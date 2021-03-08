@@ -11,6 +11,8 @@ namespace Bowerbird.Curvature
 
         public BrepFace AdjacentFace { get; private set; }
 
+        public Vector3d AdjacentTangent { get; private set; }
+
         private TrimmedBoundary(BrepFace face)
         {
             _face = face;
@@ -50,6 +52,8 @@ namespace Bowerbird.Curvature
                     var adjacentFaces = trim.Edge.AdjacentFaces();
 
                     AdjacentFace = adjacentFaces.Length == 1 ? null : _face.Brep.Faces[adjacentFaces[0] == _face.FaceIndex ? adjacentFaces[1] : adjacentFaces[0]];
+
+                    AdjacentTangent = trim.TangentAt(intersection.ParameterA);
 
                     return true;
                 }
