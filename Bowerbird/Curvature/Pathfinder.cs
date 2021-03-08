@@ -1,4 +1,4 @@
-﻿using Rhino.Geometry;
+using Rhino.Geometry;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -64,7 +64,7 @@ namespace Bowerbird.Curvature
                 var direction = path.InitialDirection(face, uv, type);
 
                 if (direction.IsZero)
-                    return new List<Pathfinder> { new Pathfinder(face, parameters, points) };
+                    return new List<Pathfinder>();
 
                 IBoundary boundary;
 
