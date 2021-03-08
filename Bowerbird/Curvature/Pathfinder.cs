@@ -1,4 +1,5 @@
-﻿using Rhino.Geometry;
+using Rhino.Geometry;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -6,50 +7,141 @@ namespace Bowerbird.Curvature
 {
     public class Pathfinder
     {
+        public BrepFace Face { get; private set; }
+
         public List<Point3d> Parameters { get; private set; }
 
         public List<Point3d> Points { get; private set; }
 
-        public Pathfinder(List<Point3d> parameters, List<Point3d> points)
+        public Pathfinder(BrepFace face, List<Point3d> parameters, List<Point3d> points)
         {
+            Face = face;
             Parameters = parameters;
             Points = points;
         }
 
-        public static Pathfinder Create(Path path, BrepFace face, Vector2d uv, bool type, double stepSize, double tolerance, int maxPoints)
+        struct Task
         {
-            var parameters = new List<Point3d>();
-            var points = new List<Point3d>();
-
-            parameters.Add(new Point3d(uv.X, uv.Y, 0));
-            points.Add(face.PointAt(uv.X, uv.Y));
-
-            var direction = path.InitialDirection(face, uv, type);
-
-            if (direction.IsZero)
-                return new Pathfinder(parameters, points);
-
-            IBoundary boundary;
-
-            if (face.IsSurface)
+            public Task(BrepFace face, Vector2d parameter, Point3d location, Vector3d direction)
             {
-                var surface = face.UnderlyingSurface();
-                boundary = UntrimmedBoundary.Create(surface);
+                Face = face;
+                Parameter = parameter;
+                Location = location;
+                Direction = direction;
             }
-            else
-                boundary = TrimmedBoundary.Create(face);
 
-            FindPath(parameters, points, path, face, uv, direction, boundary, stepSize, tolerance, maxPoints);
+            public BrepFace Face;
 
-            parameters.Reverse();
-            points.Reverse();
+            public Vector2d Parameter;
 
-            FindPath(parameters, points, path, face, uv, -direction, boundary, stepSize, tolerance, maxPoints);
+            public Point3d Location;
 
-            return new Pathfinder(parameters, points);
+            public Vector3d Direction;
         }
 
-        private static void FindPath(List<Point3d> parameters, List<Point3d> points, Path path, Surface surface, Vector2d uv, Vector3d direction, IBoundary boundary, double stepSize, double tolerance, int maxPoints)
+        private static void AddTask(Queue<Task> tasks, BrepFace adjacentFace, Point3d location, Vector3d direction)
+        {
+            if (adjacentFace == null || !adjacentFace.ClosestPoint(location, out var newU, out var newV))
+                return;
+
+            var uv = new Vector2d(newU, newV);
+            tasks.Enqueue(new Task(adjacentFace, uv, location, direction));
+        }
+
+        public static List<Pathfinder> Create(Path path, BrepFace face, Vector2d uv, bool type, double stepSize, double tolerance, int maxPoints)
+        {
+            var tasks = new Queue<Task>();
+            var results = new List<Pathfinder>();
+
+            // Initial face
+            {
+                var parameters = new List<Point3d>();
+                var points = new List<Point3d>();
+
+                parameters.Add(new Point3d(uv.X, uv.Y, 0));
+                points.Add(face.PointAt(uv.X, uv.Y));
+
+                var direction = path.InitialDirection(face, uv, type);
+
+                if (direction.IsZero)
+                    return new List<Pathfinder>();
+
+                IBoundary boundary;
+
+                if (face.IsSurface)
+                    boundary = UntrimmedBoundary.Create(face);
+                else
+                    boundary = TrimmedBoundary.Create(face);
+
+                // First branch
+                {
+                    var endDirection = FindPath(parameters, points, path, face, uv, direction, boundary, stepSize, tolerance, maxPoints);
+
+                    results.Add(new Pathfinder(face, parameters, points));
+
+                    var endLocation = points[points.Count - 1];
+                    var adjacentFace = boundary.AdjacentFace;
+
+                    AddTask(tasks, adjacentFace, endLocation, endDirection);
+                }
+
+                parameters.Reverse();
+                points.Reverse();
+
+                // Second branch
+                {
+                    var endDirection = FindPath(parameters, points, path, face, uv, -direction, boundary, stepSize, tolerance, maxPoints);
+
+                    results.Add(new Pathfinder(face, parameters, points));
+
+                    var endLocation = points[points.Count - 1];
+                    var adjacentFace = boundary.AdjacentFace;
+
+                    AddTask(tasks, adjacentFace, endLocation, endDirection);
+                }
+
+                maxPoints -= points.Count;
+            }
+
+            // Adjacent faces
+
+            while (tasks.Count != 0)
+            {
+                var task = tasks.Dequeue();
+
+                var parameters = new List<Point3d>();
+                var points = new List<Point3d>();
+
+                parameters.Add(new Point3d(task.Parameter.X, task.Parameter.Y, 0));
+                points.Add(task.Location);
+
+                IBoundary boundary;
+
+                if (task.Face.IsSurface)
+                    boundary = UntrimmedBoundary.Create(task.Face);
+                else
+                    boundary = TrimmedBoundary.Create(task.Face);
+
+                var endDirection = FindPath(parameters, points, path, task.Face, task.Parameter, task.Direction, boundary, stepSize, tolerance, maxPoints);
+
+                // Skip empty paths
+                if (points.Count < 2)
+                    continue;
+
+                results.Add(new Pathfinder(task.Face, parameters, points));
+
+                var endLocation = points[points.Count - 1];
+                var adjacentFace = boundary.AdjacentFace;
+
+                AddTask(tasks, adjacentFace, endLocation, endDirection);
+
+                maxPoints -= points.Count;
+            }
+
+            return results;
+        }
+
+        private static Vector3d FindPath(List<Point3d> parameters, List<Point3d> points, Path path, Surface surface, Vector2d uv, Vector3d direction, IBoundary boundary, double stepSize, double tolerance, int maxPoints)
         {
             var tolerance2 = tolerance * tolerance;
 
@@ -91,12 +183,14 @@ namespace Bowerbird.Curvature
 
                 // Update direction
 
-                direction = x - points[points.Count - 1];
+                var newDirection = x - points[points.Count - 1];
 
                 // Break if no progress in geometry space
 
-                if (direction.SquareLength < tolerance2)
+                if (newDirection.SquareLength < tolerance2)
                     break;
+
+                direction = newDirection;
 
                 // Add point
 
@@ -108,6 +202,8 @@ namespace Bowerbird.Curvature
                 if (isBoundary)
                     break;
             }
+
+            return direction;
         }
     }
 }

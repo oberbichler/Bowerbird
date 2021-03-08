@@ -205,6 +205,9 @@ namespace Bowerbird.Curvature
         {
             var curve = Surface.Pushup(Curve, tolerance);
 
+            if (curve == null)
+                return null;
+
             return curve.IsValid ? curve : null;
         }
 

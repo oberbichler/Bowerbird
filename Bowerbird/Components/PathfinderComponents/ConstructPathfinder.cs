@@ -47,8 +47,28 @@ namespace Bowerbird.Components.PathfinderComponents
             if (!DA.GetData(3, ref stepSize)) return;
             if (!DA.GetData(4, ref maxPoints)) return;
 
+            BrepFace face;
+
             if (brep.Faces.Count > 1)
-                throw new Exception("Multipatches not yet supported");
+            {
+                if (StartPointType == StartPointTypes.UV)
+                    throw new Exception("UV coordinates not supported for multipatches");
+
+                brep.ClosestPoint((Point3d)startingPoint, out var _, out var ci, out var _, out var _, 0, out var _);
+
+                if (ci.ComponentIndexType == ComponentIndexType.BrepFace)
+                    face = brep.Faces[ci.Index];
+                else if (ci.ComponentIndexType == ComponentIndexType.BrepEdge)
+                {
+                    var edge = brep.Edges[ci.Index];
+                    var faceIndex = edge.AdjacentFaces()[0];
+                    face = brep.Faces[faceIndex];
+                }
+                else
+                    throw new Exception();
+            }
+            else
+                face = brep.Faces[0];
 
 
             // --- Execute
@@ -57,11 +77,12 @@ namespace Bowerbird.Components.PathfinderComponents
 
             brep = brep.DuplicateBrep();
 
-            var face = brep.Faces[0];
-
-            // normalize parameter space. This allows hard-coded tolerances.
-            face.SetDomain(0, new Interval(0, 1)).AssertTrue();
-            face.SetDomain(1, new Interval(0, 1)).AssertTrue();
+            // Normalize parameter space. This allows hard-coded tolerances.
+            foreach (var f in brep.Faces)
+            {
+                f.SetDomain(0, new Interval(0, 1)).AssertTrue();
+                f.SetDomain(1, new Interval(0, 1)).AssertTrue();
+            }
 
             var surface = face.UnderlyingSurface();
 
@@ -69,7 +90,7 @@ namespace Bowerbird.Components.PathfinderComponents
 
             if (StartPointType == StartPointTypes.UV)
             {
-                // convert UV to normalized parameter space
+                // Convert UV to normalized parameter space
                 var u = face.Domain(0).NormalizedParameterAt(startingPoint.X);
                 var v = face.Domain(1).NormalizedParameterAt(startingPoint.Y);
 
@@ -82,7 +103,8 @@ namespace Bowerbird.Components.PathfinderComponents
             {
                 var sample = (Point3d)startingPoint;
 
-                face.ClosestPoint(sample, out double u, out double v);
+                if (!face.ClosestPoint(sample, out double u, out double v))
+                    throw new Exception("Projection failed");
 
                 // If untrimmed CP is outside boundaries -> compute boundary CP
                 if (face.IsPointOnFace(u, v) == PointFaceRelation.Exterior)
@@ -129,20 +151,22 @@ namespace Bowerbird.Components.PathfinderComponents
 
             if (path.Type.HasFlag(Path.Types.First))
             {
-                var pathfinder = Pathfinder.Create(path, face, uv, false, stepSize, tolerance, maxPoints);
+                foreach (var pathfinder in Pathfinder.Create(path, face, uv, false, stepSize, tolerance, maxPoints))
+                {
+                    var curve = new PolylineCurve(pathfinder.Parameters);
 
-                var curve = new PolylineCurve(pathfinder.Parameters);
-
-                curves.Add(CurveOnSurface.Create(surface, curve));
+                    curves.Add(CurveOnSurface.Create(pathfinder.Face.UnderlyingSurface(), curve));
+                }
             }
 
             if (path.Type.HasFlag(Path.Types.Second))
             {
-                var pathfinder = Pathfinder.Create(path, face, uv, true, stepSize, tolerance, maxPoints);
+                foreach (var pathfinder in Pathfinder.Create(path, face, uv, true, stepSize, tolerance, maxPoints))
+                {
+                    var curve = new PolylineCurve(pathfinder.Parameters);
 
-                var curve = new PolylineCurve(pathfinder.Parameters);
-
-                curves.Add(CurveOnSurface.Create(surface, curve));
+                    curves.Add(CurveOnSurface.Create(pathfinder.Face.UnderlyingSurface(), curve));
+                }
             }
 
             // --- Output
