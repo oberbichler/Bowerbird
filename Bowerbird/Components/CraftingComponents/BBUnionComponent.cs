@@ -88,19 +88,10 @@ namespace Bowerbird.Components.CraftingComponents
         }
 
 
-        protected override System.Drawing.Bitmap Icon
-        {
-            get { return Properties.Resources.icon_union; }
-        }
+        protected override System.Drawing.Bitmap Icon => Properties.Resources.icon_union;
 
-        public override GH_Exposure Exposure
-        {
-            get { return GH_Exposure.secondary; }
-        }
+        public override GH_Exposure Exposure => GH_Exposure.secondary;
 
-        public override Guid ComponentGuid
-        {
-            get { return new Guid("{5585F2E8-4EAC-45A9-BBE6-6BD40379B7A4}"); }
-        }
+        public override Guid ComponentGuid => new Guid("{5585F2E8-4EAC-45A9-BBE6-6BD40379B7A4}");
     }
 }
