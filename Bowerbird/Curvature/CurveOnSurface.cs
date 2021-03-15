@@ -211,7 +211,7 @@ namespace Bowerbird.Curvature
             return curve.IsValid ? curve : null;
         }
 
-        public bool IsValid => Curve.IsValid && Surface.IsValid;
+        public bool IsValid => Curve != null && Curve.IsValid && Curve.Domain.Length > 0 && Surface != null && Surface.IsValid;
 
         public IOrientableCurve Reparameterized()
         {
