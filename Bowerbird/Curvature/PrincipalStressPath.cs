@@ -138,5 +138,10 @@ namespace Bowerbird.Curvature
 
             return ToUV(a1, a2, direction);
         }
+
+        public override bool Directions(Surface surface, Vector2d uv, out Vector3d u1, out Vector3d u2, out Vector3d d1, out Vector3d d2)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

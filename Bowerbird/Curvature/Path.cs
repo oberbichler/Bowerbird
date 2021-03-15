@@ -17,6 +17,8 @@ namespace Bowerbird.Curvature
 
         public abstract Vector3d InitialDirection(Surface surface, Vector2d uv, bool type);
 
+        public abstract bool Directions(Surface surface, Vector2d uv, out Vector3d u1, out Vector3d u2, out Vector3d d1, out Vector3d d2);
+
         public abstract Vector2d Direction(Surface surface, Vector2d uv, Vector3d lastDirection, double stepSize);
 
         protected static Vector2d ToUV(Vector3d a1, Vector3d a2, Vector3d d)
