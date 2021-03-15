@@ -24,6 +24,9 @@ namespace Bowerbird.Components.PathfinderComponents
             pManager.AddVectorParameter("Point", "P", "", GH_ParamAccess.item);
             pManager.AddNumberParameter("Step Size", "H", "", GH_ParamAccess.item, 0.1);
             pManager.AddIntegerParameter("Maximum number of Points", "N", "", GH_ParamAccess.item, 10000);
+            pManager.AddIntegerParameter("Loop Tolerance", "t", "", GH_ParamAccess.item);
+
+            pManager[5].Optional = true;
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
@@ -40,12 +43,14 @@ namespace Bowerbird.Components.PathfinderComponents
             var startingPoint = default(Vector3d);
             var stepSize = default(double);
             var maxPoints = default(int);
+            var loopTolerance = DocumentTolerance();
 
             if (!DA.GetData(0, ref path)) return;
             if (!DA.GetData(1, ref brep)) return;
             if (!DA.GetData(2, ref startingPoint)) return;
             if (!DA.GetData(3, ref stepSize)) return;
             if (!DA.GetData(4, ref maxPoints)) return;
+            DA.GetData(5, ref loopTolerance);
 
             BrepFace face;
 
@@ -151,7 +156,7 @@ namespace Bowerbird.Components.PathfinderComponents
 
             if (path.Type.HasFlag(Path.Types.First))
             {
-                foreach (var pathfinder in Pathfinder.Create(path, face, uv, false, stepSize, tolerance, maxPoints))
+                foreach (var pathfinder in Pathfinder.Create(path, face, uv, false, stepSize, tolerance, maxPoints, loopTolerance))
                 {
                     var curve = new PolylineCurve(pathfinder.Parameters);
 
@@ -161,7 +166,7 @@ namespace Bowerbird.Components.PathfinderComponents
 
             if (path.Type.HasFlag(Path.Types.Second))
             {
-                foreach (var pathfinder in Pathfinder.Create(path, face, uv, true, stepSize, tolerance, maxPoints))
+                foreach (var pathfinder in Pathfinder.Create(path, face, uv, true, stepSize, tolerance, maxPoints, loopTolerance))
                 {
                     var curve = new PolylineCurve(pathfinder.Parameters);
 
