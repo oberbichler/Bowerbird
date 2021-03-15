@@ -1,4 +1,4 @@
-﻿using Rhino.Geometry;
+using Rhino.Geometry;
 using System.Diagnostics;
 using static System.Math;
 
@@ -122,11 +122,12 @@ namespace Bowerbird.Curvature
                 return false;
             }
 
-            var alpha = 0.5 * Asin(t);
+            var alpha = 0.5 * Asin(t) + angleOffset;
+
+            var cosAlpha = Cos(alpha);
+            var sinAlpha = Sin(alpha);
 
             {
-                var cosAlpha = Cos(alpha + angleOffset);
-                var sinAlpha = Sin(alpha + angleOffset);
 
                 var du = A2 * D2 * cosAlpha - A2 * D1 * sinAlpha;
                 var dv = A1 * D1 * sinAlpha - A1 * D2 * cosAlpha;
@@ -141,11 +142,8 @@ namespace Bowerbird.Curvature
             }
 
             {
-                var cosAlpha = Cos(alpha - angleOffset);
-                var sinAlpha = Sin(alpha - angleOffset);
-
-                var du = A2 * D2 * cosAlpha + A2 * D1 * sinAlpha;
-                var dv = -A1 * D1 * sinAlpha - A1 * D2 * cosAlpha;
+                var du = -A2 * D2 * sinAlpha - A2 * D1 * cosAlpha;
+                var dv = A1 * D1 * cosAlpha + A1 * D2 * sinAlpha;
 
                 dir2 = du * A1 + dv * A2;
 
