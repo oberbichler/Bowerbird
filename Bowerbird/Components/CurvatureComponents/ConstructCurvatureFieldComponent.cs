@@ -14,6 +14,7 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
     {
         public ConstructCurvatureFieldComponent() : base("BB Curvature Field", "Field", "Beta! Interface might change!", "Bowerbird", "Curvature")
         {
+            UpdateMessage();
         }
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
@@ -37,7 +38,7 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
             UV = 1
         }
 
-        private SpaceTypes _space;
+        private SpaceTypes _space = SpaceTypes.XYZ;
 
         public SpaceTypes Space
         {
@@ -134,14 +135,6 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
 
             DA.SetDataList(0, aList);
             DA.SetDataList(1, bList);
-        }
-
-        protected static Vector3d ToUV(Vector3d a1, Vector3d a2, Vector3d d)
-        {
-            var det = a1.X * a2.Y - a2.X * a1.Y;
-            var u = (d.X * a2.Y - d.Y * a2.X) / det;
-            var v = (d.Y * a1.X - d.X * a1.Y) / det;
-            return new Vector3d(u, v, 0);
         }
 
         protected override Bitmap Icon => Properties.Resources.icon_field;
