@@ -1,5 +1,4 @@
 using Rhino.Geometry;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -49,7 +48,7 @@ namespace Bowerbird.Curvature
             tasks.Enqueue(new Task(adjacentFace, uv, location, direction));
         }
 
-        public static List<Pathfinder> Create(Path path, BrepFace face, Vector2d uv, bool type, double stepSize, double tolerance, int maxPoints)
+        public static List<Pathfinder> Create(Path path, BrepFace face, Vector2d uv, bool type, double stepSize, double tolerance, int maxPoints, double loopTolerance)
         {
             var tasks = new Queue<Task>();
             var results = new List<Pathfinder>();
@@ -140,7 +139,7 @@ namespace Bowerbird.Curvature
                 var endLocation = points[points.Count - 1];
                 var adjacentFace = boundary.AdjacentFace;
 
-                if (!breakpoints.Any(o => o.DistanceTo(endLocation) < tolerance))
+                if (!breakpoints.Any(o => o.DistanceTo(endLocation) < loopTolerance))
                 {
                     AddTask(tasks, adjacentFace, endLocation, endDirection);
                     breakpoints.Add(endLocation);
