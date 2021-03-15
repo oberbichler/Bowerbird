@@ -1,8 +1,6 @@
 ﻿using Rhino.Geometry;
 using System.Diagnostics;
 
-using static System.Math;
-
 namespace Bowerbird.Curvature
 {
     public class GeodesicTorsionPath : Path

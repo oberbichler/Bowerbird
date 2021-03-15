@@ -1,5 +1,4 @@
-﻿using Bowerbird.Curvature;
-using Grasshopper.Kernel;
+﻿using Grasshopper.Kernel;
 using Rhino.Geometry;
 using System;
 using System.Diagnostics;

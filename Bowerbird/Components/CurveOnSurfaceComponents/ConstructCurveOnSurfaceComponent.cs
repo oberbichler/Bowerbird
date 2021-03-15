@@ -44,7 +44,7 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
             surface = (Surface)surface.Duplicate();
 
             var parameterCurve = curve;
-            
+
             if (Space == SpaceTypes.XYZ)
                 parameterCurve = surface.Pullback(curve, DocumentTolerance());
 
