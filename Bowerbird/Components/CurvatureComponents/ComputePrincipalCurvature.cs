@@ -6,7 +6,7 @@ using System.Drawing;
 
 namespace Bowerbird.Components.CurvatureComponents
 {
-    internal class ComputePrincipalCurvature : GH_Component
+    public class ComputePrincipalCurvature : GH_Component
     {
         public ComputePrincipalCurvature() : base("BB Principal Curvature", "BBCrv", "", "Bowerbird", "Curvature")
         {
@@ -58,7 +58,7 @@ namespace Bowerbird.Components.CurvatureComponents
 
         protected override Bitmap Icon => null;
 
-        public override GH_Exposure Exposure => GH_Exposure.primary;
+        public override GH_Exposure Exposure => Info.Experimental ? GH_Exposure.hidden : GH_Exposure.primary;
 
         public override Guid ComponentGuid => new Guid("{5300DCE5-F233-4CDA-BDC3-56DB437DA1EF}");
     }
