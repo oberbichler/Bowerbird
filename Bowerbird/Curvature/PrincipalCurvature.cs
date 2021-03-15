@@ -1,4 +1,4 @@
-using Rhino.Geometry;
+﻿using Rhino.Geometry;
 using System.Diagnostics;
 using static System.Math;
 
@@ -63,12 +63,14 @@ namespace Bowerbird.Curvature
         }
 
 
-        public bool FindNormalCurvature(double value, double angleOffset, out Vector3d dir1, out Vector3d dir2)
+        public bool FindNormalCurvature(double value, double angleOffset, out Vector3d u1, out Vector3d u2, out Vector3d dir1, out Vector3d dir2)
         {
             var t = (2 * value - K1 - K2) / (K1 - K2);
 
             if (Abs(t) > 1)
             {
+                u1 = default;
+                u2 = default;
                 dir1 = default;
                 dir2 = default;
                 return false;
@@ -82,6 +84,8 @@ namespace Bowerbird.Curvature
 
                 var du = A2 * D2 * cosAlpha - A2 * D1 * sinAlpha;
                 var dv = A1 * D1 * sinAlpha - A1 * D2 * cosAlpha;
+
+                u1 = new Vector3d(du, dv, 0);
 
                 dir1 = du * A1 + dv * A2;
 
@@ -99,6 +103,8 @@ namespace Bowerbird.Curvature
                 var du = A2 * D2 * cosAlpha + A2 * D1 * sinAlpha;
                 var dv = -A1 * D1 * sinAlpha - A1 * D2 * cosAlpha;
 
+                u2 = new Vector3d(du, dv, 0);
+
                 dir2 = du * A1 + dv * A2;
 
                 Debug.Assert(dir2.Length > 0);
@@ -111,12 +117,14 @@ namespace Bowerbird.Curvature
             return true;
         }
 
-        public bool FindGeodesicTorsion(double value, double angleOffset, out Vector3d dir1, out Vector3d dir2)
+        public bool FindGeodesicTorsion(double value, double angleOffset, out Vector3d u1, out Vector3d u2, out Vector3d dir1, out Vector3d dir2)
         {
             var t = 2 * value / (K2 - K1);
 
             if (Abs(t) > 1)
             {
+                u1 = default;
+                u2 = default;
                 dir1 = default;
                 dir2 = default;
                 return false;
@@ -132,6 +140,8 @@ namespace Bowerbird.Curvature
                 var du = A2 * D2 * cosAlpha - A2 * D1 * sinAlpha;
                 var dv = A1 * D1 * sinAlpha - A1 * D2 * cosAlpha;
 
+                u1 = new Vector3d(du, dv, 0);
+
                 dir1 = du * A1 + dv * A2;
 
                 Debug.Assert(dir1.Length > 0);
@@ -144,6 +154,8 @@ namespace Bowerbird.Curvature
             {
                 var du = -A2 * D2 * sinAlpha - A2 * D1 * cosAlpha;
                 var dv = A1 * D1 * cosAlpha + A1 * D2 * sinAlpha;
+
+                u2 = new Vector3d(du, dv, 0);
 
                 dir2 = du * A1 + dv * A2;
 

@@ -31,7 +31,7 @@ namespace Bowerbird.Curvature
             if (!crv.Compute(surface, u, v))
                 return Vector3d.Zero;
 
-            if (!crv.FindNormalCurvature(Value, Angle, out var dir1, out var dir2))
+            if (!crv.FindNormalCurvature(Value, Angle, out var _, out var _ , out var dir1, out var dir2))
                 return Vector3d.Zero;
 
             return type ? dir1 : dir2;
@@ -47,7 +47,7 @@ namespace Bowerbird.Curvature
             if (!crv.Compute(surface, u, v))
                 return Vector2d.Zero;
 
-            if (!crv.FindNormalCurvature(Value, Angle, out var dir1, out var dir2))
+            if (!crv.FindNormalCurvature(Value, Angle, out var _, out var _, out var dir1, out var dir2))
                 return Vector2d.Zero;
 
             var a = Choose(dir1, dir2, lastDirection, stepSize);
@@ -60,6 +60,28 @@ namespace Bowerbird.Curvature
             Debug.Assert(d.IsValid);
 
             return d;
+        }
+
+        public override bool Directions(Surface surface, Vector2d uv, out Vector3d u1, out Vector3d u2, out Vector3d d1, out Vector3d d2)
+        {
+            var u = uv.X;
+            var v = uv.Y;
+
+            var crv = new PrincipalCurvature();
+
+            if (!crv.Compute(surface, u, v))
+            {
+                u1 = default;
+                u2 = default;
+                d1 = default;
+                d2 = default;
+                return false;
+            }
+
+            if (!crv.FindNormalCurvature(Value, Angle, out u1, out u2, out d1, out d2))
+                return false;
+
+            return true;
         }
     }
 }

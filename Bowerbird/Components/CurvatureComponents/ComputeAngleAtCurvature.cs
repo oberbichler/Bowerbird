@@ -45,7 +45,7 @@ namespace Bowerbird.Components.CurvatureComponents
             var crv = new PrincipalCurvature();
             crv.Compute(surface, uv.X, uv.Y);
 
-            if (!crv.FindNormalCurvature(k, 0, out var dir1, out var dir2))
+            if (!crv.FindNormalCurvature(k, 0, out var _, out var _, out var dir1, out var dir2))
                 return;
 
             var alpha1 = Vector3d.VectorAngle(crv.D1, dir1);

@@ -52,5 +52,29 @@ namespace Bowerbird.Curvature
 
             return d;
         }
+
+        public override bool Directions(Surface surface, Vector2d uv, out Vector3d u1, out Vector3d u2, out Vector3d d1, out Vector3d d2)
+        {
+            var u = uv.X;
+            var v = uv.Y;
+
+            var crv = new PrincipalCurvature();
+
+            if (!crv.Compute(surface, u, v))
+            {
+                u1 = default;
+                u2 = default;
+                d1 = default;
+                d2 = default;
+                return false;
+            }
+
+            u1 = crv.U1;
+            u2 = crv.U2;
+            d1 = crv.D1;
+            d2 = crv.D2;
+
+            return true;
+        }
     }
 }
