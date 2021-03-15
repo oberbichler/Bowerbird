@@ -79,8 +79,6 @@ namespace Bowerbird.Curvature
                 {
                     var endDirection = FindPath(parameters, points, path, face, uv, direction, boundary, stepSize, tolerance, maxPoints);
 
-                    results.Add(new Pathfinder(face, parameters, points));
-
                     var endLocation = points[points.Count - 1];
                     var adjacentFace = boundary.AdjacentFace;
 
@@ -96,8 +94,6 @@ namespace Bowerbird.Curvature
                 {
                     var endDirection = FindPath(parameters, points, path, face, uv, -direction, boundary, stepSize, tolerance, maxPoints);
 
-                    results.Add(new Pathfinder(face, parameters, points));
-
                     var endLocation = points[points.Count - 1];
                     var adjacentFace = boundary.AdjacentFace;
 
@@ -105,6 +101,8 @@ namespace Bowerbird.Curvature
 
                     breakpoints.Add(endLocation);
                 }
+
+                results.Add(new Pathfinder(face, parameters, points));
 
                 maxPoints -= points.Count;
             }
