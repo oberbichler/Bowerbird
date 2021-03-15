@@ -113,14 +113,8 @@ namespace Bowerbird.Components.CraftingComponents
             origin = new Vector3d(x, y, z);
         }
 
-        protected override System.Drawing.Bitmap Icon
-        {
-            get { return Properties.Resources.icon_section; }
-        }
+        protected override System.Drawing.Bitmap Icon => Properties.Resources.icon_section;
 
-        public override Guid ComponentGuid
-        {
-            get { return new Guid("{63013336-F9FB-4902-B63C-6B13C8A2F2DA}"); }
-        }
+        public override Guid ComponentGuid => new Guid("{63013336-F9FB-4902-B63C-6B13C8A2F2DA}");
     }
 }
