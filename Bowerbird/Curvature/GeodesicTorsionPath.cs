@@ -1,5 +1,6 @@
 ﻿using Rhino.Geometry;
 using System.Diagnostics;
+
 using static System.Math;
 
 namespace Bowerbird.Curvature
@@ -32,36 +33,10 @@ namespace Bowerbird.Curvature
             if (!crv.Compute(surface, u, v))
                 return Vector3d.Zero;
 
-            var t = 2 * Value / (crv.K2 - crv.K1);
-
-            if (Abs(t) > 1)
+            if (!crv.FindGeodesicTorsion(Value, Angle, out var dir1, out var dir2))
                 return Vector3d.Zero;
 
-            var alpha = 0.5 * Asin(t);
-
-            double du, dv;
-
-            if (type)
-            {
-                var cosAlpha = Cos(alpha + Angle);
-                var sinAlpha = Sin(alpha + Angle);
-
-                du = crv.A2 * crv.D2 * cosAlpha - crv.A2 * crv.D1 * sinAlpha;
-                dv = crv.A1 * crv.D1 * sinAlpha - crv.A1 * crv.D2 * cosAlpha;
-            }
-            else
-            {
-                var cosAlpha = Cos(alpha - Angle);
-                var sinAlpha = Sin(alpha - Angle);
-
-                du = crv.A2 * crv.D2 * cosAlpha + crv.A2 * crv.D1 * sinAlpha;
-                dv = -crv.A1 * crv.D1 * sinAlpha - crv.A1 * crv.D2 * cosAlpha;
-            }
-
-            var dir = du * crv.A1 + dv * crv.A2;
-            dir /= dir.Length;
-
-            return dir;
+            return type ? dir1 : dir2;
         }
 
         public override Vector2d Direction(Surface surface, Vector2d uv, Vector3d lastDirection, double stepSize)
@@ -71,49 +46,11 @@ namespace Bowerbird.Curvature
 
             var crv = new PrincipalCurvature();
 
-            if (!crv.Compute(surface, u, v) || crv.K1 * crv.K2 > 0)
+            if (!crv.Compute(surface, u, v))
                 return Vector2d.Zero;
 
-            var t = 2 * Value / (crv.K2 - crv.K1);
-
-            if (Abs(t) > 1)
+            if (!crv.FindGeodesicTorsion(Value, Angle, out var dir1, out var dir2))
                 return Vector2d.Zero;
-
-            var alpha = 0.5 * Asin(t);
-
-            Vector3d dir1, dir2;
-
-            {
-                var cosAlpha = Cos(alpha + Angle);
-                var sinAlpha = Sin(alpha + Angle);
-
-                var du = crv.A2 * crv.D2 * cosAlpha - crv.A2 * crv.D1 * sinAlpha;
-                var dv = crv.A1 * crv.D1 * sinAlpha - crv.A1 * crv.D2 * cosAlpha;
-
-                dir1 = du * crv.A1 + dv * crv.A2;
-
-                Debug.Assert(dir1.Length > 0);
-
-                dir1 /= dir1.Length;
-
-                Debug.Assert(dir1.IsValid);
-            }
-
-            {
-                var cosAlpha = Cos(alpha - Angle);
-                var sinAlpha = Sin(alpha - Angle);
-
-                var du = crv.A2 * crv.D2 * cosAlpha + crv.A2 * crv.D1 * sinAlpha;
-                var dv = -crv.A1 * crv.D1 * sinAlpha - crv.A1 * crv.D2 * cosAlpha;
-
-                dir2 = du * crv.A1 + dv * crv.A2;
-
-                Debug.Assert(dir2.Length > 0);
-
-                dir2 /= dir2.Length;
-
-                Debug.Assert(dir2.IsValid);
-            }
 
             var a = Choose(dir1, dir2, lastDirection, stepSize);
 
