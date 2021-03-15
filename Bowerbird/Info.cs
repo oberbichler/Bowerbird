@@ -7,6 +7,11 @@ namespace Bowerbird
 {
     public class Info : GH_AssemblyInfo
     {
+        static Info()
+        {
+            Experimental = Environment.GetEnvironmentVariable("BOWERBIRD_EXPERIMENTAL") == "1";
+        }
+
         public override string Name => "Bowerbird2";
 
         public override Bitmap Icon => Properties.Resources.logo_24;
@@ -22,5 +27,7 @@ namespace Bowerbird
         public override string Version => Assembly.GetAssembly(typeof(Info)).GetName().Version.ToString();
 
         public override string AssemblyVersion => Version;
+
+        public static bool Experimental { get; }
     }
 }
