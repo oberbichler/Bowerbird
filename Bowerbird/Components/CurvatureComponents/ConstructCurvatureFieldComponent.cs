@@ -12,7 +12,7 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
 {
     public class ConstructCurvatureFieldComponent : GH_Component
     {
-        public ConstructCurvatureFieldComponent() : base("BB Curvature Field", "Field", "Beta! Interface might change!", "Bowerbird", "Curvature")
+        public ConstructCurvatureFieldComponent() : base("BB Curvature Field", "Field", "Beta! Interface might change!", "Bowerbird", "Paths")
         {
             UpdateMessage();
         }
