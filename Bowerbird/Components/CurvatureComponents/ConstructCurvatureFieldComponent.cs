@@ -1,4 +1,5 @@
 using Bowerbird.Curvature;
+using Bowerbird.Parameters;
 using GH_IO.Serialization;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
@@ -9,18 +10,19 @@ using System.Windows.Forms;
 
 namespace Bowerbird.Components.CurveOnSurfaceComponents
 {
-    class CurvatureFieldComponent : GH_Component
+    public class ConstructCurvatureFieldComponent : GH_Component
     {
-        public CurvatureFieldComponent() : base("BB Curvature Field", "Field", "Beta! Interface might change!", "Bowerbird", "Curvature")
+        public ConstructCurvatureFieldComponent() : base("BB Curvature Field", "Field", "Beta! Interface might change!", "Bowerbird", "Curvature")
         {
         }
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
+            pManager.AddParameter(new PathParameter(), "Path Type", "T", "", GH_ParamAccess.item);
             pManager.AddSurfaceParameter("Surface", "S", "", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("U Count", "U", "", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("V Count", "V", "", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Value", "v", "", GH_ParamAccess.item);
+            pManager.AddIntegerParameter("U Count", "U", "", GH_ParamAccess.item, 10);
+            pManager.AddIntegerParameter("V Count", "V", "", GH_ParamAccess.item, 10);
+            pManager.AddNumberParameter("Scale", "s", "", GH_ParamAccess.item, 0.1);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
@@ -57,7 +59,7 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
 
         protected override void AppendAdditionalComponentMenuItems(ToolStripDropDown menu)
         {
-            Utility.SetMenuList(this, menu, "", () => Space, o => Space = o);
+            Utility.SetMenuList(this, menu, "Change space", () => Space, o => Space = o);
         }
 
         public override bool Write(GH_IWriter writer)
@@ -79,21 +81,25 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
         {
             // --- Input
 
+            var path = default(Path);
             var surface = default(Surface);
             var uCount = default(int);
             var vCount = default(int);
-            var value = default(double);
+            var scale = default(double);
 
-            if (!DA.GetData(0, ref surface)) return;
-            if (!DA.GetData(1, ref uCount)) return;
-            if (!DA.GetData(2, ref vCount)) return;
-            if (!DA.GetData(3, ref value)) return;
+            if (!DA.GetData(0, ref path)) return;
+            if (!DA.GetData(1, ref surface)) return;
+            if (!DA.GetData(2, ref uCount)) return;
+            if (!DA.GetData(3, ref vCount)) return;
+            if (!DA.GetData(4, ref scale)) return;
 
 
             // --- Execute
 
             var aList = new List<Line>();
             var bList = new List<Line>();
+
+            var size = scale * 0.5;
 
             for (int i = 0; i < uCount; i++)
             {
@@ -103,22 +109,23 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
                 {
                     var v = surface.Domain(1).ParameterAt(1.0 / (vCount - 1) * j);
 
-                    var crv = new PrincipalCurvature();
-                    crv.Compute(surface, u, v);
+                    var uv = new Vector2d(u, v);
 
-                    var x = Space == SpaceTypes.UV ? new Point3d(u, v, 0) : crv.X;
-
-                    if (!crv.FindNormalCurvature(value, 0, out var dir1, out var dir2))
+                    if (!path.Directions(surface, uv, out var u1, out var u2, out var d1, out var d2))
                         continue;
+
+                    var x = Space == SpaceTypes.UV ? new Point3d(u, v, 0) : surface.PointAt(u, v);
 
                     if (Space == SpaceTypes.UV)
                     {
-                        dir1 = ToUV(crv.A1, crv.A2, dir1);
-                        dir2 = ToUV(crv.A1, crv.A2, dir2);
+                        aList.Add(new Line(x - u1 * size, x + u1 * size));
+                        bList.Add(new Line(x - u2 * size, x + u2 * size));
                     }
-
-                    aList.Add(new Line(x - dir1 / 2, x + dir1 / 2));
-                    bList.Add(new Line(x - dir2 / 2, x + dir2 / 2));
+                    else
+                    {
+                        aList.Add(new Line(x - d1 * size, x + d1 * size));
+                        bList.Add(new Line(x - d2 * size, x + d2 * size));
+                    }
                 }
             }
 
@@ -137,7 +144,7 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
             return new Vector3d(u, v, 0);
         }
 
-        protected override Bitmap Icon => null;
+        protected override Bitmap Icon => Properties.Resources.icon_field;
 
         public override GH_Exposure Exposure => GH_Exposure.primary;
 
