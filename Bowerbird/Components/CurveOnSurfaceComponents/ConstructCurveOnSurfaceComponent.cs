@@ -1,9 +1,11 @@
 using Bowerbird.Curvature;
 using Bowerbird.Parameters;
+using GH_IO.Serialization;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 using System;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Bowerbird.Components.CurveOnSurfaceComponents
 {
@@ -11,6 +13,7 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
     {
         public ConstructCurveOnSurfaceComponent() : base("BB Construct CurveOnSurface", "BBCrvOnSrf", "Beta! Interface might change!", "Bowerbird", "Curve on Surface")
         {
+            UpdateMessage();
         }
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
@@ -40,8 +43,12 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
 
             surface = (Surface)surface.Duplicate();
 
-            var curveOnSurface = CurveOnSurface.Create(surface, curve);
+            var parameterCurve = curve;
+            
+            if (Space == SpaceTypes.XYZ)
+                parameterCurve = surface.Pullback(curve, DocumentTolerance());
 
+            var curveOnSurface = CurveOnSurface.Create(surface, parameterCurve);
 
             // --- Output
 
@@ -54,5 +61,51 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
         public override GH_Exposure Exposure => GH_Exposure.primary;
 
         public override Guid ComponentGuid => new Guid("{DE62F1CD-5E5C-4372-B1BB-2494ED62D349}");
+
+
+        public enum SpaceTypes
+        {
+            XYZ = 0,
+            UV = 1
+        }
+
+        private SpaceTypes _space = SpaceTypes.XYZ;
+
+        public SpaceTypes Space
+        {
+            get
+            {
+                return _space;
+            }
+            set
+            {
+                _space = value;
+                UpdateMessage();
+            }
+        }
+
+        private void UpdateMessage()
+        {
+            Message = Space.ToString();
+        }
+
+        protected override void AppendAdditionalComponentMenuItems(ToolStripDropDown menu)
+        {
+            Utility.SetMenuList(this, menu, "Change space", () => Space, o => Space = o);
+        }
+
+        public override bool Write(GH_IWriter writer)
+        {
+            writer.Set("Space", Space);
+
+            return base.Write(writer);
+        }
+
+        public override bool Read(GH_IReader reader)
+        {
+            Space = reader.GetOrDefault("Space", SpaceTypes.XYZ);
+
+            return base.Read(reader);
+        }
     }
 }

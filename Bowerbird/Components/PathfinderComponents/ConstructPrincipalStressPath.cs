@@ -69,7 +69,7 @@ namespace Bowerbird.Components.PathfinderComponents
 
         protected override Bitmap Icon => null;
 
-        public override GH_Exposure Exposure => GH_Exposure.secondary;
+        public override GH_Exposure Exposure => Info.Experimental ? GH_Exposure.secondary : GH_Exposure.hidden;
 
         public override Guid ComponentGuid => new Guid("{DB749B80-796A-4C9A-BF11-6E3830093D03}");
     }
