@@ -2,6 +2,7 @@ using Rhino.Geometry;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Bowerbird.Curvature
 {
@@ -53,6 +54,8 @@ namespace Bowerbird.Curvature
             var tasks = new Queue<Task>();
             var results = new List<Pathfinder>();
 
+            var breakpoints = new List<Point3d>();
+
             // Initial face
             {
                 var parameters = new List<Point3d>();
@@ -83,6 +86,8 @@ namespace Bowerbird.Curvature
                     var adjacentFace = boundary.AdjacentFace;
 
                     AddTask(tasks, adjacentFace, endLocation, endDirection);
+
+                    breakpoints.Add(endLocation);
                 }
 
                 parameters.Reverse();
@@ -98,6 +103,8 @@ namespace Bowerbird.Curvature
                     var adjacentFace = boundary.AdjacentFace;
 
                     AddTask(tasks, adjacentFace, endLocation, endDirection);
+
+                    breakpoints.Add(endLocation);
                 }
 
                 maxPoints -= points.Count;
@@ -133,7 +140,11 @@ namespace Bowerbird.Curvature
                 var endLocation = points[points.Count - 1];
                 var adjacentFace = boundary.AdjacentFace;
 
-                AddTask(tasks, adjacentFace, endLocation, endDirection);
+                if (!breakpoints.Any(o => o.DistanceTo(endLocation) < tolerance))
+                {
+                    AddTask(tasks, adjacentFace, endLocation, endDirection);
+                    breakpoints.Add(endLocation);
+                }
 
                 maxPoints -= points.Count;
             }
