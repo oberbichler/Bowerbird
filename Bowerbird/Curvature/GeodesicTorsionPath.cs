@@ -1,4 +1,4 @@
-﻿using Rhino.Geometry;
+using Rhino.Geometry;
 using System.Diagnostics;
 using static System.Math;
 
@@ -71,7 +71,7 @@ namespace Bowerbird.Curvature
 
             var crv = new PrincipalCurvature();
 
-            if (!crv.Compute(surface, u, v) || crv.K1 * crv.K2 > 0)
+            if (!crv.Compute(surface, u, v))
                 return Vector2d.Zero;
 
             var t = 2 * Value / (crv.K2 - crv.K1);
