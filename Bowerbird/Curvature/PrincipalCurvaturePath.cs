@@ -41,16 +41,12 @@ namespace Bowerbird.Curvature
             if (!crv.Compute(surface, u, v))
                 return Vector2d.Zero;
 
-            var a = Choose(crv.D1, crv.D2, lastDirection, stepSize);
-
-            Debug.Assert(a.IsValid);
-            Debug.Assert(a.Length > 0);
-
-            var d = ToUV(crv.A1, crv.A2, a);
+            var d = Choose(crv.U1, crv.U2, crv.D1, crv.D2, lastDirection, stepSize);
 
             Debug.Assert(d.IsValid);
+            Debug.Assert(d.Length > 0);
 
-            return d;
+            return new Vector2d(d.X, d.Y);
         }
 
         public override bool Directions(Surface surface, Vector2d uv, out Vector3d u1, out Vector3d u2, out Vector3d d1, out Vector3d d2)

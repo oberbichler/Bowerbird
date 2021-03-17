@@ -134,9 +134,12 @@ namespace Bowerbird.Curvature
             if (!FindDirections(u, v, out var dir1, out var dir2, out var a1, out var a2))
                 return Vector2d.Unset;
 
-            var direction = Choose(dir1, dir2, lastDirection, stepSize);
+            var u1 = ToUV(a1, a2, dir1);
+            var u2 = ToUV(a1, a2, dir2);
 
-            return ToUV(a1, a2, direction);
+            var d = Choose(u1, u2, dir1, dir2, lastDirection, stepSize);
+
+            return d;
         }
 
         public override bool Directions(Surface surface, Vector2d uv, out Vector3d u1, out Vector3d u2, out Vector3d d1, out Vector3d d2)
