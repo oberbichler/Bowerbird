@@ -50,6 +50,19 @@ namespace Bowerbird.Curvature
 
         public static List<Pathfinder> Create(Path path, BrepFace face, Vector2d uv, bool type, double stepSize, double tolerance, int maxPoints, double loopTolerance)
         {
+            if (path == null)
+                throw new System.ArgumentException("No path type specified", nameof(path));
+            if (face == null)
+                throw new System.ArgumentException("No face specified", nameof(face));
+            if (stepSize <= 0)
+                throw new System.ArgumentException("Step size must be > 0", nameof(stepSize));
+            if (tolerance <= 0)
+                throw new System.ArgumentException("Tolerance must be > 0", nameof(tolerance));
+            if (loopTolerance <= 0)
+                throw new System.ArgumentException("Loop tolerance must be > 0", nameof(loopTolerance));
+            if (maxPoints <= 0)
+                throw new System.ArgumentException("Maximum points must be > 0", nameof(loopTolerance));
+
             var tasks = new Queue<Task>();
             var results = new List<Pathfinder>();
 
