@@ -53,7 +53,7 @@ namespace Bowerbird.Components.PathfinderComponents
 
         protected override Bitmap Icon => Properties.Resources.icon_principal_curvature_path;
 
-        public override GH_Exposure Exposure => GH_Exposure.secondary;
+        public override GH_Exposure Exposure => GH_Exposure.hidden;
 
         public override Guid ComponentGuid => new Guid("{CF603E5A-B724-46B5-A242-C40429F89B62}");
     }
