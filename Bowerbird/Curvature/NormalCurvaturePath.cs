@@ -31,7 +31,7 @@ namespace Bowerbird.Curvature
             if (!crv.Compute(surface, u, v))
                 return Vector3d.Zero;
 
-            if (!crv.FindNormalCurvature(Value, Angle, out var _, out var _ , out var dir1, out var dir2))
+            if (!crv.FindNormalCurvature(Value, Angle, out var _, out var _, out var dir1, out var dir2))
                 return Vector3d.Zero;
 
             return type ? dir1 : dir2;

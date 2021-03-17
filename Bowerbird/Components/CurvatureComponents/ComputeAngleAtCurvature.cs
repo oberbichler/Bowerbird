@@ -6,7 +6,7 @@ using System.Drawing;
 
 namespace Bowerbird.Components.CurvatureComponents
 {
-    internal class ComputeAngleAtCurvature : GH_Component
+    public class ComputeAngleAtCurvature : GH_Component
     {
         public ComputeAngleAtCurvature() : base("BB Angle at Curvature", "BBAngleAtK", "", "Bowerbird", "Curvature")
         {
@@ -62,7 +62,7 @@ namespace Bowerbird.Components.CurvatureComponents
 
         protected override Bitmap Icon => null;
 
-        public override GH_Exposure Exposure => GH_Exposure.primary;
+        public override GH_Exposure Exposure => Info.Experimental ? GH_Exposure.hidden : GH_Exposure.primary;
 
         public override Guid ComponentGuid => new Guid("{C9A2B5C9-5F63-4500-8C66-6019147603AA}");
     }
