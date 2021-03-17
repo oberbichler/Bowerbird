@@ -91,7 +91,10 @@ namespace Bowerbird.Curvature
 
                 Debug.Assert(dir1.Length > 0);
 
-                dir1 /= dir1.Length;
+                var l = dir1.Length;
+
+                u1 /= l;
+                dir1 /= l;
 
                 Debug.Assert(dir1.IsValid);
             }
@@ -109,7 +112,10 @@ namespace Bowerbird.Curvature
 
                 Debug.Assert(dir2.Length > 0);
 
-                dir2 /= dir2.Length;
+                var l = dir1.Length;
+
+                u2 /= l;
+                dir2 /= l;
 
                 Debug.Assert(dir2.IsValid);
             }
@@ -146,7 +152,10 @@ namespace Bowerbird.Curvature
 
                 Debug.Assert(dir1.Length > 0);
 
-                dir1 /= dir1.Length;
+                var l = dir1.Length;
+
+                dir1 /= l;
+                u1 /= l;
 
                 Debug.Assert(dir1.IsValid);
             }
@@ -161,7 +170,10 @@ namespace Bowerbird.Curvature
 
                 Debug.Assert(dir2.Length > 0);
 
-                dir2 /= dir2.Length;
+                var l = dir2.Length;
+
+                dir2 /= l;
+                u2 /= l;
 
                 Debug.Assert(dir2.IsValid);
             }
