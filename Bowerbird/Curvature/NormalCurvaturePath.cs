@@ -1,4 +1,4 @@
-﻿using Rhino.Geometry;
+using Rhino.Geometry;
 using System.Diagnostics;
 
 namespace Bowerbird.Curvature
@@ -47,19 +47,15 @@ namespace Bowerbird.Curvature
             if (!crv.Compute(surface, u, v))
                 return Vector2d.Zero;
 
-            if (!crv.FindNormalCurvature(Value, Angle, out var _, out var _, out var dir1, out var dir2))
+            if (!crv.FindNormalCurvature(Value, Angle, out var u1, out var u2, out var dir1, out var dir2))
                 return Vector2d.Zero;
 
-            var a = Choose(dir1, dir2, lastDirection, stepSize);
-
-            Debug.Assert(a.IsValid);
-            Debug.Assert(a.Length > 0);
-
-            var d = ToUV(crv.A1, crv.A2, a);
+            var d = Choose(u1, u2, dir1, dir2, lastDirection, stepSize);
 
             Debug.Assert(d.IsValid);
+            Debug.Assert(d.Length > 0);
 
-            return d;
+            return new Vector2d(d.X, d.Y);
         }
 
         public override bool Directions(Surface surface, Vector2d uv, out Vector3d u1, out Vector3d u2, out Vector3d d1, out Vector3d d2)
