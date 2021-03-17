@@ -112,7 +112,7 @@ namespace Bowerbird.Curvature
 
                 Debug.Assert(dir2.Length > 0);
 
-                var l = dir1.Length;
+                var l = dir2.Length;
 
                 u2 /= l;
                 dir2 /= l;
