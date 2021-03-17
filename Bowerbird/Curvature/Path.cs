@@ -44,7 +44,7 @@ namespace Bowerbird.Curvature
                 return v * -scale;
         }
 
-        protected static Vector3d Choose(Vector3d dir1, Vector3d dir2, Vector3d sample, double stepSize)
+        protected static Vector2d Choose(Vector2d u1, Vector2d u2, Vector3d dir1, Vector3d dir2, Vector3d sample, double stepSize)
         {
             Debug.Assert(dir1.Length > 1e-10);
             Debug.Assert(dir2.Length > 1e-10);
@@ -56,9 +56,26 @@ namespace Bowerbird.Curvature
             var d2 = dir2 * sample;
 
             if (Math.Abs(d1) > Math.Abs(d2))
-                return d1 > 0 ? stepSize * dir1 : -stepSize * dir1;
+                return d1 > 0 ? u1 * stepSize : -u1 * stepSize;
             else
-                return d2 > 0 ? stepSize * dir2 : -stepSize * dir2;
+                return d2 > 0 ? u2 * stepSize : -u2 * stepSize;
+        }
+
+        protected static Vector3d Choose(Vector3d u1, Vector3d u2, Vector3d dir1, Vector3d dir2, Vector3d sample, double stepSize)
+        {
+            Debug.Assert(dir1.Length > 1e-10);
+            Debug.Assert(dir2.Length > 1e-10);
+            Debug.Assert(sample.Length > 1e-10);
+
+            sample /= sample.Length;
+
+            var d1 = dir1 * sample;
+            var d2 = dir2 * sample;
+
+            if (Math.Abs(d1) > Math.Abs(d2))
+                return d1 > 0 ? u1 * stepSize : -u1 * stepSize;
+            else
+                return d2 > 0 ? u2 * stepSize : -u2 * stepSize;
         }
     }
 }
