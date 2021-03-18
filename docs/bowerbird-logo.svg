@@ -1,19 +1,21 @@
-<svg id="bowerbird-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 201 151">
+<svg id="bowerbird-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150">
     <style>
+
     .letter {
-      transform-origin: 50% 130px;
-      transform-style: preserve-3D;
       animation-duration: 3s;
       animation-iteration-count: 1;
       animation-direction: alternate;
+      animation-fill-mode: forwards;
+      transform-origin: 50% 130px;
       transform-style: preserve-3D;
     }
 
     .wing {
-      transform-origin: 100px 56.8px;
       animation-duration: 3s;
       animation-iteration-count: 1;
       animation-direction: alternate;
+      animation-fill-mode: forwards;
+      transform-origin: 100px 56.8px;
       transform-style: preserve-3D;
     }
 
