@@ -4,7 +4,7 @@
       transform-origin: 50% 130px;
       transform-style: preserve-3D;
       animation-duration: 3s;
-      animation-iteration-count: infinite;
+      animation-iteration-count: 1;
       animation-direction: alternate;
       transform-style: preserve-3D;
     }
@@ -12,7 +12,7 @@
     .wing {
       transform-origin: 100px 56.8px;
       animation-duration: 3s;
-      animation-iteration-count: infinite;
+      animation-iteration-count: 1;
       animation-direction: alternate;
       transform-style: preserve-3D;
     }
