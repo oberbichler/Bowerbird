@@ -1,92 +1,276 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 200 150" style="enable-background:new 0 0 200 150;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:none;stroke:#78D4F8;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st1{fill:none;stroke:#80BCF3;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st2{fill:none;stroke:#88A6EE;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st3{fill:none;stroke:#9091EB;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st4{fill:none;stroke:#997CE6;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st5{fill:#75E9FB;}
-	.st6{fill:#80BCF3;}
-	.st7{fill:#88A6EE;}
-	.st8{fill:#9091EB;}
-	.st9{fill:#78D4F8;}
-	.st10{fill:#997CE6;}
-</style>
-<g>
-	<path class="st0" d="M170,122.6h-6.2c-2,0-3.7,1.6-3.7,3.7v7.4c0,2,1.6,3.7,3.7,3.7h6.2v-22.1"/>
-	<polyline class="st1" points="152.8,125.1 152.8,122.6 145.4,122.6 145.4,137.4 	"/>
-	<line class="st1" x1="138" y1="116.5" x2="138" y2="115.2"/>
-	<line class="st1" x1="138" y1="137.4" x2="138" y2="122.6"/>
-	<path class="st2" d="M120.9,122.6h6.2c2,0,3.7,1.6,3.7,3.7v7.4c0,2-1.6,3.7-3.7,3.7h-6.2v-22.1"/>
-	<line class="st2" x1="106.2" y1="137.4" x2="106.2" y2="122.6"/>
-	<line class="st2" x1="106.2" y1="122.6" x2="113.5" y2="122.6"/>
-	<line class="st2" x1="113.5" y1="122.6" x2="113.5" y2="125.1"/>
-	<path class="st3" d="M98.8,137.4h-6.2c-2,0-3.7-1.6-3.7-3.7v-6.2c0-2.7,2.2-4.9,4.9-4.9c2.7,0,4.9,2.2,4.9,4.9v2.4h-9.9"/>
-	<polyline class="st3" points="81.5,122.6 77.9,137.4 74.2,127.5 70.5,137.4 66.8,122.6 	"/>
-	<path class="st4" d="M59.5,127.5v4.9c0,2.7-2.2,4.9-4.9,4.9s-4.9-2.2-4.9-4.9v-4.9c0-2.7,2.2-4.9,4.9-4.9S59.5,124.8,59.5,127.5z"
-		/>
-	<path class="st4" d="M30,125.1h6.2c2.7,0,4.9-2.2,4.9-4.9c0-2.7-2.2-4.9-4.9-4.9H30v22.1h6.2c3.4,0,6.2-2.8,6.2-6.2
-		c0-3.4-2.8-6.2-6.2-6.2"/>
-</g>
-<g>
-	<path class="st5" d="M149.1,84.8c0,0-24.5,0.1-49.1,0.2c-6.1,0-12.3,0-18,0.1c-2.9,0-5.7,0-8.3,0s-5.1,0-7.4-0.1
-		C57.1,85,51,84.8,51,84.8l0,0l0,0c0,0,6.1-0.1,15.3-0.2c2.3,0,4.8,0,7.4-0.1c2.6,0,5.4,0,8.3,0c5.8,0,11.9,0,18,0.1
-		C124.5,84.6,149.1,84.7,149.1,84.8C149.1,84.7,149.1,84.7,149.1,84.8C149.1,84.7,149.1,84.8,149.1,84.8"/>
-	<path class="st6" d="M66.7,102.2c0,0,0.5-6.1,1.4-15.3c0.2-2.3,0.5-4.8,0.7-7.4c0.3-2.6,0.6-5.4,0.9-8.3c0.6-5.7,1.3-11.8,1.9-17.9
-		c2.7-24.4,5.3-48.8,5.3-48.8l0,0l0,0c0,0-2.5,24.4-5,48.8c-0.6,6.1-1.2,12.2-1.8,17.9c-0.3,2.9-0.6,5.6-0.9,8.2s-0.6,5.1-0.8,7.4
-		C67.5,96.2,66.7,102.2,66.7,102.2C66.7,102.3,66.7,102.3,66.7,102.2C66.7,102.3,66.7,102.3,66.7,102.2"/>
-	<path class="st7" d="M76.9,108.2c0,0-0.8-6.1-1.8-15.2c-0.3-2.3-0.5-4.8-0.8-7.4s-0.6-5.4-0.9-8.2c-0.6-5.7-1.2-11.8-1.8-17.9
-		c-2.5-24.4-5-48.8-5-48.8l0,0l0,0c0,0,2.7,24.4,5.3,48.8c0.7,6.1,1.3,12.2,1.9,17.9c0.3,2.9,0.6,5.6,0.9,8.3
-		c0.3,2.6,0.5,5.1,0.7,7.4C76.4,102.1,77,108.2,76.9,108.2C77,108.2,77,108.2,76.9,108.2L76.9,108.2"/>
-	<path class="st8" d="M88.2,111.8c0,0-2-5.8-4.9-14.5c-0.7-2.2-1.5-4.5-2.3-7.1c-0.8-2.5-1.7-5.2-2.6-7.9
-		c-1.8-5.5-3.6-11.3-5.5-17.2L57.8,18.5l0,0l0,0l15.3,46.6c1.9,5.8,3.8,11.7,5.6,17.1c0.9,2.7,1.7,5.4,2.6,7.9
-		c0.8,2.5,1.5,4.9,2.2,7.1C86.4,106,88.2,111.8,88.2,111.8S88.2,111.9,88.2,111.8C88.2,111.9,88.2,111.9,88.2,111.8"/>
-	<path class="st8" d="M142.2,18.5l-15,46.8c-1.9,5.8-3.8,11.7-5.5,17.2c-0.9,2.7-1.8,5.4-2.6,7.9c-0.8,2.5-1.6,4.9-2.3,7.1
-		c-2.9,8.7-4.9,14.5-4.9,14.5l0,0l0,0c0,0,1.8-5.9,4.6-14.6c0.7-2.2,1.4-4.6,2.2-7.1s1.7-5.2,2.6-7.9c1.8-5.5,3.7-11.3,5.6-17.1
-		L142.2,18.5C142.1,18.4,142.1,18.4,142.2,18.5C142.2,18.4,142.2,18.4,142.2,18.5"/>
-	<path class="st7" d="M133.3,10.5c0,0-2.5,24.4-5,48.8c-0.6,6.1-1.2,12.2-1.8,17.9c-0.3,2.9-0.6,5.6-0.9,8.2s-0.6,5.1-0.8,7.4
-		c-1,9.1-1.8,15.2-1.8,15.2l0,0l0,0c0,0,0.5-6.1,1.4-15.3c0.2-2.3,0.5-4.8,0.7-7.4c0.3-2.6,0.6-5.4,0.9-8.3
-		c0.6-5.7,1.3-11.8,1.9-17.9C130.6,34.9,133.3,10.5,133.3,10.5L133.3,10.5C133.3,10.5,133.4,10.5,133.3,10.5"/>
-	<path class="st6" d="M123.1,4.6l5.3,48.8c0.7,6.1,1.3,12.2,1.9,17.9c0.3,2.9,0.6,5.6,0.9,8.3c0.3,2.6,0.5,5.1,0.7,7.4
-		c0.9,9.2,1.4,15.3,1.4,15.3l0,0l0,0c0,0-0.8-6.1-1.8-15.2c-0.3-2.3-0.5-4.8-0.8-7.4s-0.6-5.4-0.9-8.2c-0.6-5.7-1.2-11.8-1.8-17.9
-		L123.1,4.6C123,4.6,123,4.6,123.1,4.6L123.1,4.6"/>
-	<path class="st9" d="M142.1,94.3c0,0-6-1.2-15-3c-2.3-0.5-4.7-1-7.3-1.5c-2.6-0.5-5.3-1.1-8.1-1.7c-5.6-1.2-11.6-2.5-17.6-3.8
-		c-24-5.2-48-10.4-48-10.4l0,0l0,0c0,0,24,5,48.1,10c6,1.3,12,2.5,17.6,3.7c2.8,0.6,5.5,1.2,8.1,1.7c2.6,0.6,5,1.1,7.3,1.6
-		C136.2,92.9,142.1,94.3,142.1,94.3S142.2,94.3,142.1,94.3C142.2,94.3,142.1,94.3,142.1,94.3"/>
-	<path class="st9" d="M153.9,73.9c0,0-24,5.2-48,10.4c-6,1.3-12,2.6-17.6,3.8c-2.8,0.6-5.5,1.2-8.1,1.7s-5,1-7.3,1.5
-		c-9,1.9-15,3-15,3l0,0l0,0c0,0,6-1.4,15-3.3c2.2-0.5,4.7-1,7.3-1.6s5.3-1.1,8.1-1.7c5.6-1.2,11.6-2.4,17.6-3.7
-		C129.9,78.9,153.9,73.9,153.9,73.9L153.9,73.9L153.9,73.9"/>
-	<path class="st6" d="M133.3,102.3c0,0-5.7-2.4-14.1-6.1c-2.1-0.9-4.4-1.9-6.8-3s-5-2.2-7.6-3.4c-5.2-2.4-10.8-4.9-16.4-7.4
-		C66,72.4,43.6,62.3,43.6,62.3l0,0l0,0c0,0,22.5,9.9,44.9,19.8c5.6,2.5,11.2,5,16.5,7.3c2.6,1.2,5.2,2.3,7.6,3.4s4.7,2.1,6.8,3.1
-		C127.8,99.6,133.3,102.2,133.3,102.3C133.3,102.2,133.4,102.2,133.3,102.3L133.3,102.3"/>
-	<path class="st6" d="M156.4,62.3c0,0-22.4,10.1-44.8,20.1c-5.6,2.5-11.2,5-16.5,7.4c-2.6,1.2-5.2,2.3-7.6,3.4s-4.7,2.1-6.8,3
-		c-8.4,3.7-14.1,6.1-14.1,6.1l0,0l0,0c0,0,5.6-2.6,14-6.4c2.1-1,4.4-2,6.8-3.1s4.9-2.2,7.6-3.4c5.3-2.3,10.9-4.8,16.5-7.3
-		C133.9,72.2,156.4,62.3,156.4,62.3L156.4,62.3L156.4,62.3"/>
-	<path class="st7" d="M123,108.2c0,0-5-3.5-12.5-8.9c-1.9-1.3-3.9-2.8-6-4.3s-4.4-3.2-6.7-4.9c-4.6-3.4-9.6-7-14.6-10.6
-		c-19.8-14.5-39.6-29-39.6-29l0,0l0,0c0,0,19.9,14.4,39.8,28.7c5,3.6,9.9,7.2,14.6,10.6c2.3,1.7,4.6,3.3,6.7,4.9s4.1,3,6,4.4
-		C118.2,104.5,123.1,108.2,123,108.2C123.1,108.2,123.1,108.2,123,108.2C123.1,108.2,123.1,108.2,123,108.2"/>
-	<path class="st7" d="M156.4,50.5l-39.6,29c-5,3.6-9.9,7.2-14.6,10.6c-2.3,1.7-4.6,3.3-6.7,4.9c-2.1,1.5-4.2,3-6,4.3
-		c-7.5,5.4-12.5,8.9-12.5,8.9l0,0l0,0c0,0,4.9-3.7,12.3-9.1c1.9-1.4,3.9-2.8,6-4.4s4.4-3.2,6.7-4.9c4.7-3.4,9.6-7,14.6-10.6
-		C136.5,64.8,156.4,50.4,156.4,50.5C156.4,50.4,156.4,50.4,156.4,50.5L156.4,50.5"/>
-	<path class="st8" d="M111.8,111.9c0,0-4.2-4.5-10.4-11.3c-1.6-1.7-3.2-3.5-5-5.5s-3.6-4-5.6-6.2c-3.8-4.3-7.9-8.9-12-13.4
-		C62.4,57.2,46.1,38.9,46.1,38.9l0,0l0,0c0,0,16.5,18.2,33,36.4c4.1,4.6,8.2,9.1,12.1,13.4c1.9,2.1,3.8,4.2,5.5,6.2
-		c1.8,2,3.4,3.8,4.9,5.6C107.8,107.2,111.8,111.8,111.8,111.9C111.8,111.8,111.8,111.8,111.8,111.9L111.8,111.9"/>
-	<path class="st8" d="M153.9,38.9c0,0-16.4,18.3-32.7,36.6c-4.1,4.6-8.2,9.1-12,13.4c-1.9,2.1-3.8,4.2-5.6,6.2
-		c-1.8,1.9-3.5,3.8-5,5.5c-6.2,6.8-10.4,11.3-10.4,11.3l0,0l0,0c0,0,4-4.6,10.1-11.5c1.5-1.7,3.2-3.6,4.9-5.6c1.8-2,3.6-4,5.5-6.2
-		c3.9-4.3,8-8.8,12.1-13.4C137.4,57,153.9,38.8,153.9,38.9C153.9,38.8,153.9,38.8,153.9,38.9L153.9,38.9"/>
-	<path class="st10" d="M100,113.1c0,0-3.2-5.3-7.8-13.2c-1.2-2-2.4-4.1-3.8-6.4c-1.3-2.3-2.7-4.7-4.2-7.2c-2.9-5-5.9-10.3-9-15.6
-		C63.1,49.4,50.9,28,50.9,28l0,0l0,0c0,0,12.4,21.2,24.7,42.4c3.1,5.3,6.2,10.6,9.1,15.6c1.4,2.5,2.8,4.9,4.1,7.2
-		c1.3,2.3,2.5,4.5,3.7,6.5C97.1,107.7,100,113.1,100,113.1L100,113.1L100,113.1"/>
-	<path class="st10" d="M149.1,28l-24.4,42.6c-3.1,5.3-6.1,10.6-9,15.6c-1.4,2.5-2.8,4.9-4.2,7.2c-1.3,2.3-2.6,4.4-3.8,6.4
-		c-4.6,7.9-7.8,13.2-7.8,13.2l0,0l0,0c0,0,3-5.4,7.5-13.4c1.1-2,2.4-4.2,3.7-6.5s2.7-4.7,4.1-7.2c2.9-5,6-10.3,9.1-15.6L149.1,28
-		L149.1,28L149.1,28"/>
-	<path class="st6" d="M57.8,94.3c0,0,1.8-5.9,4.6-14.6c0.7-2.2,1.4-4.6,2.2-7.1c0.8-2.5,1.7-5.2,2.6-7.9c1.8-5.5,3.7-11.3,5.6-17.1
-		L88.1,1l0,0l0,0l-15,46.8c-1.7,5.7-3.6,11.6-5.4,17c-0.9,2.7-1.8,5.4-2.6,7.9c-0.8,2.5-1.6,4.9-2.3,7.1
-		C59.9,88.5,57.9,94.3,57.8,94.3C57.9,94.3,57.9,94.3,57.8,94.3L57.8,94.3"/>
-	<path class="st6" d="M111.8,0.9l15.3,46.6c1.9,5.8,3.8,11.7,5.6,17.1c0.9,2.7,1.7,5.4,2.6,7.9c0.8,2.5,1.5,4.9,2.2,7.1
-		c2.8,8.8,4.6,14.6,4.6,14.6l0,0l0,0c0,0-2-5.8-4.9-14.5c-0.7-2.2-1.5-4.5-2.3-7.1c-0.8-2.5-1.7-5.2-2.6-7.9
-		c-1.8-5.5-3.6-11.3-5.5-17.2L111.8,0.9L111.8,0.9L111.8,0.9"/>
-</g>
+<svg id="bowerbird-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 201 151">
+    <style>
+    .letter {
+      transform-origin: 50% 130px;
+      transform-style: preserve-3D;
+      animation-duration: 3s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      transform-style: preserve-3D;
+    }
+
+    .wing {
+      transform-origin: 100px 56.8px;
+      animation-duration: 3s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      transform-style: preserve-3D;
+    }
+
+    @keyframes zoom-0 {
+      from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes zoom-1 {
+      from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes zoom-2 {
+      from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes zoom-3 {
+      from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes zoom-4 {
+      from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes zoom-5 {
+      from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes zoom-6-0 {
+      from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes zoom-6-1 {
+      from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes zoom-7 {
+      from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes zoom-8 {
+      from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; }
+    }
+
+    #letter-0 {
+      animation-name: zoom-0;
+    }
+
+    #letter-1 {
+      animation-name: zoom-1;
+    }
+
+    #letter-2 {
+      animation-name: zoom-2;
+    }
+
+    #letter-3 {
+      animation-name: zoom-3;
+    }
+
+    #letter-4 {
+      animation-name: zoom-4;
+    }
+
+    #letter-5 {
+      animation-name: zoom-5;
+    }
+
+    #letter-6-0 {
+      animation-name: zoom-6-0;
+    }
+
+    #letter-6-1 {
+      animation-name: zoom-6-1;
+    }
+
+    #letter-7 {
+      animation-name: zoom-7;
+    }
+
+    #letter-8 {
+      animation-name: zoom-8;
+    }
+
+    @keyframes rotate-l1 {
+      from { transform: rotate(-12deg); opacity: 0; } to { transform: rotate(0); opacity: 1; }
+    }
+
+    @keyframes rotate-l2 {
+      from { transform: rotate(-24deg); opacity: 0; } to { transform: rotate(0); opacity: 1; }
+    }
+
+    @keyframes rotate-l3 {
+      from { transform: rotate(-36deg); opacity: 0; } to { transform: rotate(0); opacity: 1; }
+    }
+
+    @keyframes rotate-l4 {
+      from { transform: rotate(-48deg); opacity: 0; } to { transform: rotate(0); opacity: 1; }
+    }
+
+    @keyframes rotate-l5 {
+      from { transform: rotate(-60deg); opacity: 0; } to { transform: rotate(0); opacity: 1; }
+    }
+
+    @keyframes rotate-l6 {
+      from { transform: rotate(-72deg); opacity: 0; } to { transform: rotate(0); opacity: 1; }
+    }
+
+    @keyframes rotate-l7 {
+      from { transform: rotate(-84deg); opacity: 0; } to { transform: rotate(0); opacity: 1; }
+    }
+
+    @keyframes rotate-l8 {
+      from { transform: rotate(-96deg); opacity: 0; } to { transform: rotate(0); opacity: 1; }
+    }
+
+    @keyframes rotate-l9 {
+      from { transform: rotate(-108deg); opacity: 0; } to { transform: rotate(0); opacity: 1; }
+    }
+
+    @keyframes rotate-r1 {
+      from { transform: rotate(12deg); opacity: 0; } to { transform: rotate(0); opacity: 1; }
+    }
+
+    @keyframes rotate-r2 {
+      from { transform: rotate(24deg); opacity: 0; } to { transform: rotate(0); opacity: 1; }
+    }
+
+    @keyframes rotate-r3 {
+      from { transform: rotate(36deg); opacity: 0; } to { transform: rotate(0); opacity: 1; }
+    }
+
+    @keyframes rotate-r4 {
+      from { transform: rotate(48deg); opacity: 0; } to { transform: rotate(0); opacity: 1; }
+    }
+
+    @keyframes rotate-r5 {
+      from { transform: rotate(60deg); opacity: 0; } to { transform: rotate(0); opacity: 1; }
+    }
+
+    @keyframes rotate-r6 {
+      from { transform: rotate(72deg); opacity: 0; } to { transform: rotate(0); opacity: 1; }
+    }
+
+    @keyframes rotate-r7 {
+      from { transform: rotate(84deg); opacity: 0; } to { transform: rotate(0); opacity: 1; }
+    }
+
+    @keyframes rotate-r8 {
+      from { transform: rotate(96deg); opacity: 0; } to { transform: rotate(0); opacity: 1; }
+    }
+
+    @keyframes rotate-r9 {
+      from { transform: rotate(108deg); opacity: 0; } to { transform: rotate(0); opacity: 1; }
+    }
+
+    #wing-l1 {
+      animation-name: rotate-l1;
+    }
+
+    #wing-r1 {
+      animation-name: rotate-r1;
+    }
+
+    #wing-l2 {
+      animation-name: rotate-l2;
+    }
+
+    #wing-r2 {
+      animation-name: rotate-r2;
+    }
+
+    #wing-l3 {
+      animation-name: rotate-l3;
+    }
+
+    #wing-r3 {
+      animation-name: rotate-r3;
+    }
+
+    #wing-l4 {
+      animation-name: rotate-l4;
+    }
+
+    #wing-r4 {
+      animation-name: rotate-r4;
+    }
+
+    #wing-l5 {
+      animation-name: rotate-l5;
+    }
+
+    #wing-r5 {
+      animation-name: rotate-r5;
+    }
+
+    #wing-l6 {
+      animation-name: rotate-l6;
+    }
+
+    #wing-r6 {
+      animation-name: rotate-r6;
+    }
+
+    #wing-l7 {
+      animation-name: rotate-l7;
+    }
+
+    #wing-r7 {
+      animation-name: rotate-r7;
+    }
+
+    #wing-l8 {
+      animation-name: rotate-l8;
+    }
+
+    #wing-r8 {
+      animation-name: rotate-r8;
+    }
+
+    #wing-l9 {
+      animation-name: rotate-l9;
+    }
+
+    #wing-r9 {
+      animation-name: rotate-r9;
+    }
+    </style>
+
+    <!-- text -->
+    <path id="letter-0" class="letter" d="M30,125.1h6.2a4.9,4.9,0,0,0,0-9.8H30v22.1h6.2a6.2,6.2,0,0,0,0-12.4" transform="translate(0.5 0.5)" style="fill:none;stroke:#997ce6;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.699999988079071px"/>
+    <path id="letter-1" class="letter" d="M59.5,127.5v4.9a4.9,4.9,0,1,1-9.8,0v-4.9a4.9,4.9,0,1,1,9.8,0Z" transform="translate(0.5 0.5)" style="fill:none;stroke:#997ce6;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.699999988079071px"/>
+    <path id="letter-2" class="letter" d="M82 123.1 78.4 137.9 74.7 128 71 137.9 67.3 123.1" style="fill:none;stroke:#9091eb;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.699999988079071px"/>
+    <path id="letter-3" class="letter" d="M98.8,137.4H92.6a3.69,3.69,0,0,1-3.7-3.7v-6.2a4.9,4.9,0,0,1,9.8,0v2.4H88.8" transform="translate(0.5 0.5)" style="fill:none;stroke:#9091eb;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.699999988079071px"/>
+    <path id="letter-4" class="letter" d="M114 125.6 114 123.1 106.7 123.1 106.7 137.9" style="fill:none;stroke:#88a6ee;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.699999988079071px"/>
+    <path id="letter-5" class="letter" d="M120.9,122.6h6.2a3.69,3.69,0,0,1,3.7,3.7v7.4a3.69,3.69,0,0,1-3.7,3.7h-6.2V115.3" transform="translate(0.5 0.5)" style="fill:none;stroke:#88a6ee;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.699999988079071px"/>
+    <path id="letter-6-0" class="letter" d="M138.5 137.9 138.5 123.1" style="fill:none;stroke:#80bcf3;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.699999988079071px"/>
+    <path id="letter-6-1" class="letter" d="M138.5 117 138.5 115.7" style="fill:none;stroke:#80bcf3;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.699999988079071px"/>
+    <path id="letter-7" class="letter" d="M153.3 125.6 153.3 123.1 145.9 123.1 145.9 137.9" style="fill:none;stroke:#80bcf3;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.699999988079071px"/>
+    <path id="letter-8" class="letter" d="M170,122.6h-6.2a3.69,3.69,0,0,0-3.7,3.7v7.4a3.69,3.69,0,0,0,3.7,3.7H170V115.3" transform="translate(0.5 0.5)" style="fill:none;stroke:#78d4f8;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.699999988079071px"/>
+    <!-- wings -->
+    <path id="wing-c0" class="wing" d="M149.1,84.8,100,85c-6.1,0-12.3,0-18,.1H73.7c-2.6,0-5.1,0-7.4-.1-9.2,0-15.3-.2-15.3-.2h0s6.1-.1,15.3-.2c2.3,0,4.8,0,7.4-.1H82c5.8,0,11.9,0,18,.1,24.5,0,49.1.1,49.1.2h0" transform="translate(0.5 0.5)" style="fill:#75e9fb"/>
+    <path id="wing-l8" class="wing" d="M66.7,102.2s.5-6.1,1.4-15.3c.2-2.3.5-4.8.7-7.4s.6-5.4.9-8.3c.6-5.7,1.3-11.8,1.9-17.9,2.7-24.4,5.3-48.8,5.3-48.8h0l-5,48.8c-.6,6.1-1.2,12.2-1.8,17.9-.3,2.9-.6,5.6-.9,8.2s-.6,5.1-.8,7.4c-.9,9.4-1.7,15.4-1.7,15.4h0" transform="translate(0.5 0.5)" style="fill:#80bcf3"/>
+    <path id="wing-l7" class="wing" d="M76.9,108.2s-.8-6.1-1.8-15.2c-.3-2.3-.5-4.8-.8-7.4s-.6-5.4-.9-8.2c-.6-5.7-1.2-11.8-1.8-17.9l-5-48.8h0s2.7,24.4,5.3,48.8c.7,6.1,1.3,12.2,1.9,17.9.3,2.9.6,5.6.9,8.3s.5,5.1.7,7.4c1,9,1.6,15.1,1.5,15.1h0" transform="translate(0.5 0.5)" style="fill:#88a6ee"/>
+    <path id="wing-l6" class="wing" d="M88.2,111.8s-2-5.8-4.9-14.5c-.7-2.2-1.5-4.5-2.3-7.1s-1.7-5.2-2.6-7.9c-1.8-5.5-3.6-11.3-5.5-17.2L57.8,18.5h0L73.1,65.1c1.9,5.8,3.8,11.7,5.6,17.1.9,2.7,1.7,5.4,2.6,7.9s1.5,4.9,2.2,7.1c2.9,8.8,4.7,14.6,4.7,14.6h0" transform="translate(0.5 0.5)" style="fill:#9091eb"/>
+    <path id="wing-r6" class="wing" d="M142.2,18.5l-15,46.8c-1.9,5.8-3.8,11.7-5.5,17.2-.9,2.7-1.8,5.4-2.6,7.9s-1.6,4.9-2.3,7.1c-2.9,8.7-4.9,14.5-4.9,14.5h0s1.8-5.9,4.6-14.6c.7-2.2,1.4-4.6,2.2-7.1s1.7-5.2,2.6-7.9l5.6-17.1,15.3-46.8h0" transform="translate(0.5 0.5)" style="fill:#9091eb"/>
+    <path id="wing-r7" class="wing" d="M133.3,10.5l-5,48.8c-.6,6.1-1.2,12.2-1.8,17.9-.3,2.9-.6,5.6-.9,8.2s-.6,5.1-.8,7.4c-1,9.1-1.8,15.2-1.8,15.2h0s.5-6.1,1.4-15.3c.2-2.3.5-4.8.7-7.4s.6-5.4.9-8.3c.6-5.7,1.3-11.8,1.9-17.9,2.7-24.2,5.4-48.6,5.4-48.6h0" transform="translate(0.5 0.5)" style="fill:#88a6ee"/>
+    <path id="wing-r8" class="wing" d="M123.1,4.6l5.3,48.8c.7,6.1,1.3,12.2,1.9,17.9.3,2.9.6,5.6.9,8.3s.5,5.1.7,7.4c.9,9.2,1.4,15.3,1.4,15.3h0s-.8-6.1-1.8-15.2c-.3-2.3-.5-4.8-.8-7.4s-.6-5.4-.9-8.2c-.6-5.7-1.2-11.8-1.8-17.9l-4.9-49h0" transform="translate(0.5 0.5)" style="fill:#80bcf3"/>
+    <path id="wing-l1" class="wing" d="M142.1,94.3l-15-3c-2.3-.5-4.7-1-7.3-1.5s-5.3-1.1-8.1-1.7L94.1,84.3l-48-10.4h0s24,5,48.1,10c6,1.3,12,2.5,17.6,3.7,2.8.6,5.5,1.2,8.1,1.7s5,1.1,7.3,1.6c9,2,14.9,3.4,14.9,3.4h0" transform="translate(0.5 0.5)" style="fill:#78d4f8"/>
+    <path id="wing-r1" class="wing" d="M153.9,73.9l-48,10.4L88.3,88.1c-2.8.6-5.5,1.2-8.1,1.7s-5,1-7.3,1.5c-9,1.9-15,3-15,3h0s6-1.4,15-3.3c2.2-.5,4.7-1,7.3-1.6s5.3-1.1,8.1-1.7c5.6-1.2,11.6-2.4,17.6-3.7,24-5.1,48-10.1,48-10.1h0" transform="translate(0.5 0.5)" style="fill:#78d4f8"/>
+    <path id="wing-l2" class="wing" d="M133.3,102.3s-5.7-2.4-14.1-6.1c-2.1-.9-4.4-1.9-6.8-3s-5-2.2-7.6-3.4c-5.2-2.4-10.8-4.9-16.4-7.4C66,72.4,43.6,62.3,43.6,62.3h0s22.5,9.9,44.9,19.8c5.6,2.5,11.2,5,16.5,7.3,2.6,1.2,5.2,2.3,7.6,3.4s4.7,2.1,6.8,3.1c8.4,3.7,13.9,6.3,13.9,6.4,0-.1.1-.1,0,0h0" transform="translate(0.5 0.5)" style="fill:#80bcf3"/>
+    <path id="wing-r2" class="wing" d="M156.4,62.3S134,72.4,111.6,82.4c-5.6,2.5-11.2,5-16.5,7.4-2.6,1.2-5.2,2.3-7.6,3.4s-4.7,2.1-6.8,3c-8.4,3.7-14.1,6.1-14.1,6.1h0s5.6-2.6,14-6.4c2.1-1,4.4-2,6.8-3.1s4.9-2.2,7.6-3.4c5.3-2.3,10.9-4.8,16.5-7.3,22.4-9.9,44.9-19.8,44.9-19.8h0" transform="translate(0.5 0.5)" style="fill:#80bcf3"/>
+    <path id="wing-l3" class="wing" d="M123,108.2s-5-3.5-12.5-8.9c-1.9-1.3-3.9-2.8-6-4.3s-4.4-3.2-6.7-4.9c-4.6-3.4-9.6-7-14.6-10.6l-39.6-29h0S63.5,64.9,83.4,79.2c5,3.6,9.9,7.2,14.6,10.6,2.3,1.7,4.6,3.3,6.7,4.9s4.1,3,6,4.4c7.5,5.4,12.4,9.1,12.3,9.1h0" transform="translate(0.5 0.5)" style="fill:#88a6ee"/>
+    <path id="wing-r3" class="wing" d="M156.4,50.5l-39.6,29c-5,3.6-9.9,7.2-14.6,10.6-2.3,1.7-4.6,3.3-6.7,4.9s-4.2,3-6,4.3C82,104.7,77,108.2,77,108.2h0s4.9-3.7,12.3-9.1c1.9-1.4,3.9-2.8,6-4.4s4.4-3.2,6.7-4.9c4.7-3.4,9.6-7,14.6-10.6,19.9-14.4,39.8-28.8,39.8-28.7h0" transform="translate(0.5 0.5)" style="fill:#88a6ee"/>
+    <path id="wing-l4" class="wing" d="M111.8,111.9s-4.2-4.5-10.4-11.3c-1.6-1.7-3.2-3.5-5-5.5s-3.6-4-5.6-6.2c-3.8-4.3-7.9-8.9-12-13.4C62.4,57.2,46.1,38.9,46.1,38.9h0l33,36.4c4.1,4.6,8.2,9.1,12.1,13.4,1.9,2.1,3.8,4.2,5.5,6.2s3.4,3.8,4.9,5.6c6.2,6.7,10.2,11.3,10.2,11.4h0" transform="translate(0.5 0.5)" style="fill:#9091eb"/>
+    <path id="wing-r4" class="wing" d="M153.9,38.9s-16.4,18.3-32.7,36.6c-4.1,4.6-8.2,9.1-12,13.4l-5.6,6.2c-1.8,1.9-3.5,3.8-5,5.5-6.2,6.8-10.4,11.3-10.4,11.3h0s4-4.6,10.1-11.5c1.5-1.7,3.2-3.6,4.9-5.6s3.6-4,5.5-6.2c3.9-4.3,8-8.8,12.1-13.4,16.6-18.2,33.1-36.4,33.1-36.3h0" transform="translate(0.5 0.5)" style="fill:#9091eb"/>
+    <path id="wing-l5" class="wing" d="M100,113.1s-3.2-5.3-7.8-13.2c-1.2-2-2.4-4.1-3.8-6.4s-2.7-4.7-4.2-7.2c-2.9-5-5.9-10.3-9-15.6C63.1,49.4,50.9,28,50.9,28h0S63.3,49.2,75.6,70.4C78.7,75.7,81.8,81,84.7,86c1.4,2.5,2.8,4.9,4.1,7.2s2.5,4.5,3.7,6.5c4.6,8,7.5,13.4,7.5,13.4h0" transform="translate(0.5 0.5)" style="fill:#997ce6"/>
+    <path id="wing-r5" class="wing" d="M149.1,28,124.7,70.6c-3.1,5.3-6.1,10.6-9,15.6q-2.1,3.75-4.2,7.2c-1.3,2.3-2.6,4.4-3.8,6.4-4.6,7.9-7.8,13.2-7.8,13.2h0s3-5.4,7.5-13.4c1.1-2,2.4-4.2,3.7-6.5s2.7-4.7,4.1-7.2c2.9-5,6-10.3,9.1-15.6L149.1,28h0" transform="translate(0.5 0.5)" style="fill:#997ce6"/>
+    <path id="wing-l9" class="wing" d="M57.8,94.3s1.8-5.9,4.6-14.6c.7-2.2,1.4-4.6,2.2-7.1s1.7-5.2,2.6-7.9l5.6-17.1L88.1,1h0l-15,46.8c-1.7,5.7-3.6,11.6-5.4,17-.9,2.7-1.8,5.4-2.6,7.9s-1.6,4.9-2.3,7.1c-2.9,8.7-4.9,14.5-5,14.5h0" transform="translate(0.5 0.5)" style="fill:#80bcf3"/>
+    <path id="wing-r9" class="wing" d="M111.8.9l15.3,46.6c1.9,5.8,3.8,11.7,5.6,17.1.9,2.7,1.7,5.4,2.6,7.9s1.5,4.9,2.2,7.1c2.8,8.8,4.6,14.6,4.6,14.6h0s-2-5.8-4.9-14.5c-.7-2.2-1.5-4.5-2.3-7.1s-1.7-5.2-2.6-7.9c-1.8-5.5-3.6-11.3-5.5-17.2L111.8.9h0" transform="translate(0.5 0.5)" style="fill:#80bcf3"/>
 </svg>
