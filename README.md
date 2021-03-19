@@ -1,4 +1,4 @@
-<p align="center"><a href="#"><img alt="Logo" width="60%" src="https://raw.githubusercontent.com/oberbichler/Bowerbird/master/docs/bowerbird.svg?sanitize=true&max-age=0"></a></p>
+<p align="center"><img alt="Logo" width="60%" src="https://raw.githubusercontent.com/oberbichler/Bowerbird/master/docs/bowerbird.svg?sanitize=true&max-age=0"></p>
 
 <p align="center"><i>Bowerbird is a plugin for Rhino and Grasshopper providing some tools for modeling.</i></p>
 
