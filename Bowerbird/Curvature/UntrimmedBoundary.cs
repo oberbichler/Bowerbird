@@ -1,4 +1,5 @@
-using Rhino.Geometry;
+﻿using Rhino.Geometry;
+using System;
 
 namespace Bowerbird.Curvature
 {
@@ -44,49 +45,79 @@ namespace Bowerbird.Curvature
             _x3 = new Vector3d(_xMin, _yMax, 1);
         }
 
-        private static BrepFace PickOppositeFace(BrepFace current, BrepEdge edge)
-        {
-            var adjacentFaces = edge.AdjacentFaces();
-
-            if (adjacentFaces.Length < 2)
-                return null;
-
-            var index = adjacentFaces[0] == current.FaceIndex ? adjacentFaces[1] : adjacentFaces[0];
-
-            return edge.Brep.Faces[index];
-        }
-
         private void SetAdjacentFace(Vector2d uv)
         {
             AdjacentFace = null;
 
             var location = _face.PointAt(uv.X, uv.Y);
+            var uvLocation = new Point3d(uv.X, uv.Y, 0);
+            var boundingTrim = default(BrepTrim);
 
-            var adjacentEdges = _face.AdjacentEdges();
-
-            var minDistance = double.PositiveInfinity;
-            var minEdge = default(BrepEdge);
-            var minT = default(double);
-
-            foreach (var edgeIndex in adjacentEdges)
             {
-                var edge = _face.Brep.Edges[edgeIndex];
+                var trims = _face.OuterLoop.Trims;
 
-                if (!edge.ClosestPoint(location, out var t))
-                    continue;
+                var minDistance = double.PositiveInfinity;
+                var minT = default(double);
 
-                var distance = edge.PointAt(t).DistanceTo(location);
+                foreach (var trim in trims)
+                {
+                    if (!trim.ClosestPoint(uvLocation, out var t))
+                        continue;
 
-                if (distance >= minDistance)
-                    continue;
+                    var distance = trim.PointAt(t).DistanceTo(uvLocation);
 
-                minEdge = edge;
-                minDistance = distance;
-                minT = t;
+                    if (distance >= minDistance)
+                        continue;
+
+                    boundingTrim = trim;
+                    minDistance = distance;
+                    minT = t;
+                }
+
+                AdjacentTangent = boundingTrim.TangentAt(minT);
             }
 
-            AdjacentFace = PickOppositeFace(_face, minEdge);
-            AdjacentTangent = minEdge.TangentAt(minT);
+            var adjacentTrims = boundingTrim.Edge.TrimIndices();
+
+            if (adjacentTrims.Length > 1)
+            {
+                var adjacentTrimIndex = adjacentTrims[0] == boundingTrim.TrimIndex ? adjacentTrims[1] : adjacentTrims[0];
+                var adjacentTrim = _face.Brep.Trims[adjacentTrimIndex];
+
+                // Check for loop on same face
+                if (adjacentTrim.Face.FaceIndex == boundingTrim.Face.FaceIndex)
+                {
+                    var side = _face.ClosestSide(uv.X, uv.Y);
+
+                    if (side == IsoStatus.East || side == IsoStatus.West)
+                    {
+                        var u = uv.X == _xMin ? _xMax : _xMin;
+                        var v = uv.Y;
+
+                        AdjacentUV = new Vector2d(u, v);
+                    }
+                    else if (side == IsoStatus.North || side == IsoStatus.South)
+                    {
+                        var u = uv.X;
+                        var v = uv.Y == _yMin ? _yMax : _yMin;
+
+                        AdjacentUV = new Vector2d(u, v);
+                    }
+                }
+                else
+                {
+                    if (!adjacentTrim.ClosestPoint(uvLocation, out var t))
+                        throw new Exception("Projection failed");
+
+                    var adjacentUV = adjacentTrim.PointAt(t);
+
+                    AdjacentUV = new Vector2d(adjacentUV.X, adjacentUV.Y);
+                    AdjacentFace = adjacentTrim.Face;
+                }
+
+                AdjacentFace = adjacentTrim.Face;
+            }
+
         }
 
         public static UntrimmedBoundary Create(BrepFace face)
