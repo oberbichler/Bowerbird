@@ -40,7 +40,7 @@ Grasshopper Group: https://www.grasshopper3d.com/group/bowerbird
 
 - Generate **radial waffle** models with slits from freeform volumes.
 
-  ![Radial](https://raw.githubusercontent.com/oberbichler/Bowerbird/master/docs/images/Example_BBLayer.png?sanitize=true&max-age=0)
+  ![Radial](https://raw.githubusercontent.com/oberbichler/Bowerbird/master/docs/images/Example_BBRadial.png?sanitize=true&max-age=0)
 
 - Generate **layer** models with automatic overlap from freeform volumes.
 
