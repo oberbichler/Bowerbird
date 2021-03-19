@@ -1,4 +1,4 @@
-﻿using Rhino.Geometry;
+using Rhino.Geometry;
 using System.Diagnostics;
 using static System.Math;
 
@@ -45,8 +45,8 @@ namespace Bowerbird.Curvature
                 if (det < 0)
                     return false;
 
-                K1 = 0.5 * (K11 + K22 - Sqrt(det));
-                K2 = 0.5 * (K11 + K22 + Sqrt(det));
+                K1 = 0.5 * (K11 + K22 + Sqrt(det));
+                K2 = 0.5 * (K11 + K22 - Sqrt(det));
             }
 
             D1 = K12 * A1 + (K1 - K11) * A2;
