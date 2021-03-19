@@ -49,7 +49,7 @@ Grasshopper Group: https://www.grasshopper3d.com/group/bowerbird
 - Generate **generic slice** models with slits from freeform volumes.
   ![Slice](https://raw.githubusercontent.com/oberbichler/Bowerbird/master/docs/images/Example_BBSection.png?sanitize=true&max-age=0)
 
-- Add labels with a CNC conform **single line font**.
+- Add labels with a CNC conform **single line fonts**.
 
   ![Text](https://raw.githubusercontent.com/oberbichler/Bowerbird/master/docs/images/Example_BBText.png?sanitize=true&max-age=0)
 
