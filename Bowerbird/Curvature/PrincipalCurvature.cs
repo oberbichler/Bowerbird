@@ -224,8 +224,8 @@ namespace Bowerbird.Curvature
 
         public Vector3d D2;
 
-        public Vector3d U1 => new Vector3d(K12, K1 - K11, 0);
+        public Vector3d U1;
 
-        public Vector3d U2 => new Vector3d(K2 - K22, K21, 0);
+        public Vector3d U2;
     }
 }
