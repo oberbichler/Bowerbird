@@ -24,7 +24,7 @@ Grasshopper Group: https://www.grasshopper3d.com/group/bowerbird
 
 - Find **principal curvature paths** on freeform surfaces.
 
-  ![Geodesic Torsion](https://raw.githubusercontent.com/oberbichler/Bowerbird/master/docs/normal-curvature.png?sanitize=true&max-age=0)
+  ![Geodesic Torsion](https://raw.githubusercontent.com/oberbichler/Bowerbird/master/docs/geodesic-torsion.png?sanitize=true&max-age=0)
 
 - **Measure normal curvature, geodesic curvature and geodesic torsion** on freeform surfaces.
 
