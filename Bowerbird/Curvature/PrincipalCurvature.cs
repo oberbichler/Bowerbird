@@ -39,25 +39,54 @@ namespace Bowerbird.Curvature
                 K22 = (G11 * H22 - G12 * H12) / det;
             }
 
+            if (K12 * K21 < 1e-10)
+            {
+                K1 = K11;
+                K2 = K22;
+
+                var l1 = A1.Length;
+                var l2 = A2.Length;
+
+                Debug.Assert(l1 > 0);
+                Debug.Assert(l2 > 0);
+
+                D1 = A1 / l1;
+                D2 = A2 / l2;
+
+                U1 = new Vector3d(1 / l1, 0, 0);
+                U2 = new Vector3d(0, 1 / l2, 0);
+            }
+            else
             {
                 var det = 4 * K12 * K21 + Pow(K11 - K22, 2);
 
                 if (det < 0)
                     return false;
 
-                K1 = 0.5 * (K11 + K22 - Sqrt(det));
-                K2 = 0.5 * (K11 + K22 + Sqrt(det));
+                K1 = 0.5 * (K11 + K22 + Sqrt(det));
+                K2 = 0.5 * (K11 + K22 - Sqrt(det));
+
+                D1 = K12 * A1 + (K1 - K11) * A2;
+                D2 = (K2 - K22) * A1 + K21 * A2;
+
+                var l1 = D1.Length;
+                var l2 = D2.Length;
+
+                Debug.Assert(l1 > 0);
+                Debug.Assert(l2 > 0);
+
+                D1 /= l1;
+                D2 /= l2;
+
+                U1 = new Vector3d(K12 / l1, (K1 - K11) / l1, 0);
+                U2 = new Vector3d((K2 - K22) / l2, K21 / l2, 0);
             }
 
-            D1 = K12 * A1 + (K1 - K11) * A2;
-            D1 /= D1.Length;
+            Debug.Assert(D1.IsValid && !D1.IsZero);
+            Debug.Assert(D2.IsValid && !D2.IsZero);
 
-            Debug.Assert(D1.IsValid);
-
-            D2 = (K2 - K22) * A1 + K21 * A2;
-            D2 /= D2.Length;
-
-            Debug.Assert(D1.IsValid);
+            Debug.Assert(U1.IsValid && !U1.IsZero);
+            Debug.Assert(U2.IsValid && !U2.IsZero);
 
             return true;
         }
@@ -224,8 +253,8 @@ namespace Bowerbird.Curvature
 
         public Vector3d D2;
 
-        public Vector3d U1 => new Vector3d(K12, K1 - K11, 0);
+        public Vector3d U1;
 
-        public Vector3d U2 => new Vector3d(K2 - K22, K21, 0);
+        public Vector3d U2;
     }
 }
