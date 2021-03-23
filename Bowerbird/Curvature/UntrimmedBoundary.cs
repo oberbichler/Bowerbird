@@ -1,5 +1,6 @@
-using Rhino.Geometry;
+﻿using Rhino.Geometry;
 using System;
+using System.Diagnostics;
 
 namespace Bowerbird.Curvature
 {
@@ -163,29 +164,25 @@ namespace Bowerbird.Curvature
                     case 14:
                         b.X = -(p.Z + p.Y * _yMin) / p.X;
                         b.Y = _yMin;
-                        SetAdjacentFace(b);
-                        return true;
+                        break;
                     case 4:
                     case 12:
                     case 13:
                         b.X = _xMax;
                         b.Y = -(p.Z + p.X * _xMax) / p.Y;
-                        SetAdjacentFace(b);
-                        return true;
+                        break;
                     case 8:
                     case 9:
                     case 11:
                         b.X = -(p.Z + p.Y * _yMax) / p.X;
                         b.Y = _yMax;
-                        SetAdjacentFace(b);
-                        return true;
+                        break;
                     case 1:
                     case 3:
                     case 7:
                         b.X = _xMin;
                         b.Y = -(p.Z + p.X * _xMin) / p.Y;
-                        SetAdjacentFace(b);
-                        return true;
+                        break;
                 }
             }
             else
@@ -197,33 +194,30 @@ namespace Bowerbird.Curvature
                     case 13:
                         b.X = -(p.Z + p.Y * _yMin) / p.X;
                         b.Y = _yMin;
-                        SetAdjacentFace(b);
-                        return true;
+                        break;
                     case 2:
                     case 3:
                     case 11:
                         b.X = _xMax;
                         b.Y = -(p.Z + p.X * _xMax) / p.Y;
-                        SetAdjacentFace(b);
-                        return true;
+                        break;
                     case 4:
                     case 6:
                     case 7:
                         b.X = -(p.Z + p.Y * _yMax) / p.X;
                         b.Y = _yMax;
-                        SetAdjacentFace(b);
-                        return true;
+                        break;
                     case 8:
                     case 12:
                     case 14:
                         b.X = _xMin;
                         b.Y = -(p.Z + p.X * _xMin) / p.Y;
-                        SetAdjacentFace(b);
-                        return true;
+                        break;
                 }
             }
 
-            return false; // never reached
+            SetAdjacentFace(b);
+            return true;
         }
     }
 }
