@@ -20,7 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Grasshopper" Version="6.32.20340.21001" ExcludeAssets="runtime" />
+    <PackageReference Include="Grasshopper" Version="6.29.20238.11501" ExcludeAssets="runtime" />
   </ItemGroup>
 
   <ItemGroup>
