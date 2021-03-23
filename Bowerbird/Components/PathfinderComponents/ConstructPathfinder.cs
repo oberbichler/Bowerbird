@@ -160,7 +160,10 @@ namespace Bowerbird.Components.PathfinderComponents
                 {
                     var curve = new PolylineCurve(pathfinder.Parameters);
 
-                    curves.Add(CurveOnSurface.Create(pathfinder.Face.UnderlyingSurface(), curve));
+                    var curveOnSurface = CurveOnSurface.Create(pathfinder.Face.UnderlyingSurface(), curve);
+
+                    if (curveOnSurface != null)
+                        curves.Add(curveOnSurface);
                 }
             }
 
@@ -170,7 +173,10 @@ namespace Bowerbird.Components.PathfinderComponents
                 {
                     var curve = new PolylineCurve(pathfinder.Parameters);
 
-                    curves.Add(CurveOnSurface.Create(pathfinder.Face.UnderlyingSurface(), curve));
+                    var curveOnSurface = CurveOnSurface.Create(pathfinder.Face.UnderlyingSurface(), curve);
+
+                    if (curveOnSurface != null)
+                        curves.Add(curveOnSurface);
                 }
             }
 

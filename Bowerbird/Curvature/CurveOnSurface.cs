@@ -13,6 +13,8 @@ namespace Bowerbird.Curvature
 
         public static CurveOnSurface Create(Surface surface, Curve curve)
         {
+            if (!surface.IsValid || !curve.IsValid)
+                return null;
             return new CurveOnSurface(surface, curve);
         }
 

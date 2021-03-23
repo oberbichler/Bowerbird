@@ -1,5 +1,6 @@
 ﻿using Rhino.Geometry;
 using System;
+using System.Diagnostics;
 
 namespace Bowerbird.Curvature
 {
@@ -66,7 +67,10 @@ namespace Bowerbird.Curvature
 
                     var distance = trim.PointAt(t).DistanceTo(uvLocation);
 
-                    if (distance >= minDistance)
+                    if (distance > minDistance)
+                        continue;
+
+                    if (distance == minDistance && trim.Edge.TrimCount < boundingTrim.Edge.TrimCount)
                         continue;
 
                     boundingTrim = trim;
@@ -87,22 +91,12 @@ namespace Bowerbird.Curvature
                 // Check for loop on same face
                 if (adjacentTrim.Face.FaceIndex == boundingTrim.Face.FaceIndex)
                 {
-                    var side = _face.ClosestSide(uv.X, uv.Y);
+                    var mid = boundingTrim.PointAt(boundingTrim.Domain.ParameterAt(0.5));
 
-                    if (side == IsoStatus.East || side == IsoStatus.West)
-                    {
-                        var u = uv.X == _xMin ? _xMax : _xMin;
-                        var v = uv.Y;
+                    var u = mid.X == _xMin ? _xMax : mid.X == _xMax ? _xMin : uv.X;
+                    var v = mid.Y == _yMin ? _yMax : mid.Y == _yMax ? _yMin : uv.Y;
 
-                        AdjacentUV = new Vector2d(u, v);
-                    }
-                    else if (side == IsoStatus.North || side == IsoStatus.South)
-                    {
-                        var u = uv.X;
-                        var v = uv.Y == _yMin ? _yMax : _yMin;
-
-                        AdjacentUV = new Vector2d(u, v);
-                    }
+                    AdjacentUV = new Vector2d(u, v);
                 }
                 else
                 {
@@ -112,12 +106,12 @@ namespace Bowerbird.Curvature
                     var adjacentUV = adjacentTrim.PointAt(t);
 
                     AdjacentUV = new Vector2d(adjacentUV.X, adjacentUV.Y);
-                    AdjacentFace = adjacentTrim.Face;
                 }
 
                 AdjacentFace = adjacentTrim.Face;
             }
 
+            Debug.Assert(AdjacentFace == null || AdjacentFace.PointAt(AdjacentUV.X, AdjacentUV.Y).DistanceTo(location) < 1e-6);
         }
 
         public static UntrimmedBoundary Create(BrepFace face)
@@ -170,29 +164,25 @@ namespace Bowerbird.Curvature
                     case 14:
                         b.X = -(p.Z + p.Y * _yMin) / p.X;
                         b.Y = _yMin;
-                        SetAdjacentFace(b);
-                        return true;
+                        break;
                     case 4:
                     case 12:
                     case 13:
                         b.X = _xMax;
                         b.Y = -(p.Z + p.X * _xMax) / p.Y;
-                        SetAdjacentFace(b);
-                        return true;
+                        break;
                     case 8:
                     case 9:
                     case 11:
                         b.X = -(p.Z + p.Y * _yMax) / p.X;
                         b.Y = _yMax;
-                        SetAdjacentFace(b);
-                        return true;
+                        break;
                     case 1:
                     case 3:
                     case 7:
                         b.X = _xMin;
                         b.Y = -(p.Z + p.X * _xMin) / p.Y;
-                        SetAdjacentFace(b);
-                        return true;
+                        break;
                 }
             }
             else
@@ -204,33 +194,30 @@ namespace Bowerbird.Curvature
                     case 13:
                         b.X = -(p.Z + p.Y * _yMin) / p.X;
                         b.Y = _yMin;
-                        SetAdjacentFace(b);
-                        return true;
+                        break;
                     case 2:
                     case 3:
                     case 11:
                         b.X = _xMax;
                         b.Y = -(p.Z + p.X * _xMax) / p.Y;
-                        SetAdjacentFace(b);
-                        return true;
+                        break;
                     case 4:
                     case 6:
                     case 7:
                         b.X = -(p.Z + p.Y * _yMax) / p.X;
                         b.Y = _yMax;
-                        SetAdjacentFace(b);
-                        return true;
+                        break;
                     case 8:
                     case 12:
                     case 14:
                         b.X = _xMin;
                         b.Y = -(p.Z + p.X * _xMin) / p.Y;
-                        SetAdjacentFace(b);
-                        return true;
+                        break;
                 }
             }
 
-            return false; // never reached
+            SetAdjacentFace(b);
+            return true;
         }
     }
 }
