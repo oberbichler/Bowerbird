@@ -1,4 +1,4 @@
-﻿using Rhino.Geometry;
+using Rhino.Geometry;
 using System;
 
 namespace Bowerbird.Curvature
@@ -66,7 +66,10 @@ namespace Bowerbird.Curvature
 
                     var distance = trim.PointAt(t).DistanceTo(uvLocation);
 
-                    if (distance >= minDistance)
+                    if (distance > minDistance)
+                        continue;
+
+                    if (distance == minDistance && trim.Edge.TrimCount < boundingTrim.Edge.TrimCount)
                         continue;
 
                     boundingTrim = trim;
