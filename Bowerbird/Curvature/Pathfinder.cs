@@ -96,6 +96,9 @@ namespace Bowerbird.Curvature
 
                     AddTask(tasks, adjacentFace, boundary.AdjacentUV, endLocation, endDirection);
 
+                    if (points.Count == 1)
+                        AddTask(tasks, adjacentFace, boundary.AdjacentUV, endLocation, -endDirection);
+
                     breakpoints.Add(endLocation);
                 }
 
@@ -110,6 +113,9 @@ namespace Bowerbird.Curvature
                     var adjacentFace = boundary.AdjacentFace;
 
                     AddTask(tasks, adjacentFace, boundary.AdjacentUV, endLocation, endDirection);
+
+                    if (points.Count == 1)
+                        AddTask(tasks, adjacentFace, boundary.AdjacentUV, endLocation, -endDirection);
 
                     breakpoints.Add(endLocation);
                 }
