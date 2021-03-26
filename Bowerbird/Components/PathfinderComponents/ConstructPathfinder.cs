@@ -24,7 +24,7 @@ namespace Bowerbird.Components.PathfinderComponents
             pManager.AddVectorParameter("Point", "P", "", GH_ParamAccess.item);
             pManager.AddNumberParameter("Step Size", "H", "", GH_ParamAccess.item, 0.1);
             pManager.AddIntegerParameter("Maximum number of Points", "N", "", GH_ParamAccess.item, 10000);
-            pManager.AddIntegerParameter("Loop Tolerance", "t", "", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Loop Tolerance", "t", "", GH_ParamAccess.item);
 
             pManager[5].Optional = true;
         }
