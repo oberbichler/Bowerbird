@@ -1,4 +1,4 @@
-using Rhino.Geometry;
+﻿using Rhino.Geometry;
 using System;
 using System.Diagnostics;
 
@@ -91,7 +91,7 @@ namespace Bowerbird.Curvature
                 AdjacentFace = adjacentTrim.Face;
 
                 // Check for loop on same face
-                if (adjacentTrim.Face.FaceIndex == boundingTrim.Face.FaceIndex)
+                if (AdjacentFace.FaceIndex == boundingTrim.Face.FaceIndex)
                 {
                     var mid = boundingTrim.PointAt(boundingTrim.Domain.ParameterAt(0.5));
 
@@ -102,16 +102,21 @@ namespace Bowerbird.Curvature
                 }
                 else
                 {
-                    if (!adjacentTrim.ClosestPoint(uvLocation, out var t))
+                    if (!AdjacentFace.ClosestPoint(location, out var adjacentU, out var adjacentV))
                         throw new Exception("Projection failed");
 
-                    var adjacentUV = adjacentTrim.PointAt(t);
+                    var uvLocationAdjacent = new Point3d(adjacentU, adjacentV, 0);
 
-                    AdjacentUV = new Vector2d(adjacentUV.X, adjacentUV.Y);
+                    if (!adjacentTrim.ClosestPoint(uvLocationAdjacent, out var t))
+                        throw new Exception("Projection failed");
+                    
+                    AdjacentUV = new Vector2d(adjacentU, adjacentV);
+
+                    Debug.Assert(adjacentTrim.PointAt(t).DistanceTo(new Point3d(adjacentU, adjacentV, 0)) < 1e-3);
                 }
             }
 
-            Debug.Assert(AdjacentFace == null || AdjacentFace.PointAt(AdjacentUV.X, AdjacentUV.Y).DistanceTo(location) < 1e-6);
+            Debug.Assert(AdjacentFace == null || AdjacentFace.PointAt(AdjacentUV.X, AdjacentUV.Y).DistanceTo(location) < 1e-3);
         }
 
         public static UntrimmedBoundary Create(BrepFace face)
