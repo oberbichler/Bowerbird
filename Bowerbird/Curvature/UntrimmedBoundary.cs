@@ -1,4 +1,4 @@
-﻿using Rhino.Geometry;
+using Rhino.Geometry;
 using System;
 using System.Diagnostics;
 
@@ -88,6 +88,8 @@ namespace Bowerbird.Curvature
                 var adjacentTrimIndex = adjacentTrims[0] == boundingTrim.TrimIndex ? adjacentTrims[1] : adjacentTrims[0];
                 var adjacentTrim = _face.Brep.Trims[adjacentTrimIndex];
 
+                AdjacentFace = adjacentTrim.Face;
+
                 // Check for loop on same face
                 if (adjacentTrim.Face.FaceIndex == boundingTrim.Face.FaceIndex)
                 {
@@ -107,8 +109,6 @@ namespace Bowerbird.Curvature
 
                     AdjacentUV = new Vector2d(adjacentUV.X, adjacentUV.Y);
                 }
-
-                AdjacentFace = adjacentTrim.Face;
             }
 
             Debug.Assert(AdjacentFace == null || AdjacentFace.PointAt(AdjacentUV.X, AdjacentUV.Y).DistanceTo(location) < 1e-6);
