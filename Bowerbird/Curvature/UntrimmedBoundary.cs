@@ -57,28 +57,28 @@ namespace Bowerbird.Curvature
             {
                 var trims = _face.OuterLoop.Trims;
 
-                var minDistance = double.PositiveInfinity;
-                var minT = default(double);
-
                 foreach (var trim in trims)
                 {
-                    if (!trim.ClosestPoint(uvLocation, out var t))
+                    var trimU = trim.PointAtStart.X;
+                    var trimV = trim.PointAtStart.Y;
+
+                    var isoU = trimU == trim.PointAtEnd.X;
+
+                    if (isoU ? Math.Abs(trimU - uv.X) > 1e-6 : Math.Abs(trimV - uv.Y) > 1e-6)
                         continue;
 
-                    var distance = trim.PointAt(t).DistanceTo(uvLocation);
-
-                    if (distance > minDistance)
-                        continue;
-
-                    if (distance == minDistance && trim.Edge.TrimCount < boundingTrim.Edge.TrimCount)
+                    if (boundingTrim != null && trim.Edge.TrimCount < boundingTrim.Edge.TrimCount)
                         continue;
 
                     boundingTrim = trim;
-                    minDistance = distance;
-                    minT = t;
                 }
 
-                AdjacentTangent = boundingTrim.TangentAt(minT);
+                if (!boundingTrim.ClosestPoint(uvLocation, out var t))
+                    throw new Exception("Projection failed");
+
+                AdjacentTangent = boundingTrim.TangentAt(t);
+
+                Debug.Assert(boundingTrim.PointAt(t).DistanceTo(uvLocation) < 1e-6);
             }
 
             var adjacentTrims = boundingTrim.Edge.TrimIndices();
