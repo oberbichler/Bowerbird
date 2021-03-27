@@ -20,9 +20,8 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddParameter(new PathParameter(), "Path Type", "T", "", GH_ParamAccess.item);
-            pManager.AddSurfaceParameter("Surface", "S", "", GH_ParamAccess.item);
-            pManager.AddIntegerParameter("U Count", "U", "", GH_ParamAccess.item, 10);
-            pManager.AddIntegerParameter("V Count", "V", "", GH_ParamAccess.item, 10);
+            pManager.AddBrepParameter("Surface", "S", "", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Distance", "D", "", GH_ParamAccess.item, 0.5);
             pManager.AddNumberParameter("Scale", "s", "", GH_ParamAccess.item, 0.1);
         }
 
@@ -83,49 +82,88 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
             // --- Input
 
             var path = default(Path);
-            var surface = default(Surface);
-            var uCount = default(int);
-            var vCount = default(int);
+            var brep = default(Brep);
+            var distance = default(double);
             var scale = default(double);
 
             if (!DA.GetData(0, ref path)) return;
-            if (!DA.GetData(1, ref surface)) return;
-            if (!DA.GetData(2, ref uCount)) return;
-            if (!DA.GetData(3, ref vCount)) return;
-            if (!DA.GetData(4, ref scale)) return;
+            if (!DA.GetData(1, ref brep)) return;
+            if (!DA.GetData(2, ref distance)) return;
+            if (!DA.GetData(3, ref scale)) return;
 
 
             // --- Execute
 
-            var aList = new List<Line>();
-            var bList = new List<Line>();
+            if (brep.Faces.Count != 1 && Space != SpaceTypes.XYZ)
+                throw new Exception("Multipatches only support XYZ space");
 
             var size = scale * 0.5;
 
-            for (int i = 0; i < uCount; i++)
+            var aList = new List<Line>();
+            var bList = new List<Line>();
+
+            foreach (var face in brep.Faces)
             {
-                var u = surface.Domain(0).ParameterAt(1.0 / (uCount - 1) * i);
+                face.SetDomain(0, new Interval(0, 1)).AssertTrue();
+                face.SetDomain(1, new Interval(0, 1)).AssertTrue();
 
-                for (int j = 0; j < vCount; j++)
+                var surface = face.UnderlyingSurface();
+
+                if (face.IsSurface)
                 {
-                    var v = surface.Domain(1).ParameterAt(1.0 / (vCount - 1) * j);
+                    var us = face.IsoCurve(0, face.Domain(1).ParameterAt(0.5)).DivideByLength(distance, true);
+                    var vs = face.IsoCurve(1, face.Domain(0).ParameterAt(0.5)).DivideByLength(distance, true);
 
-                    var uv = new Vector2d(u, v);
-
-                    if (!path.Directions(surface, uv, out var u1, out var u2, out var d1, out var d2))
-                        continue;
-
-                    var x = Space == SpaceTypes.UV ? new Point3d(u, v, 0) : surface.PointAt(u, v);
-
-                    if (Space == SpaceTypes.UV)
+                    foreach (var u in us)
                     {
-                        aList.Add(new Line(x - u1 * size, x + u1 * size));
-                        bList.Add(new Line(x - u2 * size, x + u2 * size));
+                        foreach (var v in vs)
+                        {
+                            var uv = new Vector2d(u, v);
+
+                            if (!path.Directions(surface, uv, out var u1, out var u2, out var d1, out var d2))
+                                continue;
+
+                            var x = Space == SpaceTypes.UV ? new Point3d(u, v, 0) : surface.PointAt(u, v);
+
+                            if (Space == SpaceTypes.UV)
+                            {
+                                aList.Add(new Line(x - u1 * size, x + u1 * size));
+                                bList.Add(new Line(x - u2 * size, x + u2 * size));
+                            }
+                            else
+                            {
+                                aList.Add(new Line(x - d1 * size, x + d1 * size));
+                                bList.Add(new Line(x - d2 * size, x + d2 * size));
+                            }
+                        }
                     }
-                    else
+                }
+                else
+                {
+                    var faceBrep = face.ToBrep();
+
+                    var parameters = MeshingParameters.QualityRenderMesh;
+                    parameters.MaximumEdgeLength = distance;
+
+                    var meshs = Mesh.CreateFromBrep(faceBrep, parameters);
+
+                    foreach (var mesh in meshs)
                     {
-                        aList.Add(new Line(x - d1 * size, x + d1 * size));
-                        bList.Add(new Line(x - d2 * size, x + d2 * size));
+                        foreach (var vertex in mesh.TopologyVertices)
+                        {
+                            if (!face.ClosestPoint(vertex, out var u, out var v))
+                                continue;
+
+                            var uv = new Vector2d(u, v);
+
+                            if (!path.Directions(surface, uv, out var _, out var _, out var d1, out var d2))
+                                continue;
+
+                            var x = surface.PointAt(u, v);
+
+                            aList.Add(new Line(x - d1 * size, x + d1 * size));
+                            bList.Add(new Line(x - d2 * size, x + d2 * size));
+                        }
                     }
                 }
             }
