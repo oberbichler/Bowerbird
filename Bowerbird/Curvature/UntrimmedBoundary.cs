@@ -62,11 +62,14 @@ namespace Bowerbird.Curvature
                     var trimU = trim.PointAtStart.X;
                     var trimV = trim.PointAtStart.Y;
 
+                    // Check if trim is u/v boundary
                     var isoU = trimU == trim.PointAtEnd.X;
 
+                    // Check if trim is active
                     if (isoU ? Math.Abs(trimU - uv.X) > 1e-6 : Math.Abs(trimV - uv.Y) > 1e-6)
                         continue;
 
+                    // Prefer trim with more adjacent trims (for corners)
                     if (boundingTrim != null && trim.Edge.TrimCount < boundingTrim.Edge.TrimCount)
                         continue;
 
