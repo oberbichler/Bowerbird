@@ -6,6 +6,7 @@ using Rhino.Geometry;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Bowerbird.Components.CurveOnSurfaceComponents
@@ -111,8 +112,12 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
 
                 if (face.IsSurface)
                 {
-                    var us = face.IsoCurve(0, face.Domain(1).ParameterAt(0.5)).DivideByLength(distance, true);
-                    var vs = face.IsoCurve(1, face.Domain(0).ParameterAt(0.5)).DivideByLength(distance, true);
+                    var us = face.IsoCurve(0, face.Domain(1).ParameterAt(0.5)).DivideByLength(distance, true).ToList();
+                    var vs = face.IsoCurve(1, face.Domain(0).ParameterAt(0.5)).DivideByLength(distance, true).ToList();
+
+                    // add last points
+                    us.Add(1);
+                    vs.Add(1);
 
                     foreach (var u in us)
                     {
