@@ -1,15 +1,18 @@
 ﻿using Bowerbird.Types;
 using GH_IO.Serialization;
 using Grasshopper.Kernel;
+using Rhino;
+using Rhino.DocObjects;
 using Rhino.Geometry;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace Bowerbird.Parameters
 {
-    internal class CurveOnSurfaceParameter : GH_Param<GH_CurveOnSurface>, IGH_PreviewObject
+    internal class CurveOnSurfaceParameter : GH_Param<GH_CurveOnSurface>, IGH_PreviewObject, IGH_BakeAwareObject
     {
         public CurveOnSurfaceParameter() : base(new GH_InstanceDescription("BB Path", "BBPath", "", "Bowerbird", "CurveOnSurface"))
         {
@@ -103,18 +106,6 @@ namespace Bowerbird.Parameters
             }
         }
 
-        // --- IGH_PreviewObject
-
-        public bool Hidden { get; set; }
-
-        public bool IsPreviewCapable => true;
-
-        public BoundingBox ClippingBox => Preview_ComputeClippingBox();
-
-        public void DrawViewportMeshes(IGH_PreviewArgs args) => Preview_DrawMeshes(args);
-
-        public void DrawViewportWires(IGH_PreviewArgs args) => Preview_DrawWires(args);
-
         public override bool Read(GH_IReader reader)
         {
             var success = base.Read(reader);
@@ -132,6 +123,41 @@ namespace Bowerbird.Parameters
                 writer.SetBoolean("Reparameterize", m_reparameterize);
 
             return success;
+        }
+
+
+        // --- IGH_PreviewObject
+
+        public bool Hidden { get; set; }
+
+        public bool IsPreviewCapable => true;
+
+        public BoundingBox ClippingBox => Preview_ComputeClippingBox();
+
+        public void DrawViewportMeshes(IGH_PreviewArgs args) => Preview_DrawMeshes(args);
+
+        public void DrawViewportWires(IGH_PreviewArgs args) => Preview_DrawWires(args);
+
+
+        // --- IGH_BakeAwareObject
+
+        public bool IsBakeCapable => true;
+
+        public void BakeGeometry(RhinoDoc doc, List<Guid> obj_ids)
+        {
+            BakeGeometry(doc, null, obj_ids);
+        }
+
+        public void BakeGeometry(RhinoDoc doc, ObjectAttributes att, List<Guid> obj_ids)
+        {
+            if (att == null)
+                att = doc.CreateDefaultAttributes();
+
+            foreach (IGH_BakeAwareData data in m_data)
+            {
+                if (data.BakeGeometry(doc, att, out var id))
+                    obj_ids.Add(id);
+            }
         }
     }
 }

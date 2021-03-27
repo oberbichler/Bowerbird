@@ -112,7 +112,7 @@ namespace Bowerbird.Curvature
 
                     if (!adjacentTrim.ClosestPoint(uvLocationAdjacent, out var t))
                         throw new Exception("Projection failed");
-                    
+
                     AdjacentUV = new Vector2d(adjacentU, adjacentV);
 
                     Debug.Assert(adjacentTrim.PointAt(t).DistanceTo(new Point3d(adjacentU, adjacentV, 0)) < 1e-3);
