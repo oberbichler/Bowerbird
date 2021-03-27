@@ -117,6 +117,10 @@ namespace Bowerbird.Curvature
                     if (points.Count == 1)
                         AddTask(tasks, adjacentFace, boundary.AdjacentUV, endLocation, -endDirection);
 
+                    // closed loop
+                    if (breakpoints[0].DistanceTo(endLocation) < loopTolerance)
+                        return new List<Pathfinder> { new Pathfinder(face, parameters, points)};
+
                     breakpoints.Add(endLocation);
                 }
 
@@ -155,11 +159,11 @@ namespace Bowerbird.Curvature
                 var endLocation = points[points.Count - 1];
                 var adjacentFace = boundary.AdjacentFace;
 
-                if (!breakpoints.Any(o => o.DistanceTo(endLocation) < loopTolerance))
-                {
-                    AddTask(tasks, adjacentFace, boundary.AdjacentUV, endLocation, endDirection);
-                    breakpoints.Add(endLocation);
-                }
+                if (breakpoints.Any(o => o.DistanceTo(endLocation) < loopTolerance))
+                    break;
+
+                AddTask(tasks, adjacentFace, boundary.AdjacentUV, endLocation, endDirection);
+                breakpoints.Add(endLocation);
 
                 maxPoints -= points.Count;
             }
