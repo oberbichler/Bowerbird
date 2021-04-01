@@ -13,23 +13,23 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
 {
     public class ConstructCurvatureFieldComponent : GH_Component
     {
-        public ConstructCurvatureFieldComponent() : base("BB Curvature Field", "Field", "Beta! Interface might change!", "Bowerbird", "Paths")
+        public ConstructCurvatureFieldComponent() : base("BB Curvature Field", "Field", "Show the direction field to a given path type. The field can be displayed in the geometry or parameter space (see context menu).", "Bowerbird", "Paths")
         {
             UpdateMessage();
         }
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            pManager.AddParameter(new PathParameter(), "Path Type", "T", "", GH_ParamAccess.item);
-            pManager.AddBrepParameter("Surface", "S", "", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Distance", "D", "", GH_ParamAccess.item, 0.5);
-            pManager.AddNumberParameter("Scale", "s", "", GH_ParamAccess.item, 0.1);
+            pManager.AddParameter(new PathParameter(), "Path Type", "T", "Path type to be displayed as a vector field.", GH_ParamAccess.item);
+            pManager.AddBrepParameter("Surface", "S", "Surface or Brep for which the field is to be displayed.", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Distance", "D", "Approximate distance between the evaluation points.", GH_ParamAccess.item, 0.5);
+            pManager.AddNumberParameter("Scale", "s", "Size of the cross axes.", GH_ParamAccess.item, 0.1);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddLineParameter("A", "A", "", GH_ParamAccess.list);
-            pManager.AddLineParameter("B", "B", "", GH_ParamAccess.list);
+            pManager.AddLineParameter("First Directions", "A", "List of the first directions.", GH_ParamAccess.list);
+            pManager.AddLineParameter("Second Directions", "B", "List of the second directions.", GH_ParamAccess.list);
         }
 
         public enum SpaceTypes

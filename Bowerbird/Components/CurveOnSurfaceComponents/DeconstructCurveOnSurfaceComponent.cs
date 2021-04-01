@@ -8,20 +8,20 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
 {
     public class DeconstructCurveOnSurfaceComponent : GH_Component
     {
-        public DeconstructCurveOnSurfaceComponent() : base("BB Deconstruct CurveOnSurface", "Deconstruct", "Beta! Interface might change!", "Bowerbird", "Curve on Surface")
+        public DeconstructCurveOnSurfaceComponent() : base("BB Deconstruct CurveOnSurface", "Deconstruct", "Deconstruct an embedded curve into its components.", "Bowerbird", "Curve on Surface")
         {
         }
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            pManager.AddParameter(new CurveOnSurfaceParameter(), "Curve on Surface", "C", "", GH_ParamAccess.item);
+            pManager.AddParameter(new CurveOnSurfaceParameter(), "Curve on Surface", "C", "Embeded curve to deconstruct", GH_ParamAccess.item);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddSurfaceParameter("Surface", "S", "", GH_ParamAccess.item);
-            pManager.AddCurveParameter("Curve", "C", "", GH_ParamAccess.item);
-            pManager.AddCurveParameter("Approximation", "A", "", GH_ParamAccess.item);
+            pManager.AddSurfaceParameter("Surface", "S", "Surface on which the curve is embedded", GH_ParamAccess.item);
+            pManager.AddCurveParameter("Curve", "C", "Parameter curve", GH_ParamAccess.item);
+            pManager.AddCurveParameter("Approximation", "A", "Approximation of the embedded curve as ordinary Rhino curve", GH_ParamAccess.item);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)
