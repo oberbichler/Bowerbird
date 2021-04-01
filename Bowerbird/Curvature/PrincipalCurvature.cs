@@ -44,17 +44,20 @@ namespace Bowerbird.Curvature
                 K1 = K11;
                 K2 = K22;
 
-                var l1 = A1.Length;
-                var l2 = A2.Length;
+                var l1 = Sqrt(G11);
+                var l2 = Sqrt(G22);
 
-                Debug.Assert(l1 > 0);
-                Debug.Assert(l2 > 0);
+                Debug.Assert(Abs(l1 - A1.Length) < 1e-8);
+                Debug.Assert(Abs(l2 - A2.Length) < 1e-8);
 
-                D1 = A1 / l1;
-                D2 = A2 / l2;
+                var du1 = 1 / l1;
+                var dv2 = 1 / l2;
 
-                U1 = new Vector3d(1 / l1, 0, 0);
-                U2 = new Vector3d(0, 1 / l2, 0);
+                U1 = new Vector3d(du1, 0, 0);
+                U2 = new Vector3d(0, dv2, 0);
+
+                D1 = du1 * A1;
+                D2 = dv2 * A2;
             }
             else
             {
@@ -63,23 +66,40 @@ namespace Bowerbird.Curvature
                 if (det < 0)
                     return false;
 
+                // first direction
                 K1 = 0.5 * (K11 + K22 + Sqrt(det));
+
+                var du1 = K12;
+                var dv1 = K1 - K11;
+
+                var l1 = Sqrt(G11 * du1 * du1 + 2 * G12 * du1 * dv1 + G22 * dv1 * dv1);
+
+                Debug.Assert(Abs(l1 - (K12 * A1 + (K1 - K11) * A2).Length) < 1e-8);
+
+                du1 /= l1;
+                dv1 /= l1;
+
+                U1 = new Vector3d(du1, dv1, 0);
+
+                D1 = du1 * A1 + dv1 * A2;
+
+                // second direction
+
                 K2 = 0.5 * (K11 + K22 - Sqrt(det));
 
-                D1 = K12 * A1 + (K1 - K11) * A2;
-                D2 = (K2 - K22) * A1 + K21 * A2;
+                var du2 = K2 - K22;
+                var dv2 = K21;
 
-                var l1 = D1.Length;
-                var l2 = D2.Length;
+                var l2 = Sqrt(G11 * du2 * du2 + 2 * G12 * du2 * dv2 + G22 * dv2 * dv2);
 
-                Debug.Assert(l1 > 0);
-                Debug.Assert(l2 > 0);
+                Debug.Assert(Abs(l2 - ((K2 - K22) * A1 + K21 * A2).Length) < 1e-8);
 
-                D1 /= l1;
-                D2 /= l2;
+                du2 /= l2;
+                dv2 /= l2;
+                
+                U2 = new Vector3d(du2, dv2, 0);
 
-                U1 = new Vector3d(K12 / l1, (K1 - K11) / l1, 0);
-                U2 = new Vector3d((K2 - K22) / l2, K21 / l2, 0);
+                D2 = du2 * A1 + dv2 * A2;
             }
 
             Debug.Assert(D1.IsValid && !D1.IsZero);
