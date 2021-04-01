@@ -3,6 +3,7 @@ using Grasshopper;
 using Grasshopper.Kernel;
 using Grasshopper.Kernel.Parameters;
 using Grasshopper.Kernel.Special;
+using Rhino.Geometry;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -149,6 +150,11 @@ namespace Bowerbird
             }
 
             DA.SetDataTree(index, tree);
+        }
+
+        public static Vector3d Normalized(this Vector3d v)
+        {
+            return v / v.Length;
         }
     }
 }
