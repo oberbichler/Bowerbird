@@ -9,21 +9,21 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
 {
     public class CurvatureComponent : GH_Component
     {
-        public CurvatureComponent() : base("BB Curvature CurveOnSurface", "κ", "Beta! Interface might change!", "Bowerbird", "Curve on Surface")
+        public CurvatureComponent() : base("BB Curvature CurveOnSurface", "κ", "Evaluate the curvature of an embedded curve at a specified parameter.", "Bowerbird", "Curve on Surface")
         {
         }
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            pManager.AddParameter(new CurveOnSurfaceParameter(), "Curve on Surface", "C", "", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Parameter", "t", "", GH_ParamAccess.item);
+            pManager.AddParameter(new CurveOnSurfaceParameter(), "Curve on Surface", "C", "Embedded curve to evaluate", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Parameter", "t", "Parameter on curve domain to evaluate", GH_ParamAccess.item);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddPointParameter("Point", "P", "", GH_ParamAccess.item);
-            pManager.AddVectorParameter("Curvature", "K", "", GH_ParamAccess.item);
-            pManager.AddCircleParameter("Osculating Circle", "C", "", GH_ParamAccess.item);
+            pManager.AddPointParameter("Point", "P", "Point on curve at {t}", GH_ParamAccess.item);
+            pManager.AddVectorParameter("Curvature", "K", "Curvature vector at {t}", GH_ParamAccess.item);
+            pManager.AddCircleParameter("Osculating Circle", "C", "Curvature circle at {t}", GH_ParamAccess.item);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)

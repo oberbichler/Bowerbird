@@ -12,26 +12,26 @@ namespace Bowerbird.Components.PathfinderComponents
 {
     public class ConstructPathfinder : GH_Component
     {
-        public ConstructPathfinder() : base("BB Pathfinder", "BBPathfinder", "Beta! Interface might change!", "Bowerbird", "Paths")
+        public ConstructPathfinder() : base("BB Pathfinder", "BBPathfinder", "Find a specified path type on a surface or Brep.", "Bowerbird", "Paths")
         {
             UpdateMessage();
         }
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            pManager.AddParameter(new PathParameter(), "Path Type", "T", "", GH_ParamAccess.item);
-            pManager.AddBrepParameter("Surface", "S", "", GH_ParamAccess.item);
-            pManager.AddVectorParameter("Point", "P", "", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Step Size", "H", "", GH_ParamAccess.item, 0.1);
-            pManager.AddIntegerParameter("Maximum number of Points", "N", "", GH_ParamAccess.item, 10000);
-            pManager.AddNumberParameter("Loop Tolerance", "t", "", GH_ParamAccess.item);
+            pManager.AddParameter(new PathParameter(), "Path Type", "T", "Path type to search", GH_ParamAccess.item);
+            pManager.AddBrepParameter("Surface", "S", "Surface or Brep to evaluate", GH_ParamAccess.item);
+            pManager.AddVectorParameter("Start Point", "P", "Start point for the search. Can be specified in geometry or parameter space (see context menu of the component).", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Step Size", "H", "Step size for the search (too high: large error, too low: no progress and therefore no result)", GH_ParamAccess.item, 0.1);
+            pManager.AddIntegerParameter("Maximum number of Points", "N", "Limit of points for the search (break criterion)", GH_ParamAccess.item, 10000);
+            pManager.AddNumberParameter("Loop Tolerance", "t", "Tolerance for detecting closed loops (break criterion)", GH_ParamAccess.item);
 
             pManager[5].Optional = true;
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddParameter(new CurveOnSurfaceParameter(), "Paths", "P", "", GH_ParamAccess.list);
+            pManager.AddParameter(new CurveOnSurfaceParameter(), "Paths", "P", "Results as embedded curves (CurveOnSurface)", GH_ParamAccess.list);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)

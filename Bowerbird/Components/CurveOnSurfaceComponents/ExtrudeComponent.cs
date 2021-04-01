@@ -12,20 +12,20 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
 {
     public class ExtrudeComponent : GH_Component
     {
-        public ExtrudeComponent() : base("BB Extrude CurveOnSurface", "Extrude", "Beta! Interface might change!", "Bowerbird", "Curve on Surface")
+        public ExtrudeComponent() : base("BB Extrude CurveOnSurface", "Extrude", "Extrude an embedded curve in direction of its normal vector.", "Bowerbird", "Curve on Surface")
         {
         }
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            pManager.AddParameter(new CurveOnSurfaceParameter(), "Curve on Surface", "C", "", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Thickness", "t", "", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Offset", "o", "", GH_ParamAccess.item, 0.0);
+            pManager.AddParameter(new CurveOnSurfaceParameter(), "Curve on Surface", "C", "Embeded curve to extrude", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Thickness", "t", "Thickness of the extrusion (t/2 in both directions)", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Offset", "o", "Offset of the center line in direction of the normal vector", GH_ParamAccess.item, 0.0);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddMeshParameter("Mesh", "M", "", GH_ParamAccess.item);
+            pManager.AddMeshParameter("Mesh", "M", "Extrusion result", GH_ParamAccess.item);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)

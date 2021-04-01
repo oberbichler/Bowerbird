@@ -10,18 +10,18 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
 {
     public class IntegrateComponent : GH_Component
     {
-        public IntegrateComponent() : base("BB Integrate CurveOnSurface", "BBIntegrate", "Beta! Interface might change!", "Bowerbird", "Curve on Surface")
+        public IntegrateComponent() : base("BB Integrate CurveOnSurface", "BBIntegrate", "Integrate the curvature of an embedded curve over a specified domain.", "Bowerbird", "Curve on Surface")
         {
             ValueType = ValueTypes.NormalCurvature;
         }
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            pManager.AddParameter(new CurveOnSurfaceParameter(), "Curve on Surface", "C", "", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Start Parameter", "A", "", GH_ParamAccess.item);
-            pManager.AddNumberParameter("End Parameter", "B", "", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Tolerance", "T", "", GH_ParamAccess.item, 1e-6);
-            pManager.AddIntegerParameter("Maximum Iterations", "N", "", GH_ParamAccess.item, 1000);
+            pManager.AddParameter(new CurveOnSurfaceParameter(), "Curve on Surface", "C", "Embeded curve to evaluate", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Start Parameter", "A", "Start of the integration domain (default: start of the curve domain)", GH_ParamAccess.item);
+            pManager.AddNumberParameter("End Parameter", "B", "End of the integration domain (default: end of the curve domain)", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Tolerance", "T", "Tolerance for the adaptive numerical integration", GH_ParamAccess.item, 1e-6);
+            pManager.AddIntegerParameter("Maximum Iterations", "N", "Iteration limit for the numerical integration", GH_ParamAccess.item, 1000);
 
             pManager[1].Optional = true;
             pManager[2].Optional = true;
@@ -29,8 +29,8 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddNumberParameter("Integral", "V", "", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Integral of squared", "V2", "", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Integral", "V", "Integral of the value selected in the context menu", GH_ParamAccess.item);
+            pManager.AddNumberParameter("Integral of squared", "V2", "Integral of the squared value selected in the context menu", GH_ParamAccess.item);
         }
 
         Func<double, double> Evaluate(IOrientableCurve curve, bool squared)

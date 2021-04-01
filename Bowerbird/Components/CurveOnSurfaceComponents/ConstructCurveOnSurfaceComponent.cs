@@ -11,21 +11,21 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
 {
     public class ConstructCurveOnSurfaceComponent : GH_Component
     {
-        public ConstructCurveOnSurfaceComponent() : base("BB Construct CurveOnSurface", "BBCrvOnSrf", "Beta! Interface might change!", "Bowerbird", "Curve on Surface")
+        public ConstructCurveOnSurfaceComponent() : base("BB Construct CurveOnSurface", "CrvOnSrf", "Embed a curve on a surface.", "Bowerbird", "Curve on Surface")
         {
             UpdateMessage();
         }
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
-            pManager.AddSurfaceParameter("Surface", "S", "", GH_ParamAccess.item);
-            pManager.AddCurveParameter("Curve", "C", "", GH_ParamAccess.item);
+            pManager.AddSurfaceParameter("Surface", "S", "Surface on which the curve is to be embedded", GH_ParamAccess.item);
+            pManager.AddCurveParameter("Curve", "C", "Curve which is to be embedded. The curve can be defined in geometry or parameter space (see context menu).", GH_ParamAccess.item);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddParameter(new CurveOnSurfaceParameter(), "Curve on Surface", "C", "", GH_ParamAccess.item);
-            pManager.AddCurveParameter("Approximation", "A", "", GH_ParamAccess.item);
+            pManager.AddParameter(new CurveOnSurfaceParameter(), "Curve on Surface", "C", "Embedded curve", GH_ParamAccess.item);
+            pManager.AddCurveParameter("Approximation", "A", "Approximation of the embedded curve as ordinary Rhino curve", GH_ParamAccess.item);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)
