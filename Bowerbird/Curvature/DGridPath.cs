@@ -88,12 +88,12 @@ namespace Bowerbird.Curvature
 
             var angle = Atan(Sqrt(t));
 
-            var cosAlpha = Cos(angle);
-            var sinAlpha = Sin(angle);
-
             Vector3d u1;
             Vector3d dir1;
             {
+                var cosAlpha = Cos(angle);
+                var sinAlpha = Sin(angle);
+
                 var du = ps.A2 * ps.D2 * cosAlpha - ps.A2 * ps.D1 * sinAlpha;
                 var dv = ps.A1 * ps.D1 * sinAlpha - ps.A1 * ps.D2 * cosAlpha;
 
@@ -113,8 +113,11 @@ namespace Bowerbird.Curvature
             Vector3d u2;
             Vector3d dir2;
             {
-                var du = ps.A2 * ps.D2 * cosAlpha + ps.A2 * ps.D1 * sinAlpha;
-                var dv = -ps.A1 * ps.D1 * sinAlpha - ps.A1 * ps.D2 * cosAlpha;
+                var cosAlpha = Cos(-angle);
+                var sinAlpha = Sin(-angle);
+
+                var du = ps.A2 * ps.D2 * cosAlpha - ps.A2 * ps.D1 * sinAlpha;
+                var dv = ps.A1 * ps.D1 * sinAlpha - ps.A1 * ps.D2 * cosAlpha;
 
                 var dir = du * ps.A1 + dv * ps.A2;
 
@@ -156,9 +159,6 @@ namespace Bowerbird.Curvature
 
             var angle = Atan(Sqrt(ps.S2 / ps.S1));
 
-            d1 = ps.D1;
-            d2 = ps.D2;
-
             {
                 var cosAlpha = Cos(angle);
                 var sinAlpha = Sin(angle);
@@ -166,7 +166,17 @@ namespace Bowerbird.Curvature
                 var du = ps.A2 * ps.D2 * cosAlpha - ps.A2 * ps.D1 * sinAlpha;
                 var dv = ps.A1 * ps.D1 * sinAlpha - ps.A1 * ps.D2 * cosAlpha;
 
+                var dir = du * ps.A1 + dv * ps.A2;
+
+                var l = dir.Length;
+                du /= l;
+                dv /= l;
+
                 u1 = new Vector3d(du, dv, 0);
+                d1 = du * ps.A1 + dv * ps.A2;
+
+                Debug.Assert(u1.IsValid && !u1.IsZero);
+                Debug.Assert(d1.IsValid && !d1.IsZero);
             }
 
             {
@@ -176,11 +186,18 @@ namespace Bowerbird.Curvature
                 var du = ps.A2 * ps.D2 * cosAlpha - ps.A2 * ps.D1 * sinAlpha;
                 var dv = ps.A1 * ps.D1 * sinAlpha - ps.A1 * ps.D2 * cosAlpha;
 
-                u2 = new Vector3d(du, dv, 0);
-            }
+                var dir = du * ps.A1 + dv * ps.A2;
 
-            d1.Rotate(angle, ps.N);
-            d2.Rotate(-angle, ps.N);
+                var l = dir.Length;
+                du /= l;
+                dv /= l;
+
+                u2 = new Vector3d(du, dv, 0);
+                d2 = du * ps.A1 + dv * ps.A2;
+
+                Debug.Assert(u2.IsValid && !u2.IsZero);
+                Debug.Assert(d2.IsValid && !d2.IsZero);
+            }
 
             return true;
         }
