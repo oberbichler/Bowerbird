@@ -39,7 +39,7 @@ namespace Bowerbird.Curvature
                 K22 = (G11 * H22 - G12 * H12) / det;
             }
 
-            if (K12 * K21 < 1e-10)
+            if (Abs(K12 * K21) < 1e-10)
             {
                 K1 = K11;
                 K2 = K22;
