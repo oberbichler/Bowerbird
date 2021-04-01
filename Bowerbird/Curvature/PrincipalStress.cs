@@ -112,7 +112,7 @@ namespace Bowerbird.Curvature
             TGcE[2, 2] = 2 * eg11 * eg22;
             TGcE[3, 3] = 1;
 
-            // # E -> G
+            // E -> G
             var TEG = new Transform();
             TEG[0, 0] = eg11 * eg11;
             TEG[0, 1] = eg21 * eg21;
