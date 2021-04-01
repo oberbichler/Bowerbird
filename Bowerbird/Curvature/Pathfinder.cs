@@ -22,12 +22,13 @@ namespace Bowerbird.Curvature
 
         struct Task
         {
-            public Task(BrepFace face, Vector2d parameter, Point3d location, Vector3d direction)
+            public Task(BrepFace face, Vector2d parameter, Point3d location, Vector3d direction, bool flip)
             {
                 Face = face;
                 Parameter = parameter;
                 Location = location;
                 Direction = direction;
+                Flip = flip;
             }
 
             public BrepFace Face;
@@ -37,14 +38,16 @@ namespace Bowerbird.Curvature
             public Point3d Location;
 
             public Vector3d Direction;
+
+            public bool Flip;
         }
 
-        private static void AddTask(Queue<Task> tasks, BrepFace adjacentFace, Vector2d adjacentUV, Point3d location, Vector3d direction)
+        private static void AddTask(Queue<Task> tasks, BrepFace adjacentFace, Vector2d adjacentUV, Point3d location, Vector3d direction, bool flip)
         {
             if (adjacentFace == null)
                 return;
 
-            tasks.Enqueue(new Task(adjacentFace, adjacentUV, location, direction));
+            tasks.Enqueue(new Task(adjacentFace, adjacentUV, location, direction, flip));
         }
 
         public static List<Pathfinder> Create(Path path, BrepFace face, Vector2d uv, bool type, double stepSize, double tolerance, int maxPoints, double loopTolerance)
@@ -89,15 +92,13 @@ namespace Bowerbird.Curvature
 
                 // First branch
                 {
-                    var endDirection = FindPath(parameters, points, path, face, uv, direction, boundary, stepSize, tolerance, maxPoints);
+                    var endDirection = FindPath(parameters, points, path, face, uv, -direction, boundary, stepSize, tolerance, maxPoints);
 
                     var endLocation = points[points.Count - 1];
                     var adjacentFace = boundary.AdjacentFace;
 
-                    AddTask(tasks, adjacentFace, boundary.AdjacentUV, endLocation, endDirection);
-
-                    if (points.Count == 1)
-                        AddTask(tasks, adjacentFace, boundary.AdjacentUV, endLocation, -endDirection);
+                    if (points.Count > 1)
+                        AddTask(tasks, adjacentFace, boundary.AdjacentUV, endLocation, endDirection, true);
 
                     breakpoints.Add(endLocation);
                 }
@@ -107,15 +108,13 @@ namespace Bowerbird.Curvature
 
                 // Second branch
                 {
-                    var endDirection = FindPath(parameters, points, path, face, uv, -direction, boundary, stepSize, tolerance, maxPoints);
+                    var endDirection = FindPath(parameters, points, path, face, uv, direction, boundary, stepSize, tolerance, maxPoints);
 
                     var endLocation = points[points.Count - 1];
                     var adjacentFace = boundary.AdjacentFace;
 
-                    AddTask(tasks, adjacentFace, boundary.AdjacentUV, endLocation, endDirection);
-
-                    if (points.Count == 1)
-                        AddTask(tasks, adjacentFace, boundary.AdjacentUV, endLocation, -endDirection);
+                    if (points.Count > 1)
+                        AddTask(tasks, adjacentFace, boundary.AdjacentUV, endLocation, endDirection, false);
 
                     breakpoints.Add(endLocation);
                 }
@@ -150,15 +149,21 @@ namespace Bowerbird.Curvature
                 if (points.Count < 2)
                     continue;
 
-                results.Add(new Pathfinder(task.Face, parameters, points));
-
                 var endLocation = points[points.Count - 1];
                 var adjacentFace = boundary.AdjacentFace;
+
+                if (task.Flip)
+                {
+                    parameters.Reverse();
+                    points.Reverse();
+                }
+
+                results.Add(new Pathfinder(task.Face, parameters, points));
 
                 if (breakpoints.Any(o => o.DistanceTo(endLocation) < loopTolerance))
                     break;
 
-                AddTask(tasks, adjacentFace, boundary.AdjacentUV, endLocation, endDirection);
+                AddTask(tasks, adjacentFace, boundary.AdjacentUV, endLocation, endDirection, task.Flip);
                 breakpoints.Add(endLocation);
 
                 maxPoints -= points.Count;
