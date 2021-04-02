@@ -205,38 +205,38 @@ namespace Bowerbird.Curvature
 
             // ---
 
-            S1 = 0.5 * (m[0] + m[1] + Sqrt(Pow(m[0] - m[1], 2) + 4 * Pow(m[2], 2)));
-            S2 = 0.5 * (m[0] + m[1] - Sqrt(Pow(m[0] - m[1], 2) + 4 * Pow(m[2], 2)));
+            //S1 = 0.5 * (m[0] + m[1] + Sqrt(Pow(m[0] - m[1], 2) + 4 * Pow(m[2], 2)));
+            //S2 = 0.5 * (m[0] + m[1] - Sqrt(Pow(m[0] - m[1], 2) + 4 * Pow(m[2], 2)));
 
-            if (m[0] != 0 && m[1] != 0)
-            {
-                var alpha = 0.5 * Atan2(2 * m[2], m[0] - m[1]);
+            //if (m[0] != 0 && m[1] != 0)
+            //{
+            //    var alpha = 0.5 * Atan2(2 * m[2], m[0] - m[1]);
 
-                var cosAlpha = Cos(alpha);
-                var sinAlpha = Sin(alpha);
-                var sin2Alpha = Sin(2 * alpha);
-                var cosAlpha2 = cosAlpha * cosAlpha;
-                var sinAlpha2 = sinAlpha * sinAlpha;
+            //    var cosAlpha = Cos(alpha);
+            //    var sinAlpha = Sin(alpha);
+            //    var sin2Alpha = Sin(2 * alpha);
+            //    var cosAlpha2 = cosAlpha * cosAlpha;
+            //    var sinAlpha2 = sinAlpha * sinAlpha;
 
-                var pmN11 = cosAlpha2 * n[0] + sinAlpha2 * n[1] + sin2Alpha * n[2];
-                var pmN22 = cosAlpha2 * n[1] + sinAlpha2 * n[0] - sin2Alpha * n[2];
-                var pmN12 = cosAlpha * sinAlpha * (n[1] - n[0]) + (sinAlpha2 - cosAlpha2) * n[2];
+            //    var pmN11 = cosAlpha2 * n[0] + sinAlpha2 * n[1] + sin2Alpha * n[2];
+            //    var pmN22 = cosAlpha2 * n[1] + sinAlpha2 * n[0] - sin2Alpha * n[2];
+            //    var pmN12 = cosAlpha * sinAlpha * (n[1] - n[0]) + (sinAlpha2 - cosAlpha2) * n[2];
 
-                var pmB11 = cosAlpha2 * actBCar[0] + sinAlpha2 * actBCar[1] + sin2Alpha * actBCar[2];
-                var pmB22 = sinAlpha2 * actBCar[0] + cosAlpha2 * actBCar[1] - sin2Alpha * actBCar[2];
+            //    var pmB11 = cosAlpha2 * actBCar[0] + sinAlpha2 * actBCar[1] + sin2Alpha * actBCar[2];
+            //    var pmB22 = sinAlpha2 * actBCar[0] + cosAlpha2 * actBCar[1] - sin2Alpha * actBCar[2];
 
-                pmN11 -= S1 * pmB11;
-                pmN22 -= S2 * pmB22;
+            //    pmN11 -= S1 * pmB11;
+            //    pmN22 -= S2 * pmB22;
 
-                n[0] = cosAlpha2 * pmN11 + sinAlpha2 * pmN22 - sin2Alpha * pmN12;
-                n[1] = sinAlpha2 * pmN11 + cosAlpha2 * pmN22 + sin2Alpha * pmN12;
-                n[2] = cosAlpha * sinAlpha * (pmN11 - pmN22) + (sinAlpha2 - cosAlpha2) * pmN12;
+            //    n[0] = cosAlpha2 * pmN11 + sinAlpha2 * pmN22 - sin2Alpha * pmN12;
+            //    n[1] = sinAlpha2 * pmN11 + cosAlpha2 * pmN22 + sin2Alpha * pmN12;
+            //    n[2] = cosAlpha * sinAlpha * (pmN11 - pmN22) + (sinAlpha2 - cosAlpha2) * pmN12;
 
-                var det2 = Pow(n[0] - n[1], 2) + 4 * Pow(n[2], 2);
+            //    var det2 = Pow(n[0] - n[1], 2) + 4 * Pow(n[2], 2);
 
-                S1 = 0.5 * (n[0] + n[1] + Sqrt(det2));
-                S2 = 0.5 * (n[0] + n[1] - Sqrt(det2));
-            }
+            //    S1 = 0.5 * (n[0] + n[1] + Sqrt(det2));
+            //    S2 = 0.5 * (n[0] + n[1] - Sqrt(det2));
+            //}
 
             {
                 var alpha = 0.5 * Atan2(2 * n[2], n[0] - n[1]);
