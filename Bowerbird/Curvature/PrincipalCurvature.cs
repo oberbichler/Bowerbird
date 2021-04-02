@@ -39,7 +39,9 @@ namespace Bowerbird.Curvature
                 K22 = (G11 * H22 - G12 * H12) / det;
             }
 
-            if (Abs(K12 * K21) < 1e-10)
+            Debug.Assert(K12 != 0 || K21 != 0);
+
+            if (K12 != 0 && K21 != 0)
             {
                 K1 = K11;
                 K2 = K22;
@@ -66,11 +68,29 @@ namespace Bowerbird.Curvature
                 if (det < 0)
                     return false;
 
-                // first direction
                 K1 = 0.5 * (K11 + K22 + Sqrt(det));
+                K2 = 0.5 * (K11 + K22 - Sqrt(det));
 
-                var du1 = K12;
-                var dv1 = K1 - K11;
+                double du1, dv1, du2, dv2;
+
+                if (K12 != 0)
+                {
+                    du1 = K12;
+                    dv1 = K1 - K11;
+
+                    du2 = K12;
+                    dv2 = K2 - K11;
+                }
+                else // K21 != 0
+                {
+                    du1 = K21;
+                    dv1 = K1 - K22;
+
+                    du2 = K21;
+                    dv2 = K2 - K22;
+                }
+
+                // first direction
 
                 var l1 = Sqrt(G11 * du1 * du1 + 2 * G12 * du1 * dv1 + G22 * dv1 * dv1);
 
@@ -84,11 +104,6 @@ namespace Bowerbird.Curvature
                 D1 = du1 * A1 + dv1 * A2;
 
                 // second direction
-
-                K2 = 0.5 * (K11 + K22 - Sqrt(det));
-
-                var du2 = K2 - K22;
-                var dv2 = K21;
 
                 var l2 = Sqrt(G11 * du2 * du2 + 2 * G12 * du2 * dv2 + G22 * dv2 * dv2);
 
