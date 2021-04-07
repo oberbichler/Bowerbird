@@ -121,6 +121,8 @@ namespace Bowerbird.Curvature
             Debug.Assert(U1.IsValid && !U1.IsZero);
             Debug.Assert(U2.IsValid && !U2.IsZero);
 
+            Debug.Assert(Abs(D1 * D2) < 1e-4);
+
             return true;
         }
 
