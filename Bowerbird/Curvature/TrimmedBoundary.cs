@@ -1,14 +1,15 @@
 ﻿using Rhino.Geometry;
 using Rhino.Geometry.Intersect;
 using System;
+using System.Diagnostics;
+
+using static System.Math;
 
 namespace Bowerbird.Curvature
 {
     class TrimmedBoundary : IBoundary
     {
         readonly BrepFace _face;
-
-        public BrepEdge BoundingEdge { get; private set; }
 
         public BrepFace AdjacentFace { get; private set; }
 
@@ -32,6 +33,9 @@ namespace Bowerbird.Curvature
             if (_face.IsPointOnFace(b.X, b.Y) == PointFaceRelation.Interior)
                 return false;
 
+            var boundingTrim = default(BrepTrim);
+            var boundingTrimParameter = default(double);
+
             // Check if A is already on boundary
             if (_face.IsPointOnFace(a.X, a.Y) == PointFaceRelation.Boundary)
             {
@@ -44,60 +48,88 @@ namespace Bowerbird.Curvature
                         if (!trim.TrimCurve.ClosestPoint(new Point3d(a.X, a.Y, 0), out var t))
                             continue;
 
-                        var intersection = trim.TrimCurve.PointAt(t);
+                        var pointAtTrim = trim.TrimCurve.PointAt(t);
 
-                        b.X = intersection.X;
-                        b.Y = intersection.Y;
+                        var distance = Sqrt(Pow(a.X - pointAtTrim.X, 2) + Pow(a.Y - pointAtTrim.Y, 2));
 
-                        BoundingEdge = trim.Edge;
+                        if (distance > 1e-4)
+                            continue;
 
-                        var adjacentFaces = trim.Edge.AdjacentFaces();
+                        if (boundingTrim != null && boundingTrim.Edge.TrimCount >= trim.Edge.TrimCount)
+                            continue;
 
-                        AdjacentFace = adjacentFaces.Length == 1 ? null : _face.Brep.Faces[adjacentFaces[0] == _face.FaceIndex ? adjacentFaces[1] : adjacentFaces[0]];
-
-                        AdjacentTangent = trim.TangentAt(t);
-
-                        return true;
+                        boundingTrim = trim;
+                        boundingTrimParameter = t;
                     }
                 }
-
-                throw new Exception("Trimming failed");
             }
-
-            // Create 2D-Segment
-            var line = new LineCurve(new Line(a.X, a.Y, 0, b.X, b.Y, 0));
-            line.ChangeDimension(2);
-
-            // Check for intersection with trimming segments
-            foreach (var loop in _face.Loops)
+            else
             {
-                foreach (var trim in loop.Trims)
+                // Create 2D-Segment
+                var line = new LineCurve(new Line(a.X, a.Y, 0, b.X, b.Y, 0));
+                line.ChangeDimension(2);
+
+                // Check for intersection with trimming segments
+                foreach (var loop in _face.Loops)
                 {
-                    var intersections = Intersection.CurveCurve(trim, line, 1e-4, 1e-4);
+                    foreach (var trim in loop.Trims)
+                    {
+                        var intersections = Intersection.CurveCurve(trim, line, 1e-4, 1e-4);
 
-                    if (intersections.Count == 0)
-                        continue;
+                        if (intersections.Count == 0)
+                            continue;
 
-                    var intersection = intersections[0];
+                        if (boundingTrim != null && boundingTrim.Edge.TrimCount >= trim.Edge.TrimCount)
+                            continue;
 
-                    b.X = intersection.PointA.X;
-                    b.Y = intersection.PointA.Y;
+                        var intersection = intersections[0];
 
-                    BoundingEdge = trim.Edge;
+                        b.X = intersection.PointA.X;
+                        b.Y = intersection.PointA.Y;
 
-                    var adjacentFaces = trim.Edge.AdjacentFaces();
+                        boundingTrim = trim;
+                        boundingTrimParameter = intersection.ParameterA;
 
-                    AdjacentFace = adjacentFaces.Length == 1 ? null : _face.Brep.Faces[adjacentFaces[0] == _face.FaceIndex ? adjacentFaces[1] : adjacentFaces[0]];
-
-                    AdjacentTangent = trim.TangentAt(intersection.ParameterA);
-
-                    AdjacentUV = new Vector2d(b.X, b.Y);
-
-                    return true;
+                        break;
+                    }
                 }
             }
 
-            throw new Exception("Trimming failed");
+            if (boundingTrim == null)
+                throw new Exception("Trimming failed");
+
+            Debug.Assert(boundingTrim.PointAt(boundingTrimParameter).DistanceTo(new Point3d(b.X, b.Y, 0)) < 1e-4);
+
+            AdjacentTangent = boundingTrim.TangentAt(boundingTrimParameter);
+
+            if (boundingTrim.Edge.TrimCount < 2)
+            {
+                AdjacentFace = null;
+                return true;
+            }
+
+            var trims = boundingTrim.Edge.TrimIndices();
+
+            var adjacentTrimIndex = trims[0] == boundingTrim.TrimIndex ? trims[1] : trims[0];
+            var adjacentTrim = boundingTrim.Brep.Trims[adjacentTrimIndex];
+
+            AdjacentFace = adjacentTrim.Face;
+
+            var curveOnSurface = CurveOnSurface.Create(AdjacentFace, adjacentTrim);
+
+            var location = _face.PointAt(b.X, b.Y);
+
+            var closestPoint = curveOnSurface.Invert(location, 1e-4);
+
+            Debug.Assert(closestPoint.Item2.DistanceTo(location) < 1e-3);
+
+            var adjacentUV = adjacentTrim.PointAt(closestPoint.Item1);
+
+            Debug.Assert(AdjacentFace.PointAt(adjacentUV.X, adjacentUV.Y).DistanceTo(location) < 1e-3);
+
+            AdjacentUV = new Vector2d(adjacentUV.X, adjacentUV.Y);
+
+            return true;
         }
     }
 }

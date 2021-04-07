@@ -39,9 +39,7 @@ namespace Bowerbird.Curvature
                 K22 = (G11 * H22 - G12 * H12) / det;
             }
 
-            Debug.Assert(K12 != 0 || K21 != 0);
-
-            if (K12 != 0 && K21 != 0)
+            if (Abs(K12) < 1e-10 && Abs(K21) < 1e-10)
             {
                 K1 = K11;
                 K2 = K22;
@@ -49,8 +47,8 @@ namespace Bowerbird.Curvature
                 var l1 = Sqrt(G11);
                 var l2 = Sqrt(G22);
 
-                Debug.Assert(Abs(l1 - A1.Length) < 1e-8);
-                Debug.Assert(Abs(l2 - A2.Length) < 1e-8);
+                Debug.Assert(Abs(A1.Length / l1 - 1) < 1e-8);
+                Debug.Assert(Abs(A2.Length / l2 - 1) < 1e-8);
 
                 var du1 = 1 / l1;
                 var dv2 = 1 / l2;
@@ -94,7 +92,7 @@ namespace Bowerbird.Curvature
 
                 var l1 = Sqrt(G11 * du1 * du1 + 2 * G12 * du1 * dv1 + G22 * dv1 * dv1);
 
-                Debug.Assert(Abs(l1 - (K12 * A1 + (K1 - K11) * A2).Length) < 1e-8);
+                Debug.Assert(Abs(l1 / (du1 * A1 + dv1 * A2).Length - 1) < 1e-8);
 
                 du1 /= l1;
                 dv1 /= l1;
@@ -107,11 +105,11 @@ namespace Bowerbird.Curvature
 
                 var l2 = Sqrt(G11 * du2 * du2 + 2 * G12 * du2 * dv2 + G22 * dv2 * dv2);
 
-                Debug.Assert(Abs(l2 - ((K2 - K22) * A1 + K21 * A2).Length) < 1e-8);
+                Debug.Assert(Abs(l2 / (du2 * A1 + dv2 * A2).Length - 1) < 1e-8);
 
                 du2 /= l2;
                 dv2 /= l2;
-                
+
                 U2 = new Vector3d(du2, dv2, 0);
 
                 D2 = du2 * A1 + dv2 * A2;
@@ -122,6 +120,8 @@ namespace Bowerbird.Curvature
 
             Debug.Assert(U1.IsValid && !U1.IsZero);
             Debug.Assert(U2.IsValid && !U2.IsZero);
+
+            Debug.Assert(Abs(D1 * D2) < 1e-4);
 
             return true;
         }

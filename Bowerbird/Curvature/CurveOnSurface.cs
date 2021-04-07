@@ -1,5 +1,10 @@
 ﻿using Rhino.Geometry;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+
+using static System.Math;
 
 namespace Bowerbird.Curvature
 {
@@ -70,9 +75,9 @@ namespace Bowerbird.Curvature
             var s02 = x[4];
 
             var x1 = u1 * s10 + v1 * s01;
-            var x2 = u2 * s10 + v2 * s01 + Math.Pow(u1, 2) * s20 + Math.Pow(v1, 2) * s02 + 2 * u1 * v1 * s11;
+            var x2 = u2 * s10 + v2 * s01 + Pow(u1, 2) * s20 + Pow(v1, 2) * s02 + 2 * u1 * v1 * s11;
 
-            return (x2 * x1.SquareLength - x1 * (x1 * x2)) / Math.Pow(x1.SquareLength, 2);
+            return (x2 * x1.SquareLength - x1 * (x1 * x2)) / Pow(x1.SquareLength, 2);
         }
 
         public bool ClosestPoint(Point3d sample, out double t)
@@ -102,12 +107,12 @@ namespace Bowerbird.Curvature
             var s02 = x[4];
 
             var x1 = u1 * s10 + v1 * s01;
-            var x2 = u2 * s10 + v2 * s01 + Math.Pow(u1, 2) * s20 + Math.Pow(v1, 2) * s02 + 2 * u1 * v1 * s11;
+            var x2 = u2 * s10 + v2 * s01 + Pow(u1, 2) * s20 + Pow(v1, 2) * s02 + 2 * u1 * v1 * s11;
 
             var n = Vector3d.CrossProduct(s10, s01);
             n.Unitize();
 
-            var c = (x2 * x1.SquareLength - x1 * (x1 * x2)) / Math.Pow(x1.SquareLength, 2);
+            var c = (x2 * x1.SquareLength - x1 * (x1 * x2)) / Pow(x1.SquareLength, 2);
 
             return c * n * n; //x2 * n / x1.SquareLength * n;
         }
@@ -130,12 +135,12 @@ namespace Bowerbird.Curvature
             var s02 = xyz[4];
 
             var x1 = u1 * s10 + v1 * s01;
-            var x2 = u2 * s10 + v2 * s01 + Math.Pow(u1, 2) * s20 + Math.Pow(v1, 2) * s02 + 2 * u1 * v1 * s11;
+            var x2 = u2 * s10 + v2 * s01 + Pow(u1, 2) * s20 + Pow(v1, 2) * s02 + 2 * u1 * v1 * s11;
 
             var b = Vector3d.CrossProduct(Vector3d.CrossProduct(s10, s01), x1);
             b.Unitize();
 
-            var c = (x2 * x1.SquareLength - x1 * (x1 * x2)) / Math.Pow(x1.SquareLength, 2);
+            var c = (x2 * x1.SquareLength - x1 * (x1 * x2)) / Pow(x1.SquareLength, 2);
 
             return c * b * b;
         }
@@ -159,8 +164,8 @@ namespace Bowerbird.Curvature
             var cross10 = Vector3d.CrossProduct(s10, s11) + Vector3d.CrossProduct(s20, s01);
             var cross01 = Vector3d.CrossProduct(s10, s02) + Vector3d.CrossProduct(s11, s01);
 
-            var n10 = (cross * cross * cross10 - cross * cross10 * cross) / Math.Pow(cross.SquareLength, 1.5);
-            var n01 = (cross * cross * cross01 - cross * cross01 * cross) / Math.Pow(cross.SquareLength, 1.5);
+            var n10 = (cross * cross * cross10 - cross * cross10 * cross) / Pow(cross.SquareLength, 1.5);
+            var n01 = (cross * cross * cross01 - cross * cross01 * cross) / Pow(cross.SquareLength, 1.5);
 
             var x1 = u1 * s10 + v1 * s01;
             var n1 = u1 * n10 + v1 * n01;
@@ -195,8 +200,8 @@ namespace Bowerbird.Curvature
             var s03 = xyz[8];
 
             var x1 = u1 * s10 + v1 * s01;
-            var x2 = s20 * Math.Pow(u1, 2) + s10 * u2 + 2 * s12 * u1 * v1 + s02 * Math.Pow(v1, 2) + s01 * v2;
-            var x3 = s10 * u3 + 3 * s12 * u1 * Math.Pow(v1, 2) + s03 * Math.Pow(v1, 3) + 3 * v1 * (s21 * Math.Pow(u1, 2) + s11 * u2 + s02 * v2) + u1 * (s30 * Math.Pow(u1, 2) + 3 * s20 * u2 + 3 * s11 * v2) + s01 * v3;
+            var x2 = s20 * Pow(u1, 2) + s10 * u2 + 2 * s12 * u1 * v1 + s02 * Pow(v1, 2) + s01 * v2;
+            var x3 = s10 * u3 + 3 * s12 * u1 * Pow(v1, 2) + s03 * Pow(v1, 3) + 3 * v1 * (s21 * Pow(u1, 2) + s11 * u2 + s02 * v2) + u1 * (s30 * Pow(u1, 2) + 3 * s20 * u2 + 3 * s11 * v2) + s01 * v3;
 
             var a = Vector3d.CrossProduct(x1, x2);
 
@@ -264,6 +269,175 @@ namespace Bowerbird.Curvature
             var x1 = u1 * s10 + v1 * s01;
 
             return x1.Length;
+        }
+
+        private List<Tuple<double, Point3d>> Tessellation(double tolerance)
+        {
+            var maxIter = 10;
+            var length = 0.0;
+
+            var tessellation = new List<Tuple<double, Point3d>>();
+
+            for (int i = 0; i < Curve.SpanCount; i++)
+            {
+                var span = Curve.SpanDomain(i);
+
+                var samplePoints = new List<Tuple<double, Point3d>>();
+
+                var f = new Func<double, double>((t) =>
+                {
+                    var c = Curve.DerivativeAt(t, 1);
+                    var c0 = c[0];
+                    var c1 = c[1];
+
+                    Surface.Evaluate(c0.X, c0.Y, 1, out var x, out var s);
+                    var s1 = c1.X * s[0] + c1.Y * s[1];
+
+                    samplePoints.Add(Tuple.Create(t, x));
+
+                    return s1.Length;
+                });
+
+                length += Integrate.Romberg(f, span.T0, span.T1, tolerance, maxIter);
+
+                samplePoints.Sort((a, b) => -a.Item1.CompareTo(b.Item1));
+
+                //var n = Max(Surface.Degree(0), Surface.Degree(1));
+
+                tessellation.Capacity = tessellation.Count + samplePoints.Count * 2;
+
+                while (true)
+                {
+                    var a = samplePoints[samplePoints.Count - 1];
+                    samplePoints.RemoveAt(samplePoints.Count - 1);
+
+                    tessellation.Add(a);
+
+                    if (samplePoints.Count == 0)
+                        break;
+
+                    while (true)
+                    {
+                        var b = samplePoints[samplePoints.Count - 1];
+
+                        var maxDistance = 0.0;
+                        var maxPoint = default(Tuple<double, Point3d>);
+
+                        var domain = new Interval(a.Item1, b.Item1);
+
+                        //for (int j = 1; j <= n; j++)
+                        //{
+                        //    var t = domain.ParameterAt(j / (n + 1.0));
+                        var t = domain.ParameterAt(0.5);
+                        var point = PointAt(t);
+
+                        var distance = new Line(a.Item2, b.Item2).DistanceTo(point, true);
+
+                        if (distance < maxDistance)
+                            continue;
+
+                        maxDistance = distance;
+                        maxPoint = Tuple.Create(t, point);
+                        //}
+
+                        if (maxDistance < tolerance * 100)
+                            break;
+
+                        samplePoints.Add(maxPoint);
+                    }
+                }
+            }
+
+            Debug.Assert(Abs(length - ToCurve(tolerance).GetLength()) < 10 * tolerance);
+
+            return tessellation;
+        }
+
+        public Tuple<double, Point3d> Invert(Point3d sample, double tolerance)
+        {
+            var tessellation = Tessellation(tolerance);
+
+            var polyline = new Polyline(tessellation.Select(o => o.Item2));
+
+            var closestParameter = polyline.ClosestParameter(sample);
+            var closestSpan = (int)closestParameter + 1 == tessellation.Count ? (int)closestParameter - 1 : (int)closestParameter;
+
+            var minParameter = tessellation[Max(0, closestSpan - 1)].Item1;
+            var maxParameter = tessellation[Min(tessellation.Count - 1, closestSpan + 2)].Item1;
+
+            if (minParameter > maxParameter)
+            {
+                var tmp = minParameter;
+                minParameter = maxParameter;
+                maxParameter = tmp;
+            }
+
+            var t0 = tessellation[closestSpan].Item1;
+            var t1 = tessellation[closestSpan + 1].Item1;
+
+            var t = t0 + (closestParameter - closestSpan) * (t1 - t0);
+            var closestPoint = Tuple.Create(t, PointAt(t));
+
+            var maxIterations = 10;
+
+            for (var i = 0; i < maxIterations; i++)
+            {
+                var c = Curve.DerivativeAt(t, 1);
+                var c0 = c[0];
+                var c1 = c[1];
+
+                Surface.Evaluate(c0.X, c0.Y, 1, out var x, out var s);
+                var a1 = c1.X * s[0] + c1.Y * s[1];
+
+                var r = x - sample;
+
+                if (r.Length < tolerance)
+                    break;
+
+                if (Abs(r / r.Length * a1 / a1.Length) < tolerance)
+                    break;
+
+                Debug.Assert((a1 / a1.Length - TangentAt(t)).Length < 1e-10);
+
+                var w = r.Length * a1.Length;
+                var lhs = a1 * a1;
+                var rhs = a1 * r;
+
+                var delta = -rhs / lhs;
+
+                var deltaMin = minParameter - t;
+                var deltaMax = maxParameter - t;
+
+                if (delta < deltaMin)
+                    delta = deltaMin;
+                else if (delta > deltaMax)
+                    delta = deltaMax;
+
+                Debug.Assert(t + delta >= minParameter);
+                Debug.Assert(t + delta <= maxParameter);
+
+                var alpha = 1.0;
+
+                for (int j = 0; j < 5; j++)
+                {
+                    var x1 = PointAt(t + alpha * delta);
+
+                    if (sample.DistanceToSquared(x1) <= r.SquareLength)
+                        break;
+
+                    alpha /= 2;
+
+                    Debug.Assert(j + 1 < 5);
+                }
+
+                var nextParameter = t + alpha * delta;
+
+                t = nextParameter;
+
+                Debug.Assert(i + 1 < maxIterations || t == minParameter || t == maxParameter);
+            }
+
+            return Tuple.Create(t, PointAt(t));
         }
     }
 }
