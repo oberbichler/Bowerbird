@@ -1,4 +1,4 @@
-using Rhino.Geometry;
+﻿using Rhino.Geometry;
 using System.Diagnostics;
 using static System.Math;
 
@@ -106,10 +106,10 @@ namespace Bowerbird.Curvature
                 var l2 = Sqrt(G11 * du2 * du2 + 2 * G12 * du2 * dv2 + G22 * dv2 * dv2);
 
                 Debug.Assert(Abs(l2 / (du2 * A1 + dv2 * A2).Length - 1) < 1e-8);
-                
+
                 du2 /= l2;
                 dv2 /= l2;
-                
+
                 U2 = new Vector3d(du2, dv2, 0);
 
                 D2 = du2 * A1 + dv2 * A2;
