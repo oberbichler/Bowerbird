@@ -47,8 +47,8 @@ namespace Bowerbird.Curvature
                 var l1 = Sqrt(G11);
                 var l2 = Sqrt(G22);
 
-                Debug.Assert(Abs(l1 - A1.Length) < 1e-8);
-                Debug.Assert(Abs(l2 - A2.Length) < 1e-8);
+                Debug.Assert(Abs(A1.Length / l1 - 1) < 1e-8);
+                Debug.Assert(Abs(A2.Length / l2 - 1) < 1e-8);
 
                 var du1 = 1 / l1;
                 var dv2 = 1 / l2;
