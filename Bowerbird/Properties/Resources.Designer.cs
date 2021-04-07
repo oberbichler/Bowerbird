@@ -141,6 +141,16 @@ namespace Bowerbird.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_curve_on_surface_cp {
+            get {
+                object obj = ResourceManager.GetObject("icon_curve_on_surface_cp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_curve_on_surface_curvature {
             get {
                 object obj = ResourceManager.GetObject("icon_curve_on_surface_curvature", resourceCulture);
