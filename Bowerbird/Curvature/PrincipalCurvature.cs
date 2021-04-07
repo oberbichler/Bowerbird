@@ -92,7 +92,7 @@ namespace Bowerbird.Curvature
 
                 var l1 = Sqrt(G11 * du1 * du1 + 2 * G12 * du1 * dv1 + G22 * dv1 * dv1);
 
-                Debug.Assert(Abs(l1 - (K12 * A1 + (K1 - K11) * A2).Length) < 1e-8);
+                Debug.Assert(Abs(l1 / (du1 * A1 + dv1 * A2).Length - 1) < 1e-8);
 
                 du1 /= l1;
                 dv1 /= l1;
@@ -105,8 +105,8 @@ namespace Bowerbird.Curvature
 
                 var l2 = Sqrt(G11 * du2 * du2 + 2 * G12 * du2 * dv2 + G22 * dv2 * dv2);
 
-                Debug.Assert(Abs(l2 - ((K2 - K22) * A1 + K21 * A2).Length) < 1e-8);
-
+                Debug.Assert(Abs(l2 / (du2 * A1 + dv2 * A2).Length - 1) < 1e-8);
+                
                 du2 /= l2;
                 dv2 /= l2;
                 
