@@ -1,4 +1,4 @@
-﻿using Rhino.Geometry;
+using Rhino.Geometry;
 using System;
 
 namespace Bowerbird.Curvature
@@ -264,6 +264,88 @@ namespace Bowerbird.Curvature
             var x1 = u1 * s10 + v1 * s01;
 
             return x1.Length;
+        }
+
+        private List<Tuple<double, Point3d>> Tessellation(double tolerance)
+        {
+            var maxIter = 10;
+            var length = 0.0;
+
+            var tessellation = new List<Tuple<double, Point3d>>();
+
+            for (int i = 0; i < Curve.SpanCount; i++)
+            {
+                var span = Curve.SpanDomain(i);
+
+                var samplePoints = new List<Tuple<double, Point3d>>();
+
+                var f = new Func<double, double>((t) =>
+                {
+                    var c = Curve.DerivativeAt(t, 1);
+                    var c0 = c[0];
+                    var c1 = c[1];
+
+                    Surface.Evaluate(c0.X, c0.Y, 1, out var x, out var s);
+                    var s1 = c1.X * s[0] + c1.Y * s[1];
+
+                    samplePoints.Add(Tuple.Create(t, x));
+
+                    return s1.Length;
+                });
+
+                length += Integrate.Romberg(f, span.T0, span.T1, tolerance, maxIter);
+
+                samplePoints.Sort((a, b) => -a.Item1.CompareTo(b.Item1));
+
+                //var n = Math.Max(Surface.Degree(0), Surface.Degree(1));
+
+                tessellation.Capacity = tessellation.Count + samplePoints.Count * 2;
+
+                while (true)
+                {
+                    var a = samplePoints[samplePoints.Count - 1];
+                    samplePoints.RemoveAt(samplePoints.Count - 1);
+
+                    tessellation.Add(a);
+
+                    if (samplePoints.Count == 0)
+                        break;
+
+                    while (true)
+                    {
+                        var b = samplePoints[samplePoints.Count - 1];
+
+                        var maxDistance = 0.0;
+                        var maxPoint = default(Tuple<double, Point3d>);
+
+                        var domain = new Interval(a.Item1, b.Item1);
+
+                        //for (int j = 1; j <= n; j++)
+                        //{
+                        //    var t = domain.ParameterAt(j / (n + 1.0));
+                        var t = domain.ParameterAt(0.5);
+                        var point = PointAt(t);
+
+                        var distance = new Line(a.Item2, b.Item2).DistanceTo(point, true);
+
+                        if (distance < maxDistance)
+                            continue;
+
+                        maxDistance = distance;
+                        maxPoint = Tuple.Create(t, point);
+                        //}
+
+                        if (maxDistance < tolerance * 100)
+                            break;
+
+                        samplePoints.Add(maxPoint);
+                    }
+                }
+            }
+
+            Debug.Assert(Math.Abs(length - ToCurve(tolerance).GetLength()) < 10 * tolerance);
+
+            return tessellation;
         }
     }
 }
