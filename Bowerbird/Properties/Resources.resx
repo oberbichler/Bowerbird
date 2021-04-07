@@ -133,6 +133,9 @@
   <data name="icon_curve_on_surface_construct" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_curve_on_surface_construct.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icon_curve_on_surface_cp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_curve_on_surface_cp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icon_curve_on_surface_curvature" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_curve_on_surface_curvature.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
