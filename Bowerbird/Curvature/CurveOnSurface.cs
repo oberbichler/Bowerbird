@@ -1,5 +1,8 @@
-using Rhino.Geometry;
+﻿using Rhino.Geometry;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 
 namespace Bowerbird.Curvature
 {
@@ -346,6 +349,93 @@ namespace Bowerbird.Curvature
             Debug.Assert(Math.Abs(length - ToCurve(tolerance).GetLength()) < 10 * tolerance);
 
             return tessellation;
+        }
+
+        public Tuple<double, Point3d> Invert(Point3d sample, double tolerance)
+        {
+            var tessellation = Tessellation(tolerance);
+
+            var polyline = new Polyline(tessellation.Select(o => o.Item2));
+
+            var closestParameter = polyline.ClosestParameter(sample);
+            var closestSpan = (int)closestParameter + 1 == tessellation.Count ? (int)closestParameter - 1 : (int)closestParameter;
+
+            var minParameter = tessellation[Math.Max(0, closestSpan - 1)].Item1;
+            var maxParameter = tessellation[Math.Min(tessellation.Count - 1, closestSpan + 2)].Item1;
+
+            if (minParameter > maxParameter)
+            {
+                var tmp = minParameter;
+                minParameter = maxParameter;
+                maxParameter = tmp;
+            }
+
+            var t0 = tessellation[closestSpan].Item1;
+            var t1 = tessellation[closestSpan + 1].Item1;
+
+            var t = t0 + (closestParameter - closestSpan) * (t1 - t0);
+            var closestPoint = Tuple.Create(t, PointAt(t));
+
+            var maxIterations = 10;
+
+            for (var i = 0; i < maxIterations; i++)
+            {
+                var c = Curve.DerivativeAt(t, 1);
+                var c0 = c[0];
+                var c1 = c[1];
+
+                Surface.Evaluate(c0.X, c0.Y, 1, out var x, out var s);
+                var a1 = c1.X * s[0] + c1.Y * s[1];
+
+                var r = x - sample;
+
+                if (r.Length < tolerance)
+                    break;
+
+                if (Math.Abs(r / r.Length * a1 / a1.Length) < tolerance)
+                    break;
+
+                Debug.Assert((a1 / a1.Length - TangentAt(t)).Length < 1e-10);
+
+                var w = r.Length * a1.Length;
+                var lhs = a1 * a1;
+                var rhs = a1 * r;
+
+                var delta = -rhs / lhs;
+
+                var deltaMin = minParameter - t;
+                var deltaMax = maxParameter - t;
+
+                if (delta < deltaMin)
+                    delta = deltaMin;
+                else if (delta > deltaMax)
+                    delta = deltaMax;
+
+                Debug.Assert(t + delta >= minParameter);
+                Debug.Assert(t + delta <= maxParameter);
+
+                var alpha = 1.0;
+
+                for (int j = 0; j < 5; j++)
+                {
+                    var x1 = PointAt(t + alpha * delta);
+
+                    if (sample.DistanceToSquared(x1) <= r.SquareLength)
+                        break;
+
+                    alpha /= 2;
+
+                    Debug.Assert(j + 1 < 5);
+                }
+
+                var nextParameter = t + alpha * delta;
+
+                t = nextParameter;
+
+                Debug.Assert(i + 1 < maxIterations || t == minParameter || t == maxParameter);
+            }
+
+            return Tuple.Create(t, PointAt(t));
         }
     }
 }
