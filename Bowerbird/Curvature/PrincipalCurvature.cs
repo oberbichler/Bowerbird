@@ -1,4 +1,4 @@
-using Rhino.Geometry;
+﻿using Rhino.Geometry;
 using System.Diagnostics;
 
 using static System.Math;
@@ -72,7 +72,7 @@ namespace Bowerbird.Curvature
 
                 double du1, dv1, du2, dv2;
 
-                if (K12 != 0)
+                if (Abs(K12) > Abs(K21))
                 {
                     du1 = K12;
                     dv1 = K1 - K11;
@@ -82,11 +82,11 @@ namespace Bowerbird.Curvature
                 }
                 else // K21 != 0
                 {
-                    du1 = K21;
-                    dv1 = K1 - K22;
+                    du1 = K1 - K22;
+                    dv1 = K21;
 
-                    du2 = K21;
-                    dv2 = K2 - K22;
+                    du2 = K2 - K22;
+                    dv2 = K21;
                 }
 
                 // first direction
@@ -132,7 +132,7 @@ namespace Bowerbird.Curvature
         {
             var t = (2 * value - K1 - K2) / (K1 - K2);
 
-            if (Abs(t) > 1)
+            if (Abs(t) > 1 || double.IsNaN(t))
             {
                 u1 = default;
                 u2 = default;
@@ -192,7 +192,7 @@ namespace Bowerbird.Curvature
         {
             var t = 2 * value / (K2 - K1);
 
-            if (Abs(t) > 1)
+            if (Abs(t) > 1 || double.IsNaN(t))
             {
                 u1 = default;
                 u2 = default;
