@@ -12,8 +12,8 @@ namespace Bowerbird.Curvature
     {
         private CurveOnSurface(Surface surface, Curve curve)
         {
-            Surface = surface ?? throw new ArgumentNullException(nameof(surface));
-            Curve = curve ?? throw new ArgumentNullException(nameof(curve));
+            Surface = (Surface)surface?.DuplicateShallow() ?? throw new ArgumentNullException(nameof(surface));
+            Curve = (Curve)curve?.DuplicateShallow() ?? throw new ArgumentNullException(nameof(curve));
         }
 
         public static CurveOnSurface Create(Surface surface, Curve curve)
