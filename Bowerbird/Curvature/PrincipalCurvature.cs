@@ -1,5 +1,6 @@
-﻿using Rhino.Geometry;
+using Rhino.Geometry;
 using System.Diagnostics;
+
 using static System.Math;
 
 namespace Bowerbird.Curvature
