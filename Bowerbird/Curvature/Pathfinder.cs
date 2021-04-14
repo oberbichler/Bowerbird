@@ -217,7 +217,7 @@ namespace Bowerbird.Curvature
 
                 // Break if no progress in geometry space
 
-                if (newDirection.SquareLength < tolerance2)
+                if (newDirection.SquareLength < 1e-20)
                     break;
 
                 direction = newDirection;
