@@ -85,10 +85,10 @@ namespace Bowerbird.Curvature
 
                 IBoundary boundary;
 
-                if (face.IsSurface)
-                    boundary = UntrimmedBoundary.Create(face);
-                else
-                    boundary = TrimmedBoundary.Create(face);
+                //if (face.IsSurface)
+                //    boundary = UntrimmedBoundary.Create(face);
+                //else
+                boundary = TrimmedBoundary.Create(face);
 
                 // First branch
                 {
@@ -137,10 +137,10 @@ namespace Bowerbird.Curvature
 
                 IBoundary boundary;
 
-                if (task.Face.IsSurface)
-                    boundary = UntrimmedBoundary.Create(task.Face);
-                else
-                    boundary = TrimmedBoundary.Create(task.Face);
+                //if (task.Face.IsSurface)
+                //    boundary = UntrimmedBoundary.Create(task.Face);
+                //else
+                boundary = TrimmedBoundary.Create(task.Face);
 
                 var endDirection = FindPath(parameters, points, path, task.Face, task.Parameter, task.Direction, boundary, stepSize, tolerance, maxPoints);
 
