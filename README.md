@@ -16,6 +16,11 @@ Grasshopper Group: https://www.grasshopper3d.com/group/bowerbird
 * Right-click the file > Properties > make sure there is no "blocked" text
 * Drag `Bowerbird.gha` to the Grasshopper window
 
+## Tutorials
+- [Waffle framing for Breps *by IIT DC 2016*](https://youtu.be/H622kgtJ-tw)
+- [Waffle example *by Parametric Curiosity*](https://youtu.be/0mhVP3XwDSU)
+- [Layer models with Bowerbird and OpenNest (German) *by Team Digital*](https://youtu.be/EFKkGvJXLsE)
+
 ## Features
 
 - Find **asymptotic paths** on freeform surfaces.
