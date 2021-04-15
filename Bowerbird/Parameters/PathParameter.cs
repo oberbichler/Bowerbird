@@ -10,6 +10,6 @@ namespace Bowerbird.Parameters
         {
         }
 
-        public override Guid ComponentGuid => new Guid("{E58614E4-F77C-4110-A418-8BF8446CF9F6}");
+        public override Guid ComponentGuid { get; } = new Guid("{E58614E4-F77C-4110-A418-8BF8446CF9F6}");
     }
 }

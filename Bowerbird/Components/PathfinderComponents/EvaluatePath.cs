@@ -176,10 +176,10 @@ namespace Bowerbird.Components.PathfinderComponents
             return base.Read(reader);
         }
 
-        protected override Bitmap Icon => Properties.Resources.icon_pathfinder;
+        protected override Bitmap Icon { get; } = Properties.Resources.icon_pathfinder;
 
-        public override GH_Exposure Exposure => Info.Experimental ? GH_Exposure.primary : GH_Exposure.hidden;
+        public override GH_Exposure Exposure { get; } = Info.Experimental ? GH_Exposure.primary : GH_Exposure.hidden;
 
-        public override Guid ComponentGuid => new Guid("{C4549D21-3262-45B9-A15E-F7CBED1111FB}");
+        public override Guid ComponentGuid { get; } = new Guid("{C4549D21-3262-45B9-A15E-F7CBED1111FB}");
     }
 }

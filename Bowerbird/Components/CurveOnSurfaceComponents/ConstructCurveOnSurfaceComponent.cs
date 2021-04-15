@@ -56,11 +56,11 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
             DA.SetData(1, curveOnSurface.ToCurve(DocumentTolerance()));
         }
 
-        protected override Bitmap Icon => Properties.Resources.icon_curve_on_surface_construct;
+        protected override Bitmap Icon { get; } = Properties.Resources.icon_curve_on_surface_construct;
 
-        public override GH_Exposure Exposure => GH_Exposure.primary;
+        public override GH_Exposure Exposure { get; } = GH_Exposure.primary;
 
-        public override Guid ComponentGuid => new Guid("{DE62F1CD-5E5C-4372-B1BB-2494ED62D349}");
+        public override Guid ComponentGuid { get; } = new Guid("{DE62F1CD-5E5C-4372-B1BB-2494ED62D349}");
 
 
         public enum SpaceTypes

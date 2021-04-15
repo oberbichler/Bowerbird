@@ -173,10 +173,10 @@ namespace Bowerbird.Components.CraftingComponents
         }
 
 
-        protected override System.Drawing.Bitmap Icon => Properties.Resources.icon_boolean;
+        protected override System.Drawing.Bitmap Icon { get; } = Properties.Resources.icon_boolean;
 
-        public override GH_Exposure Exposure => GH_Exposure.primary;
+        public override GH_Exposure Exposure { get; } = GH_Exposure.primary;
 
-        public override Guid ComponentGuid => new Guid("{192AB461-640A-4786-998E-662B3DF2B9C2}");
+        public override Guid ComponentGuid { get; } = new Guid("{192AB461-640A-4786-998E-662B3DF2B9C2}");
     }
 }

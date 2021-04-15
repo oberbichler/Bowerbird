@@ -180,10 +180,10 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
             DA.SetDataList(1, bList);
         }
 
-        protected override Bitmap Icon => Properties.Resources.icon_field;
+        protected override Bitmap Icon { get; } = Properties.Resources.icon_field;
 
-        public override GH_Exposure Exposure => GH_Exposure.primary;
+        public override GH_Exposure Exposure { get; } = GH_Exposure.primary;
 
-        public override Guid ComponentGuid => new Guid("{E0660D1B-F785-4242-813F-CAB730C93DE5}");
+        public override Guid ComponentGuid { get; } = new Guid("{E0660D1B-F785-4242-813F-CAB730C93DE5}");
     }
 }

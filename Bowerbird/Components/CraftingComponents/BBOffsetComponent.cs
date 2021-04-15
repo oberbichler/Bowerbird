@@ -91,10 +91,10 @@ namespace Bowerbird.Components.CraftingComponents
             DA.SetDataList(0, result);
         }
 
-        protected override System.Drawing.Bitmap Icon => Properties.Resources.icon_offset;
+        protected override System.Drawing.Bitmap Icon { get; } = Properties.Resources.icon_offset;
 
-        public override GH_Exposure Exposure => GH_Exposure.primary;
+        public override GH_Exposure Exposure { get; } = GH_Exposure.primary;
 
-        public override Guid ComponentGuid => new Guid("{01A4A06C-0FD3-4037-9CE7-10E9A9263439}");
+        public override Guid ComponentGuid { get; } = new Guid("{01A4A06C-0FD3-4037-9CE7-10E9A9263439}");
     }
 }

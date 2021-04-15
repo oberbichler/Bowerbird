@@ -18,7 +18,7 @@ namespace Bowerbird.Parameters
         {
         }
 
-        public override Guid ComponentGuid => new Guid("{84DD6CB7-9DC6-4EF4-B46B-45F37361F7F1}");
+        public override Guid ComponentGuid { get; } = new Guid("{84DD6CB7-9DC6-4EF4-B46B-45F37361F7F1}");
 
         private bool m_reparameterize;
 
@@ -83,7 +83,7 @@ namespace Bowerbird.Parameters
 
             public override string Description => "Geometry inside this parameter is reparameterized";
 
-            public override Bitmap Icon => Properties.Resources.icon_normalize;
+            public override Bitmap Icon { get; } = Properties.Resources.icon_normalize;
 
             public override void Render(Graphics graphics)
             {

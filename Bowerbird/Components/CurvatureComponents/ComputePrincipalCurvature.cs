@@ -56,10 +56,10 @@ namespace Bowerbird.Components.CurvatureComponents
             DA.SetData(5, crv.D2);
         }
 
-        protected override Bitmap Icon => null;
+        protected override Bitmap Icon { get; } = null;
 
-        public override GH_Exposure Exposure => Info.Experimental ? GH_Exposure.primary : GH_Exposure.hidden;
+        public override GH_Exposure Exposure { get; } = Info.Experimental ? GH_Exposure.primary : GH_Exposure.hidden;
 
-        public override Guid ComponentGuid => new Guid("{5300DCE5-F233-4CDA-BDC3-56DB437DA1EF}");
+        public override Guid ComponentGuid { get; } = new Guid("{5300DCE5-F233-4CDA-BDC3-56DB437DA1EF}");
     }
 }

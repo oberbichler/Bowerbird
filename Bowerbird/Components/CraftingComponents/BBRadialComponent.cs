@@ -73,8 +73,8 @@ namespace Bowerbird.Components.CraftingComponents
             DA.SetEnum1D(3, result.PlanesZ);
         }
 
-        protected override System.Drawing.Bitmap Icon => Properties.Resources.icon_radial;
+        protected override System.Drawing.Bitmap Icon { get; } = Properties.Resources.icon_radial;
 
-        public override Guid ComponentGuid => new Guid("{08B4F9CF-7EA1-4A47-BC4E-FD761FA327E0}");
+        public override Guid ComponentGuid { get; } = new Guid("{08B4F9CF-7EA1-4A47-BC4E-FD761FA327E0}");
     }
 }

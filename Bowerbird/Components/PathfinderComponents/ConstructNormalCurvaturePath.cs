@@ -54,10 +54,10 @@ namespace Bowerbird.Components.PathfinderComponents
             DA.SetData(0, path);
         }
 
-        protected override Bitmap Icon => Properties.Resources.icon_asymptotic_path;
+        protected override Bitmap Icon { get; } = Properties.Resources.icon_asymptotic_path;
 
-        public override GH_Exposure Exposure => GH_Exposure.secondary;
+        public override GH_Exposure Exposure { get; } = GH_Exposure.secondary;
 
-        public override Guid ComponentGuid => new Guid("{F3B20CCE-C077-480E-A03D-48845AF2EF6F}");
+        public override Guid ComponentGuid { get; } = new Guid("{F3B20CCE-C077-480E-A03D-48845AF2EF6F}");
     }
 }

@@ -48,10 +48,10 @@ namespace Bowerbird.Components.CraftingComponents
             DA.SetDataList(0, result);
         }
 
-        protected override System.Drawing.Bitmap Icon => Properties.Resources.icon_xor;
+        protected override System.Drawing.Bitmap Icon { get; } = Properties.Resources.icon_xor;
 
-        public override GH_Exposure Exposure => GH_Exposure.secondary;
+        public override GH_Exposure Exposure { get; } = GH_Exposure.secondary;
 
-        public override Guid ComponentGuid => new Guid("{08B6E938-38EB-41DB-8E67-EC14EEB4D258}");
+        public override Guid ComponentGuid { get; } = new Guid("{08B6E938-38EB-41DB-8E67-EC14EEB4D258}");
     }
 }

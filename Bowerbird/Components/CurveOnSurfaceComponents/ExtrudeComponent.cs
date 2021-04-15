@@ -179,10 +179,10 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
             return base.Read(reader);
         }
 
-        protected override Bitmap Icon => Properties.Resources.icon_curve_on_surface_extrude;
+        protected override Bitmap Icon { get; } = Properties.Resources.icon_curve_on_surface_extrude;
 
-        public override GH_Exposure Exposure => GH_Exposure.tertiary;
+        public override GH_Exposure Exposure { get; } = GH_Exposure.tertiary;
 
-        public override Guid ComponentGuid => new Guid("{860BD3B6-41C7-4B72-8E6B-C9F1E602238E}");
+        public override Guid ComponentGuid { get; } = new Guid("{860BD3B6-41C7-4B72-8E6B-C9F1E602238E}");
     }
 }

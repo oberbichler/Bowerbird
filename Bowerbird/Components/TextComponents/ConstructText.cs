@@ -51,8 +51,8 @@ namespace Bowerbird.Components.TextComponents
             DA.SetDataList(0, curves);
         }
 
-        protected override System.Drawing.Bitmap Icon => Properties.Resources.icon_text;
+        protected override System.Drawing.Bitmap Icon { get; } = Properties.Resources.icon_text;
 
-        public override Guid ComponentGuid => new Guid("{D6938666-DEC5-42D7-8EFD-AB17E9AAE67A}");
+        public override Guid ComponentGuid { get; } = new Guid("{D6938666-DEC5-42D7-8EFD-AB17E9AAE67A}");
     }
 }
