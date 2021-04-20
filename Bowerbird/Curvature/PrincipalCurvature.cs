@@ -1,4 +1,4 @@
-﻿using Rhino.Geometry;
+using Rhino.Geometry;
 using System.Diagnostics;
 
 using static System.Math;
@@ -40,7 +40,9 @@ namespace Bowerbird.Curvature
                 K22 = (G11 * H22 - G12 * H12) / det;
             }
 
-            if (Abs(K12) < 1e-10 && Abs(K21) < 1e-10)
+            var eps = Max(Abs(K11), Abs(K22)) * 1e-10;
+
+            if (Abs(K12) < eps && Abs(K21) < eps)
             {
                 K1 = K11;
                 K2 = K22;
