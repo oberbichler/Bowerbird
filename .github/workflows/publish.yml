@@ -29,3 +29,9 @@ jobs:
             ./Bowerbird/bin/publish/examples.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create and publish yak packages
+        env:
+          YAK_TOKEN: ${{ secrets.YAK_TOKEN }}
+        run: |
+          .\script\deploy_yak.ps1 -tag ${{ github.ref }} -path .\Bowerbird\bin\publish\
+        shell: pwsh
