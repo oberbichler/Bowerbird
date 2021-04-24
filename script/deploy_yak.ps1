@@ -27,7 +27,7 @@ switch ($Matches.Count) {
 Write-Host "Yak-Version: $yakVersion"
 
 $content = Get-Content -path $path\dist\manifest.yml -Encoding UTF8
-$content = $content.Replace("version: 1.0.0+0", "version: `"$yakVersion`"")
+$content = $content.Replace("version: 0.0.0+0", "version: `"$yakVersion`"")
 Set-Content $content -Path $path\dist\manifest.yml -Encoding UTF8
 
 # copy files to dist
