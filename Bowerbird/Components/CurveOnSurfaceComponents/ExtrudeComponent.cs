@@ -58,9 +58,6 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
 
             if (Smooth)
             {
-                if (Unroll)
-                    throw new Exception("Unroll not supported for smooth geometries");
-
                 var upper = new List<Point3d>(polyline.PointCount);
                 var lower = new List<Point3d>(polyline.PointCount);
 
@@ -82,7 +79,20 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
                 var lowerCurve = Curve.CreateInterpolatedCurve(lower, 3);
                 var upperCurve = Curve.CreateInterpolatedCurve(upper, 3);
 
-                geometry = NurbsSurface.CreateRuledSurface(lowerCurve, upperCurve);
+                var surface = NurbsSurface.CreateRuledSurface(lowerCurve, upperCurve);
+
+                if (Unroll)
+                {
+                    var flattened = new List<Brep>();
+
+                    var unroller = new Unroller(surface);
+                    unroller.PerformUnroll(flattened);
+
+                    if (flattened.Count > 0)
+                        geometry = flattened[0];
+                }
+                else
+                    geometry = surface;
             }
             else
             {
