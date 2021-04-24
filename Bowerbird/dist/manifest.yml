@@ -1,0 +1,9 @@
+---
+name: Bowerbird
+version: 0.0.0+0
+authors:
+- Thomas Oberbichler
+description: Bowerbird is a plugin for Rhino and Grasshopper providing some tools for modeling.
+url: https://github.com/oberbichler/Bowerbird
+secret:
+  id: 6ad6b4dc-e6e6-40a4-9198-3a2c55b9ad30
