@@ -330,7 +330,7 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
 
         protected override Bitmap Icon { get; } = Properties.Resources.icon_curve_on_surface_curvature;
 
-        public override GH_Exposure Exposure { get; } = GH_Exposure.secondary;
+        public override GH_Exposure Exposure { get; } = Info.Experimental ? GH_Exposure.primary : GH_Exposure.hidden;
 
         public override Guid ComponentGuid { get; } = new Guid("{F23CF650-B288-4E6C-968D-F3BCD64C64E9}");
     }
