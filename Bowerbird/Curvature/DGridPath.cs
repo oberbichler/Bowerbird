@@ -83,7 +83,7 @@ namespace Bowerbird.Curvature
 
             var t = ps.S2 / ps.S1;
 
-            if (t < 0)
+            if (t < 0 || double.IsNaN(t))
                 return Vector2d.Zero;
 
             var angle = Atan(Sqrt(t));
