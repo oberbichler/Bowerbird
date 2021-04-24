@@ -32,7 +32,7 @@ Set-Content $content -Path $path\dist\manifest.yml -Encoding UTF8
 
 # copy files to dist
 
-Get-ChildItem -Path "$path\bin\*" -Include *.rhp,*.gha,*.dll -Recurse | Copy-Item -Destination $path\dist -Force
+Get-ChildItem -Path "$path\*" -Include *.gha -Recurse | Copy-Item -Destination $path\dist -Force
 New-Item -ItemType Directory -Path $path\dist\misc\ -Force
 Copy-Item -Path .\README.md -Destination $path\dist\misc\ -Force
 Copy-Item -Path .\LICENSE -Destination $path\dist\misc\LICENSE.txt -Force
