@@ -1,4 +1,4 @@
-using Rhino.Geometry;
+﻿using Rhino.Geometry;
 using System.Diagnostics;
 
 using static System.Math;
@@ -118,6 +118,8 @@ namespace Bowerbird.Curvature
                 D2 = du2 * A1 + dv2 * A2;
             }
 
+            CheckCurvature(surface, u, v);
+
             Debug.Assert(D1.IsValid && !D1.IsZero);
             Debug.Assert(D2.IsValid && !D2.IsZero);
 
@@ -127,6 +129,32 @@ namespace Bowerbird.Curvature
             Debug.Assert(Abs(D1 * D2) < 1e-4);
 
             return true;
+        }
+
+
+        [Conditional("DEBUG")]
+        void CheckCurvature(Surface surface, double u, double v)
+        {
+            var pc = surface.CurvatureAt(u, v);
+
+            Debug.Assert(pc != null);
+
+            if ((pc.Kappa(0) < pc.Kappa(1) && K1 < K2) || (pc.Kappa(0) > pc.Kappa(1) && K1 > K2))
+            {
+                Debug.Assert(Abs(pc.Kappa(0) - K1) < 1e-6);
+                Debug.Assert(Abs(pc.Kappa(1) - K2) < 1e-6);
+
+                Debug.Assert(Abs(Abs(pc.Direction(0) * D1) - 1) < 1e-6);
+                Debug.Assert(Abs(Abs(pc.Direction(1) * D2) - 1) < 1e-6);
+            }
+            else
+            {
+                Debug.Assert(Abs(pc.Kappa(0) - K2) < 1e-6);
+                Debug.Assert(Abs(pc.Kappa(1) - K1) < 1e-6);
+
+                Debug.Assert(Abs(Abs(pc.Direction(0) * D2) - 1) < 1e-6);
+                Debug.Assert(Abs(Abs(pc.Direction(1) * D1) - 1) < 1e-6);
+            }
         }
 
 
