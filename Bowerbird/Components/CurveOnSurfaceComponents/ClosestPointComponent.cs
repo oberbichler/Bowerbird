@@ -9,7 +9,7 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
 {
     public class ClosestPointComponent : GH_Component
     {
-        public ClosestPointComponent() : base("BB CurveOnSurface Closest Point", "CP", "Find the closest point on an embedded curve.", "Bowerbird", "Curve on Surface")
+        public ClosestPointComponent() : base("BB Closest Point CurveOnSurface", "CP", "Find the closest point on an embedded curve.", "Bowerbird", "Curve on Surface")
         {
         }
 
