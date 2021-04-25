@@ -105,6 +105,9 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
 
             foreach (var face in brep.Faces)
             {
+                var domainU = face.Domain(0);
+                var domainV = face.Domain(1);
+
                 face.SetDomain(0, new Interval(0, 1)).AssertTrue();
                 face.SetDomain(1, new Interval(0, 1)).AssertTrue();
 
@@ -128,15 +131,15 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
                             if (!path.Directions(surface, uv, out var u1, out var u2, out var d1, out var d2))
                                 continue;
 
-                            var x = Space == SpaceTypes.UV ? new Point3d(u, v, 0) : surface.PointAt(u, v);
-
                             if (Space == SpaceTypes.UV)
                             {
+                                var x = new Point3d(domainU.ParameterAt(u), domainV.ParameterAt(v), 0);
                                 aList.Add(new Line(x - u1 * size, x + u1 * size));
                                 bList.Add(new Line(x - u2 * size, x + u2 * size));
                             }
                             else
                             {
+                                var x = surface.PointAt(u, v);
                                 aList.Add(new Line(x - d1 * size, x + d1 * size));
                                 bList.Add(new Line(x - d2 * size, x + d2 * size));
                             }
