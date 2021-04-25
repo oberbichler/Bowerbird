@@ -14,6 +14,7 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
     {
         public ExtrudeComponent() : base("BB Extrude CurveOnSurface", "Extrude", "Extrude an embedded curve in direction of its normal vector.", "Bowerbird", "Curve on Surface")
         {
+            Smooth = true;
         }
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
@@ -50,7 +51,7 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
             if (curve.TryGetPolyline(out var points))
                 polyline = new PolylineCurve(points);
             else
-                polyline = curve.ToPolyline(DocumentTolerance(), DocumentAngleTolerance(), 0, 0);
+                polyline = curve.ToPolyline(DocumentTolerance(), DocumentAngleTolerance(), DocumentTolerance(), 0);
 
             var points3d = new List<Point3d>(polyline.PointCount);
 
@@ -217,7 +218,14 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
 
         private void UpdateMessage()
         {
-            Message = Unroll ? "Unroll" : null;
+            if (!Smooth && Unroll)
+                Message = "Unroll Mesh";
+            else if (!Smooth)
+                Message = "Mesh";
+            else if (Unroll)
+                Message = "Unroll";
+            else
+                Message = null;
         }
 
         protected override void AppendAdditionalComponentMenuItems(ToolStripDropDown menu)
@@ -236,7 +244,7 @@ namespace Bowerbird.Components.CurveOnSurfaceComponents
 
         public override bool Read(GH_IReader reader)
         {
-            Smooth = reader.GetOrDefault("Smooth", false);
+            Smooth = reader.GetOrDefault("Smooth", true);
             Unroll = reader.GetOrDefault("Unroll", false);
 
             return base.Read(reader);
