@@ -22,7 +22,7 @@ namespace Bowerbird.Parameters
 
         protected override Bitmap Icon { get; } = Properties.Resources.icon_curve_on_surface_parameter;
 
-        public override GH_Exposure Exposure { get; } = GH_Exposure.primary | GH_Exposure.obscure;
+        public override GH_Exposure Exposure { get; } = GH_Exposure.primary;
 
         private bool m_reparameterize;
 
