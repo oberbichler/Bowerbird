@@ -42,6 +42,10 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="dist\**" CopyToPublishDirectory="Always" />
+  </ItemGroup>
+
   <Target Name="BuildGrasshopperPlugin" AfterTargets="PostBuildEvent">
     <Move SourceFiles="$(TargetDir)$(TargetName).dll" DestinationFiles="$(TargetDir)$(TargetName).gha" OverwriteReadOnlyFiles="true" />
   </Target>

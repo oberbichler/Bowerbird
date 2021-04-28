@@ -12,13 +12,17 @@ using System.Windows.Forms;
 
 namespace Bowerbird.Parameters
 {
-    internal class CurveOnSurfaceParameter : GH_Param<GH_CurveOnSurface>, IGH_PreviewObject, IGH_BakeAwareObject
+    public class CurveOnSurfaceParameter : GH_Param<GH_CurveOnSurface>, IGH_PreviewObject, IGH_BakeAwareObject
     {
-        public CurveOnSurfaceParameter() : base(new GH_InstanceDescription("BB Path", "BBPath", "", "Bowerbird", "CurveOnSurface"))
+        public CurveOnSurfaceParameter() : base(new GH_InstanceDescription("BB CurveOnSurface", "CrvOnSrf", "", "Bowerbird", "Curve on Surface"))
         {
         }
 
         public override Guid ComponentGuid => new Guid("{84DD6CB7-9DC6-4EF4-B46B-45F37361F7F1}");
+
+        protected override Bitmap Icon { get; } = Properties.Resources.icon_curve_on_surface_parameter;
+
+        public override GH_Exposure Exposure { get; } = GH_Exposure.primary;
 
         private bool m_reparameterize;
 
