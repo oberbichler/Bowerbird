@@ -6,7 +6,7 @@
 
 ---
 
-[![Actions Status](https://github.com/oberbichler/Bowerbird/workflows/CI/badge.svg?branch=master)](https://github.com/oberbichler/Bowerbird/actions) [![Download](https://img.shields.io/github/downloads/oberbichler/Bowerbird/total.svg)](https://github.com/oberbichler/Bowerbird/releases/latest)
+[![Actions Status](https://github.com/oberbichler/Bowerbird/workflows/CI/badge.svg?branch=master)](https://github.com/oberbichler/Bowerbird/actions) ![GitHub all releases](https://img.shields.io/github/downloads/oberbichler/Bowerbird/total?label=GitHub%20downloads) ![Yak version](https://img.shields.io/badge/dynamic/json?label=Yak%20version&query=version&url=https%3A%2F%2Fyak.rhino3d.com%2Fpackages%2Fbowerbird) ![Yak downloads](https://img.shields.io/badge/dynamic/json?label=Yak%20downloads&query=download_count&url=https%3A%2F%2Fyak.rhino3d.com%2Fpackages%2Fbowerbird)
 
 Grasshopper Group: https://www.grasshopper3d.com/group/bowerbird
 
