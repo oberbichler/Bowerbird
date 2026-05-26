@@ -10,28 +10,44 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+
       - name: Restore
         run: dotnet restore
-      - name: Build
+
+      - name: Build and Package (triggers MSBuild PackageYak target)
         run: |
           $path = vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
           $version = $($env:GITHUB_REF).Substring("11")
-          echo $version
           if ($path) {
             & $path -t:Publish -p:Configuration=Release -p:Version=$version
           }
-      - name: Publish
-        uses: softprops/action-gh-release@v1
+
+      - name: Publish Release Assets
+        uses: softprops/action-gh-release@v2
         with:
           files: |
             ./Bowerbird/bin/publish/Bowerbird.gha
             ./Bowerbird/bin/publish/examples.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Create and publish yak packages
+
+      # Cache the downloaded yak.exe to speed up future runs
+      - name: Cache Yak CLI
+        id: cache-yak
+        uses: actions/cache@v4
+        with:
+          path: .\yak.exe
+          key: yak-cli-latest
+
+      - name: Push Yak package to McNeel Server
         env:
           YAK_TOKEN: ${{ secrets.YAK_TOKEN }}
         run: |
-          .\script\deploy_yak.ps1 -tag ${{ github.ref }} -path .\Bowerbird\bin\publish\
+          # Locate the automatically built .yak package and push it
+          $yakPackage = Get-ChildItem -Path .\Bowerbird\bin\publish\dist\*.yak | Select-Object -First 1
+          .\yak.exe push $yakPackage.FullName
         shell: pwsh
