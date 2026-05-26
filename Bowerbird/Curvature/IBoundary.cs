@@ -1,15 +1,14 @@
-﻿using Rhino.Geometry;
+using Rhino.Geometry;
 
-namespace Bowerbird.Curvature
+namespace Bowerbird.Curvature;
+
+public interface IBoundary
 {
-    interface IBoundary
-    {
-        BrepFace AdjacentFace { get; }
+    BrepFace? AdjacentFace { get; }
 
-        Vector3d AdjacentTangent { get; }
+    Vector3d AdjacentTangent { get; }
 
-        Vector2d AdjacentUV { get; }
+    Vector2d AdjacentUV { get; }
 
-        bool Clip(Vector2d a, ref Vector2d b);
-    }
+    bool Clip(Vector2d a, ref Vector2d b);
 }

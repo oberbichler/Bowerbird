@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RollForward>LatestMajor</RollForward>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
+    <PackageReference Include="xunit" Version="2.*" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.*" />
+    <PackageReference Include="Clipper2" Version="1.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Shared source file, keine Grasshopper-Abhaengigkeit -->
+    <Compile Include="..\Bowerbird\Migration\LegacyEnumMapping.cs" Link="LegacyEnumMapping.cs" />
+  </ItemGroup>
+
+</Project>

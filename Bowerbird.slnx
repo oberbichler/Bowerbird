@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Bowerbird/Bowerbird.csproj" />
+  <Project Path="Bowerbird.Tests/Bowerbird.Tests.csproj" />
+</Solution>

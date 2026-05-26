@@ -1,111 +1,95 @@
 using Bowerbird.Curvature;
 using Bowerbird.Parameters;
+using Bowerbird.Types;
+using Bowerbird.Components;
 using GH_IO.Serialization;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 using System;
-using System.Drawing;
 using System.Windows.Forms;
 
-namespace Bowerbird.Components.CurveOnSurfaceComponents
+namespace Bowerbird.Components.CurveOnSurfaceComponents;
+
+public class ConstructCurveOnSurfaceComponent : GH_Component
 {
-    public class ConstructCurveOnSurfaceComponent : GH_Component
+    public ConstructCurveOnSurfaceComponent() 
+        : base("BB Construct CurveOnSurface", "CrvOnSrf", "Embed a curve on a surface.", "Bowerbird", "Curve on Surface")
     {
-        public ConstructCurveOnSurfaceComponent() : base("BB Construct CurveOnSurface", "CrvOnSrf", "Embed a curve on a surface.", "Bowerbird", "Curve on Surface")
+        UpdateMessage();
+    }
+
+    protected override void RegisterInputParams(GH_InputParamManager pManager)
+    {
+        pManager.AddSurfaceParameter("Surface", "S", "Surface on which the curve is to be embedded", GH_ParamAccess.item);
+        pManager.AddCurveParameter("Curve", "C", "Curve which is to be embedded. The curve can be defined in geometry or parameter space.", GH_ParamAccess.item);
+    }
+
+    protected override void RegisterOutputParams(GH_OutputParamManager pManager)
+    {
+        pManager.AddParameter(new CurveOnSurfaceParameter(), "Curve on Surface", "C", "Embedded curve", GH_ParamAccess.item);
+        pManager.AddCurveParameter("Approximation", "A", "Approximation of the embedded curve as ordinary Rhino curve", GH_ParamAccess.item);
+    }
+
+    private SpaceTypes _space = SpaceTypes.XYZ;
+
+    public SpaceTypes Space
+    {
+        get => _space;
+        set
         {
+            _space = value;
             UpdateMessage();
         }
-
-        protected override void RegisterInputParams(GH_InputParamManager pManager)
-        {
-            pManager.AddSurfaceParameter("Surface", "S", "Surface on which the curve is to be embedded", GH_ParamAccess.item);
-            pManager.AddCurveParameter("Curve", "C", "Curve which is to be embedded. The curve can be defined in geometry or parameter space (see context menu).", GH_ParamAccess.item);
-        }
-
-        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
-        {
-            pManager.AddParameter(new CurveOnSurfaceParameter(), "Curve on Surface", "C", "Embedded curve", GH_ParamAccess.item);
-            pManager.AddCurveParameter("Approximation", "A", "Approximation of the embedded curve as ordinary Rhino curve", GH_ParamAccess.item);
-        }
-
-        protected override void SolveInstance(IGH_DataAccess DA)
-        {
-            // --- Input
-
-            var surface = default(Surface);
-            var curve = default(Curve);
-
-            if (!DA.GetData(0, ref surface)) return;
-            if (!DA.GetData(1, ref curve)) return;
-
-
-            // --- Execute
-
-            surface = (Surface)surface.Duplicate();
-
-            var parameterCurve = curve;
-
-            if (Space == SpaceTypes.XYZ)
-                parameterCurve = surface.Pullback(curve, DocumentTolerance());
-
-            var curveOnSurface = CurveOnSurface.Create(surface, parameterCurve);
-
-            // --- Output
-
-            DA.SetData(0, curveOnSurface);
-            DA.SetData(1, curveOnSurface.ToCurve(DocumentTolerance()));
-        }
-
-        protected override Bitmap Icon => Properties.Resources.icon_curve_on_surface_construct;
-
-        public override GH_Exposure Exposure => GH_Exposure.primary;
-
-        public override Guid ComponentGuid => new Guid("{DE62F1CD-5E5C-4372-B1BB-2494ED62D349}");
-
-
-        public enum SpaceTypes
-        {
-            XYZ = 0,
-            UV = 1
-        }
-
-        private SpaceTypes _space = SpaceTypes.XYZ;
-
-        public SpaceTypes Space
-        {
-            get
-            {
-                return _space;
-            }
-            set
-            {
-                _space = value;
-                UpdateMessage();
-            }
-        }
-
-        private void UpdateMessage()
-        {
-            Message = Space.ToString();
-        }
-
-        protected override void AppendAdditionalComponentMenuItems(ToolStripDropDown menu)
-        {
-            Utility.SetMenuList(this, menu, "Change space", () => Space, o => Space = o);
-        }
-
-        public override bool Write(GH_IWriter writer)
-        {
-            writer.Set("Space", Space);
-
-            return base.Write(writer);
-        }
-
-        public override bool Read(GH_IReader reader)
-        {
-            Space = reader.GetOrDefault("Space", SpaceTypes.XYZ);
-
-            return base.Read(reader);
-        }
     }
+
+    private void UpdateMessage()
+    {
+        Message = Space.ToString();
+    }
+
+    protected override void AppendAdditionalComponentMenuItems(ToolStripDropDown menu)
+    {
+        GHUtility.SetMenuList(this, menu, "Change space", () => Space, o => Space = o);
+    }
+
+    public override bool Write(GH_IWriter writer)
+    {
+        writer.Set("Space", Space);
+        return base.Write(writer);
+    }
+
+    public override bool Read(GH_IReader reader)
+    {
+        Space = reader.GetOrDefault("Space", SpaceTypes.XYZ);
+        return base.Read(reader);
+    }
+
+    protected override void SolveInstance(IGH_DataAccess DA)
+    {
+        var surface = default(Surface);
+        var curve = default(Curve);
+
+        if (!DA.GetData(0, ref surface)) return;
+        if (!DA.GetData(1, ref curve)) return;
+
+        if (surface == null || curve == null) return;
+
+        surface = (Surface)surface.Duplicate();
+        var parameterCurve = curve;
+
+        if (Space == SpaceTypes.XYZ)
+            parameterCurve = surface.Pullback(curve, DocumentTolerance());
+
+        var curveOnSurface = CurveOnSurface.Create(surface, parameterCurve);
+        if (curveOnSurface == null) return;
+
+        DA.SetData(0, new GH_CurveOnSurface(curveOnSurface));
+        DA.SetData(1, curveOnSurface.ToCurve(DocumentTolerance()));
+    }
+
+    protected override System.Drawing.Bitmap? Icon => Bowerbird.Properties.Resources.icon_curve_on_surface_construct;
+
+    public override GH_Exposure Exposure => GH_Exposure.primary;
+
+    public override Guid ComponentGuid => new("{DE62F1CD-5E5C-4372-B1BB-2494ED62D349}");
 }

@@ -1,95 +1,91 @@
-﻿using Rhino.Geometry;
+using Rhino.Geometry;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Bowerbird.Text
-{
-    internal class Typewriter
-    {
-        static Typewriter()
-        {
-            var regularFont = Font.Load(new StringReader(Bowerbird.Properties.Resources.bowerbird_regular));
-            var boldFont = Font.Load(new StringReader(Bowerbird.Properties.Resources.bowerbird_bold));
+namespace Bowerbird.Text;
 
+public class Typewriter
+{
+    static Typewriter()
+    {
+        var assembly = typeof(Typewriter).Assembly;
+
+        using (var regularStream = assembly.GetManifestResourceStream("Bowerbird.Resources.Fonts.bowerbird_regular.json"))
+        {
+            if (regularStream == null)
+                throw new FileNotFoundException("Could not find embedded resource: bowerbird_regular.json");
+            using var reader = new StreamReader(regularStream);
+            var regularFont = Font.Load(reader);
             Regular = new Typewriter(regularFont);
+        }
+
+        using (var boldStream = assembly.GetManifestResourceStream("Bowerbird.Resources.Fonts.bowerbird_bold.json"))
+        {
+            if (boldStream == null)
+                throw new FileNotFoundException("Could not find embedded resource: bowerbird_bold.json");
+            using var reader = new StreamReader(boldStream);
+            var boldFont = Font.Load(reader);
             Bold = new Typewriter(boldFont);
         }
+    }
 
-        public static readonly Typewriter Regular;
+    public static readonly Typewriter Regular;
 
-        public static readonly Typewriter Bold;
+    public static readonly Typewriter Bold;
 
+    public Typewriter(Font font)
+    {
+        Letters = font.Letters.ToDictionary(o => o.Character);
+    }
 
-        public Typewriter(Font font)
+    private Dictionary<char, Letter> Letters { get; set; }
+
+    public IEnumerable<Curve> Write(string text, Point3d position, Vector3d unitX, Vector3d unitY, HorizontalAlignment hAlign, VerticalAlignment vAlign)
+    {
+        const double hSpacing = 0.1;
+        const double vSpacing = 1.4;
+
+        var lines = System.Text.RegularExpressions.Regex.Split(text, "\r\n|\r|\n");
+
+        for (int i = 0; i < lines.Length; i++)
         {
-            Letters = font.Letters.ToDictionary(o => o.Character);
-        }
+            var line = lines[i];
+            var lineLetters = new List<Letter>(line.Length);
 
-        private Dictionary<char, Letter> Letters { get; set; }
-
-        public IEnumerable<Curve> Write(string text, Point3d position, Vector3d unitX, Vector3d unitY, int hAlign, int vAlign)
-        {
-            var hSpacing = 0.1;
-            var vSpacing = 1.4;
-
-            var lines = System.Text.RegularExpressions.Regex.Split(text, "\r\n|\r|\n");
-
-            for (int i = 0; i < lines.Length; i++)
+            foreach (var c in line)
             {
-                var line = lines[i];
+                if (!Letters.TryGetValue(c, out var letter))
+                    letter = Letters['\0'];
 
-                var lineLetters = new List<Letter>(line.Length);
+                lineLetters.Add(letter);
+            }
 
-                foreach (var c in line)
-                {
-                    var letter = default(Letter);
+            var lineWidth = lineLetters.Sum(o => o.Width) + (lineLetters.Count - 1) * hSpacing;
+            var linePosition = position;
 
-                    if (!Letters.TryGetValue(c, out letter))
-                        letter = Letters['\0'];
+            linePosition += vAlign switch
+            {
+                VerticalAlignment.Top => -(i * vSpacing + 1.0) * unitY,
+                VerticalAlignment.Bottom => (lines.Length - i - 1) * vSpacing * unitY,
+                VerticalAlignment.Baseline => -i * vSpacing * unitY,
+                _ => ((-1.0 - 2.0 * i + lines.Length) * vSpacing - 1.0) / 2.0 * unitY
+            };
 
-                    lineLetters.Add(letter);
-                }
+            linePosition -= hAlign switch
+            {
+                HorizontalAlignment.Left => Vector3d.Zero,
+                HorizontalAlignment.Right => lineWidth * unitX,
+                _ => lineWidth / 2.0 * unitX
+            };
 
-                var lineWidth = lineLetters.Sum(o => o.Width) + (lineLetters.Count - 1) * hSpacing;
+            foreach (var letter in lineLetters)
+            {
+                foreach (var curve in letter.Write(ref linePosition, unitX, unitY))
+                    yield return curve;
 
-                var linePosition = position;
-
-                switch (vAlign)
-                {
-                    case 1:
-                        linePosition -= (i * vSpacing + 1) * unitY;
-                        break;
-                    case 2:
-                        linePosition += (lines.Length - i - 1) * vSpacing * unitY;
-                        break;
-                    case 3:
-                        linePosition -= i * vSpacing * unitY;
-                        break;
-                    default:
-                        linePosition += ((-1 - 2 * i + lines.Length) * vSpacing - 1) / 2.0 * unitY;
-                        break;
-                }
-
-                switch (hAlign)
-                {
-                    case 1:
-                        break;
-                    case 2:
-                        linePosition -= lineWidth * unitX;
-                        break;
-                    default:
-                        linePosition -= lineWidth / 2 * unitX;
-                        break;
-                }
-
-                foreach (var letter in lineLetters)
-                {
-                    foreach (var curve in letter.Write(ref linePosition, unitX, unitY))
-                        yield return curve;
-
-                    linePosition += unitX * hSpacing;
-                }
+                linePosition += unitX * hSpacing;
             }
         }
     }

@@ -1,33 +1,46 @@
-﻿using Grasshopper.Kernel;
+using Grasshopper.Kernel;
 using System;
 using System.Drawing;
+using System.IO;
 using System.Reflection;
 
-namespace Bowerbird
+namespace Bowerbird;
+
+public class Info : GH_AssemblyInfo
 {
-    public class Info : GH_AssemblyInfo
+    static Info()
     {
-        static Info()
+        AppDomain.CurrentDomain.AssemblyResolve += (sender, args) =>
         {
-            Experimental = Environment.GetEnvironmentVariable("BOWERBIRD_EXPERIMENTAL") == "1";
-        }
+            var name = new AssemblyName(args.Name).Name;
+            if (string.IsNullOrEmpty(name))
+                return null;
 
-        public override string Name => "Bowerbird2";
+            var assemblyDir = Path.GetDirectoryName(typeof(Info).Assembly.Location);
+            if (string.IsNullOrEmpty(assemblyDir))
+                return null;
 
-        public override Bitmap Icon => Properties.Resources.logo_24;
+            var dllPath = Path.Combine(assemblyDir, name + ".dll");
+            if (File.Exists(dllPath))
+            {
+                return Assembly.LoadFrom(dllPath);
+            }
 
-        public override string Description => "";
-
-        public override Guid Id => new Guid("6ad6b4dc-e6e6-40a4-9198-3a2c55b9ad30");
-
-        public override string AuthorName => "Thomas Oberbichler";
-
-        public override string AuthorContact => "thomas.oberbichler@gmail.com";
-
-        public override string Version => Assembly.GetAssembly(typeof(Info)).GetName().Version.ToString();
-
-        public override string AssemblyVersion => Version;
-
-        public static bool Experimental { get; }
+            return null;
+        };
     }
+
+    public override string Name { get; } = "Bowerbird";
+
+    public override Bitmap? Icon => Bowerbird.Properties.Resources.logo_24;
+
+    public override string Description { get; } = "A modernized .NET 8 version of Bowerbird for Rhino and Grasshopper.";
+
+    public override Guid Id { get; } = new("6ad6b4dc-e6e6-40a4-9198-3a2c55b9ad30");
+
+    public override string AuthorName { get; } = "Thomas Oberbichler";
+
+    public override string AuthorContact { get; } = "thomas.oberbichler@gmail.com";
+
+    public override string Version { get; } = "1.0.0";
 }
