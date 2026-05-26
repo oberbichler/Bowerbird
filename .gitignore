@@ -330,3 +330,6 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
+
+# Yak CLI
+yak.exe

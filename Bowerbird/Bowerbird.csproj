@@ -65,14 +65,14 @@
     <Copy SourceFiles="$(MSBuildProjectDirectory)/../README.md" DestinationFolder="$(YakDistDir)misc\" />
     <Copy SourceFiles="$(MSBuildProjectDirectory)/../LICENSE" DestinationFiles="$(YakDistDir)misc/LICENSE.txt" />
 
-    <!-- 5. Download yak.exe if it doesn't exist yet (platform-agnostic) -->
+    <!-- 5. Download yak.exe if it doesn't exist yet (Windows only) -->
     <DownloadFile 
       SourceUrl="https://files.mcneel.com/yak/tools/latest/yak.exe" 
       DestinationFolder="$(MSBuildProjectDirectory)/../" 
-      Condition="!Exists('$(MSBuildProjectDirectory)/../yak.exe')" />
+      Condition="$([MSBuild]::IsOSPlatform('Windows')) And !Exists('$(MSBuildProjectDirectory)/../yak.exe')" />
 
-    <!-- 6. Run yak build in the distribution directory -->
-    <Exec Command="&quot;$(MSBuildProjectDirectory)/../yak.exe&quot; build" WorkingDirectory="$(YakDistDir)" />
+    <!-- 6. Run yak build in the distribution directory (Windows only) -->
+    <Exec Command="&quot;$(MSBuildProjectDirectory)/../yak.exe&quot; build" WorkingDirectory="$(YakDistDir)" Condition="$([MSBuild]::IsOSPlatform('Windows'))" />
   </Target>
 
 </Project>
