@@ -1,18 +1,38 @@
 name: CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - '**'
+    paths-ignore:
+      - 'docs/**'
+      - '*.md'
+      - '.gitignore'
+      - 'LICENSE'
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
+    name: Build & Test
     runs-on: windows-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Restore
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+          cache: true # Enables automatic caching of NuGet dependencies
+
+      - name: Restore dependencies
         run: dotnet restore
-      - name: Build
-        run: |
-          $path = vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
-          if ($path) {
-            & $path -t:Build -p:Configuration=Release
-          }
+
+      - name: Build solution
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Run unit tests
+        run: dotnet test --configuration Release --no-build --verbosity normal

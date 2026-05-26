@@ -38,4 +38,41 @@
     <EmbeddedResource Include="Resources\Fonts\*.json" />
   </ItemGroup>
 
+  <!-- Automatically build the Yak package after Publishing -->
+  <Target Name="PackageYak" AfterTargets="Publish" Condition="'$(Version)' != '0.0.0'">
+    <PropertyGroup>
+      <YakVersion>$(Version)</YakVersion>
+      <!-- Convert 4-part .NET version (e.g. 1.2.3.4) to Yak SemVer (e.g. 1.2.3+4) -->
+      <YakVersion Condition="$(Version.Split('.').Length) == 4">$(Version.Substring(0, $(Version.LastIndexOf('.'))))+$(Version.Substring($(Version.LastIndexOf('.')) + 1))</YakVersion>
+      <YakDistDir>$(PublishDir)dist\</YakDistDir>
+    </PropertyGroup>
+
+    <!-- 1. Ensure target directories exist -->
+    <MakeDir Directories="$(YakDistDir)" />
+    <MakeDir Directories="$(YakDistDir)misc\" />
+
+    <!-- 2. Copy the compiled assembly (.gha) to the distribution folder -->
+    <Copy SourceFiles="$(PublishDir)$(AssemblyName).gha" DestinationFolder="$(YakDistDir)" />
+
+    <!-- 3. Copy manifest.yml and patch its version -->
+    <WriteLinesToFile 
+      File="$(YakDistDir)manifest.yml" 
+      Lines="$([System.Text.RegularExpressions.Regex]::Replace($([System.IO.File]::ReadAllText('$(MSBuildProjectDirectory)/dist/manifest.yml')), 'version:\s*\S+', 'version: &quot;$(YakVersion)&quot;'))" 
+      Overwrite="true" 
+      Encoding="UTF-8" />
+
+    <!-- 4. Copy README and LICENSE to the misc subfolder as per Yak standards -->
+    <Copy SourceFiles="$(MSBuildProjectDirectory)/../README.md" DestinationFolder="$(YakDistDir)misc\" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)/../LICENSE" DestinationFiles="$(YakDistDir)misc/LICENSE.txt" />
+
+    <!-- 5. Download yak.exe if it doesn't exist yet (platform-agnostic) -->
+    <DownloadFile 
+      SourceUrl="https://files.mcneel.com/yak/tools/latest/yak.exe" 
+      DestinationFolder="$(MSBuildProjectDirectory)/../" 
+      Condition="!Exists('$(MSBuildProjectDirectory)/../yak.exe')" />
+
+    <!-- 6. Run yak build in the distribution directory -->
+    <Exec Command="&quot;$(MSBuildProjectDirectory)/../yak.exe&quot; build" WorkingDirectory="$(YakDistDir)" />
+  </Target>
+
 </Project>
