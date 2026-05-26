@@ -21,7 +21,15 @@ jobs:
       - name: Build and Package (triggers MSBuild PackageYak target)
         run: |
           $path = vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe | select-object -first 1
-          $version = $($env:GITHUB_REF).Substring("11")
+          $tag = $env:GITHUB_REF_NAME
+          if (-not $tag) {
+            $tag = $($env:GITHUB_REF).Substring(10)
+          }
+          if ($tag -match '(\d+\.\d+\.\d+(?:\.\d+)?)') {
+            $version = $Matches[1]
+          } else {
+            $version = $tag
+          }
           if ($path) {
             & $path -t:Publish -p:Configuration=Release -p:Version=$version
           }
