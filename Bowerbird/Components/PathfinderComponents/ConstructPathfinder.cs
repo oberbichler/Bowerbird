@@ -1,239 +1,228 @@
-﻿using Bowerbird.Curvature;
+using Bowerbird.Components;
+using Bowerbird.Curvature;
 using Bowerbird.Parameters;
+using Bowerbird.Types;
 using GH_IO.Serialization;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 
-namespace Bowerbird.Components.PathfinderComponents
+namespace Bowerbird.Components.PathfinderComponents;
+
+public enum StartPointTypes
 {
-    public class ConstructPathfinder : GH_Component
+    XYZ = 0,
+    UV = 1
+}
+
+public class ConstructPathfinder : GH_Component
+{
+    public ConstructPathfinder() 
+        : base("BB Pathfinder", "BBPathfinder", "Find a specified path type on a surface or Brep." + Bowerbird.Crafting.Util.InfoString, "Bowerbird", "Paths")
     {
-        public ConstructPathfinder() : base("BB Pathfinder", "BBPathfinder", "Find a specified path type on a surface or Brep.", "Bowerbird", "Paths")
+        UpdateMessage();
+    }
+
+    protected override void RegisterInputParams(GH_InputParamManager pManager)
+    {
+        pManager.AddParameter(new PathParameter(), "Path Type", "T", "Path type to search", GH_ParamAccess.item);
+        pManager.AddBrepParameter("Surface", "S", "Surface or Brep to evaluate", GH_ParamAccess.item);
+        pManager.AddVectorParameter("Start Point", "P", "Start point for the search. Can be specified in geometry or parameter space.", GH_ParamAccess.item);
+        pManager.AddNumberParameter("Step Size", "H", "Step size for the search (too high: large error, too low: no progress and therefore no result)", GH_ParamAccess.item, 0.1);
+        pManager.AddIntegerParameter("Maximum number of Points", "N", "Limit of points for the search (break criterion)", GH_ParamAccess.item, 10000);
+        pManager.AddNumberParameter("Loop Tolerance", "t", "Tolerance for detecting closed loops (break criterion)", GH_ParamAccess.item);
+
+        pManager[4].Optional = true;
+        pManager[5].Optional = true;
+    }
+
+    protected override void RegisterOutputParams(GH_OutputParamManager pManager)
+    {
+        pManager.AddParameter(new CurveOnSurfaceParameter(), "Paths", "C", "Results as embedded curves (CurveOnSurface)", GH_ParamAccess.list);
+    }
+
+    private StartPointTypes _startPointType = StartPointTypes.XYZ;
+
+    public StartPointTypes StartPointType
+    {
+        get => _startPointType;
+        set
         {
+            _startPointType = value;
             UpdateMessage();
         }
+    }
 
-        protected override void RegisterInputParams(GH_InputParamManager pManager)
+    private void UpdateMessage()
+    {
+        Message = StartPointType.ToString();
+    }
+
+    protected override void AppendAdditionalComponentMenuItems(ToolStripDropDown menu)
+    {
+        GHUtility.SetMenuList(this, menu, "Change start point type", () => StartPointType, o => StartPointType = o);
+    }
+
+    public override bool Write(GH_IWriter writer)
+    {
+        writer.Set("StartPointType", StartPointType);
+        return base.Write(writer);
+    }
+
+    public override bool Read(GH_IReader reader)
+    {
+        StartPointType = reader.GetOrDefault("StartPointType", StartPointTypes.XYZ);
+        return base.Read(reader);
+    }
+
+    protected override void SolveInstance(IGH_DataAccess DA)
+    {
+        var path = default(Bowerbird.Curvature.Path);
+        var brep = default(Brep);
+        var startingPoint = default(Vector3d);
+        var stepSize = default(double);
+        var maxPoints = default(int);
+        var loopTolerance = DocumentTolerance();
+
+        if (!DA.GetData(0, ref path)) return;
+        if (!DA.GetData(1, ref brep)) return;
+        if (!DA.GetData(2, ref startingPoint)) return;
+        if (!DA.GetData(3, ref stepSize)) return;
+        if (!DA.GetData(4, ref maxPoints)) return;
+        DA.GetData(5, ref loopTolerance);
+
+        if (path == null || brep == null) return;
+
+        BrepFace face;
+
+        if (brep.Faces.Count > 1)
         {
-            pManager.AddParameter(new PathParameter(), "Path Type", "T", "Path type to search", GH_ParamAccess.item);
-            pManager.AddBrepParameter("Surface", "S", "Surface or Brep to evaluate", GH_ParamAccess.item);
-            pManager.AddVectorParameter("Start Point", "P", "Start point for the search. Can be specified in geometry or parameter space (see context menu of the component).", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Step Size", "H", "Step size for the search (too high: large error, too low: no progress and therefore no result)", GH_ParamAccess.item, 0.1);
-            pManager.AddIntegerParameter("Maximum number of Points", "N", "Limit of points for the search (break criterion)", GH_ParamAccess.item, 10000);
-            pManager.AddNumberParameter("Loop Tolerance", "t", "Tolerance for detecting closed loops (break criterion)", GH_ParamAccess.item);
+            if (StartPointType == StartPointTypes.UV)
+                throw new Exception("UV coordinates not supported for multipatches");
 
-            pManager[5].Optional = true;
-        }
+            brep.ClosestPoint((Point3d)startingPoint, out _, out var ci, out _, out _, 0, out _);
 
-        protected override void RegisterOutputParams(GH_OutputParamManager pManager)
-        {
-            pManager.AddParameter(new CurveOnSurfaceParameter(), "Paths", "C", "Results as embedded curves (CurveOnSurface)", GH_ParamAccess.list);
-        }
-
-        protected override void SolveInstance(IGH_DataAccess DA)
-        {
-            // --- Input
-
-            var path = default(Path);
-            var brep = default(Brep);
-            var startingPoint = default(Vector3d);
-            var stepSize = default(double);
-            var maxPoints = default(int);
-            var loopTolerance = DocumentTolerance();
-
-            if (!DA.GetData(0, ref path)) return;
-            if (!DA.GetData(1, ref brep)) return;
-            if (!DA.GetData(2, ref startingPoint)) return;
-            if (!DA.GetData(3, ref stepSize)) return;
-            if (!DA.GetData(4, ref maxPoints)) return;
-            DA.GetData(5, ref loopTolerance);
-
-            BrepFace face;
-
-            if (brep.Faces.Count > 1)
+            if (ci.ComponentIndexType == ComponentIndexType.BrepFace)
+                face = brep.Faces[ci.Index];
+            else if (ci.ComponentIndexType == ComponentIndexType.BrepEdge)
             {
-                if (StartPointType == StartPointTypes.UV)
-                    throw new Exception("UV coordinates not supported for multipatches");
-
-                brep.ClosestPoint((Point3d)startingPoint, out var _, out var ci, out var _, out var _, 0, out var _);
-
-                if (ci.ComponentIndexType == ComponentIndexType.BrepFace)
-                    face = brep.Faces[ci.Index];
-                else if (ci.ComponentIndexType == ComponentIndexType.BrepEdge)
-                {
-                    var edge = brep.Edges[ci.Index];
-                    var faceIndex = edge.AdjacentFaces()[0];
-                    face = brep.Faces[faceIndex];
-                }
-                else
-                    throw new Exception();
+                var edge = brep.Edges[ci.Index];
+                var faceIndex = edge.AdjacentFaces()[0];
+                face = brep.Faces[faceIndex];
             }
             else
-                face = brep.Faces[0];
+                throw new Exception("Invalid start point projection component type.");
+        }
+        else
+            face = brep.Faces[0];
 
+        var tolerance = DocumentTolerance();
+        brep = brep.DuplicateBrep();
 
-            // --- Execute
+        // Normalize parameter space. This allows hard-coded tolerances.
+        foreach (var f in brep.Faces)
+        {
+            f.SetDomain(0, new Interval(0, 1));
+            f.SetDomain(1, new Interval(0, 1));
+        }
 
-            var tolerance = DocumentTolerance();
+        var surface = face.UnderlyingSurface();
+        Vector2d uv;
 
-            brep = brep.DuplicateBrep();
+        if (StartPointType == StartPointTypes.UV)
+        {
+            // Convert UV to normalized parameter space
+            var u = face.Domain(0).NormalizedParameterAt(startingPoint.X);
+            var v = face.Domain(1).NormalizedParameterAt(startingPoint.Y);
 
-            // Normalize parameter space. This allows hard-coded tolerances.
-            foreach (var f in brep.Faces)
+            if (face.IsPointOnFace(u, v) == PointFaceRelation.Exterior)
+                throw new Exception("UV-coordinates are outside face");
+
+            uv = new Vector2d(u, v);
+        }
+        else // StartPointType == XYZ
+        {
+            var sample = (Point3d)startingPoint;
+
+            if (!face.ClosestPoint(sample, out double u, out double v))
+                throw new Exception("Projection failed");
+
+            // If untrimmed CP is outside boundaries -> compute boundary CP
+            if (face.IsPointOnFace(u, v) == PointFaceRelation.Exterior)
             {
-                f.SetDomain(0, new Interval(0, 1)).AssertTrue();
-                f.SetDomain(1, new Interval(0, 1)).AssertTrue();
-            }
+                var closestU = 0.0;
+                var closestV = 0.0;
+                var closestDistance = 0.0;
 
-            var surface = face.UnderlyingSurface();
-
-            Vector2d uv;
-
-            if (StartPointType == StartPointTypes.UV)
-            {
-                // Convert UV to normalized parameter space
-                var u = face.Domain(0).NormalizedParameterAt(startingPoint.X);
-                var v = face.Domain(1).NormalizedParameterAt(startingPoint.Y);
-
-                if (face.IsPointOnFace(u, v) == PointFaceRelation.Exterior)
-                    throw new Exception("UV-coordinates are outside face");
-
-                uv = new Vector2d(u, v);
-            }
-            else // StartPointType == StartPointTypes.XYZ
-            {
-                var sample = (Point3d)startingPoint;
-
-                if (!face.ClosestPoint(sample, out double u, out double v))
-                    throw new Exception("Projection failed");
-
-                // If untrimmed CP is outside boundaries -> compute boundary CP
-                if (face.IsPointOnFace(u, v) == PointFaceRelation.Exterior)
+                foreach (var loop in face.Loops)
                 {
-                    var closestU = 0.0;
-                    var closestV = 0.0;
-                    var closestDistance = 0.0;
+                    var curve = loop.To3dCurve();
+                    if (curve == null) continue;
 
-                    foreach (var loop in face.Loops)
+                    if (!curve.ClosestPoint(sample, out var t, closestDistance))
+                        continue;
+
+                    var loopPoint = curve.PointAt(t);
+
+                    if (!surface.ClosestPoint(loopPoint, out var loopU, out var loopV))
+                        continue;
+
+                    var loopDistance = loopPoint.DistanceTo(sample);
+
+                    // Update result if new point is closer
+                    if (loopDistance < closestDistance || closestDistance == 0)
                     {
-                        var curve = loop.To3dCurve();
-
-                        if (!curve.ClosestPoint(sample, out var t, closestDistance))
-                            continue;
-
-                        var loopPoint = curve.PointAt(t);
-
-                        if (!surface.ClosestPoint(loopPoint, out var loopU, out var loopV))
-                            continue;
-
-                        var loopDistance = loopPoint.DistanceTo(sample);
-
-                        // Update result if new point is closer
-                        if (loopDistance < closestDistance || closestDistance == 0)
-                        {
-                            closestU = loopU;
-                            closestV = loopV;
-                            closestDistance = loopDistance;
-                        }
-
-                        // Break if point is on boundary
-                        if (closestDistance < tolerance)
-                            break;
+                        closestU = loopU;
+                        closestV = loopV;
+                        closestDistance = loopDistance;
                     }
 
-                    u = closestU;
-                    v = closestV;
+                    // Break if point is on boundary
+                    if (closestDistance < tolerance)
+                        break;
                 }
 
-                uv = new Vector2d(u, v);
+                u = closestU;
+                v = closestV;
             }
 
-            var curves = new List<CurveOnSurface>(2);
+            uv = new Vector2d(u, v);
+        }
 
-            if (path.Type.HasFlag(Path.Types.First))
+        var curves = new List<GH_CurveOnSurface>(2);
+
+        if (path.Type.HasFlag(Bowerbird.Curvature.Path.Types.First))
+        {
+            foreach (var pathfinder in Pathfinder.Create(path, face, uv, false, stepSize, tolerance, maxPoints, loopTolerance))
             {
-                foreach (var pathfinder in Pathfinder.Create(path, face, uv, false, stepSize, tolerance, maxPoints, loopTolerance))
-                {
-                    var curve = new PolylineCurve(pathfinder.Parameters);
+                var curve = new PolylineCurve(pathfinder.Parameters);
+                var curveOnSurface = CurveOnSurface.Create(pathfinder.Face.UnderlyingSurface(), curve);
 
-                    var curveOnSurface = CurveOnSurface.Create(pathfinder.Face.UnderlyingSurface(), curve);
-
-                    if (curveOnSurface != null)
-                        curves.Add(curveOnSurface);
-                }
+                if (curveOnSurface != null)
+                    curves.Add(new GH_CurveOnSurface(curveOnSurface));
             }
+        }
 
-            if (path.Type.HasFlag(Path.Types.Second))
+        if (path.Type.HasFlag(Bowerbird.Curvature.Path.Types.Second))
+        {
+            foreach (var pathfinder in Pathfinder.Create(path, face, uv, true, stepSize, tolerance, maxPoints, loopTolerance))
             {
-                foreach (var pathfinder in Pathfinder.Create(path, face, uv, true, stepSize, tolerance, maxPoints, loopTolerance))
-                {
-                    var curve = new PolylineCurve(pathfinder.Parameters);
+                var curve = new PolylineCurve(pathfinder.Parameters);
+                var curveOnSurface = CurveOnSurface.Create(pathfinder.Face.UnderlyingSurface(), curve);
 
-                    var curveOnSurface = CurveOnSurface.Create(pathfinder.Face.UnderlyingSurface(), curve);
-
-                    if (curveOnSurface != null)
-                        curves.Add(curveOnSurface);
-                }
-            }
-
-            // --- Output
-
-            DA.SetDataList(0, curves);
-        }
-
-        public enum StartPointTypes
-        {
-            XYZ = 0,
-            UV = 1
-        }
-
-        private StartPointTypes _startPointType;
-
-        public StartPointTypes StartPointType
-        {
-            get
-            {
-                return _startPointType;
-            }
-            set
-            {
-                _startPointType = value;
-                UpdateMessage();
+                if (curveOnSurface != null)
+                    curves.Add(new GH_CurveOnSurface(curveOnSurface));
             }
         }
 
-        private void UpdateMessage()
-        {
-            Message = StartPointType.ToString();
-        }
-
-        protected override void AppendAdditionalComponentMenuItems(ToolStripDropDown menu)
-        {
-            Utility.SetMenuList(this, menu, "", () => StartPointType, o => StartPointType = o);
-        }
-
-        public override bool Write(GH_IWriter writer)
-        {
-            writer.Set("StartPointType", StartPointType);
-
-            return base.Write(writer);
-        }
-
-        public override bool Read(GH_IReader reader)
-        {
-            StartPointType = reader.GetOrDefault("StartPointType", StartPointTypes.XYZ);
-
-            return base.Read(reader);
-        }
-
-        protected override Bitmap Icon => Properties.Resources.icon_pathfinder;
-
-        public override GH_Exposure Exposure => GH_Exposure.primary;
-
-        public override Guid ComponentGuid => new Guid("{7492BB23-F1BC-4C31-8F60-FC91C3DE4A0C}");
+        DA.SetDataList(0, curves);
     }
+
+    protected override System.Drawing.Bitmap? Icon => Bowerbird.Properties.Resources.icon_pathfinder;
+
+    public override GH_Exposure Exposure => GH_Exposure.primary;
+
+    public override Guid ComponentGuid => new("{7492BB23-F1BC-4C31-8F60-FC91C3DE4A0C}");
 }

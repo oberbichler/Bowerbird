@@ -1,217 +1,149 @@
-﻿using ClipperLib;
+using Clipper2Lib;
 using Rhino.Geometry;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Bowerbird.Crafting
+namespace Bowerbird.Crafting;
+
+public static class BBPolyline
 {
-    public static class BBPolyline
+    public static IEnumerable<Curve> Boolean(ClipType operation, FillRule fillRule, IEnumerable<Curve> curvesA, IEnumerable<Curve> curvesB, Plane? plane)
     {
-        public static IEnumerable<Curve> Boolean(ClipType operation, PolyFillType fillType, IEnumerable<Curve> curvesA, IEnumerable<Curve> curvesB, Plane? plane)
+        var closedA = curvesA.Where(o => o.IsClosed).ToList();
+        var closedB = curvesB.Where(o => o.IsClosed).ToList();
+
+        if (!plane.HasValue)
         {
-            var closedA = curvesA.Where(o => o.IsClosed);
-            var closedB = curvesB.Where(o => o.IsClosed);
-
-            if (!plane.HasValue)
-            {
-                foreach (var curve in closedA)
-                {
-                    if (!curve.TryGetPlane(out var curvePlane))
-                        continue;
-
-                    plane = curvePlane;
-                }
-            }
-
-            if (!plane.HasValue)
-                plane = Plane.WorldXY;
-
-
-            var polylinesA = new List<List<Point2d>>();
-            var polylinesB = new List<List<Point2d>>();
-
             foreach (var curve in closedA)
             {
-                if (!curve.TryGetPolyline(out var polyline))
-                    continue;
-
-                polylinesA.Add(polyline.Select(o => o.Map2D(plane.Value)).ToList());
+                if (curve.TryGetPlane(out var curvePlane))
+                {
+                    plane = curvePlane;
+                    break;
+                }
             }
+        }
 
+        if (!plane.HasValue)
+        {
             foreach (var curve in closedB)
             {
-                if (!curve.TryGetPolyline(out var polyline))
-                    continue;
-
-                polylinesB.Add(polyline.Select(o => o.Map2D(plane.Value)).ToList());
+                if (curve.TryGetPlane(out var curvePlane))
+                {
+                    plane = curvePlane;
+                    break;
+                }
             }
-
-
-            var minX = polylinesA.Union(polylinesB).SelectMany(o => o).Min(o => o.X);
-            var minY = polylinesA.Union(polylinesB).SelectMany(o => o).Min(o => o.Y);
-            var maxX = polylinesA.Union(polylinesB).SelectMany(o => o).Max(o => o.X);
-            var maxY = polylinesA.Union(polylinesB).SelectMany(o => o).Max(o => o.Y);
-
-            var unit = Math.Max(maxX - minX, maxY - minY) / (2 * 4.6e+18);
-
-            var midX = (minX + maxX) / 2.0;
-            var midY = (minY + maxY) / 2.0;
-
-
-            var polygonsA = polylinesA.Select(o => o.Select(p => new IntPoint((p.X - midX) / unit, (p.Y - midY) / unit)).ToList())
-                                      .ToList();
-
-            var polygonsB = polylinesB.Select(o => o.Select(p => new IntPoint((p.X - midX) / unit, (p.Y - midY) / unit)).ToList())
-                                      .ToList();
-
-
-            var clipper = new Clipper();
-
-            clipper.AddPaths(polygonsA, PolyType.ptSubject, true);
-            clipper.AddPaths(polygonsB, PolyType.ptClip, true);
-
-            var solution = new List<List<IntPoint>>();
-
-            clipper.Execute(operation, solution, fillType, fillType);
-
-
-            return solution.Select(o =>
-            {
-                var points = o.Select(p => plane.Value.Origin + (p.X * unit + midX) * plane.Value.XAxis + (p.Y * unit + midY) * plane.Value.YAxis)
-                              .ToList();
-
-                if (points.Count > 0 && points.First() != points.Last())
-                    points.Add(points[0]);
-
-                return new PolylineCurve(points);
-            });
         }
 
-        public static IEnumerable<Curve> Offset(IEnumerable<Curve> curves, double distance, JoinType joinType, EndType endType, double miter, double arcTolerance, Plane? plane)
+        if (!plane.HasValue)
+            plane = Plane.WorldXY;
+
+        var subjects = ToPathsD(closedA, plane.Value);
+        var clips = ToPathsD(closedB, plane.Value);
+
+        PathsD solution = operation switch
         {
-            var curveList = curves as IList<Curve> ?? curves.ToList();
+            ClipType.Intersection => Clipper.Intersect(subjects, clips, fillRule),
+            ClipType.Union => Clipper.Union(subjects, clips, fillRule),
+            ClipType.Difference => Clipper.Difference(subjects, clips, fillRule),
+            ClipType.Xor => Clipper.Xor(subjects, clips, fillRule),
+            _ => new PathsD()
+        };
 
-            plane = GetPlane(curveList, plane);
+        return ToCurves(solution, plane.Value);
+    }
 
+    public static IEnumerable<Curve> Offset(IEnumerable<Curve> curves, double distance, JoinType joinType, EndType endType, double miter, double arcTolerance, Plane? plane)
+    {
+        var curveList = curves as IList<Curve> ?? curves.ToList();
+        plane = GetPlane(curveList, plane);
 
-            var polylines2D = curveList.Select(o => Polyline2D.FromCurve(o, plane.Value))
-                                       .Where(o => o != null)
-                                       .ToList();
-
-
-            CalculateUnit(polylines2D, miter * distance, out var unit, out var center);
-
-
-            var polylinesInt = polylines2D.Select(o => PolylineInt.FromPolyline2D(o, center, unit))
-                                          .ToList();
-
-
-            var clipper = new ClipperOffset(miter, arcTolerance / unit);
-
-            foreach (var polygon in polylinesInt)
-            {
-                clipper.AddPath(polygon, joinType, polygon.Closed ? EndType.etClosedPolygon : endType);
-            }
-
-
-            var solution = new List<List<IntPoint>>();
-
-            clipper.Execute(ref solution, distance / unit);
-
-
-            return solution.Select(o => o.ToCurve(plane.Value, center, unit));
+        var paths = new PathsD();
+        foreach (var curve in curveList)
+        {
+            var path = ToPathD(curve, plane.Value);
+            if (path != null && path.Count > 0)
+                paths.Add(path);
         }
 
+        // Use Clipper2's native static InflatePaths method for double precision paths
+        var solution = Clipper.InflatePaths(paths, distance, joinType, endType, miter, 3);
+        return ToCurves(solution, plane.Value);
+    }
 
-        private static Plane GetPlane(IEnumerable<Curve> curves, Plane? plane)
+    private static Plane GetPlane(IEnumerable<Curve> curves, Plane? plane)
+    {
+        if (plane.HasValue)
+            return plane.Value;
+
+        foreach (var curve in curves)
         {
-            if (plane.HasValue)
-                return plane.Value;
-
-            foreach (var curve in curves)
-            {
-                if (!curve.TryGetPlane(out var curvePlane))
-                    continue;
-
+            if (curve.TryGetPlane(out var curvePlane))
                 return curvePlane;
-            }
-
-            return Plane.WorldXY;
         }
 
-        private static void CalculateUnit(IEnumerable<List<Point2d>> polylines, double margin, out double unit, out Point2d center)
+        return Plane.WorldXY;
+    }
+
+    public static PathD? ToPathD(Curve curve, Plane plane)
+    {
+        if (!curve.TryGetPolyline(out var polyline))
+            return null;
+
+        var points = new List<Point3d>(polyline);
+
+        if (curve.IsClosed)
         {
-            var minX = double.MaxValue;
-            var minY = double.MaxValue;
-            var maxX = double.MinValue;
-            var maxY = double.MinValue;
-
-            foreach (var point in polylines.SelectMany(polyline => polyline))
+            if (curve.ClosedCurveOrientation(plane.ZAxis) == CurveOrientation.Clockwise)
             {
-                minX = Math.Min(minX, point.X);
-                minY = Math.Min(minY, point.Y);
-                maxX = Math.Max(maxX, point.X);
-                maxY = Math.Max(maxY, point.Y);
+                points.Reverse();
             }
-
-            var centerX = (minX + maxX) / 2.0;
-            var centerY = (minY + maxY) / 2.0;
-
-            center = new Point2d(centerX, centerY);
-
-            unit = (Math.Max(maxX - minX, maxY - minY) + 2.0 * Math.Abs(margin)) / (2.0 * 4.6e+18);
         }
 
-
-        private class Polyline2D : List<Point2d>
+        var path = new PathD(points.Count);
+        for (int i = 0; i < points.Count; i++)
         {
-            public Polyline2D(IEnumerable<Point2d> points) : base(points) { }
-
-
-            public static Polyline2D FromCurve(Curve curve, Plane plane)
-            {
-                if (!curve.TryGetPolyline(out var polyline))
-                    return null;
-
-                var points = polyline.Select(o => o.Map2D(plane));
-
-                if (curve.ClosedCurveOrientation(plane.ZAxis) == CurveOrientation.Clockwise)
-                    points = points.Reverse();
-
-                var result = new Polyline2D(points) { Closed = curve.IsClosed };
-
-                return result;
-            }
-
-            public bool Closed { get; set; }
+            var pt = points[i] - plane.Origin;
+            var x = pt * plane.XAxis;
+            var y = pt * plane.YAxis;
+            path.Add(new PointD(x, y));
         }
 
-        private class PolylineInt : List<IntPoint>
+        return path;
+    }
+
+    public static PathsD ToPathsD(IEnumerable<Curve> curves, Plane plane)
+    {
+        var paths = new PathsD();
+        foreach (var curve in curves)
         {
-            public PolylineInt(IEnumerable<IntPoint> points) : base(points) { }
-
-            public static PolylineInt FromPolyline2D(Polyline2D polyline2D, Point2d origin, double unit)
-            {
-                var intPoints = polyline2D.Select(o => new IntPoint((o.X - origin.X) / unit, (o.Y - origin.Y) / unit));
-
-                var result = new PolylineInt(intPoints) { Closed = polyline2D.Closed };
-
-                return result;
-            }
-
-            public Curve ToCurve(Plane plane, Point2d origin, double unit)
-            {
-                var points = this.Select(p => plane.Origin + (p.X * unit + origin.X) * plane.XAxis + (p.Y * unit + origin.Y) * plane.YAxis)
-                                 .ToList();
-
-                if (points.Count > 0 && points.First() != points.Last())
-                    points.Add(points[0]);
-
-                return new PolylineCurve(points);
-            }
-
-            public bool Closed { get; set; }
+            var path = ToPathD(curve, plane);
+            if (path != null && path.Count > 0)
+                paths.Add(path);
         }
+        return paths;
+    }
+
+    public static List<Curve> ToCurves(PathsD paths, Plane plane)
+    {
+        var curves = new List<Curve>(paths.Count);
+        for (int i = 0; i < paths.Count; i++)
+        {
+            var path = paths[i];
+            var points = new List<Point3d>(path.Count + 1);
+            for (int j = 0; j < path.Count; j++)
+            {
+                var pt = path[j];
+                points.Add(plane.Origin + pt.x * plane.XAxis + pt.y * plane.YAxis);
+            }
+
+            if (points.Count > 0 && points[0] != points[points.Count - 1])
+                points.Add(points[0]);
+
+            curves.Add(new PolylineCurve(points));
+        }
+        return curves;
     }
 }

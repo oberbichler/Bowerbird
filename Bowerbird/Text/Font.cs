@@ -1,166 +1,146 @@
-﻿using Rhino.Geometry;
+using Rhino.Geometry;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Xml.Linq;
+using System.Text.Json;
 
-namespace Bowerbird.Text
+namespace Bowerbird.Text;
+
+public class Font
 {
-    internal class Font
+    public Font()
     {
-        public Font()
+        Letters = new List<Letter>();
+        Name = string.Empty;
+        Style = string.Empty;
+        Version = string.Empty;
+    }
+
+    public string Name { get; set; }
+
+    public string Style { get; set; }
+
+    public string Version { get; set; }
+
+    public List<Letter> Letters { get; set; }
+
+    public static Font Load(TextReader reader)
+    {
+        var jsonString = reader.ReadToEnd();
+        var options = new JsonSerializerOptions
         {
-            Letters = new List<Letter>();
-        }
+            PropertyNameCaseInsensitive = true
+        };
+        var fontDto = JsonSerializer.Deserialize<FontDto>(jsonString, options);
+        if (fontDto == null)
+            throw new InvalidDataException("Invalid font JSON: Deserialize returned null.");
 
-
-        public string Name { get; set; }
-
-        public string Style { get; set; }
-
-        public string Version { get; set; }
-
-        public List<Letter> Letters { get; private set; }
-
-
-        public static Font Load(TextReader reader)
+        var font = new Font
         {
-            var document = XDocument.Load(reader);
+            Name = fontDto.Name ?? "Unnamed",
+            Style = fontDto.Style ?? "Regular",
+            Version = fontDto.Version ?? "1.0",
+            Letters = new List<Letter>(fontDto.Letters?.Count ?? 0)
+        };
 
-            var fontNode = document.Root;
-
-            var font = new Font();
-
-            font.Name = fontNode.Attribute("name").Value;
-            font.Style = fontNode.Attribute("style").Value;
-            font.Version = fontNode.Attribute("version").Value;
-
-            foreach (var letterNode in fontNode.Elements("letter"))
+        if (fontDto.Letters != null)
+        {
+            foreach (var letterDto in fontDto.Letters)
             {
-                var letter = new Letter();
-
-                letter.Character = (char)(int)letterNode.Attribute("code");
-                letter.Start = (double)letterNode.Attribute("start");
-                letter.End = (double)letterNode.Attribute("end");
-                letter.Vectors = new List<List<Vector3d>>();
-
-                foreach (var pathNode in letterNode.Elements("path"))
+                var letter = new Letter
                 {
-                    var path = new List<Vector3d>();
+                    Character = (char)letterDto.Code,
+                    Start = letterDto.Start,
+                    End = letterDto.End,
+                    Vectors = new List<List<Vector3d>>(letterDto.Paths?.Count ?? 0)
+                };
 
-                    var lastX = (double)pathNode.Attribute("x");
-                    var lastY = (double)pathNode.Attribute("y");
-
-                    path.Add(new Vector3d(lastX, lastY, 0));
-
-                    foreach (var toNode in pathNode.Elements("to"))
+                if (letterDto.Paths != null)
+                {
+                    foreach (var pathDto in letterDto.Paths)
                     {
-                        var toX = (double)toNode.Attribute("x");
-                        var toY = (double)toNode.Attribute("y");
+                        var path = new List<Vector3d>();
+                        var lastX = pathDto.X;
+                        var lastY = pathDto.Y;
 
-                        if (toNode.Attribute("b") == null)
+                        path.Add(new Vector3d(lastX, lastY, 0));
+
+                        if (pathDto.To != null)
                         {
-                            path.Add(Vector3d.Zero);
+                            foreach (var toDto in pathDto.To)
+                            {
+                                var toX = toDto.X;
+                                var toY = toDto.Y;
+
+                                if (!toDto.B.HasValue)
+                                {
+                                    path.Add(Vector3d.Zero);
+                                }
+                                else
+                                {
+                                    var b = toDto.B.Value;
+
+                                    var chordX = toX - lastX;
+                                    var chordY = toY - lastY;
+
+                                    var deltaOver2 = 2 * Math.Atan(b);
+
+                                    var cs = Math.Cos(deltaOver2);
+                                    var sn = Math.Sin(deltaOver2);
+
+                                    var tangentX = chordX * cs - chordY * sn;
+                                    var tangentY = chordX * sn + chordY * cs;
+
+                                    var tangent = new Vector3d(tangentX, tangentY, 0);
+
+                                    path.Add(tangent);
+                                }
+
+                                path.Add(new Vector3d(toX, toY, 0));
+
+                                lastX = toX;
+                                lastY = toY;
+                            }
                         }
-                        else
-                        {
-                            var b = (double)toNode.Attribute("b");
 
-                            var chordX = toX - lastX;
-                            var chordY = toY - lastY;
-
-                            var deltaOver2 = 2 * Math.Atan(b);
-
-                            var cs = Math.Cos(deltaOver2);
-                            var sn = Math.Sin(deltaOver2);
-
-                            var tangentX = chordX * cs - chordY * sn;
-                            var tangentY = chordX * sn + chordY * cs;
-
-                            var tangent = new Vector3d(tangentX, tangentY, 0);
-
-                            path.Add(tangent);
-                        }
-
-                        path.Add(new Vector3d(toX, toY, 0));
-
-                        lastX = toX;
-                        lastY = toY;
+                        letter.Vectors.Add(path);
                     }
-
-                    letter.Vectors.Add(path);
                 }
 
                 font.Letters.Add(letter);
             }
-
-            return font;
         }
 
-        public static void Save(Stream stream, Font font)
-        {
-            var xml = new XElement("bbfont",
-                                   new XAttribute("name", font.Name),
-                                   new XAttribute("style", font.Style),
-                                   new XAttribute("version", font.Version),
-                                   LettersToXml(font.Letters));
+        return font;
+    }
 
-            var document = new XDocument(xml);
+    private class FontDto
+    {
+        public string? Name { get; set; }
+        public string? Style { get; set; }
+        public string? Version { get; set; }
+        public List<LetterDto>? Letters { get; set; }
+    }
 
-            document.Save(stream);
-        }
+    private class LetterDto
+    {
+        public int Code { get; set; }
+        public double Start { get; set; }
+        public double End { get; set; }
+        public List<PathDto>? Paths { get; set; }
+    }
 
-        private static IEnumerable<XNode> LettersToXml(IEnumerable<Letter> letters)
-        {
-            foreach (var letter in letters)
-            {
-                yield return new XElement("letter",
-                                          new XAttribute("unicode", (int)letter.Character),
-                                          new XAttribute("start", letter.Start),
-                                          new XAttribute("end", letter.End),
-                                          PathsToXml(letter.Vectors));
-            }
-        }
+    private class PathDto
+    {
+        public double X { get; set; }
+        public double Y { get; set; }
+        public List<ToDto>? To { get; set; }
+    }
 
-        private static IEnumerable<XElement> PathsToXml(IEnumerable<List<Vector3d>> paths)
-        {
-            Func<double, string> format = new Func<double, string>((o) => string.Format("{0:0.00############}", o));
-
-            foreach (var path in paths)
-            {
-                if (path.Count < 3)
-                    continue;
-
-                var xml = new XElement("path",
-                                       new XAttribute("x", format(path[0].X)),
-                                       new XAttribute("y", format(path[0].Y)));
-
-                for (int i = 1; i < path.Count; i += 2)
-                {
-                    var a = path[i - 1];
-                    var d = path[i];
-                    var b = path[i + 1];
-
-                    var toXml = new XElement("to",
-                                             new XAttribute("x", format(b.X)),
-                                             new XAttribute("y", format(b.Y)));
-
-                    if (!d.IsZero)
-                    {
-                        var s = (b - a);
-
-                        var theta = 2 * (Math.Atan2(d.Y, d.X) - Math.Atan2(s.Y, s.X));
-
-                        var bulge = Math.Tan(theta / 4);
-
-                        toXml.Add(new XAttribute("b", format(bulge)));
-                    }
-
-                    xml.Add(toXml);
-                }
-
-                yield return xml;
-            }
-        }
+    private class ToDto
+    {
+        public double X { get; set; }
+        public double Y { get; set; }
+        public double? B { get; set; }
     }
 }

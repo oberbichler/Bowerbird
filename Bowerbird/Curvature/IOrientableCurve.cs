@@ -1,41 +1,40 @@
-﻿using Rhino.Geometry;
+using Rhino.Geometry;
 
-namespace Bowerbird.Curvature
+namespace Bowerbird.Curvature;
+
+public interface IOrientableCurve
 {
-    public interface IOrientableCurve
-    {
-        Interval Domain { get; }
+    Interval Domain { get; }
 
-        Point3d PointAt(double t);
+    Point3d PointAt(double t);
 
-        Vector3d TangentAt(double t);
+    Vector3d TangentAt(double t);
 
-        double Ds(double t);
+    double Ds(double t);
 
-        Vector3d NormalAt(double t);
+    Vector3d NormalAt(double t);
 
-        Vector3d BinormalAt(double t);
+    Vector3d BinormalAt(double t);
 
-        Vector3d CurvatureAt(double t);
+    Vector3d CurvatureAt(double t);
 
-        bool ClosestPoint(Point3d sample, out double t);
+    bool ClosestPoint(Point3d sample, out double t);
 
-        Vector3d NormalCurvatureAt(double t);
+    Vector3d NormalCurvatureAt(double t);
 
-        Vector3d GeodesicCurvatureAt(double t);
+    Vector3d GeodesicCurvatureAt(double t);
 
-        Vector3d GeodesicTorsionAt(double t);
+    Vector3d GeodesicTorsionAt(double t);
 
-        double TorsionAt(double t);
+    double TorsionAt(double t);
 
-        Curve ToCurve(double tolerance);
+    Curve? ToCurve(double tolerance);
 
-        IOrientableCurve Reparameterized();
+    IOrientableCurve Reparameterized();
 
-        IOrientableCurve Transform(Transform xform);
+    IOrientableCurve Transform(Transform xform);
 
-        IOrientableCurve Morph(SpaceMorph xmorph);
+    IOrientableCurve Morph(SpaceMorph xmorph);
 
-        bool IsValid { get; }
-    }
+    bool IsValid { get; }
 }

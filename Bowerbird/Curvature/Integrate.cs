@@ -1,82 +1,80 @@
 using System;
 
-namespace Bowerbird
+namespace Bowerbird.Curvature;
+
+public static class Integrate
 {
-    static class Integrate
+    public static double AdaptiveSimpson(Func<double, double> f, double a, double b, double tolerance)
     {
-        public static double AdaptiveSimpson(Func<double, double> f, double a, double b, double tolerance)
+        const double tolFactor = 10.0;
+
+        var h = 0.5 * (b - a);
+
+        var x0 = a;
+        var x1 = a + 0.5 * h;
+        var x2 = a + h;
+        var x3 = a + 1.5 * h;
+        var x4 = b;
+
+        var f0 = f(x0);
+        var f1 = f(x1);
+        var f2 = f(x2);
+        var f3 = f(x3);
+        var f4 = f(x4);
+
+        var s0 = h * (f0 + 4.0 * f2 + f4) / 3.0;
+        var s1 = h * (f0 + 4.0 * f1 + 2.0 * f2 + 4.0 * f3 + f4) / 6.0;
+
+        double s;
+
+        if (Math.Abs(s0 - s1) >= tolFactor * tolerance)
+            s = AdaptiveSimpson(f, x0, x2, 0.5 * tolerance) + AdaptiveSimpson(f, x2, x4, 0.5 * tolerance);
+        else
+            s = s1 + (s1 - s0) / 15.0;
+
+        return s;
+    }
+
+    public static double Romberg(Func<double, double> f, double a, double b, double tolerance, int maxIter)
+    {
+        var r1 = new double[maxIter];
+        var r2 = new double[maxIter];
+
+        var Rp = r1; // current row
+        var Rc = r2; // previous row
+
+        double h = b - a; // step size
+
+        Rp[0] = (f(a) + f(b)) * h * 0.5; // first trapezoidal step
+
+        for (int i = 1; i < maxIter; ++i)
         {
-            var tol_factor = 10.0;
+            h /= 2.0;
 
-            var h = 0.5 * (b - a);
+            double c = 0;
 
-            var x0 = a;
-            var x1 = a + 0.5 * h;
-            var x2 = a + h;
-            var x3 = a + 1.5 * h;
-            var x4 = b;
+            int ep = 1 << (i - 1);
 
-            var f0 = f(x0);
-            var f1 = f(x1);
-            var f2 = f(x2);
-            var f3 = f(x3);
-            var f4 = f(x4);
+            for (int j = 1; j <= ep; ++j)
+                c += f(a + (2 * j - 1) * h);
 
-            var s0 = h * (f0 + 4.0 * f2 + f4) / 3.0;
-            var s1 = h * (f0 + 4.0 * f1 + 2.0 * f2 + 4.0 * f3 + f4) / 6.0;
+            Rc[0] = h * c + 0.5 * Rp[0]; // R(i,0)
 
-            var s = default(double);
-
-            if (Math.Abs(s0 - s1) >= tol_factor * tolerance)
-                s = AdaptiveSimpson(f, x0, x2, 0.5 * tolerance) + AdaptiveSimpson(f, x2, x4, 0.5 * tolerance);
-            else
-                s = s1 + (s1 - s0) / 15.0;
-
-            return s;
-        }
-
-        public static double Romberg(Func<double, double> f, double a, double b, double tolerance, int maxIter)
-        {
-            var r1 = new double[maxIter];
-            var r2 = new double[maxIter];
-
-            var Rp = r1; // current row
-            var Rc = r2; // previous row
-
-            double h = (b - a); // step size
-
-            Rp[0] = (f(a) + f(b)) * h * 0.5; // first trapezoidal step
-
-            for (int i = 1; i < maxIter; ++i)
+            for (int j = 1; j <= i; ++j)
             {
-                h /= 2.0;
-
-                double c = 0;
-
-                int ep = 1 << (i - 1);
-
-                for (int j = 1; j <= ep; ++j)
-                    c += f(a + (2 * j - 1) * h);
-
-                Rc[0] = h * c + 0.5 * Rp[0]; // R(i,0)
-
-                for (int j = 1; j <= i; ++j)
-                {
-                    var n_k = Math.Pow(4.0, j);
-                    Rc[j] = (n_k * Rc[j - 1] - Rp[j - 1]) / (n_k - 1); // compute R(i,j)
-                }
-
-                if (i > 1 && Math.Abs(Rp[i - 1] - Rc[i]) < tolerance)
-                    return Rc[i - 1];
-
-                // swap Rn and Rc as we only need the last row
-                var rt = Rp;
-
-                Rp = Rc;
-                Rc = rt;
+                var nK = Math.Pow(4.0, j);
+                Rc[j] = (nK * Rc[j - 1] - Rp[j - 1]) / (nK - 1); // compute R(i,j)
             }
 
-            return Rp[maxIter - 1];
+            if (i > 1 && Math.Abs(Rp[i - 1] - Rc[i]) < tolerance)
+                return Rc[i - 1];
+
+            // swap Rn and Rc as we only need the last row
+            var rt = Rp;
+            Rp = Rc;
+            Rc = rt;
         }
+
+        return Rp[maxIter - 1];
     }
 }
