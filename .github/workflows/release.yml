@@ -1,0 +1,65 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version (e.g. 1.2.3)'
+        required: true
+        type: string
+
+jobs:
+  publish:
+    name: Build & Publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build & publish
+        run: dotnet publish Bowerbird/Bowerbird.csproj --configuration Release --no-restore -p:Version=${{ inputs.version }}
+
+      - name: Download Yak CLI
+        run: |
+          curl -L -o yak "https://files.mcneel.com/yak/tools/0.13.0/linux-x64/yak"
+          chmod +x yak
+
+      - name: Prepare Yak package directory
+        run: |
+          mkdir -p yak-package/misc
+          cp Bowerbird/bin/publish/Bowerbird.gha yak-package/
+          cp Bowerbird/dist/manifest.yml yak-package/
+          cp README.md yak-package/misc/
+          cp LICENSE yak-package/misc/LICENSE.txt
+
+      - name: Build Yak package
+        working-directory: yak-package
+        run: ../yak build --platform=any
+
+      - name: Create examples archive
+        run: zip -r examples.zip Examples/
+
+      - name: Create GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "v${{ inputs.version }}" \
+            Bowerbird/bin/publish/Bowerbird.gha \
+            examples.zip \
+            --title "v${{ inputs.version }}" \
+            --generate-notes
+
+      - name: Push to Yak server
+        working-directory: yak-package
+        env:
+          YAK_TOKEN: ${{ secrets.YAK_TOKEN }}
+        run: ../yak push *.yak
