@@ -1,0 +1,1515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1328" height="3492" viewBox="0 0 1328 3492">
+<style>  .lbl  { font: 10px monospace; fill: #555; }
+  .ttl  { font: bold 13px sans-serif; fill: #111; }
+  .cell { fill: #fafafa; stroke: #e0e0e0; stroke-width: 0.5; }
+  .g    { fill: none; stroke: #1a1a2e; stroke-width: 1.8;
+          stroke-linecap: round; stroke-linejoin: round; }
+  .bl   { stroke: #c8c8c8; stroke-width: 0.5; }
+  .cl   { stroke: #e4e4e4; stroke-width: 0.5; stroke-dasharray: 2,3; }
+</style>
+<rect width="1328" height="3492" fill="white"/>
+<text x="24" y="42" class="ttl">Uppercase</text>
+<rect x="24" y="52" width="80" height="130" class="cell"/>
+<line x1="24" y1="147" x2="104" y2="147" class="bl"/>
+<line x1="24" y1="92" x2="104" y2="92" class="cl"/>
+<path d="M 52.0833 130.5000 L 75.9167 130.5000" class="g"/>
+<path d="M 47.5000 144.2500 L 64.0000 94.7500 L 80.5000 144.2500" class="g"/>
+<text x="64" y="197" class="lbl" text-anchor="middle">A U+0041</text>
+<rect x="104" y="52" width="80" height="130" class="cell"/>
+<line x1="104" y1="147" x2="184" y2="147" class="bl"/>
+<line x1="104" y1="92" x2="184" y2="92" class="cl"/>
+<path d="M 130.2500 116.7500 L 144.0000 116.7500 A 13.7500 13.7500 0 0 1 144.0000 144.2500 L 130.2500 144.2500 L 130.2500 94.7500 L 144.0000 94.7500 A 11.0000 11.0000 0 0 1 144.0000 116.7500" class="g"/>
+<text x="144" y="197" class="lbl" text-anchor="middle">B U+0042</text>
+<rect x="184" y="52" width="80" height="130" class="cell"/>
+<line x1="184" y1="147" x2="264" y2="147" class="bl"/>
+<line x1="184" y1="92" x2="264" y2="92" class="cl"/>
+<path d="M 235.0000 94.7500 L 221.2500 94.7500 A 8.2500 8.2500 0 0 0 213.0000 103.0000 L 213.0000 136.0000 A 8.2500 8.2500 0 0 0 221.2500 144.2500 L 235.0000 144.2500" class="g"/>
+<text x="224" y="197" class="lbl" text-anchor="middle">C U+0043</text>
+<rect x="264" y="52" width="80" height="130" class="cell"/>
+<line x1="264" y1="147" x2="344" y2="147" class="bl"/>
+<line x1="264" y1="92" x2="344" y2="92" class="cl"/>
+<path d="M 306.7500 94.7500 L 290.2500 94.7500 L 290.2500 144.2500 L 306.7500 144.2500 A 11.0000 11.0000 0 0 0 317.7500 133.2500 L 317.7500 105.7500 A 11.0000 11.0000 0 0 0 306.7500 94.7500" class="g"/>
+<text x="304" y="197" class="lbl" text-anchor="middle">D U+0044</text>
+<rect x="344" y="52" width="80" height="130" class="cell"/>
+<line x1="344" y1="147" x2="424" y2="147" class="bl"/>
+<line x1="344" y1="92" x2="424" y2="92" class="cl"/>
+<path d="M 389.5000 116.7500 L 373.0000 116.7500" class="g"/>
+<path d="M 395.0000 94.7500 L 373.0000 94.7500 L 373.0000 144.2500 L 395.0000 144.2500" class="g"/>
+<text x="384" y="197" class="lbl" text-anchor="middle">E U+0045</text>
+<rect x="424" y="52" width="80" height="130" class="cell"/>
+<line x1="424" y1="147" x2="504" y2="147" class="bl"/>
+<line x1="424" y1="92" x2="504" y2="92" class="cl"/>
+<path d="M 475.0000 116.7500 L 453.0000 116.7500" class="g"/>
+<path d="M 475.0000 94.7500 L 453.0000 94.7500 L 453.0000 144.2500" class="g"/>
+<text x="464" y="197" class="lbl" text-anchor="middle">F U+0046</text>
+<rect x="504" y="52" width="80" height="130" class="cell"/>
+<line x1="504" y1="147" x2="584" y2="147" class="bl"/>
+<line x1="504" y1="92" x2="584" y2="92" class="cl"/>
+<path d="M 557.7500 94.7500 L 541.2500 94.7500 A 11.0000 11.0000 0 0 0 530.2500 105.7500 L 530.2500 133.2500 A 11.0000 11.0000 0 0 0 541.2500 144.2500 L 557.7500 144.2500 L 557.7500 116.7500 L 549.5000 116.7500" class="g"/>
+<text x="544" y="197" class="lbl" text-anchor="middle">G U+0047</text>
+<rect x="584" y="52" width="80" height="130" class="cell"/>
+<line x1="584" y1="147" x2="664" y2="147" class="bl"/>
+<line x1="584" y1="92" x2="664" y2="92" class="cl"/>
+<path d="M 610.2500 144.2500 L 610.2500 94.7500" class="g"/>
+<path d="M 637.7500 94.7500 L 637.7500 144.2500" class="g"/>
+<path d="M 610.2500 116.7500 L 637.7500 116.7500" class="g"/>
+<text x="624" y="197" class="lbl" text-anchor="middle">H U+0048</text>
+<rect x="664" y="52" width="80" height="130" class="cell"/>
+<line x1="664" y1="147" x2="744" y2="147" class="bl"/>
+<line x1="664" y1="92" x2="744" y2="92" class="cl"/>
+<path d="M 704.0000 144.2500 L 704.0000 94.7500" class="g"/>
+<text x="704" y="197" class="lbl" text-anchor="middle">I U+0049</text>
+<rect x="744" y="52" width="80" height="130" class="cell"/>
+<line x1="744" y1="147" x2="824" y2="147" class="bl"/>
+<line x1="744" y1="92" x2="824" y2="92" class="cl"/>
+<path d="M 792.2500 94.7500 L 792.2500 133.2500 A 11.0000 11.0000 0 0 1 781.2500 144.2500 L 775.7500 144.2500" class="g"/>
+<text x="784" y="197" class="lbl" text-anchor="middle">J U+004A</text>
+<rect x="824" y="52" width="80" height="130" class="cell"/>
+<line x1="824" y1="147" x2="904" y2="147" class="bl"/>
+<line x1="824" y1="92" x2="904" y2="92" class="cl"/>
+<path d="M 877.7500 94.7500 L 850.2500 125.0000" class="g"/>
+<path d="M 860.8750 113.3125 L 877.7500 144.2500" class="g"/>
+<path d="M 850.2500 144.2500 L 850.2500 94.7500" class="g"/>
+<text x="864" y="197" class="lbl" text-anchor="middle">K U+004B</text>
+<rect x="904" y="52" width="80" height="130" class="cell"/>
+<line x1="904" y1="147" x2="984" y2="147" class="bl"/>
+<line x1="904" y1="92" x2="984" y2="92" class="cl"/>
+<path d="M 933.0000 94.7500 L 933.0000 144.2500 L 955.0000 144.2500" class="g"/>
+<text x="944" y="197" class="lbl" text-anchor="middle">L U+004C</text>
+<rect x="984" y="52" width="80" height="130" class="cell"/>
+<line x1="984" y1="147" x2="1064" y2="147" class="bl"/>
+<line x1="984" y1="92" x2="1064" y2="92" class="cl"/>
+<path d="M 1007.5000 144.2500 L 1007.5000 94.7500 L 1024.0000 122.2500 L 1040.5000 94.7500 L 1040.5000 144.2500" class="g"/>
+<text x="1024" y="197" class="lbl" text-anchor="middle">M U+004D</text>
+<rect x="1064" y="52" width="80" height="130" class="cell"/>
+<line x1="1064" y1="147" x2="1144" y2="147" class="bl"/>
+<line x1="1064" y1="92" x2="1144" y2="92" class="cl"/>
+<path d="M 1090.2500 144.2500 L 1090.2500 94.7500 L 1117.7500 144.2500 L 1117.7500 94.7500" class="g"/>
+<text x="1104" y="197" class="lbl" text-anchor="middle">N U+004E</text>
+<rect x="1144" y="52" width="80" height="130" class="cell"/>
+<line x1="1144" y1="147" x2="1224" y2="147" class="bl"/>
+<line x1="1144" y1="92" x2="1224" y2="92" class="cl"/>
+<path d="M 1170.2500 130.5000 A 13.7500 13.7500 0 0 0 1197.7500 130.5000 L 1197.7500 108.5000 A 13.7500 13.7500 0 0 0 1170.2500 108.5000 L 1170.2500 130.5000" class="g"/>
+<text x="1184" y="197" class="lbl" text-anchor="middle">O U+004F</text>
+<rect x="1224" y="52" width="80" height="130" class="cell"/>
+<line x1="1224" y1="147" x2="1304" y2="147" class="bl"/>
+<line x1="1224" y1="92" x2="1304" y2="92" class="cl"/>
+<path d="M 1250.2500 122.2500 L 1264.0000 122.2500 A 13.7500 13.7500 0 0 0 1264.0000 94.7500 L 1250.2500 94.7500 L 1250.2500 144.2500" class="g"/>
+<text x="1264" y="197" class="lbl" text-anchor="middle">P U+0050</text>
+<rect x="24" y="204" width="80" height="130" class="cell"/>
+<line x1="24" y1="299" x2="104" y2="299" class="bl"/>
+<line x1="24" y1="244" x2="104" y2="244" class="cl"/>
+<path d="M 47.5000 282.5000 A 13.7500 13.7500 0 0 0 75.0000 282.5000 L 75.0000 260.5000 A 13.7500 13.7500 0 0 0 47.5000 260.5000 L 47.5000 282.5000" class="g"/>
+<path d="M 80.5000 296.2500 L 69.5000 285.2500" class="g"/>
+<text x="64" y="349" class="lbl" text-anchor="middle">Q U+0051</text>
+<rect x="104" y="204" width="80" height="130" class="cell"/>
+<line x1="104" y1="299" x2="184" y2="299" class="bl"/>
+<line x1="104" y1="244" x2="184" y2="244" class="cl"/>
+<path d="M 130.2500 274.2500 L 144.0000 274.2500 A 13.7500 13.7500 0 0 0 144.0000 246.7500 L 130.2500 246.7500 L 130.2500 296.2500" class="g"/>
+<path d="M 157.7500 296.2500 L 146.6237 273.9974" class="g"/>
+<text x="144" y="349" class="lbl" text-anchor="middle">R U+0052</text>
+<rect x="184" y="204" width="80" height="130" class="cell"/>
+<line x1="184" y1="299" x2="264" y2="299" class="bl"/>
+<line x1="184" y1="244" x2="264" y2="244" class="cl"/>
+<path d="M 208.8750 290.7500 A 25.7727 25.7727 0 0 0 221.6291 296.0717 A 24.7279 24.7279 0 0 0 228.6850 295.9353 A 13.3253 13.3253 0 0 0 235.0466 293.0333 A 10.7749 10.7749 0 0 0 237.8711 280.0801 A 11.6643 11.6643 0 0 0 233.0788 274.9673 A 24.4096 24.4096 0 0 0 226.5965 272.4549 A 199.8686 199.8686 0 0 1 219.5238 270.6857 A 19.4036 19.4036 0 0 1 213.2246 267.6888 A 11.0252 11.0252 0 0 1 209.3797 254.7987 A 12.6445 12.6445 0 0 1 219.9647 246.7410 A 18.8342 18.8342 0 0 1 226.8545 247.3486 A 101.3269 101.3269 0 0 1 233.6250 249.5000" class="g"/>
+<text x="224" y="349" class="lbl" text-anchor="middle">S U+0053</text>
+<rect x="264" y="204" width="80" height="130" class="cell"/>
+<line x1="264" y1="299" x2="344" y2="299" class="bl"/>
+<line x1="264" y1="244" x2="344" y2="244" class="cl"/>
+<path d="M 290.2500 246.7500 L 317.7500 246.7500" class="g"/>
+<path d="M 304.0000 246.7500 L 304.0000 296.2500" class="g"/>
+<text x="304" y="349" class="lbl" text-anchor="middle">T U+0054</text>
+<rect x="344" y="204" width="80" height="130" class="cell"/>
+<line x1="344" y1="299" x2="424" y2="299" class="bl"/>
+<line x1="344" y1="244" x2="424" y2="244" class="cl"/>
+<path d="M 370.2500 246.7500 L 370.2500 282.5000 A 13.7500 13.7500 0 0 0 397.7500 282.5000 L 397.7500 246.7500" class="g"/>
+<text x="384" y="349" class="lbl" text-anchor="middle">U U+0055</text>
+<rect x="424" y="204" width="80" height="130" class="cell"/>
+<line x1="424" y1="299" x2="504" y2="299" class="bl"/>
+<line x1="424" y1="244" x2="504" y2="244" class="cl"/>
+<path d="M 447.5000 246.7500 L 464.0000 296.2500 L 480.5000 246.7500" class="g"/>
+<text x="464" y="349" class="lbl" text-anchor="middle">V U+0056</text>
+<rect x="504" y="204" width="80" height="130" class="cell"/>
+<line x1="504" y1="299" x2="584" y2="299" class="bl"/>
+<line x1="504" y1="244" x2="584" y2="244" class="cl"/>
+<path d="M 522.0000 246.7500 L 533.0000 296.2500 L 544.0000 263.2500 L 555.0000 296.2500 L 566.0000 246.7500" class="g"/>
+<text x="544" y="349" class="lbl" text-anchor="middle">W U+0057</text>
+<rect x="584" y="204" width="80" height="130" class="cell"/>
+<line x1="584" y1="299" x2="664" y2="299" class="bl"/>
+<line x1="584" y1="244" x2="664" y2="244" class="cl"/>
+<path d="M 607.5000 296.2500 L 640.5000 246.7500" class="g"/>
+<path d="M 640.5000 296.2500 L 607.5000 246.7500" class="g"/>
+<text x="624" y="349" class="lbl" text-anchor="middle">X U+0058</text>
+<rect x="664" y="204" width="80" height="130" class="cell"/>
+<line x1="664" y1="299" x2="744" y2="299" class="bl"/>
+<line x1="664" y1="244" x2="744" y2="244" class="cl"/>
+<path d="M 704.0000 271.5000 L 687.5000 246.7500" class="g"/>
+<path d="M 720.5000 246.7500 L 704.0000 271.5000" class="g"/>
+<path d="M 704.0000 271.5000 L 704.0000 296.2500" class="g"/>
+<text x="704" y="349" class="lbl" text-anchor="middle">Y U+0059</text>
+<rect x="744" y="204" width="80" height="130" class="cell"/>
+<line x1="744" y1="299" x2="824" y2="299" class="bl"/>
+<line x1="744" y1="244" x2="824" y2="244" class="cl"/>
+<path d="M 770.2500 246.7500 L 797.7500 246.7500 L 770.2500 296.2500 L 797.7500 296.2500" class="g"/>
+<text x="784" y="349" class="lbl" text-anchor="middle">Z U+005A</text>
+<text x="24" y="374" class="ttl">Lowercase</text>
+<rect x="24" y="384" width="80" height="130" class="cell"/>
+<line x1="24" y1="479" x2="104" y2="479" class="bl"/>
+<line x1="24" y1="424" x2="104" y2="424" class="cl"/>
+<path d="M 55.7500 443.2500 L 66.7500 443.2500 A 8.2500 8.2500 0 0 1 75.0000 451.5000 L 75.0000 476.2500 L 61.2500 476.2500 A 8.2500 8.2500 0 0 1 61.2500 459.7500 L 75.0000 459.7500" class="g"/>
+<text x="64" y="529" class="lbl" text-anchor="middle">a U+0061</text>
+<rect x="104" y="384" width="80" height="130" class="cell"/>
+<line x1="104" y1="479" x2="184" y2="479" class="bl"/>
+<line x1="104" y1="424" x2="184" y2="424" class="cl"/>
+<path d="M 133.0000 426.7500 L 133.0000 476.2500 L 146.7500 476.2500 A 8.2500 8.2500 0 0 0 155.0000 468.0000 L 155.0000 451.5000 A 8.2500 8.2500 0 0 0 146.7500 443.2500 L 133.0000 443.2500" class="g"/>
+<text x="144" y="529" class="lbl" text-anchor="middle">b U+0062</text>
+<rect x="184" y="384" width="80" height="130" class="cell"/>
+<line x1="184" y1="479" x2="264" y2="479" class="bl"/>
+<line x1="184" y1="424" x2="264" y2="424" class="cl"/>
+<path d="M 232.2500 443.2500 L 224.0000 443.2500 A 8.2500 8.2500 0 0 0 215.7500 451.5000 L 215.7500 468.0000 A 8.2500 8.2500 0 0 0 224.0000 476.2500 L 232.2500 476.2500" class="g"/>
+<text x="224" y="529" class="lbl" text-anchor="middle">c U+0063</text>
+<rect x="264" y="384" width="80" height="130" class="cell"/>
+<line x1="264" y1="479" x2="344" y2="479" class="bl"/>
+<line x1="264" y1="424" x2="344" y2="424" class="cl"/>
+<path d="M 315.0000 426.7500 L 315.0000 476.2500 L 301.2500 476.2500 A 8.2500 8.2500 0 0 1 293.0000 468.0000 L 293.0000 451.5000 A 8.2500 8.2500 0 0 1 301.2500 443.2500 L 315.0000 443.2500" class="g"/>
+<text x="304" y="529" class="lbl" text-anchor="middle">d U+0064</text>
+<rect x="344" y="384" width="80" height="130" class="cell"/>
+<line x1="344" y1="479" x2="424" y2="479" class="bl"/>
+<line x1="344" y1="424" x2="424" y2="424" class="cl"/>
+<path d="M 373.0000 459.7500 L 395.0000 459.7500 L 395.0000 454.2500 A 11.0000 11.0000 0 0 0 373.0000 454.2500 L 373.0000 468.0000 A 8.2500 8.2500 0 0 0 381.2500 476.2500 L 395.0000 476.2500" class="g"/>
+<text x="384" y="529" class="lbl" text-anchor="middle">e U+0065</text>
+<rect x="424" y="384" width="80" height="130" class="cell"/>
+<line x1="424" y1="479" x2="504" y2="479" class="bl"/>
+<line x1="424" y1="424" x2="504" y2="424" class="cl"/>
+<path d="M 457.1250 443.2500 L 470.8750 443.2500" class="g"/>
+<path d="M 462.6250 476.2500 L 462.6250 435.0000 A 8.2500 8.2500 0 0 1 470.8750 426.7500 L 473.6250 426.7500" class="g"/>
+<text x="464" y="529" class="lbl" text-anchor="middle">f U+0066</text>
+<rect x="504" y="384" width="80" height="130" class="cell"/>
+<line x1="504" y1="479" x2="584" y2="479" class="bl"/>
+<line x1="504" y1="424" x2="584" y2="424" class="cl"/>
+<path d="M 535.7500 492.7500 L 546.7500 492.7500 A 8.2500 8.2500 0 0 0 555.0000 484.5000 L 555.0000 443.2500 L 538.5000 443.2500 A 5.5000 5.5000 0 0 0 533.0000 448.7500 L 533.0000 470.7500 A 5.5000 5.5000 0 0 0 538.5000 476.2500 L 555.0000 476.2500" class="g"/>
+<text x="544" y="529" class="lbl" text-anchor="middle">g U+0067</text>
+<rect x="584" y="384" width="80" height="130" class="cell"/>
+<line x1="584" y1="479" x2="664" y2="479" class="bl"/>
+<line x1="584" y1="424" x2="664" y2="424" class="cl"/>
+<path d="M 613.0000 443.2500 L 626.7500 443.2500 A 8.2500 8.2500 0 0 1 635.0000 451.5000 L 635.0000 476.2500" class="g"/>
+<path d="M 613.0000 476.2500 L 613.0000 426.7500" class="g"/>
+<text x="624" y="529" class="lbl" text-anchor="middle">h U+0068</text>
+<rect x="664" y="384" width="80" height="130" class="cell"/>
+<line x1="664" y1="479" x2="744" y2="479" class="bl"/>
+<line x1="664" y1="424" x2="744" y2="424" class="cl"/>
+<path d="M 704.0000 429.5000 L 704.0000 426.7500" class="g"/>
+<path d="M 704.0000 476.2500 L 704.0000 443.2500" class="g"/>
+<text x="704" y="529" class="lbl" text-anchor="middle">i U+0069</text>
+<rect x="744" y="384" width="80" height="130" class="cell"/>
+<line x1="744" y1="479" x2="824" y2="479" class="bl"/>
+<line x1="744" y1="424" x2="824" y2="424" class="cl"/>
+<path d="M 789.5000 426.7500 L 789.5000 429.5000" class="g"/>
+<path d="M 778.5000 492.7500 L 781.2500 492.7500 A 8.2500 8.2500 0 0 0 789.5000 484.5000 L 789.5000 443.2500" class="g"/>
+<text x="784" y="529" class="lbl" text-anchor="middle">j U+006A</text>
+<rect x="824" y="384" width="80" height="130" class="cell"/>
+<line x1="824" y1="479" x2="904" y2="479" class="bl"/>
+<line x1="824" y1="424" x2="904" y2="424" class="cl"/>
+<path d="M 862.0588 452.9559 L 875.0000 476.2500" class="g"/>
+<path d="M 853.0000 459.7500 L 875.0000 443.2500" class="g"/>
+<path d="M 853.0000 426.7500 L 853.0000 476.2500" class="g"/>
+<text x="864" y="529" class="lbl" text-anchor="middle">k U+006B</text>
+<rect x="904" y="384" width="80" height="130" class="cell"/>
+<line x1="904" y1="479" x2="984" y2="479" class="bl"/>
+<line x1="904" y1="424" x2="984" y2="424" class="cl"/>
+<path d="M 941.2500 426.7500 L 941.2500 470.7500 A 5.5000 5.5000 0 0 0 946.7500 476.2500" class="g"/>
+<text x="944" y="529" class="lbl" text-anchor="middle">l U+006C</text>
+<rect x="984" y="384" width="80" height="130" class="cell"/>
+<line x1="984" y1="479" x2="1064" y2="479" class="bl"/>
+<line x1="984" y1="424" x2="1064" y2="424" class="cl"/>
+<path d="M 1024.0000 443.2500 L 1024.0000 476.2500" class="g"/>
+<path d="M 1007.5000 476.2500 L 1007.5000 443.2500 L 1032.2500 443.2500 A 8.2500 8.2500 0 0 1 1040.5000 451.5000 L 1040.5000 476.2500" class="g"/>
+<text x="1024" y="529" class="lbl" text-anchor="middle">m U+006D</text>
+<rect x="1064" y="384" width="80" height="130" class="cell"/>
+<line x1="1064" y1="479" x2="1144" y2="479" class="bl"/>
+<line x1="1064" y1="424" x2="1144" y2="424" class="cl"/>
+<path d="M 1093.0000 476.2500 L 1093.0000 443.2500 L 1106.7500 443.2500 A 8.2500 8.2500 0 0 1 1115.0000 451.5000 L 1115.0000 476.2500" class="g"/>
+<text x="1104" y="529" class="lbl" text-anchor="middle">n U+006E</text>
+<rect x="1144" y="384" width="80" height="130" class="cell"/>
+<line x1="1144" y1="479" x2="1224" y2="479" class="bl"/>
+<line x1="1144" y1="424" x2="1224" y2="424" class="cl"/>
+<path d="M 1173.0000 465.2500 A 11.0000 11.0000 0 0 0 1195.0000 465.2500 L 1195.0000 454.2500 A 11.0000 11.0000 0 0 0 1173.0000 454.2500 L 1173.0000 465.2500" class="g"/>
+<text x="1184" y="529" class="lbl" text-anchor="middle">o U+006F</text>
+<rect x="1224" y="384" width="80" height="130" class="cell"/>
+<line x1="1224" y1="479" x2="1304" y2="479" class="bl"/>
+<line x1="1224" y1="424" x2="1304" y2="424" class="cl"/>
+<path d="M 1253.0000 492.7500 L 1253.0000 443.2500 L 1266.7500 443.2500 A 8.2500 8.2500 0 0 1 1275.0000 451.5000 L 1275.0000 468.0000 A 8.2500 8.2500 0 0 1 1266.7500 476.2500 L 1253.0000 476.2500" class="g"/>
+<text x="1264" y="529" class="lbl" text-anchor="middle">p U+0070</text>
+<rect x="24" y="536" width="80" height="130" class="cell"/>
+<line x1="24" y1="631" x2="104" y2="631" class="bl"/>
+<line x1="24" y1="576" x2="104" y2="576" class="cl"/>
+<path d="M 75.0000 644.7500 L 75.0000 595.2500 L 61.2500 595.2500 A 8.2500 8.2500 0 0 0 53.0000 603.5000 L 53.0000 620.0000 A 8.2500 8.2500 0 0 0 61.2500 628.2500 L 75.0000 628.2500" class="g"/>
+<text x="64" y="681" class="lbl" text-anchor="middle">q U+0071</text>
+<rect x="104" y="536" width="80" height="130" class="cell"/>
+<line x1="104" y1="631" x2="184" y2="631" class="bl"/>
+<line x1="104" y1="576" x2="184" y2="576" class="cl"/>
+<path d="M 135.7500 628.2500 L 135.7500 595.2500 L 152.2500 595.2500 L 152.2500 600.7500" class="g"/>
+<text x="144" y="681" class="lbl" text-anchor="middle">r U+0072</text>
+<rect x="184" y="536" width="80" height="130" class="cell"/>
+<line x1="184" y1="631" x2="264" y2="631" class="bl"/>
+<line x1="184" y1="576" x2="264" y2="576" class="cl"/>
+<path d="M 213.0000 625.5000 A 42.1866 42.1866 0 0 0 228.0104 628.3646 A 6.9896 6.9896 0 0 0 230.9961 615.0552 L 217.0039 608.4448 A 6.9896 6.9896 0 0 1 219.9896 595.1354 A 28.8237 28.8237 0 0 1 232.2500 598.0000" class="g"/>
+<text x="224" y="681" class="lbl" text-anchor="middle">s U+0073</text>
+<rect x="264" y="536" width="80" height="130" class="cell"/>
+<line x1="264" y1="631" x2="344" y2="631" class="bl"/>
+<line x1="264" y1="576" x2="344" y2="576" class="cl"/>
+<path d="M 301.2500 628.2500 L 301.2500 578.7500" class="g"/>
+<path d="M 295.7500 595.2500 L 312.2500 595.2500" class="g"/>
+<text x="304" y="681" class="lbl" text-anchor="middle">t U+0074</text>
+<rect x="344" y="536" width="80" height="130" class="cell"/>
+<line x1="344" y1="631" x2="424" y2="631" class="bl"/>
+<line x1="344" y1="576" x2="424" y2="576" class="cl"/>
+<path d="M 373.0000 595.2500 L 373.0000 620.0000 A 8.2500 8.2500 0 0 0 381.2500 628.2500 L 395.0000 628.2500 L 395.0000 595.2500" class="g"/>
+<text x="384" y="681" class="lbl" text-anchor="middle">u U+0075</text>
+<rect x="424" y="536" width="80" height="130" class="cell"/>
+<line x1="424" y1="631" x2="504" y2="631" class="bl"/>
+<line x1="424" y1="576" x2="504" y2="576" class="cl"/>
+<path d="M 453.0000 595.2500 L 464.0000 628.2500 L 475.0000 595.2500" class="g"/>
+<text x="464" y="681" class="lbl" text-anchor="middle">v U+0076</text>
+<rect x="504" y="536" width="80" height="130" class="cell"/>
+<line x1="504" y1="631" x2="584" y2="631" class="bl"/>
+<line x1="504" y1="576" x2="584" y2="576" class="cl"/>
+<path d="M 527.5000 595.2500 L 535.7500 628.2500 L 544.0000 606.2500 L 552.2500 628.2500 L 560.5000 595.2500" class="g"/>
+<text x="544" y="681" class="lbl" text-anchor="middle">w U+0077</text>
+<rect x="584" y="536" width="80" height="130" class="cell"/>
+<line x1="584" y1="631" x2="664" y2="631" class="bl"/>
+<line x1="584" y1="576" x2="664" y2="576" class="cl"/>
+<path d="M 613.0000 595.2500 L 635.0000 628.2500" class="g"/>
+<path d="M 613.0000 628.2500 L 635.0000 595.2500" class="g"/>
+<text x="624" y="681" class="lbl" text-anchor="middle">x U+0078</text>
+<rect x="664" y="536" width="80" height="130" class="cell"/>
+<line x1="664" y1="631" x2="744" y2="631" class="bl"/>
+<line x1="664" y1="576" x2="744" y2="576" class="cl"/>
+<path d="M 693.0000 644.7500 L 698.5000 644.7500 L 715.0000 595.2500" class="g"/>
+<path d="M 693.0000 595.2500 L 704.0000 628.2500" class="g"/>
+<text x="704" y="681" class="lbl" text-anchor="middle">y U+0079</text>
+<rect x="744" y="536" width="80" height="130" class="cell"/>
+<line x1="744" y1="631" x2="824" y2="631" class="bl"/>
+<line x1="744" y1="576" x2="824" y2="576" class="cl"/>
+<path d="M 773.0000 595.2500 L 795.0000 595.2500 L 773.0000 628.2500 L 795.0000 628.2500" class="g"/>
+<text x="784" y="681" class="lbl" text-anchor="middle">z U+007A</text>
+<text x="24" y="706" class="ttl">Digits &amp; Symbols</text>
+<rect x="24" y="716" width="80" height="130" class="cell"/>
+<line x1="24" y1="811" x2="104" y2="811" class="bl"/>
+<line x1="24" y1="756" x2="104" y2="756" class="cl"/>
+<path d="M 59.3302 761.3443 A 41.9375 41.9375 0 0 0 59.3302 805.6557 A 5.5000 5.5000 0 0 0 68.6698 805.6557 A 41.9375 41.9375 0 0 0 68.6698 761.3443 A 5.5000 5.5000 0 0 0 59.3302 761.3443" class="g"/>
+<text x="64" y="861" class="lbl" text-anchor="middle">0 U+0030</text>
+<rect x="104" y="716" width="80" height="130" class="cell"/>
+<line x1="104" y1="811" x2="184" y2="811" class="bl"/>
+<line x1="104" y1="756" x2="184" y2="756" class="cl"/>
+<path d="M 138.5000 769.7500 L 149.5000 758.7500 L 149.5000 808.2500" class="g"/>
+<text x="144" y="861" class="lbl" text-anchor="middle">1 U+0031</text>
+<rect x="184" y="716" width="80" height="130" class="cell"/>
+<line x1="184" y1="811" x2="264" y2="811" class="bl"/>
+<line x1="184" y1="756" x2="264" y2="756" class="cl"/>
+<path d="M 235.0000 808.2500 L 213.0000 808.2500 L 233.2905 775.8960 A 11.1982 11.1982 0 1 0 213.0000 767.0000" class="g"/>
+<text x="224" y="861" class="lbl" text-anchor="middle">2 U+0032</text>
+<rect x="264" y="716" width="80" height="130" class="cell"/>
+<line x1="264" y1="811" x2="344" y2="811" class="bl"/>
+<line x1="264" y1="756" x2="344" y2="756" class="cl"/>
+<path d="M 293.0000 758.7500 L 304.0000 758.7500 A 11.0000 11.0000 0 0 1 315.0000 769.7500 A 11.0000 11.0000 0 0 1 304.0000 780.7500 L 298.5000 780.7500" class="g"/>
+<path d="M 304.0000 780.7500 A 11.0000 11.0000 0 0 1 315.0000 791.7500 L 315.0000 797.2500 A 11.0000 11.0000 0 0 1 304.0000 808.2500 L 293.0000 808.2500" class="g"/>
+<text x="304" y="861" class="lbl" text-anchor="middle">3 U+0033</text>
+<rect x="344" y="716" width="80" height="130" class="cell"/>
+<line x1="344" y1="811" x2="424" y2="811" class="bl"/>
+<line x1="344" y1="756" x2="424" y2="756" class="cl"/>
+<path d="M 381.2500 758.7500 L 370.2500 797.2500 L 397.7500 797.2500" class="g"/>
+<path d="M 389.5000 786.2500 L 389.5000 808.2500" class="g"/>
+<text x="384" y="861" class="lbl" text-anchor="middle">4 U+0034</text>
+<rect x="424" y="716" width="80" height="130" class="cell"/>
+<line x1="424" y1="811" x2="504" y2="811" class="bl"/>
+<line x1="424" y1="756" x2="504" y2="756" class="cl"/>
+<path d="M 475.0000 758.7500 L 453.0000 758.7500 L 453.0000 780.7500 L 464.0000 780.7500 A 11.0000 11.0000 0 0 1 475.0000 791.7500 L 475.0000 797.2500 A 11.0000 11.0000 0 0 1 464.0000 808.2500 L 453.0000 808.2500" class="g"/>
+<text x="464" y="861" class="lbl" text-anchor="middle">5 U+0035</text>
+<rect x="504" y="716" width="80" height="130" class="cell"/>
+<line x1="504" y1="811" x2="584" y2="811" class="bl"/>
+<line x1="504" y1="756" x2="584" y2="756" class="cl"/>
+<path d="M 533.0000 780.7500 L 544.0000 780.7500 A 11.0000 11.0000 0 0 1 555.0000 791.7500 L 555.0000 797.2500 A 11.0000 11.0000 0 0 1 544.0000 808.2500 A 11.0000 11.0000 0 0 1 533.0000 797.2500 L 533.0000 780.7500 A 22.9167 22.9167 0 0 1 549.5000 758.7500" class="g"/>
+<text x="544" y="861" class="lbl" text-anchor="middle">6 U+0036</text>
+<rect x="584" y="716" width="80" height="130" class="cell"/>
+<line x1="584" y1="811" x2="664" y2="811" class="bl"/>
+<line x1="584" y1="756" x2="664" y2="756" class="cl"/>
+<path d="M 613.0000 764.2500 L 613.0000 758.7500 L 635.0000 758.7500 L 624.0000 808.2500" class="g"/>
+<text x="624" y="861" class="lbl" text-anchor="middle">7 U+0037</text>
+<rect x="664" y="716" width="80" height="130" class="cell"/>
+<line x1="664" y1="811" x2="744" y2="811" class="bl"/>
+<line x1="664" y1="756" x2="744" y2="756" class="cl"/>
+<path d="M 704.0000 780.7500 A 11.0000 11.0000 0 0 1 715.0000 791.7500 L 715.0000 797.2500 A 11.0000 11.0000 0 0 1 693.0000 797.2500 L 693.0000 791.7500 A 11.0000 11.0000 0 0 1 704.0000 780.7500 A 11.0000 11.0000 0 0 0 704.0000 758.7500 A 11.0000 11.0000 0 0 0 704.0000 780.7500" class="g"/>
+<text x="704" y="861" class="lbl" text-anchor="middle">8 U+0038</text>
+<rect x="744" y="716" width="80" height="130" class="cell"/>
+<line x1="744" y1="811" x2="824" y2="811" class="bl"/>
+<line x1="744" y1="756" x2="824" y2="756" class="cl"/>
+<path d="M 795.0000 786.2500 L 784.0000 786.2500 A 11.0000 11.0000 0 0 1 773.0000 775.2500 L 773.0000 769.7500 A 11.0000 11.0000 0 0 1 784.0000 758.7500 A 11.0000 11.0000 0 0 1 795.0000 769.7500 L 795.0000 786.2500 A 22.9167 22.9167 0 0 1 778.5000 808.2500" class="g"/>
+<text x="784" y="861" class="lbl" text-anchor="middle">9 U+0039</text>
+<rect x="824" y="716" width="80" height="130" class="cell"/>
+<line x1="824" y1="811" x2="904" y2="811" class="bl"/>
+<line x1="824" y1="756" x2="904" y2="756" class="cl"/>
+<path d="M 864.0000 805.5000 L 864.0000 808.2500" class="g"/>
+<path d="M 864.0000 758.7500 L 864.0000 791.7500" class="g"/>
+<text x="864" y="861" class="lbl" text-anchor="middle">! U+0021</text>
+<rect x="904" y="716" width="80" height="130" class="cell"/>
+<line x1="904" y1="811" x2="984" y2="811" class="bl"/>
+<line x1="904" y1="756" x2="984" y2="756" class="cl"/>
+<path d="M 935.7500 769.7500 L 938.5000 758.7500" class="g"/>
+<path d="M 949.5000 769.7500 L 952.2500 758.7500" class="g"/>
+<text x="944" y="861" class="lbl" text-anchor="middle">&quot; U+0022</text>
+<rect x="984" y="716" width="80" height="130" class="cell"/>
+<line x1="984" y1="811" x2="1064" y2="811" class="bl"/>
+<line x1="984" y1="756" x2="1064" y2="756" class="cl"/>
+<path d="M 1007.5000 791.7500 L 1040.5000 791.7500" class="g"/>
+<path d="M 1015.7500 808.2500 L 1015.7500 758.7500" class="g"/>
+<path d="M 1007.5000 775.2500 L 1040.5000 775.2500" class="g"/>
+<path d="M 1032.2500 808.2500 L 1032.2500 758.7500" class="g"/>
+<text x="1024" y="861" class="lbl" text-anchor="middle"># U+0023</text>
+<rect x="1064" y="716" width="80" height="130" class="cell"/>
+<line x1="1064" y1="811" x2="1144" y2="811" class="bl"/>
+<line x1="1064" y1="756" x2="1144" y2="756" class="cl"/>
+<path d="M 1115.0000 767.0000 A 35.7500 35.7500 0 0 0 1101.2500 764.2500 A 8.2500 8.2500 0 0 0 1097.2154 779.6961 L 1110.7846 787.3039 A 8.2500 8.2500 0 0 1 1106.7500 802.7500 A 35.7500 35.7500 0 0 1 1093.0000 800.0000" class="g"/>
+<path d="M 1104.0000 808.2500 L 1104.0000 758.7500" class="g"/>
+<text x="1104" y="861" class="lbl" text-anchor="middle">$ U+0024</text>
+<rect x="1144" y="716" width="80" height="130" class="cell"/>
+<line x1="1144" y1="811" x2="1224" y2="811" class="bl"/>
+<line x1="1144" y1="756" x2="1224" y2="756" class="cl"/>
+<path d="M 1162.0000 808.2500 L 1206.0000 758.7500" class="g"/>
+<path d="M 1178.5000 767.0000 A 8.2500 8.2500 0 0 0 1162.0000 767.0000 A 8.2500 8.2500 0 0 0 1178.5000 767.0000" class="g"/>
+<path d="M 1206.0000 800.0000 A 8.2500 8.2500 0 0 0 1189.5000 800.0000 A 8.2500 8.2500 0 0 0 1206.0000 800.0000" class="g"/>
+<text x="1184" y="861" class="lbl" text-anchor="middle">% U+0025</text>
+<rect x="1224" y="716" width="80" height="130" class="cell"/>
+<line x1="1224" y1="811" x2="1304" y2="811" class="bl"/>
+<line x1="1224" y1="756" x2="1304" y2="756" class="cl"/>
+<path d="M 1275.0000 808.2500 L 1251.5423 771.4331 A 8.2500 8.2500 0 1 1 1265.2868 771.6906 L 1248.9632 795.3094 A 8.2500 8.2500 0 0 0 1260.7000 806.6000 L 1280.5000 791.7500" class="g"/>
+<text x="1264" y="861" class="lbl" text-anchor="middle">&amp; U+0026</text>
+<rect x="24" y="868" width="80" height="130" class="cell"/>
+<line x1="24" y1="963" x2="104" y2="963" class="bl"/>
+<line x1="24" y1="908" x2="104" y2="908" class="cl"/>
+<path d="M 62.6250 921.7500 L 65.3750 910.7500" class="g"/>
+<text x="64" y="1013" class="lbl" text-anchor="middle">&#x27; U+0027</text>
+<rect x="104" y="868" width="80" height="130" class="cell"/>
+<line x1="104" y1="963" x2="184" y2="963" class="bl"/>
+<line x1="104" y1="908" x2="184" y2="908" class="cl"/>
+<path d="M 145.3750 905.2500 A 167.7500 167.7500 0 0 0 145.3750 965.7500" class="g"/>
+<text x="144" y="1013" class="lbl" text-anchor="middle">( U+0028</text>
+<rect x="184" y="868" width="80" height="130" class="cell"/>
+<line x1="184" y1="963" x2="264" y2="963" class="bl"/>
+<line x1="184" y1="908" x2="264" y2="908" class="cl"/>
+<path d="M 222.6250 965.7500 A 167.7500 167.7500 0 0 0 222.6250 905.2500" class="g"/>
+<text x="224" y="1013" class="lbl" text-anchor="middle">) U+0029</text>
+<rect x="264" y="868" width="80" height="130" class="cell"/>
+<line x1="264" y1="963" x2="344" y2="963" class="bl"/>
+<line x1="264" y1="908" x2="344" y2="908" class="cl"/>
+<path d="M 293.0000 954.7500 L 315.0000 932.7500" class="g"/>
+<path d="M 293.0000 932.7500 L 315.0000 954.7500" class="g"/>
+<text x="304" y="1013" class="lbl" text-anchor="middle">* U+002A</text>
+<rect x="344" y="868" width="80" height="130" class="cell"/>
+<line x1="344" y1="963" x2="424" y2="963" class="bl"/>
+<line x1="344" y1="908" x2="424" y2="908" class="cl"/>
+<path d="M 384.0000 954.7500 L 384.0000 932.7500" class="g"/>
+<path d="M 395.0000 943.7500 L 373.0000 943.7500" class="g"/>
+<text x="384" y="1013" class="lbl" text-anchor="middle">+ U+002B</text>
+<rect x="424" y="868" width="80" height="130" class="cell"/>
+<line x1="424" y1="963" x2="504" y2="963" class="bl"/>
+<line x1="424" y1="908" x2="504" y2="908" class="cl"/>
+<path d="M 462.6250 971.2500 L 465.3750 960.2500" class="g"/>
+<text x="464" y="1013" class="lbl" text-anchor="middle">, U+002C</text>
+<rect x="504" y="868" width="80" height="130" class="cell"/>
+<line x1="504" y1="963" x2="584" y2="963" class="bl"/>
+<line x1="504" y1="908" x2="584" y2="908" class="cl"/>
+<path d="M 533.0000 943.7500 L 555.0000 943.7500" class="g"/>
+<text x="544" y="1013" class="lbl" text-anchor="middle">- U+002D</text>
+<rect x="584" y="868" width="80" height="130" class="cell"/>
+<line x1="584" y1="963" x2="664" y2="963" class="bl"/>
+<line x1="584" y1="908" x2="664" y2="908" class="cl"/>
+<path d="M 624.0000 957.5000 L 624.0000 960.2500" class="g"/>
+<text x="624" y="1013" class="lbl" text-anchor="middle">. U+002E</text>
+<rect x="664" y="868" width="80" height="130" class="cell"/>
+<line x1="664" y1="963" x2="744" y2="963" class="bl"/>
+<line x1="664" y1="908" x2="744" y2="908" class="cl"/>
+<path d="M 693.0000 960.2500 L 715.0000 910.7500" class="g"/>
+<text x="704" y="1013" class="lbl" text-anchor="middle">/ U+002F</text>
+<rect x="744" y="868" width="80" height="130" class="cell"/>
+<line x1="744" y1="963" x2="824" y2="963" class="bl"/>
+<line x1="744" y1="908" x2="824" y2="908" class="cl"/>
+<path d="M 784.0000 957.5000 L 784.0000 960.2500" class="g"/>
+<path d="M 784.0000 932.7500 L 784.0000 935.5000" class="g"/>
+<text x="784" y="1013" class="lbl" text-anchor="middle">: U+003A</text>
+<rect x="824" y="868" width="80" height="130" class="cell"/>
+<line x1="824" y1="963" x2="904" y2="963" class="bl"/>
+<line x1="824" y1="908" x2="904" y2="908" class="cl"/>
+<path d="M 862.6250 971.2500 L 865.3750 960.2500" class="g"/>
+<path d="M 865.3750 938.2500 L 865.3750 941.0000" class="g"/>
+<text x="864" y="1013" class="lbl" text-anchor="middle">; U+003B</text>
+<rect x="904" y="868" width="80" height="130" class="cell"/>
+<line x1="904" y1="963" x2="984" y2="963" class="bl"/>
+<line x1="904" y1="908" x2="984" y2="908" class="cl"/>
+<path d="M 955.0000 935.5000 L 933.0000 943.7500 L 955.0000 952.0000" class="g"/>
+<text x="944" y="1013" class="lbl" text-anchor="middle">&lt; U+003C</text>
+<rect x="984" y="868" width="80" height="130" class="cell"/>
+<line x1="984" y1="963" x2="1064" y2="963" class="bl"/>
+<line x1="984" y1="908" x2="1064" y2="908" class="cl"/>
+<path d="M 1013.0000 952.0000 L 1035.0000 952.0000" class="g"/>
+<path d="M 1013.0000 935.5000 L 1035.0000 935.5000" class="g"/>
+<text x="1024" y="1013" class="lbl" text-anchor="middle">= U+003D</text>
+<rect x="1064" y="868" width="80" height="130" class="cell"/>
+<line x1="1064" y1="963" x2="1144" y2="963" class="bl"/>
+<line x1="1064" y1="908" x2="1144" y2="908" class="cl"/>
+<path d="M 1093.0000 935.5000 L 1115.0000 943.7500 L 1093.0000 952.0000" class="g"/>
+<text x="1104" y="1013" class="lbl" text-anchor="middle">&gt; U+003E</text>
+<rect x="1144" y="868" width="80" height="130" class="cell"/>
+<line x1="1144" y1="963" x2="1224" y2="963" class="bl"/>
+<line x1="1144" y1="908" x2="1224" y2="908" class="cl"/>
+<path d="M 1173.0000 913.5000 A 35.7500 35.7500 0 0 1 1186.7500 910.7500 A 8.2500 8.2500 0 0 1 1192.4993 924.9168 L 1185.6672 931.5555 A 5.5000 5.5000 0 0 0 1184.0000 935.5000 L 1184.0000 943.7500" class="g"/>
+<path d="M 1184.0000 957.5000 L 1184.0000 960.2500" class="g"/>
+<text x="1184" y="1013" class="lbl" text-anchor="middle">? U+003F</text>
+<rect x="1224" y="868" width="80" height="130" class="cell"/>
+<line x1="1224" y1="963" x2="1304" y2="963" class="bl"/>
+<line x1="1224" y1="908" x2="1304" y2="908" class="cl"/>
+<path d="M 1272.2500 952.0000 A 8.2500 8.2500 0 0 1 1255.7500 952.0000 L 1255.7500 935.5000 A 8.2500 8.2500 0 0 1 1264.0000 927.2500 L 1272.2500 927.2500 L 1272.2500 953.3750 A 6.8750 6.8750 0 0 0 1286.0000 953.3750 L 1286.0000 932.7500 A 22.0000 22.0000 0 0 0 1242.0000 932.7500 L 1242.0000 954.7500 A 22.0000 22.0000 0 0 0 1261.2500 976.5774" class="g"/>
+<text x="1264" y="1013" class="lbl" text-anchor="middle">@ U+0040</text>
+<rect x="24" y="1020" width="80" height="130" class="cell"/>
+<line x1="24" y1="1115" x2="104" y2="1115" class="bl"/>
+<line x1="24" y1="1060" x2="104" y2="1060" class="cl"/>
+<path d="M 66.7500 1117.7500 L 61.2500 1117.7500 L 61.2500 1057.2500 L 66.7500 1057.2500" class="g"/>
+<text x="64" y="1165" class="lbl" text-anchor="middle">[ U+005B</text>
+<rect x="104" y="1020" width="80" height="130" class="cell"/>
+<line x1="104" y1="1115" x2="184" y2="1115" class="bl"/>
+<line x1="104" y1="1060" x2="184" y2="1060" class="cl"/>
+<path d="M 155.0000 1112.2500 L 133.0000 1062.7500" class="g"/>
+<text x="144" y="1165" class="lbl" text-anchor="middle">\ U+005C</text>
+<rect x="184" y="1020" width="80" height="130" class="cell"/>
+<line x1="184" y1="1115" x2="264" y2="1115" class="bl"/>
+<line x1="184" y1="1060" x2="264" y2="1060" class="cl"/>
+<path d="M 221.2500 1117.7500 L 226.7500 1117.7500 L 226.7500 1057.2500 L 221.2500 1057.2500" class="g"/>
+<text x="224" y="1165" class="lbl" text-anchor="middle">] U+005D</text>
+<rect x="264" y="1020" width="80" height="130" class="cell"/>
+<line x1="264" y1="1115" x2="344" y2="1115" class="bl"/>
+<line x1="264" y1="1060" x2="344" y2="1060" class="cl"/>
+<path d="M 295.7500 1071.0000 L 304.0000 1062.7500 L 312.2500 1071.0000" class="g"/>
+<text x="304" y="1165" class="lbl" text-anchor="middle">^ U+005E</text>
+<rect x="344" y="1020" width="80" height="130" class="cell"/>
+<line x1="344" y1="1115" x2="424" y2="1115" class="bl"/>
+<line x1="344" y1="1060" x2="424" y2="1060" class="cl"/>
+<path d="M 359.2500 1128.7500 L 408.7500 1128.7500" class="g"/>
+<text x="384" y="1165" class="lbl" text-anchor="middle">_ U+005F</text>
+<rect x="424" y="1020" width="80" height="130" class="cell"/>
+<line x1="424" y1="1115" x2="504" y2="1115" class="bl"/>
+<line x1="424" y1="1060" x2="504" y2="1060" class="cl"/>
+<path d="M 469.5000 1057.2500 A 5.5000 5.5000 0 0 0 464.0000 1062.7500 L 464.0000 1082.0000 A 5.5000 5.5000 0 0 1 458.5000 1087.5000 A 5.5000 5.5000 0 0 1 464.0000 1093.0000 L 464.0000 1112.2500 A 5.5000 5.5000 0 0 0 469.5000 1117.7500" class="g"/>
+<text x="464" y="1165" class="lbl" text-anchor="middle">{ U+007B</text>
+<rect x="504" y="1020" width="80" height="130" class="cell"/>
+<line x1="504" y1="1115" x2="584" y2="1115" class="bl"/>
+<line x1="504" y1="1060" x2="584" y2="1060" class="cl"/>
+<path d="M 538.5000 1057.2500 A 5.5000 5.5000 0 0 1 544.0000 1062.7500 L 544.0000 1082.0000 A 5.5000 5.5000 0 0 0 549.5000 1087.5000 A 5.5000 5.5000 0 0 0 544.0000 1093.0000 L 544.0000 1112.2500 A 5.5000 5.5000 0 0 1 538.5000 1117.7500" class="g"/>
+<text x="544" y="1165" class="lbl" text-anchor="middle">} U+007D</text>
+<text x="24" y="1190" class="ttl">Math &amp; Currency</text>
+<rect x="24" y="1200" width="80" height="130" class="cell"/>
+<line x1="24" y1="1295" x2="104" y2="1295" class="bl"/>
+<line x1="24" y1="1240" x2="104" y2="1240" class="cl"/>
+<path d="M 75.0000 1259.2500 L 61.2500 1259.2500 A 8.2500 8.2500 0 0 0 53.0000 1267.5000 L 53.0000 1284.0000 A 8.2500 8.2500 0 0 0 61.2500 1292.2500 L 75.0000 1292.2500" class="g"/>
+<path d="M 66.7500 1300.5000 L 66.7500 1251.0000" class="g"/>
+<text x="64" y="1345" class="lbl" text-anchor="middle">¢ U+00A2</text>
+<rect x="104" y="1200" width="80" height="130" class="cell"/>
+<line x1="104" y1="1295" x2="184" y2="1295" class="bl"/>
+<line x1="104" y1="1240" x2="184" y2="1240" class="cl"/>
+<path d="M 133.0000 1292.2500 L 155.0000 1292.2500" class="g"/>
+<path d="M 144.0000 1281.2500 L 144.0000 1259.2500" class="g"/>
+<path d="M 155.0000 1270.2500 L 133.0000 1270.2500" class="g"/>
+<text x="144" y="1345" class="lbl" text-anchor="middle">± U+00B1</text>
+<rect x="184" y="1200" width="80" height="130" class="cell"/>
+<line x1="184" y1="1295" x2="264" y2="1295" class="bl"/>
+<line x1="184" y1="1240" x2="264" y2="1240" class="cl"/>
+<path d="M 229.1944 1264.7500 L 219.4167 1264.7500 L 228.4346 1250.3705 A 4.9770 4.9770 0 1 0 219.4167 1246.4167" class="g"/>
+<text x="224" y="1345" class="lbl" text-anchor="middle">² U+00B2</text>
+<rect x="264" y="1200" width="80" height="130" class="cell"/>
+<line x1="264" y1="1295" x2="344" y2="1295" class="bl"/>
+<line x1="264" y1="1240" x2="344" y2="1240" class="cl"/>
+<path d="M 299.1111 1242.7500 L 304.0000 1242.7500 A 4.8889 4.8889 0 0 1 308.8889 1247.6389 A 4.8889 4.8889 0 0 1 304.0000 1252.5278 L 301.5556 1252.5278" class="g"/>
+<path d="M 304.0000 1252.5278 A 4.8889 4.8889 0 0 1 308.8889 1257.4167 L 308.8889 1259.8611 A 4.8889 4.8889 0 0 1 304.0000 1264.7500 L 299.1111 1264.7500" class="g"/>
+<text x="304" y="1345" class="lbl" text-anchor="middle">³ U+00B3</text>
+<rect x="344" y="1200" width="80" height="130" class="cell"/>
+<line x1="344" y1="1295" x2="424" y2="1295" class="bl"/>
+<line x1="344" y1="1240" x2="424" y2="1240" class="cl"/>
+<path d="M 373.0000 1275.7500 L 395.0000 1275.7500" class="g"/>
+<path d="M 384.0000 1264.7500 L 384.0000 1262.0000" class="g"/>
+<path d="M 384.0000 1289.5000 L 384.0000 1286.7500" class="g"/>
+<text x="384" y="1345" class="lbl" text-anchor="middle">÷ U+00F7</text>
+<rect x="424" y="1200" width="80" height="130" class="cell"/>
+<line x1="424" y1="1295" x2="504" y2="1295" class="bl"/>
+<line x1="424" y1="1240" x2="504" y2="1240" class="cl"/>
+<path d="M 464.0000 1289.5000 L 464.0000 1292.2500" class="g"/>
+<path d="M 454.3750 1289.5000 L 454.3750 1292.2500" class="g"/>
+<path d="M 473.6250 1289.5000 L 473.6250 1292.2500" class="g"/>
+<text x="464" y="1345" class="lbl" text-anchor="middle">… U+2026</text>
+<rect x="504" y="1200" width="80" height="130" class="cell"/>
+<line x1="504" y1="1295" x2="584" y2="1295" class="bl"/>
+<line x1="504" y1="1240" x2="584" y2="1240" class="cl"/>
+<path d="M 509.6250 1292.2500 L 553.6250 1242.7500" class="g"/>
+<path d="M 526.1250 1251.0000 A 8.2500 8.2500 0 0 0 509.6250 1251.0000 A 8.2500 8.2500 0 0 0 526.1250 1251.0000" class="g"/>
+<path d="M 553.6250 1284.0000 A 8.2500 8.2500 0 0 0 537.1250 1284.0000 A 8.2500 8.2500 0 0 0 553.6250 1284.0000" class="g"/>
+<path d="M 578.3750 1284.0000 A 8.2500 8.2500 0 0 0 561.8750 1284.0000 A 8.2500 8.2500 0 0 0 578.3750 1284.0000" class="g"/>
+<text x="544" y="1345" class="lbl" text-anchor="middle">‰ U+2030</text>
+<rect x="584" y="1200" width="80" height="130" class="cell"/>
+<line x1="584" y1="1295" x2="664" y2="1295" class="bl"/>
+<line x1="584" y1="1240" x2="664" y2="1240" class="cl"/>
+<path d="M 607.5000 1262.0000 L 629.5000 1262.0000" class="g"/>
+<path d="M 607.5000 1273.0000 L 629.5000 1273.0000" class="g"/>
+<path d="M 640.5000 1256.5000 A 13.7500 13.7500 0 0 0 613.0000 1256.5000 L 613.0000 1278.5000 A 13.7500 13.7500 0 0 0 640.5000 1278.5000" class="g"/>
+<text x="624" y="1345" class="lbl" text-anchor="middle">€ U+20AC</text>
+<rect x="664" y="1200" width="80" height="130" class="cell"/>
+<line x1="664" y1="1295" x2="744" y2="1295" class="bl"/>
+<line x1="664" y1="1240" x2="744" y2="1240" class="cl"/>
+<path d="M 715.0000 1242.7500 L 687.5000 1242.7500 L 701.2500 1267.5000 L 687.5000 1292.2500 L 715.0000 1292.2500 A 5.5000 5.5000 0 0 0 720.5000 1286.7500" class="g"/>
+<text x="704" y="1345" class="lbl" text-anchor="middle">∑ U+2211</text>
+<rect x="744" y="1200" width="80" height="130" class="cell"/>
+<line x1="744" y1="1295" x2="824" y2="1295" class="bl"/>
+<line x1="744" y1="1240" x2="824" y2="1240" class="cl"/>
+<path d="M 757.8750 1259.2500 L 768.8750 1292.2500 L 790.8750 1220.7500 L 810.1250 1220.7500" class="g"/>
+<text x="784" y="1345" class="lbl" text-anchor="middle">√ U+221A</text>
+<rect x="824" y="1200" width="80" height="130" class="cell"/>
+<line x1="824" y1="1295" x2="904" y2="1295" class="bl"/>
+<line x1="824" y1="1240" x2="904" y2="1240" class="cl"/>
+<path d="M 883.2500 1267.5000 A 9.6250 9.6250 0 1 0 864.0000 1267.5000 A 9.6250 9.6250 0 1 1 844.7500 1267.5000 A 9.6250 9.6250 0 1 1 864.0000 1267.5000 A 9.6250 9.6250 0 1 0 883.2500 1267.5000" class="g"/>
+<text x="864" y="1345" class="lbl" text-anchor="middle">∞ U+221E</text>
+<rect x="904" y="1200" width="80" height="130" class="cell"/>
+<line x1="904" y1="1295" x2="984" y2="1295" class="bl"/>
+<line x1="904" y1="1240" x2="984" y2="1240" class="cl"/>
+<path d="M 960.5000 1292.2500 L 927.5000 1275.7500 L 960.5000 1259.2500" class="g"/>
+<path d="M 949.5000 1259.2500 L 949.5000 1292.2500" class="g"/>
+<text x="944" y="1345" class="lbl" text-anchor="middle">∢ U+2222</text>
+<rect x="984" y="1200" width="80" height="130" class="cell"/>
+<line x1="984" y1="1295" x2="1064" y2="1295" class="bl"/>
+<line x1="984" y1="1240" x2="1064" y2="1240" class="cl"/>
+<path d="M 1013.0000 1308.7500 L 1015.7500 1308.7500 A 8.2500 8.2500 0 0 0 1024.0000 1300.5000 L 1024.0000 1234.5000 A 8.2500 8.2500 0 0 1 1032.2500 1226.2500 L 1035.0000 1226.2500" class="g"/>
+<text x="1024" y="1345" class="lbl" text-anchor="middle">∫ U+222B</text>
+<rect x="1064" y="1200" width="80" height="130" class="cell"/>
+<line x1="1064" y1="1295" x2="1144" y2="1295" class="bl"/>
+<line x1="1064" y1="1240" x2="1144" y2="1240" class="cl"/>
+<path d="M 1093.0000 1267.5000 A 6.8750 6.8750 0 0 1 1104.0000 1267.5000 A 6.8750 6.8750 0 0 0 1115.0000 1267.5000" class="g"/>
+<path d="M 1093.0000 1284.0000 A 6.8750 6.8750 0 0 1 1104.0000 1284.0000 A 6.8750 6.8750 0 0 0 1115.0000 1284.0000" class="g"/>
+<text x="1104" y="1345" class="lbl" text-anchor="middle">≈ U+2248</text>
+<rect x="1144" y="1200" width="80" height="130" class="cell"/>
+<line x1="1144" y1="1295" x2="1224" y2="1295" class="bl"/>
+<line x1="1144" y1="1240" x2="1224" y2="1240" class="cl"/>
+<path d="M 1173.0000 1286.7500 L 1195.0000 1286.7500" class="g"/>
+<path d="M 1173.0000 1270.2500 L 1195.0000 1270.2500" class="g"/>
+<path d="M 1173.0000 1253.7500 L 1184.0000 1242.7500 L 1195.0000 1253.7500" class="g"/>
+<text x="1184" y="1345" class="lbl" text-anchor="middle">≙ U+2259</text>
+<rect x="1224" y="1200" width="80" height="130" class="cell"/>
+<line x1="1224" y1="1295" x2="1304" y2="1295" class="bl"/>
+<line x1="1224" y1="1240" x2="1304" y2="1240" class="cl"/>
+<path d="M 1253.0000 1284.0000 L 1275.0000 1284.0000" class="g"/>
+<path d="M 1253.0000 1267.5000 L 1275.0000 1267.5000" class="g"/>
+<path d="M 1258.5000 1292.2500 L 1269.5000 1259.2500" class="g"/>
+<text x="1264" y="1345" class="lbl" text-anchor="middle">≠ U+2260</text>
+<rect x="24" y="1352" width="80" height="130" class="cell"/>
+<line x1="24" y1="1447" x2="104" y2="1447" class="bl"/>
+<line x1="24" y1="1392" x2="104" y2="1392" class="cl"/>
+<path d="M 53.0000 1441.5000 L 75.0000 1441.5000" class="g"/>
+<path d="M 53.0000 1427.7500 L 75.0000 1427.7500" class="g"/>
+<path d="M 53.0000 1414.0000 L 75.0000 1414.0000" class="g"/>
+<text x="64" y="1497" class="lbl" text-anchor="middle">≡ U+2261</text>
+<rect x="104" y="1352" width="80" height="130" class="cell"/>
+<line x1="104" y1="1447" x2="184" y2="1447" class="bl"/>
+<line x1="104" y1="1392" x2="184" y2="1392" class="cl"/>
+<path d="M 155.0000 1411.2500 L 133.0000 1419.5000 L 155.0000 1427.7500" class="g"/>
+<path d="M 133.0000 1441.5000 L 155.0000 1441.5000" class="g"/>
+<text x="144" y="1497" class="lbl" text-anchor="middle">≤ U+2264</text>
+<rect x="184" y="1352" width="80" height="130" class="cell"/>
+<line x1="184" y1="1447" x2="264" y2="1447" class="bl"/>
+<line x1="184" y1="1392" x2="264" y2="1392" class="cl"/>
+<path d="M 213.0000 1411.2500 L 235.0000 1419.5000 L 213.0000 1427.7500" class="g"/>
+<path d="M 213.0000 1441.5000 L 235.0000 1441.5000" class="g"/>
+<text x="224" y="1497" class="lbl" text-anchor="middle">≥ U+2265</text>
+<rect x="264" y="1352" width="80" height="130" class="cell"/>
+<line x1="264" y1="1447" x2="344" y2="1447" class="bl"/>
+<line x1="264" y1="1392" x2="344" y2="1392" class="cl"/>
+<path d="M 320.5000 1419.5000 A 16.5000 16.5000 0 0 0 287.5000 1419.5000 A 16.5000 16.5000 0 0 0 320.5000 1419.5000" class="g"/>
+<path d="M 295.7500 1444.2500 L 312.2500 1394.7500" class="g"/>
+<text x="304" y="1497" class="lbl" text-anchor="middle">⌀ U+2300</text>
+<rect x="344" y="1352" width="80" height="130" class="cell"/>
+<line x1="344" y1="1447" x2="424" y2="1447" class="bl"/>
+<line x1="344" y1="1392" x2="424" y2="1392" class="cl"/>
+<path d="M 367.5000 1444.2500 L 400.5000 1444.2500 L 400.5000 1411.2500 L 367.5000 1411.2500 L 367.5000 1444.2500" class="g"/>
+<text x="384" y="1497" class="lbl" text-anchor="middle">□ U+25A1</text>
+<rect x="424" y="1352" width="80" height="130" class="cell"/>
+<line x1="424" y1="1447" x2="504" y2="1447" class="bl"/>
+<line x1="424" y1="1392" x2="504" y2="1392" class="cl"/>
+<path d="M 447.5000 1444.2500 L 480.5000 1427.7500 L 447.5000 1411.2500 L 447.5000 1444.2500" class="g"/>
+<text x="464" y="1497" class="lbl" text-anchor="middle">▹ U+25B9</text>
+<rect x="504" y="1352" width="80" height="130" class="cell"/>
+<line x1="504" y1="1447" x2="584" y2="1447" class="bl"/>
+<line x1="504" y1="1392" x2="584" y2="1392" class="cl"/>
+<path d="M 560.5000 1444.2500 L 527.5000 1427.7500 L 560.5000 1411.2500 L 560.5000 1444.2500" class="g"/>
+<text x="544" y="1497" class="lbl" text-anchor="middle">◃ U+25C3</text>
+<rect x="584" y="1352" width="80" height="130" class="cell"/>
+<line x1="584" y1="1447" x2="664" y2="1447" class="bl"/>
+<line x1="584" y1="1392" x2="664" y2="1392" class="cl"/>
+<path d="M 646.0000 1433.2500 L 602.0000 1444.2500 L 602.0000 1422.2500 L 646.0000 1433.2500" class="g"/>
+<text x="624" y="1497" class="lbl" text-anchor="middle">◅ U+25C5</text>
+<rect x="664" y="1352" width="80" height="130" class="cell"/>
+<line x1="664" y1="1447" x2="744" y2="1447" class="bl"/>
+<line x1="664" y1="1392" x2="744" y2="1392" class="cl"/>
+<path d="M 726.0000 1444.2500 L 682.0000 1444.2500 L 682.0000 1422.2500 L 726.0000 1444.2500" class="g"/>
+<text x="704" y="1497" class="lbl" text-anchor="middle">◿ U+25FF</text>
+<text x="24" y="1522" class="ttl">International</text>
+<rect x="24" y="1532" width="80" height="130" class="cell"/>
+<line x1="24" y1="1627" x2="104" y2="1627" class="bl"/>
+<line x1="24" y1="1572" x2="104" y2="1572" class="cl"/>
+<path d="M 86.0000 1596.7500 A 22.0000 22.0000 0 0 0 42.0000 1596.7500 A 22.0000 22.0000 0 0 0 86.0000 1596.7500" class="g"/>
+<path d="M 69.5000 1585.7500 L 61.2500 1585.7500 A 5.5000 5.5000 0 0 0 55.7500 1591.2500 L 55.7500 1602.2500 A 5.5000 5.5000 0 0 0 61.2500 1607.7500 L 69.5000 1607.7500" class="g"/>
+<text x="64" y="1677" class="lbl" text-anchor="middle">© U+00A9</text>
+<rect x="104" y="1532" width="80" height="130" class="cell"/>
+<line x1="104" y1="1627" x2="184" y2="1627" class="bl"/>
+<line x1="104" y1="1572" x2="184" y2="1572" class="cl"/>
+<path d="M 141.2500 1621.5000 L 130.2500 1607.7500 L 141.2500 1594.0000" class="g"/>
+<path d="M 157.7500 1621.5000 L 146.7500 1607.7500 L 157.7500 1594.0000" class="g"/>
+<text x="144" y="1677" class="lbl" text-anchor="middle">« U+00AB</text>
+<rect x="184" y="1532" width="80" height="130" class="cell"/>
+<line x1="184" y1="1627" x2="264" y2="1627" class="bl"/>
+<line x1="184" y1="1572" x2="264" y2="1572" class="cl"/>
+<path d="M 246.0000 1596.7500 A 22.0000 22.0000 0 0 0 202.0000 1596.7500 A 22.0000 22.0000 0 0 0 246.0000 1596.7500" class="g"/>
+<path d="M 218.5000 1607.7500 L 218.5000 1585.7500 L 224.0000 1585.7500 A 5.5000 5.5000 0 0 1 224.0000 1596.7500 L 218.5000 1596.7500" class="g"/>
+<path d="M 229.5000 1607.7500 L 224.0000 1596.7500" class="g"/>
+<text x="224" y="1677" class="lbl" text-anchor="middle">® U+00AE</text>
+<rect x="264" y="1532" width="80" height="130" class="cell"/>
+<line x1="264" y1="1627" x2="344" y2="1627" class="bl"/>
+<line x1="264" y1="1572" x2="344" y2="1572" class="cl"/>
+<path d="M 310.8750 1581.6250 A 6.8750 6.8750 0 0 0 297.1250 1581.6250 A 6.8750 6.8750 0 0 0 310.8750 1581.6250" class="g"/>
+<text x="304" y="1677" class="lbl" text-anchor="middle">° U+00B0</text>
+<rect x="344" y="1532" width="80" height="130" class="cell"/>
+<line x1="344" y1="1627" x2="424" y2="1627" class="bl"/>
+<line x1="344" y1="1572" x2="424" y2="1572" class="cl"/>
+<path d="M 386.7500 1621.5000 L 397.7500 1607.7500 L 386.7500 1594.0000" class="g"/>
+<path d="M 370.2500 1621.5000 L 381.2500 1607.7500 L 370.2500 1594.0000" class="g"/>
+<text x="384" y="1677" class="lbl" text-anchor="middle">» U+00BB</text>
+<rect x="424" y="1532" width="80" height="130" class="cell"/>
+<line x1="424" y1="1627" x2="504" y2="1627" class="bl"/>
+<line x1="424" y1="1572" x2="504" y2="1572" class="cl"/>
+<path d="M 450.2500 1624.2500 L 450.2500 1583.0000 A 8.2500 8.2500 0 0 1 458.5000 1574.7500 L 469.5000 1574.7500 A 8.2500 8.2500 0 0 1 477.7500 1583.0000 L 477.7500 1585.7500 A 8.2500 8.2500 0 0 1 469.5000 1594.0000 A 8.2500 8.2500 0 0 1 477.7500 1602.2500 L 477.7500 1616.0000 A 8.2500 8.2500 0 0 1 469.5000 1624.2500" class="g"/>
+<text x="464" y="1677" class="lbl" text-anchor="middle">ß U+00DF</text>
+<text x="24" y="1702" class="ttl">Accented Latin (UC)</text>
+<rect x="24" y="1712" width="80" height="130" class="cell"/>
+<line x1="24" y1="1807" x2="104" y2="1807" class="bl"/>
+<line x1="24" y1="1752" x2="104" y2="1752" class="cl"/>
+<path d="M 52.0833 1790.5000 L 75.9167 1790.5000" class="g"/>
+<path d="M 47.5000 1804.2500 L 64.0000 1754.7500 L 80.5000 1804.2500" class="g"/>
+<path d="M 58.5000 1732.7500 L 69.5000 1741.0000" class="g"/>
+<text x="64" y="1857" class="lbl" text-anchor="middle">À U+00C0</text>
+<rect x="104" y="1712" width="80" height="130" class="cell"/>
+<line x1="104" y1="1807" x2="184" y2="1807" class="bl"/>
+<line x1="104" y1="1752" x2="184" y2="1752" class="cl"/>
+<path d="M 132.0833 1790.5000 L 155.9167 1790.5000" class="g"/>
+<path d="M 127.5000 1804.2500 L 144.0000 1754.7500 L 160.5000 1804.2500" class="g"/>
+<path d="M 149.5000 1732.7500 L 138.5000 1741.0000" class="g"/>
+<text x="144" y="1857" class="lbl" text-anchor="middle">Á U+00C1</text>
+<rect x="184" y="1712" width="80" height="130" class="cell"/>
+<line x1="184" y1="1807" x2="264" y2="1807" class="bl"/>
+<line x1="184" y1="1752" x2="264" y2="1752" class="cl"/>
+<path d="M 212.0833 1790.5000 L 235.9167 1790.5000" class="g"/>
+<path d="M 207.5000 1804.2500 L 224.0000 1754.7500 L 240.5000 1804.2500" class="g"/>
+<path d="M 215.7500 1741.0000 L 224.0000 1732.7500 L 232.2500 1741.0000" class="g"/>
+<text x="224" y="1857" class="lbl" text-anchor="middle">Â U+00C2</text>
+<rect x="264" y="1712" width="80" height="130" class="cell"/>
+<line x1="264" y1="1807" x2="344" y2="1807" class="bl"/>
+<line x1="264" y1="1752" x2="344" y2="1752" class="cl"/>
+<path d="M 292.0833 1790.5000 L 315.9167 1790.5000" class="g"/>
+<path d="M 287.5000 1804.2500 L 304.0000 1754.7500 L 320.5000 1804.2500" class="g"/>
+<path d="M 293.0000 1735.5000 A 6.8750 6.8750 0 0 1 304.0000 1735.5000 A 6.8750 6.8750 0 0 0 315.0000 1735.5000" class="g"/>
+<text x="304" y="1857" class="lbl" text-anchor="middle">Ã U+00C3</text>
+<rect x="344" y="1712" width="80" height="130" class="cell"/>
+<line x1="344" y1="1807" x2="424" y2="1807" class="bl"/>
+<line x1="344" y1="1752" x2="424" y2="1752" class="cl"/>
+<path d="M 372.0833 1790.5000 L 395.9167 1790.5000" class="g"/>
+<path d="M 367.5000 1804.2500 L 384.0000 1754.7500 L 400.5000 1804.2500" class="g"/>
+<path d="M 375.7500 1732.7500 L 375.7500 1735.5000" class="g"/>
+<path d="M 392.2500 1732.7500 L 392.2500 1735.5000" class="g"/>
+<text x="384" y="1857" class="lbl" text-anchor="middle">Ä U+00C4</text>
+<rect x="424" y="1712" width="80" height="130" class="cell"/>
+<line x1="424" y1="1807" x2="504" y2="1807" class="bl"/>
+<line x1="424" y1="1752" x2="504" y2="1752" class="cl"/>
+<path d="M 452.0833 1790.5000 L 475.9167 1790.5000" class="g"/>
+<path d="M 447.5000 1804.2500 L 464.0000 1754.7500 L 480.5000 1804.2500" class="g"/>
+<path d="M 470.8750 1739.6250 A 6.8750 6.8750 0 0 0 457.1250 1739.6250 A 6.8750 6.8750 0 0 0 470.8750 1739.6250" class="g"/>
+<text x="464" y="1857" class="lbl" text-anchor="middle">Å U+00C5</text>
+<rect x="504" y="1712" width="80" height="130" class="cell"/>
+<line x1="504" y1="1807" x2="584" y2="1807" class="bl"/>
+<line x1="504" y1="1752" x2="584" y2="1752" class="cl"/>
+<path d="M 522.0000 1804.2500 L 538.5000 1754.7500 L 566.0000 1754.7500" class="g"/>
+<path d="M 526.5833 1790.5000 L 549.5000 1790.5000" class="g"/>
+<path d="M 549.5000 1754.7500 L 549.5000 1804.2500 L 566.0000 1804.2500" class="g"/>
+<path d="M 549.5000 1776.7500 L 566.0000 1776.7500" class="g"/>
+<text x="544" y="1857" class="lbl" text-anchor="middle">Æ U+00C6</text>
+<rect x="584" y="1712" width="80" height="130" class="cell"/>
+<line x1="584" y1="1807" x2="664" y2="1807" class="bl"/>
+<line x1="584" y1="1752" x2="664" y2="1752" class="cl"/>
+<path d="M 635.0000 1754.7500 L 621.2500 1754.7500 A 8.2500 8.2500 0 0 0 613.0000 1763.0000 L 613.0000 1796.0000 A 8.2500 8.2500 0 0 0 621.2500 1804.2500 L 635.0000 1804.2500" class="g"/>
+<path d="M 621.2500 1815.2500 L 624.0000 1804.2500" class="g"/>
+<text x="624" y="1857" class="lbl" text-anchor="middle">Ç U+00C7</text>
+<rect x="664" y="1712" width="80" height="130" class="cell"/>
+<line x1="664" y1="1807" x2="744" y2="1807" class="bl"/>
+<line x1="664" y1="1752" x2="744" y2="1752" class="cl"/>
+<path d="M 709.5000 1776.7500 L 693.0000 1776.7500" class="g"/>
+<path d="M 715.0000 1754.7500 L 693.0000 1754.7500 L 693.0000 1804.2500 L 715.0000 1804.2500" class="g"/>
+<path d="M 698.5000 1732.7500 L 709.5000 1741.0000" class="g"/>
+<text x="704" y="1857" class="lbl" text-anchor="middle">È U+00C8</text>
+<rect x="744" y="1712" width="80" height="130" class="cell"/>
+<line x1="744" y1="1807" x2="824" y2="1807" class="bl"/>
+<line x1="744" y1="1752" x2="824" y2="1752" class="cl"/>
+<path d="M 789.5000 1776.7500 L 773.0000 1776.7500" class="g"/>
+<path d="M 795.0000 1754.7500 L 773.0000 1754.7500 L 773.0000 1804.2500 L 795.0000 1804.2500" class="g"/>
+<path d="M 789.5000 1732.7500 L 778.5000 1741.0000" class="g"/>
+<text x="784" y="1857" class="lbl" text-anchor="middle">É U+00C9</text>
+<rect x="824" y="1712" width="80" height="130" class="cell"/>
+<line x1="824" y1="1807" x2="904" y2="1807" class="bl"/>
+<line x1="824" y1="1752" x2="904" y2="1752" class="cl"/>
+<path d="M 869.5000 1776.7500 L 853.0000 1776.7500" class="g"/>
+<path d="M 875.0000 1754.7500 L 853.0000 1754.7500 L 853.0000 1804.2500 L 875.0000 1804.2500" class="g"/>
+<path d="M 855.7500 1741.0000 L 864.0000 1732.7500 L 872.2500 1741.0000" class="g"/>
+<text x="864" y="1857" class="lbl" text-anchor="middle">Ê U+00CA</text>
+<rect x="904" y="1712" width="80" height="130" class="cell"/>
+<line x1="904" y1="1807" x2="984" y2="1807" class="bl"/>
+<line x1="904" y1="1752" x2="984" y2="1752" class="cl"/>
+<path d="M 949.5000 1776.7500 L 933.0000 1776.7500" class="g"/>
+<path d="M 955.0000 1754.7500 L 933.0000 1754.7500 L 933.0000 1804.2500 L 955.0000 1804.2500" class="g"/>
+<path d="M 935.7500 1732.7500 L 935.7500 1735.5000" class="g"/>
+<path d="M 952.2500 1732.7500 L 952.2500 1735.5000" class="g"/>
+<text x="944" y="1857" class="lbl" text-anchor="middle">Ë U+00CB</text>
+<rect x="984" y="1712" width="80" height="130" class="cell"/>
+<line x1="984" y1="1807" x2="1064" y2="1807" class="bl"/>
+<line x1="984" y1="1752" x2="1064" y2="1752" class="cl"/>
+<path d="M 1024.0000 1804.2500 L 1024.0000 1754.7500" class="g"/>
+<path d="M 1018.5000 1732.7500 L 1029.5000 1741.0000" class="g"/>
+<text x="1024" y="1857" class="lbl" text-anchor="middle">Ì U+00CC</text>
+<rect x="1064" y="1712" width="80" height="130" class="cell"/>
+<line x1="1064" y1="1807" x2="1144" y2="1807" class="bl"/>
+<line x1="1064" y1="1752" x2="1144" y2="1752" class="cl"/>
+<path d="M 1104.0000 1804.2500 L 1104.0000 1754.7500" class="g"/>
+<path d="M 1109.5000 1732.7500 L 1098.5000 1741.0000" class="g"/>
+<text x="1104" y="1857" class="lbl" text-anchor="middle">Í U+00CD</text>
+<rect x="1144" y="1712" width="80" height="130" class="cell"/>
+<line x1="1144" y1="1807" x2="1224" y2="1807" class="bl"/>
+<line x1="1144" y1="1752" x2="1224" y2="1752" class="cl"/>
+<path d="M 1184.0000 1804.2500 L 1184.0000 1754.7500" class="g"/>
+<path d="M 1175.7500 1741.0000 L 1184.0000 1732.7500 L 1192.2500 1741.0000" class="g"/>
+<text x="1184" y="1857" class="lbl" text-anchor="middle">Î U+00CE</text>
+<rect x="1224" y="1712" width="80" height="130" class="cell"/>
+<line x1="1224" y1="1807" x2="1304" y2="1807" class="bl"/>
+<line x1="1224" y1="1752" x2="1304" y2="1752" class="cl"/>
+<path d="M 1250.2500 1804.2500 L 1250.2500 1754.7500 L 1277.7500 1804.2500 L 1277.7500 1754.7500" class="g"/>
+<path d="M 1253.0000 1735.5000 A 6.8750 6.8750 0 0 1 1264.0000 1735.5000 A 6.8750 6.8750 0 0 0 1275.0000 1735.5000" class="g"/>
+<text x="1264" y="1857" class="lbl" text-anchor="middle">Ñ U+00D1</text>
+<rect x="24" y="1864" width="80" height="130" class="cell"/>
+<line x1="24" y1="1959" x2="104" y2="1959" class="bl"/>
+<line x1="24" y1="1904" x2="104" y2="1904" class="cl"/>
+<path d="M 50.2500 1942.5000 A 13.7500 13.7500 0 0 0 77.7500 1942.5000 L 77.7500 1920.5000 A 13.7500 13.7500 0 0 0 50.2500 1920.5000 L 50.2500 1942.5000" class="g"/>
+<path d="M 58.5000 1884.7500 L 69.5000 1893.0000" class="g"/>
+<text x="64" y="2009" class="lbl" text-anchor="middle">Ò U+00D2</text>
+<rect x="104" y="1864" width="80" height="130" class="cell"/>
+<line x1="104" y1="1959" x2="184" y2="1959" class="bl"/>
+<line x1="104" y1="1904" x2="184" y2="1904" class="cl"/>
+<path d="M 130.2500 1942.5000 A 13.7500 13.7500 0 0 0 157.7500 1942.5000 L 157.7500 1920.5000 A 13.7500 13.7500 0 0 0 130.2500 1920.5000 L 130.2500 1942.5000" class="g"/>
+<path d="M 149.5000 1884.7500 L 138.5000 1893.0000" class="g"/>
+<text x="144" y="2009" class="lbl" text-anchor="middle">Ó U+00D3</text>
+<rect x="184" y="1864" width="80" height="130" class="cell"/>
+<line x1="184" y1="1959" x2="264" y2="1959" class="bl"/>
+<line x1="184" y1="1904" x2="264" y2="1904" class="cl"/>
+<path d="M 210.2500 1942.5000 A 13.7500 13.7500 0 0 0 237.7500 1942.5000 L 237.7500 1920.5000 A 13.7500 13.7500 0 0 0 210.2500 1920.5000 L 210.2500 1942.5000" class="g"/>
+<path d="M 215.7500 1893.0000 L 224.0000 1884.7500 L 232.2500 1893.0000" class="g"/>
+<text x="224" y="2009" class="lbl" text-anchor="middle">Ô U+00D4</text>
+<rect x="264" y="1864" width="80" height="130" class="cell"/>
+<line x1="264" y1="1959" x2="344" y2="1959" class="bl"/>
+<line x1="264" y1="1904" x2="344" y2="1904" class="cl"/>
+<path d="M 290.2500 1942.5000 A 13.7500 13.7500 0 0 0 317.7500 1942.5000 L 317.7500 1920.5000 A 13.7500 13.7500 0 0 0 290.2500 1920.5000 L 290.2500 1942.5000" class="g"/>
+<path d="M 293.0000 1887.5000 A 6.8750 6.8750 0 0 1 304.0000 1887.5000 A 6.8750 6.8750 0 0 0 315.0000 1887.5000" class="g"/>
+<text x="304" y="2009" class="lbl" text-anchor="middle">Õ U+00D5</text>
+<rect x="344" y="1864" width="80" height="130" class="cell"/>
+<line x1="344" y1="1959" x2="424" y2="1959" class="bl"/>
+<line x1="344" y1="1904" x2="424" y2="1904" class="cl"/>
+<path d="M 370.2500 1942.5000 A 13.7500 13.7500 0 0 0 397.7500 1942.5000 L 397.7500 1920.5000 A 13.7500 13.7500 0 0 0 370.2500 1920.5000 L 370.2500 1942.5000" class="g"/>
+<path d="M 375.7500 1884.7500 L 375.7500 1887.5000" class="g"/>
+<path d="M 392.2500 1884.7500 L 392.2500 1887.5000" class="g"/>
+<text x="384" y="2009" class="lbl" text-anchor="middle">Ö U+00D6</text>
+<rect x="424" y="1864" width="80" height="130" class="cell"/>
+<line x1="424" y1="1959" x2="504" y2="1959" class="bl"/>
+<line x1="424" y1="1904" x2="504" y2="1904" class="cl"/>
+<path d="M 450.2500 1942.5000 A 13.7500 13.7500 0 0 0 477.7500 1942.5000 L 477.7500 1920.5000 A 13.7500 13.7500 0 0 0 450.2500 1920.5000 L 450.2500 1942.5000" class="g"/>
+<path d="M 444.7500 1953.5000 L 483.2500 1909.5000" class="g"/>
+<text x="464" y="2009" class="lbl" text-anchor="middle">Ø U+00D8</text>
+<rect x="504" y="1864" width="80" height="130" class="cell"/>
+<line x1="504" y1="1959" x2="584" y2="1959" class="bl"/>
+<line x1="504" y1="1904" x2="584" y2="1904" class="cl"/>
+<path d="M 530.2500 1906.7500 L 530.2500 1942.5000 A 13.7500 13.7500 0 0 0 557.7500 1942.5000 L 557.7500 1906.7500" class="g"/>
+<path d="M 538.5000 1884.7500 L 549.5000 1893.0000" class="g"/>
+<text x="544" y="2009" class="lbl" text-anchor="middle">Ù U+00D9</text>
+<rect x="584" y="1864" width="80" height="130" class="cell"/>
+<line x1="584" y1="1959" x2="664" y2="1959" class="bl"/>
+<line x1="584" y1="1904" x2="664" y2="1904" class="cl"/>
+<path d="M 610.2500 1906.7500 L 610.2500 1942.5000 A 13.7500 13.7500 0 0 0 637.7500 1942.5000 L 637.7500 1906.7500" class="g"/>
+<path d="M 629.5000 1884.7500 L 618.5000 1893.0000" class="g"/>
+<text x="624" y="2009" class="lbl" text-anchor="middle">Ú U+00DA</text>
+<rect x="664" y="1864" width="80" height="130" class="cell"/>
+<line x1="664" y1="1959" x2="744" y2="1959" class="bl"/>
+<line x1="664" y1="1904" x2="744" y2="1904" class="cl"/>
+<path d="M 690.2500 1906.7500 L 690.2500 1942.5000 A 13.7500 13.7500 0 0 0 717.7500 1942.5000 L 717.7500 1906.7500" class="g"/>
+<path d="M 695.7500 1893.0000 L 704.0000 1884.7500 L 712.2500 1893.0000" class="g"/>
+<text x="704" y="2009" class="lbl" text-anchor="middle">Û U+00DB</text>
+<rect x="744" y="1864" width="80" height="130" class="cell"/>
+<line x1="744" y1="1959" x2="824" y2="1959" class="bl"/>
+<line x1="744" y1="1904" x2="824" y2="1904" class="cl"/>
+<path d="M 770.2500 1906.7500 L 770.2500 1942.5000 A 13.7500 13.7500 0 0 0 797.7500 1942.5000 L 797.7500 1906.7500" class="g"/>
+<path d="M 775.7500 1884.7500 L 775.7500 1887.5000" class="g"/>
+<path d="M 792.2500 1884.7500 L 792.2500 1887.5000" class="g"/>
+<text x="784" y="2009" class="lbl" text-anchor="middle">Ü U+00DC</text>
+<rect x="824" y="1864" width="80" height="130" class="cell"/>
+<line x1="824" y1="1959" x2="904" y2="1959" class="bl"/>
+<line x1="824" y1="1904" x2="904" y2="1904" class="cl"/>
+<path d="M 852.0833 1942.5000 L 875.9167 1942.5000" class="g"/>
+<path d="M 847.5000 1956.2500 L 864.0000 1906.7500 L 880.5000 1956.2500" class="g"/>
+<path d="M 850.2500 1890.2500 L 877.7500 1890.2500" class="g"/>
+<text x="864" y="2009" class="lbl" text-anchor="middle">Ā U+0100</text>
+<rect x="904" y="1864" width="80" height="130" class="cell"/>
+<line x1="904" y1="1959" x2="984" y2="1959" class="bl"/>
+<line x1="904" y1="1904" x2="984" y2="1904" class="cl"/>
+<path d="M 932.0833 1942.5000 L 955.9167 1942.5000" class="g"/>
+<path d="M 927.5000 1956.2500 L 944.0000 1906.7500 L 960.5000 1956.2500" class="g"/>
+<path d="M 935.7500 1884.7500 A 8.2500 8.2500 0 0 0 952.2500 1884.7500" class="g"/>
+<text x="944" y="2009" class="lbl" text-anchor="middle">Ă U+0102</text>
+<rect x="984" y="1864" width="80" height="130" class="cell"/>
+<line x1="984" y1="1959" x2="1064" y2="1959" class="bl"/>
+<line x1="984" y1="1904" x2="1064" y2="1904" class="cl"/>
+<path d="M 1012.0833 1942.5000 L 1035.9167 1942.5000" class="g"/>
+<path d="M 1007.5000 1956.2500 L 1024.0000 1906.7500 L 1040.5000 1956.2500" class="g"/>
+<path d="M 1037.7500 1967.2500 L 1040.5000 1956.2500" class="g"/>
+<text x="1024" y="2009" class="lbl" text-anchor="middle">Ą U+0104</text>
+<rect x="1064" y="1864" width="80" height="130" class="cell"/>
+<line x1="1064" y1="1959" x2="1144" y2="1959" class="bl"/>
+<line x1="1064" y1="1904" x2="1144" y2="1904" class="cl"/>
+<path d="M 1115.0000 1906.7500 L 1101.2500 1906.7500 A 8.2500 8.2500 0 0 0 1093.0000 1915.0000 L 1093.0000 1948.0000 A 8.2500 8.2500 0 0 0 1101.2500 1956.2500 L 1115.0000 1956.2500" class="g"/>
+<path d="M 1109.5000 1884.7500 L 1098.5000 1893.0000" class="g"/>
+<text x="1104" y="2009" class="lbl" text-anchor="middle">Ć U+0106</text>
+<rect x="1144" y="1864" width="80" height="130" class="cell"/>
+<line x1="1144" y1="1959" x2="1224" y2="1959" class="bl"/>
+<line x1="1144" y1="1904" x2="1224" y2="1904" class="cl"/>
+<path d="M 1195.0000 1906.7500 L 1181.2500 1906.7500 A 8.2500 8.2500 0 0 0 1173.0000 1915.0000 L 1173.0000 1948.0000 A 8.2500 8.2500 0 0 0 1181.2500 1956.2500 L 1195.0000 1956.2500" class="g"/>
+<path d="M 1175.7500 1893.0000 L 1184.0000 1884.7500 L 1192.2500 1893.0000" class="g"/>
+<text x="1184" y="2009" class="lbl" text-anchor="middle">Ĉ U+0108</text>
+<rect x="1224" y="1864" width="80" height="130" class="cell"/>
+<line x1="1224" y1="1959" x2="1304" y2="1959" class="bl"/>
+<line x1="1224" y1="1904" x2="1304" y2="1904" class="cl"/>
+<path d="M 1275.0000 1906.7500 L 1261.2500 1906.7500 A 8.2500 8.2500 0 0 0 1253.0000 1915.0000 L 1253.0000 1948.0000 A 8.2500 8.2500 0 0 0 1261.2500 1956.2500 L 1275.0000 1956.2500" class="g"/>
+<path d="M 1269.5000 1890.2500 A 2.7500 2.7500 0 0 0 1264.0000 1890.2500 A 2.7500 2.7500 0 0 0 1269.5000 1890.2500" class="g"/>
+<text x="1264" y="2009" class="lbl" text-anchor="middle">Ċ U+010A</text>
+<rect x="24" y="2016" width="80" height="130" class="cell"/>
+<line x1="24" y1="2111" x2="104" y2="2111" class="bl"/>
+<line x1="24" y1="2056" x2="104" y2="2056" class="cl"/>
+<path d="M 75.0000 2058.7500 L 61.2500 2058.7500 A 8.2500 8.2500 0 0 0 53.0000 2067.0000 L 53.0000 2100.0000 A 8.2500 8.2500 0 0 0 61.2500 2108.2500 L 75.0000 2108.2500" class="g"/>
+<path d="M 55.7500 2036.7500 L 64.0000 2045.0000 L 72.2500 2036.7500" class="g"/>
+<text x="64" y="2161" class="lbl" text-anchor="middle">Č U+010C</text>
+<rect x="104" y="2016" width="80" height="130" class="cell"/>
+<line x1="104" y1="2111" x2="184" y2="2111" class="bl"/>
+<line x1="104" y1="2056" x2="184" y2="2056" class="cl"/>
+<path d="M 146.7500 2058.7500 L 130.2500 2058.7500 L 130.2500 2108.2500 L 146.7500 2108.2500 A 11.0000 11.0000 0 0 0 157.7500 2097.2500 L 157.7500 2069.7500 A 11.0000 11.0000 0 0 0 146.7500 2058.7500" class="g"/>
+<path d="M 135.7500 2036.7500 L 144.0000 2045.0000 L 152.2500 2036.7500" class="g"/>
+<text x="144" y="2161" class="lbl" text-anchor="middle">Ď U+010E</text>
+<rect x="184" y="2016" width="80" height="130" class="cell"/>
+<line x1="184" y1="2111" x2="264" y2="2111" class="bl"/>
+<line x1="184" y1="2056" x2="264" y2="2056" class="cl"/>
+<path d="M 230.8750 2058.7500 L 214.3750 2058.7500 L 214.3750 2108.2500 L 230.8750 2108.2500 A 11.0000 11.0000 0 0 0 241.8750 2097.2500 L 241.8750 2069.7500 A 11.0000 11.0000 0 0 0 230.8750 2058.7500" class="g"/>
+<path d="M 206.1250 2083.5000 L 222.6250 2083.5000" class="g"/>
+<text x="224" y="2161" class="lbl" text-anchor="middle">Đ U+0110</text>
+<rect x="264" y="2016" width="80" height="130" class="cell"/>
+<line x1="264" y1="2111" x2="344" y2="2111" class="bl"/>
+<line x1="264" y1="2056" x2="344" y2="2056" class="cl"/>
+<path d="M 309.5000 2080.7500 L 293.0000 2080.7500" class="g"/>
+<path d="M 315.0000 2058.7500 L 293.0000 2058.7500 L 293.0000 2108.2500 L 315.0000 2108.2500" class="g"/>
+<path d="M 290.2500 2042.2500 L 317.7500 2042.2500" class="g"/>
+<text x="304" y="2161" class="lbl" text-anchor="middle">Ē U+0112</text>
+<rect x="344" y="2016" width="80" height="130" class="cell"/>
+<line x1="344" y1="2111" x2="424" y2="2111" class="bl"/>
+<line x1="344" y1="2056" x2="424" y2="2056" class="cl"/>
+<path d="M 389.5000 2080.7500 L 373.0000 2080.7500" class="g"/>
+<path d="M 395.0000 2058.7500 L 373.0000 2058.7500 L 373.0000 2108.2500 L 395.0000 2108.2500" class="g"/>
+<path d="M 386.7500 2042.2500 A 2.7500 2.7500 0 0 0 381.2500 2042.2500 A 2.7500 2.7500 0 0 0 386.7500 2042.2500" class="g"/>
+<text x="384" y="2161" class="lbl" text-anchor="middle">Ė U+0116</text>
+<rect x="424" y="2016" width="80" height="130" class="cell"/>
+<line x1="424" y1="2111" x2="504" y2="2111" class="bl"/>
+<line x1="424" y1="2056" x2="504" y2="2056" class="cl"/>
+<path d="M 469.5000 2080.7500 L 453.0000 2080.7500" class="g"/>
+<path d="M 475.0000 2058.7500 L 453.0000 2058.7500 L 453.0000 2108.2500 L 475.0000 2108.2500" class="g"/>
+<path d="M 461.2500 2119.2500 L 464.0000 2108.2500" class="g"/>
+<text x="464" y="2161" class="lbl" text-anchor="middle">Ę U+0118</text>
+<rect x="504" y="2016" width="80" height="130" class="cell"/>
+<line x1="504" y1="2111" x2="584" y2="2111" class="bl"/>
+<line x1="504" y1="2056" x2="584" y2="2056" class="cl"/>
+<path d="M 549.5000 2080.7500 L 533.0000 2080.7500" class="g"/>
+<path d="M 555.0000 2058.7500 L 533.0000 2058.7500 L 533.0000 2108.2500 L 555.0000 2108.2500" class="g"/>
+<path d="M 535.7500 2036.7500 L 544.0000 2045.0000 L 552.2500 2036.7500" class="g"/>
+<text x="544" y="2161" class="lbl" text-anchor="middle">Ě U+011A</text>
+<rect x="584" y="2016" width="80" height="130" class="cell"/>
+<line x1="584" y1="2111" x2="664" y2="2111" class="bl"/>
+<line x1="584" y1="2056" x2="664" y2="2056" class="cl"/>
+<path d="M 637.7500 2058.7500 L 621.2500 2058.7500 A 11.0000 11.0000 0 0 0 610.2500 2069.7500 L 610.2500 2097.2500 A 11.0000 11.0000 0 0 0 621.2500 2108.2500 L 637.7500 2108.2500 L 637.7500 2080.7500 L 629.5000 2080.7500" class="g"/>
+<path d="M 615.7500 2045.0000 L 624.0000 2036.7500 L 632.2500 2045.0000" class="g"/>
+<text x="624" y="2161" class="lbl" text-anchor="middle">Ĝ U+011C</text>
+<rect x="664" y="2016" width="80" height="130" class="cell"/>
+<line x1="664" y1="2111" x2="744" y2="2111" class="bl"/>
+<line x1="664" y1="2056" x2="744" y2="2056" class="cl"/>
+<path d="M 690.2500 2108.2500 L 690.2500 2058.7500" class="g"/>
+<path d="M 717.7500 2058.7500 L 717.7500 2108.2500" class="g"/>
+<path d="M 690.2500 2080.7500 L 717.7500 2080.7500" class="g"/>
+<path d="M 695.7500 2045.0000 L 704.0000 2036.7500 L 712.2500 2045.0000" class="g"/>
+<text x="704" y="2161" class="lbl" text-anchor="middle">Ĥ U+0124</text>
+<rect x="744" y="2016" width="80" height="130" class="cell"/>
+<line x1="744" y1="2111" x2="824" y2="2111" class="bl"/>
+<line x1="744" y1="2056" x2="824" y2="2056" class="cl"/>
+<path d="M 784.0000 2108.2500 L 784.0000 2058.7500" class="g"/>
+<path d="M 773.0000 2039.5000 A 6.8750 6.8750 0 0 1 784.0000 2039.5000 A 6.8750 6.8750 0 0 0 795.0000 2039.5000" class="g"/>
+<text x="784" y="2161" class="lbl" text-anchor="middle">Ĩ U+0128</text>
+<rect x="824" y="2016" width="80" height="130" class="cell"/>
+<line x1="824" y1="2111" x2="904" y2="2111" class="bl"/>
+<line x1="824" y1="2056" x2="904" y2="2056" class="cl"/>
+<path d="M 872.2500 2058.7500 L 872.2500 2097.2500 A 11.0000 11.0000 0 0 1 861.2500 2108.2500 L 855.7500 2108.2500" class="g"/>
+<path d="M 864.0000 2045.0000 L 872.2500 2036.7500 L 880.5000 2045.0000" class="g"/>
+<text x="864" y="2161" class="lbl" text-anchor="middle">Ĵ U+0134</text>
+<rect x="904" y="2016" width="80" height="130" class="cell"/>
+<line x1="904" y1="2111" x2="984" y2="2111" class="bl"/>
+<line x1="904" y1="2056" x2="984" y2="2056" class="cl"/>
+<path d="M 957.7500 2058.7500 L 930.2500 2089.0000" class="g"/>
+<path d="M 940.8750 2077.3125 L 957.7500 2108.2500" class="g"/>
+<path d="M 930.2500 2108.2500 L 930.2500 2058.7500" class="g"/>
+<path d="M 941.2500 2119.2500 L 944.0000 2108.2500" class="g"/>
+<text x="944" y="2161" class="lbl" text-anchor="middle">Ķ U+0136</text>
+<rect x="984" y="2016" width="80" height="130" class="cell"/>
+<line x1="984" y1="2111" x2="1064" y2="2111" class="bl"/>
+<line x1="984" y1="2056" x2="1064" y2="2056" class="cl"/>
+<path d="M 1013.0000 2058.7500 L 1013.0000 2108.2500 L 1035.0000 2108.2500" class="g"/>
+<path d="M 1018.5000 2036.7500 L 1007.5000 2045.0000" class="g"/>
+<text x="1024" y="2161" class="lbl" text-anchor="middle">Ĺ U+0139</text>
+<rect x="1064" y="2016" width="80" height="130" class="cell"/>
+<line x1="1064" y1="2111" x2="1144" y2="2111" class="bl"/>
+<line x1="1064" y1="2056" x2="1144" y2="2056" class="cl"/>
+<path d="M 1093.0000 2058.7500 L 1093.0000 2108.2500 L 1115.0000 2108.2500" class="g"/>
+<path d="M 1101.2500 2119.2500 L 1104.0000 2108.2500" class="g"/>
+<text x="1104" y="2161" class="lbl" text-anchor="middle">Ļ U+013B</text>
+<rect x="1144" y="2016" width="80" height="130" class="cell"/>
+<line x1="1144" y1="2111" x2="1224" y2="2111" class="bl"/>
+<line x1="1144" y1="2056" x2="1224" y2="2056" class="cl"/>
+<path d="M 1170.2500 2108.2500 L 1170.2500 2058.7500 L 1197.7500 2108.2500 L 1197.7500 2058.7500" class="g"/>
+<path d="M 1189.5000 2036.7500 L 1178.5000 2045.0000" class="g"/>
+<text x="1184" y="2161" class="lbl" text-anchor="middle">Ń U+0143</text>
+<rect x="1224" y="2016" width="80" height="130" class="cell"/>
+<line x1="1224" y1="2111" x2="1304" y2="2111" class="bl"/>
+<line x1="1224" y1="2056" x2="1304" y2="2056" class="cl"/>
+<path d="M 1250.2500 2108.2500 L 1250.2500 2058.7500 L 1277.7500 2108.2500 L 1277.7500 2058.7500" class="g"/>
+<path d="M 1261.2500 2119.2500 L 1264.0000 2108.2500" class="g"/>
+<text x="1264" y="2161" class="lbl" text-anchor="middle">Ņ U+0145</text>
+<rect x="24" y="2168" width="80" height="130" class="cell"/>
+<line x1="24" y1="2263" x2="104" y2="2263" class="bl"/>
+<line x1="24" y1="2208" x2="104" y2="2208" class="cl"/>
+<path d="M 50.2500 2246.5000 A 13.7500 13.7500 0 0 0 77.7500 2246.5000 L 77.7500 2224.5000 A 13.7500 13.7500 0 0 0 50.2500 2224.5000 L 50.2500 2246.5000" class="g"/>
+<path d="M 50.2500 2194.2500 L 77.7500 2194.2500" class="g"/>
+<text x="64" y="2313" class="lbl" text-anchor="middle">Ō U+014C</text>
+<rect x="104" y="2168" width="80" height="130" class="cell"/>
+<line x1="104" y1="2263" x2="184" y2="2263" class="bl"/>
+<line x1="104" y1="2208" x2="184" y2="2208" class="cl"/>
+<path d="M 130.2500 2246.5000 A 13.7500 13.7500 0 0 0 157.7500 2246.5000 L 157.7500 2224.5000 A 13.7500 13.7500 0 0 0 130.2500 2224.5000 L 130.2500 2246.5000" class="g"/>
+<path d="M 133.0000 2197.0000 L 138.5000 2188.7500" class="g"/>
+<path d="M 149.5000 2197.0000 L 155.0000 2188.7500" class="g"/>
+<text x="144" y="2313" class="lbl" text-anchor="middle">Ő U+0150</text>
+<rect x="184" y="2168" width="80" height="130" class="cell"/>
+<line x1="184" y1="2263" x2="264" y2="2263" class="bl"/>
+<line x1="184" y1="2208" x2="264" y2="2208" class="cl"/>
+<path d="M 210.2500 2238.2500 L 224.0000 2238.2500 A 13.7500 13.7500 0 0 0 224.0000 2210.7500 L 210.2500 2210.7500 L 210.2500 2260.2500" class="g"/>
+<path d="M 237.7500 2260.2500 L 226.6237 2237.9974" class="g"/>
+<path d="M 229.5000 2188.7500 L 218.5000 2197.0000" class="g"/>
+<text x="224" y="2313" class="lbl" text-anchor="middle">Ŕ U+0154</text>
+<rect x="264" y="2168" width="80" height="130" class="cell"/>
+<line x1="264" y1="2263" x2="344" y2="2263" class="bl"/>
+<line x1="264" y1="2208" x2="344" y2="2208" class="cl"/>
+<path d="M 290.2500 2238.2500 L 304.0000 2238.2500 A 13.7500 13.7500 0 0 0 304.0000 2210.7500 L 290.2500 2210.7500 L 290.2500 2260.2500" class="g"/>
+<path d="M 317.7500 2260.2500 L 306.6237 2237.9974" class="g"/>
+<path d="M 295.7500 2188.7500 L 304.0000 2197.0000 L 312.2500 2188.7500" class="g"/>
+<text x="304" y="2313" class="lbl" text-anchor="middle">Ř U+0158</text>
+<rect x="344" y="2168" width="80" height="130" class="cell"/>
+<line x1="344" y1="2263" x2="424" y2="2263" class="bl"/>
+<line x1="344" y1="2208" x2="424" y2="2208" class="cl"/>
+<path d="M 368.8750 2254.7500 A 25.7727 25.7727 0 0 0 381.6291 2260.0717 A 24.7279 24.7279 0 0 0 388.6850 2259.9353 A 13.3253 13.3253 0 0 0 395.0466 2257.0333 A 10.7749 10.7749 0 0 0 397.8711 2244.0801 A 11.6643 11.6643 0 0 0 393.0788 2238.9673 A 24.4096 24.4096 0 0 0 386.5965 2236.4549 A 199.8686 199.8686 0 0 1 379.5238 2234.6857 A 19.4036 19.4036 0 0 1 373.2246 2231.6888 A 11.0252 11.0252 0 0 1 369.3797 2218.7987 A 12.6445 12.6445 0 0 1 379.9647 2210.7410 A 18.8342 18.8342 0 0 1 386.8545 2211.3486 A 101.3269 101.3269 0 0 1 393.6250 2213.5000" class="g"/>
+<path d="M 388.1250 2188.7500 L 377.1250 2197.0000" class="g"/>
+<text x="384" y="2313" class="lbl" text-anchor="middle">Ś U+015A</text>
+<rect x="424" y="2168" width="80" height="130" class="cell"/>
+<line x1="424" y1="2263" x2="504" y2="2263" class="bl"/>
+<line x1="424" y1="2208" x2="504" y2="2208" class="cl"/>
+<path d="M 448.8750 2254.7500 A 25.7727 25.7727 0 0 0 461.6291 2260.0717 A 24.7279 24.7279 0 0 0 468.6850 2259.9353 A 13.3253 13.3253 0 0 0 475.0466 2257.0333 A 10.7749 10.7749 0 0 0 477.8711 2244.0801 A 11.6643 11.6643 0 0 0 473.0788 2238.9673 A 24.4096 24.4096 0 0 0 466.5965 2236.4549 A 199.8686 199.8686 0 0 1 459.5238 2234.6857 A 19.4036 19.4036 0 0 1 453.2246 2231.6888 A 11.0252 11.0252 0 0 1 449.3797 2218.7987 A 12.6445 12.6445 0 0 1 459.9647 2210.7410 A 18.8342 18.8342 0 0 1 466.8545 2211.3486 A 101.3269 101.3269 0 0 1 473.6250 2213.5000" class="g"/>
+<path d="M 454.3750 2197.0000 L 462.6250 2188.7500 L 470.8750 2197.0000" class="g"/>
+<text x="464" y="2313" class="lbl" text-anchor="middle">Ŝ U+015C</text>
+<rect x="504" y="2168" width="80" height="130" class="cell"/>
+<line x1="504" y1="2263" x2="584" y2="2263" class="bl"/>
+<line x1="504" y1="2208" x2="584" y2="2208" class="cl"/>
+<path d="M 528.8750 2254.7500 A 25.7727 25.7727 0 0 0 541.6291 2260.0717 A 24.7279 24.7279 0 0 0 548.6850 2259.9353 A 13.3253 13.3253 0 0 0 555.0466 2257.0333 A 10.7749 10.7749 0 0 0 557.8711 2244.0801 A 11.6643 11.6643 0 0 0 553.0788 2238.9673 A 24.4096 24.4096 0 0 0 546.5965 2236.4549 A 199.8686 199.8686 0 0 1 539.5238 2234.6857 A 19.4036 19.4036 0 0 1 533.2246 2231.6888 A 11.0252 11.0252 0 0 1 529.3797 2218.7987 A 12.6445 12.6445 0 0 1 539.9647 2210.7410 A 18.8342 18.8342 0 0 1 546.8545 2211.3486 A 101.3269 101.3269 0 0 1 553.6250 2213.5000" class="g"/>
+<path d="M 534.3750 2188.7500 L 542.6250 2197.0000 L 550.8750 2188.7500" class="g"/>
+<text x="544" y="2313" class="lbl" text-anchor="middle">Š U+0160</text>
+<rect x="584" y="2168" width="80" height="130" class="cell"/>
+<line x1="584" y1="2263" x2="664" y2="2263" class="bl"/>
+<line x1="584" y1="2208" x2="664" y2="2208" class="cl"/>
+<path d="M 610.2500 2210.7500 L 637.7500 2210.7500" class="g"/>
+<path d="M 624.0000 2210.7500 L 624.0000 2260.2500" class="g"/>
+<path d="M 621.2500 2271.2500 L 624.0000 2260.2500" class="g"/>
+<text x="624" y="2313" class="lbl" text-anchor="middle">Ţ U+0162</text>
+<rect x="664" y="2168" width="80" height="130" class="cell"/>
+<line x1="664" y1="2263" x2="744" y2="2263" class="bl"/>
+<line x1="664" y1="2208" x2="744" y2="2208" class="cl"/>
+<path d="M 690.2500 2210.7500 L 717.7500 2210.7500" class="g"/>
+<path d="M 704.0000 2210.7500 L 704.0000 2260.2500" class="g"/>
+<path d="M 695.7500 2188.7500 L 704.0000 2197.0000 L 712.2500 2188.7500" class="g"/>
+<text x="704" y="2313" class="lbl" text-anchor="middle">Ť U+0164</text>
+<rect x="744" y="2168" width="80" height="130" class="cell"/>
+<line x1="744" y1="2263" x2="824" y2="2263" class="bl"/>
+<line x1="744" y1="2208" x2="824" y2="2208" class="cl"/>
+<path d="M 770.2500 2210.7500 L 797.7500 2210.7500" class="g"/>
+<path d="M 784.0000 2210.7500 L 784.0000 2260.2500" class="g"/>
+<path d="M 773.0000 2243.7500 L 795.0000 2227.2500" class="g"/>
+<text x="784" y="2313" class="lbl" text-anchor="middle">Ŧ U+0166</text>
+<rect x="824" y="2168" width="80" height="130" class="cell"/>
+<line x1="824" y1="2263" x2="904" y2="2263" class="bl"/>
+<line x1="824" y1="2208" x2="904" y2="2208" class="cl"/>
+<path d="M 850.2500 2210.7500 L 850.2500 2246.5000 A 13.7500 13.7500 0 0 0 877.7500 2246.5000 L 877.7500 2210.7500" class="g"/>
+<path d="M 853.0000 2191.5000 A 6.8750 6.8750 0 0 1 864.0000 2191.5000 A 6.8750 6.8750 0 0 0 875.0000 2191.5000" class="g"/>
+<text x="864" y="2313" class="lbl" text-anchor="middle">Ũ U+0168</text>
+<rect x="904" y="2168" width="80" height="130" class="cell"/>
+<line x1="904" y1="2263" x2="984" y2="2263" class="bl"/>
+<line x1="904" y1="2208" x2="984" y2="2208" class="cl"/>
+<path d="M 930.2500 2210.7500 L 930.2500 2246.5000 A 13.7500 13.7500 0 0 0 957.7500 2246.5000 L 957.7500 2210.7500" class="g"/>
+<path d="M 930.2500 2194.2500 L 957.7500 2194.2500" class="g"/>
+<text x="944" y="2313" class="lbl" text-anchor="middle">Ū U+016A</text>
+<rect x="984" y="2168" width="80" height="130" class="cell"/>
+<line x1="984" y1="2263" x2="1064" y2="2263" class="bl"/>
+<line x1="984" y1="2208" x2="1064" y2="2208" class="cl"/>
+<path d="M 1010.2500 2210.7500 L 1010.2500 2246.5000 A 13.7500 13.7500 0 0 0 1037.7500 2246.5000 L 1037.7500 2210.7500" class="g"/>
+<path d="M 1015.7500 2188.7500 A 8.2500 8.2500 0 0 0 1032.2500 2188.7500" class="g"/>
+<text x="1024" y="2313" class="lbl" text-anchor="middle">Ŭ U+016C</text>
+<rect x="1064" y="2168" width="80" height="130" class="cell"/>
+<line x1="1064" y1="2263" x2="1144" y2="2263" class="bl"/>
+<line x1="1064" y1="2208" x2="1144" y2="2208" class="cl"/>
+<path d="M 1090.2500 2210.7500 L 1090.2500 2246.5000 A 13.7500 13.7500 0 0 0 1117.7500 2246.5000 L 1117.7500 2210.7500" class="g"/>
+<path d="M 1110.8750 2195.6250 A 6.8750 6.8750 0 0 0 1097.1250 2195.6250 A 6.8750 6.8750 0 0 0 1110.8750 2195.6250" class="g"/>
+<text x="1104" y="2313" class="lbl" text-anchor="middle">Ů U+016E</text>
+<rect x="1144" y="2168" width="80" height="130" class="cell"/>
+<line x1="1144" y1="2263" x2="1224" y2="2263" class="bl"/>
+<line x1="1144" y1="2208" x2="1224" y2="2208" class="cl"/>
+<path d="M 1170.2500 2210.7500 L 1170.2500 2246.5000 A 13.7500 13.7500 0 0 0 1197.7500 2246.5000 L 1197.7500 2210.7500" class="g"/>
+<path d="M 1173.0000 2197.0000 L 1178.5000 2188.7500" class="g"/>
+<path d="M 1189.5000 2197.0000 L 1195.0000 2188.7500" class="g"/>
+<text x="1184" y="2313" class="lbl" text-anchor="middle">Ű U+0170</text>
+<rect x="1224" y="2168" width="80" height="130" class="cell"/>
+<line x1="1224" y1="2263" x2="1304" y2="2263" class="bl"/>
+<line x1="1224" y1="2208" x2="1304" y2="2208" class="cl"/>
+<path d="M 1250.2500 2210.7500 L 1250.2500 2246.5000 A 13.7500 13.7500 0 0 0 1277.7500 2246.5000 L 1277.7500 2210.7500" class="g"/>
+<path d="M 1261.2500 2271.2500 L 1264.0000 2260.2500" class="g"/>
+<text x="1264" y="2313" class="lbl" text-anchor="middle">Ų U+0172</text>
+<rect x="24" y="2320" width="80" height="130" class="cell"/>
+<line x1="24" y1="2415" x2="104" y2="2415" class="bl"/>
+<line x1="24" y1="2360" x2="104" y2="2360" class="cl"/>
+<path d="M 50.2500 2362.7500 L 77.7500 2362.7500 L 50.2500 2412.2500 L 77.7500 2412.2500" class="g"/>
+<path d="M 69.5000 2340.7500 L 58.5000 2349.0000" class="g"/>
+<text x="64" y="2465" class="lbl" text-anchor="middle">Ź U+0179</text>
+<rect x="104" y="2320" width="80" height="130" class="cell"/>
+<line x1="104" y1="2415" x2="184" y2="2415" class="bl"/>
+<line x1="104" y1="2360" x2="184" y2="2360" class="cl"/>
+<path d="M 130.2500 2362.7500 L 157.7500 2362.7500 L 130.2500 2412.2500 L 157.7500 2412.2500" class="g"/>
+<path d="M 146.7500 2346.2500 A 2.7500 2.7500 0 0 0 141.2500 2346.2500 A 2.7500 2.7500 0 0 0 146.7500 2346.2500" class="g"/>
+<text x="144" y="2465" class="lbl" text-anchor="middle">Ż U+017B</text>
+<rect x="184" y="2320" width="80" height="130" class="cell"/>
+<line x1="184" y1="2415" x2="264" y2="2415" class="bl"/>
+<line x1="184" y1="2360" x2="264" y2="2360" class="cl"/>
+<path d="M 210.2500 2362.7500 L 237.7500 2362.7500 L 210.2500 2412.2500 L 237.7500 2412.2500" class="g"/>
+<path d="M 215.7500 2340.7500 L 224.0000 2349.0000 L 232.2500 2340.7500" class="g"/>
+<text x="224" y="2465" class="lbl" text-anchor="middle">Ž U+017D</text>
+<text x="24" y="2490" class="ttl">Accented Latin (LC)</text>
+<rect x="24" y="2500" width="80" height="130" class="cell"/>
+<line x1="24" y1="2595" x2="104" y2="2595" class="bl"/>
+<line x1="24" y1="2540" x2="104" y2="2540" class="cl"/>
+<path d="M 55.7500 2559.2500 L 66.7500 2559.2500 A 8.2500 8.2500 0 0 1 75.0000 2567.5000 L 75.0000 2592.2500 L 61.2500 2592.2500 A 8.2500 8.2500 0 0 1 61.2500 2575.7500 L 75.0000 2575.7500" class="g"/>
+<path d="M 58.5000 2537.2500 L 69.5000 2545.5000" class="g"/>
+<text x="64" y="2645" class="lbl" text-anchor="middle">à U+00E0</text>
+<rect x="104" y="2500" width="80" height="130" class="cell"/>
+<line x1="104" y1="2595" x2="184" y2="2595" class="bl"/>
+<line x1="104" y1="2540" x2="184" y2="2540" class="cl"/>
+<path d="M 135.7500 2559.2500 L 146.7500 2559.2500 A 8.2500 8.2500 0 0 1 155.0000 2567.5000 L 155.0000 2592.2500 L 141.2500 2592.2500 A 8.2500 8.2500 0 0 1 141.2500 2575.7500 L 155.0000 2575.7500" class="g"/>
+<path d="M 149.5000 2537.2500 L 138.5000 2545.5000" class="g"/>
+<text x="144" y="2645" class="lbl" text-anchor="middle">á U+00E1</text>
+<rect x="184" y="2500" width="80" height="130" class="cell"/>
+<line x1="184" y1="2595" x2="264" y2="2595" class="bl"/>
+<line x1="184" y1="2540" x2="264" y2="2540" class="cl"/>
+<path d="M 215.7500 2559.2500 L 226.7500 2559.2500 A 8.2500 8.2500 0 0 1 235.0000 2567.5000 L 235.0000 2592.2500 L 221.2500 2592.2500 A 8.2500 8.2500 0 0 1 221.2500 2575.7500 L 235.0000 2575.7500" class="g"/>
+<path d="M 215.7500 2542.7500 L 215.7500 2545.5000" class="g"/>
+<path d="M 232.2500 2542.7500 L 232.2500 2545.5000" class="g"/>
+<text x="224" y="2645" class="lbl" text-anchor="middle">ä U+00E4</text>
+<rect x="264" y="2500" width="80" height="130" class="cell"/>
+<line x1="264" y1="2595" x2="344" y2="2595" class="bl"/>
+<line x1="264" y1="2540" x2="344" y2="2540" class="cl"/>
+<path d="M 310.8750 2538.6250 A 6.8750 6.8750 0 0 0 297.1250 2538.6250 A 6.8750 6.8750 0 0 0 310.8750 2538.6250" class="g"/>
+<path d="M 295.7500 2559.2500 L 306.7500 2559.2500 A 8.2500 8.2500 0 0 1 315.0000 2567.5000 L 315.0000 2592.2500 L 301.2500 2592.2500 A 8.2500 8.2500 0 0 1 301.2500 2575.7500 L 315.0000 2575.7500" class="g"/>
+<text x="304" y="2645" class="lbl" text-anchor="middle">å U+00E5</text>
+<rect x="344" y="2500" width="80" height="130" class="cell"/>
+<line x1="344" y1="2595" x2="424" y2="2595" class="bl"/>
+<line x1="344" y1="2540" x2="424" y2="2540" class="cl"/>
+<path d="M 370.2500 2559.2500 L 375.7500 2559.2500 A 8.2500 8.2500 0 0 1 384.0000 2567.5000 L 384.0000 2592.2500 L 375.7500 2592.2500 A 8.2500 8.2500 0 0 1 367.5000 2584.0000 A 8.2500 8.2500 0 0 1 375.7500 2575.7500 L 384.0000 2575.7500 L 400.5000 2575.7500 L 400.5000 2567.5000 A 8.2500 8.2500 0 0 0 392.2500 2559.2500 A 8.2500 8.2500 0 0 0 384.0000 2567.5000" class="g"/>
+<path d="M 384.0000 2584.0000 A 8.2500 8.2500 0 0 0 392.2500 2592.2500 L 400.5000 2592.2500" class="g"/>
+<text x="384" y="2645" class="lbl" text-anchor="middle">æ U+00E6</text>
+<rect x="424" y="2500" width="80" height="130" class="cell"/>
+<line x1="424" y1="2595" x2="504" y2="2595" class="bl"/>
+<line x1="424" y1="2540" x2="504" y2="2540" class="cl"/>
+<path d="M 453.0000 2575.7500 L 475.0000 2575.7500 L 475.0000 2570.2500 A 11.0000 11.0000 0 0 0 453.0000 2570.2500 L 453.0000 2584.0000 A 8.2500 8.2500 0 0 0 461.2500 2592.2500 L 475.0000 2592.2500" class="g"/>
+<path d="M 458.5000 2537.2500 L 469.5000 2545.5000" class="g"/>
+<text x="464" y="2645" class="lbl" text-anchor="middle">è U+00E8</text>
+<rect x="504" y="2500" width="80" height="130" class="cell"/>
+<line x1="504" y1="2595" x2="584" y2="2595" class="bl"/>
+<line x1="504" y1="2540" x2="584" y2="2540" class="cl"/>
+<path d="M 533.0000 2575.7500 L 555.0000 2575.7500 L 555.0000 2570.2500 A 11.0000 11.0000 0 0 0 533.0000 2570.2500 L 533.0000 2584.0000 A 8.2500 8.2500 0 0 0 541.2500 2592.2500 L 555.0000 2592.2500" class="g"/>
+<path d="M 549.5000 2537.2500 L 538.5000 2545.5000" class="g"/>
+<text x="544" y="2645" class="lbl" text-anchor="middle">é U+00E9</text>
+<rect x="584" y="2500" width="80" height="130" class="cell"/>
+<line x1="584" y1="2595" x2="664" y2="2595" class="bl"/>
+<line x1="584" y1="2540" x2="664" y2="2540" class="cl"/>
+<path d="M 624.0000 2592.2500 L 624.0000 2559.2500" class="g"/>
+<path d="M 618.5000 2537.2500 L 629.5000 2545.5000" class="g"/>
+<text x="624" y="2645" class="lbl" text-anchor="middle">ì U+00EC</text>
+<rect x="664" y="2500" width="80" height="130" class="cell"/>
+<line x1="664" y1="2595" x2="744" y2="2595" class="bl"/>
+<line x1="664" y1="2540" x2="744" y2="2540" class="cl"/>
+<path d="M 704.0000 2592.2500 L 704.0000 2559.2500" class="g"/>
+<path d="M 709.5000 2537.2500 L 698.5000 2545.5000" class="g"/>
+<text x="704" y="2645" class="lbl" text-anchor="middle">í U+00ED</text>
+<rect x="744" y="2500" width="80" height="130" class="cell"/>
+<line x1="744" y1="2595" x2="824" y2="2595" class="bl"/>
+<line x1="744" y1="2540" x2="824" y2="2540" class="cl"/>
+<path d="M 773.0000 2581.2500 A 11.0000 11.0000 0 0 0 795.0000 2581.2500 L 795.0000 2570.2500 A 11.0000 11.0000 0 0 0 773.0000 2570.2500 L 773.0000 2581.2500" class="g"/>
+<path d="M 778.5000 2537.2500 L 789.5000 2545.5000" class="g"/>
+<text x="784" y="2645" class="lbl" text-anchor="middle">ò U+00F2</text>
+<rect x="824" y="2500" width="80" height="130" class="cell"/>
+<line x1="824" y1="2595" x2="904" y2="2595" class="bl"/>
+<line x1="824" y1="2540" x2="904" y2="2540" class="cl"/>
+<path d="M 853.0000 2581.2500 A 11.0000 11.0000 0 0 0 875.0000 2581.2500 L 875.0000 2570.2500 A 11.0000 11.0000 0 0 0 853.0000 2570.2500 L 853.0000 2581.2500" class="g"/>
+<path d="M 869.5000 2537.2500 L 858.5000 2545.5000" class="g"/>
+<text x="864" y="2645" class="lbl" text-anchor="middle">ó U+00F3</text>
+<rect x="904" y="2500" width="80" height="130" class="cell"/>
+<line x1="904" y1="2595" x2="984" y2="2595" class="bl"/>
+<line x1="904" y1="2540" x2="984" y2="2540" class="cl"/>
+<path d="M 933.0000 2581.2500 A 11.0000 11.0000 0 0 0 955.0000 2581.2500 L 955.0000 2570.2500 A 11.0000 11.0000 0 0 0 933.0000 2570.2500 L 933.0000 2581.2500" class="g"/>
+<path d="M 935.7500 2542.7500 L 935.7500 2545.5000" class="g"/>
+<path d="M 952.2500 2542.7500 L 952.2500 2545.5000" class="g"/>
+<text x="944" y="2645" class="lbl" text-anchor="middle">ö U+00F6</text>
+<rect x="984" y="2500" width="80" height="130" class="cell"/>
+<line x1="984" y1="2595" x2="1064" y2="2595" class="bl"/>
+<line x1="984" y1="2540" x2="1064" y2="2540" class="cl"/>
+<path d="M 1007.5000 2592.2500 L 1040.5000 2559.2500" class="g"/>
+<path d="M 1013.0000 2581.2500 A 11.0000 11.0000 0 0 0 1035.0000 2581.2500 L 1035.0000 2570.2500 A 11.0000 11.0000 0 0 0 1013.0000 2570.2500 L 1013.0000 2581.2500" class="g"/>
+<text x="1024" y="2645" class="lbl" text-anchor="middle">ø U+00F8</text>
+<rect x="1064" y="2500" width="80" height="130" class="cell"/>
+<line x1="1064" y1="2595" x2="1144" y2="2595" class="bl"/>
+<line x1="1064" y1="2540" x2="1144" y2="2540" class="cl"/>
+<path d="M 1093.0000 2559.2500 L 1093.0000 2584.0000 A 8.2500 8.2500 0 0 0 1101.2500 2592.2500 L 1115.0000 2592.2500 L 1115.0000 2559.2500" class="g"/>
+<path d="M 1098.5000 2537.2500 L 1109.5000 2545.5000" class="g"/>
+<text x="1104" y="2645" class="lbl" text-anchor="middle">ù U+00F9</text>
+<rect x="1144" y="2500" width="80" height="130" class="cell"/>
+<line x1="1144" y1="2595" x2="1224" y2="2595" class="bl"/>
+<line x1="1144" y1="2540" x2="1224" y2="2540" class="cl"/>
+<path d="M 1173.0000 2559.2500 L 1173.0000 2584.0000 A 8.2500 8.2500 0 0 0 1181.2500 2592.2500 L 1195.0000 2592.2500 L 1195.0000 2559.2500" class="g"/>
+<path d="M 1189.5000 2537.2500 L 1178.5000 2545.5000" class="g"/>
+<text x="1184" y="2645" class="lbl" text-anchor="middle">ú U+00FA</text>
+<rect x="1224" y="2500" width="80" height="130" class="cell"/>
+<line x1="1224" y1="2595" x2="1304" y2="2595" class="bl"/>
+<line x1="1224" y1="2540" x2="1304" y2="2540" class="cl"/>
+<path d="M 1253.0000 2559.2500 L 1253.0000 2584.0000 A 8.2500 8.2500 0 0 0 1261.2500 2592.2500 L 1275.0000 2592.2500 L 1275.0000 2559.2500" class="g"/>
+<path d="M 1255.7500 2542.7500 L 1255.7500 2545.5000" class="g"/>
+<path d="M 1272.2500 2542.7500 L 1272.2500 2545.5000" class="g"/>
+<text x="1264" y="2645" class="lbl" text-anchor="middle">ü U+00FC</text>
+<rect x="24" y="2652" width="80" height="130" class="cell"/>
+<line x1="24" y1="2747" x2="104" y2="2747" class="bl"/>
+<line x1="24" y1="2692" x2="104" y2="2692" class="cl"/>
+<path d="M 53.0000 2730.5000 A 6.8750 6.8750 0 0 1 64.0000 2730.5000 A 6.8750 6.8750 0 0 0 75.0000 2730.5000" class="g"/>
+<text x="64" y="2797" class="lbl" text-anchor="middle">˜ U+02DC</text>
+<text x="24" y="2822" class="ttl">Greek (UC)</text>
+<rect x="24" y="2832" width="80" height="130" class="cell"/>
+<line x1="24" y1="2927" x2="104" y2="2927" class="bl"/>
+<line x1="24" y1="2872" x2="104" y2="2872" class="cl"/>
+<path d="M 52.0833 2910.5000 L 75.9167 2910.5000" class="g"/>
+<path d="M 47.5000 2924.2500 L 64.0000 2874.7500 L 80.5000 2924.2500" class="g"/>
+<text x="64" y="2977" class="lbl" text-anchor="middle">Α U+0391</text>
+<rect x="104" y="2832" width="80" height="130" class="cell"/>
+<line x1="104" y1="2927" x2="184" y2="2927" class="bl"/>
+<line x1="104" y1="2872" x2="184" y2="2872" class="cl"/>
+<path d="M 130.2500 2896.7500 L 144.0000 2896.7500 A 13.7500 13.7500 0 0 1 144.0000 2924.2500 L 130.2500 2924.2500 L 130.2500 2874.7500 L 144.0000 2874.7500 A 11.0000 11.0000 0 0 1 144.0000 2896.7500" class="g"/>
+<text x="144" y="2977" class="lbl" text-anchor="middle">Β U+0392</text>
+<rect x="184" y="2832" width="80" height="130" class="cell"/>
+<line x1="184" y1="2927" x2="264" y2="2927" class="bl"/>
+<line x1="184" y1="2872" x2="264" y2="2872" class="cl"/>
+<path d="M 211.6250 2924.2500 L 211.6250 2874.7500 L 236.3750 2874.7500" class="g"/>
+<text x="224" y="2977" class="lbl" text-anchor="middle">Γ U+0393</text>
+<rect x="264" y="2832" width="80" height="130" class="cell"/>
+<line x1="264" y1="2927" x2="344" y2="2927" class="bl"/>
+<line x1="264" y1="2872" x2="344" y2="2872" class="cl"/>
+<path d="M 287.5000 2924.2500 L 304.0000 2874.7500 L 320.5000 2924.2500 L 287.5000 2924.2500" class="g"/>
+<text x="304" y="2977" class="lbl" text-anchor="middle">Δ U+0394</text>
+<rect x="344" y="2832" width="80" height="130" class="cell"/>
+<line x1="344" y1="2927" x2="424" y2="2927" class="bl"/>
+<line x1="344" y1="2872" x2="424" y2="2872" class="cl"/>
+<path d="M 388.1250 2899.5000 L 371.6250 2899.5000" class="g"/>
+<path d="M 396.3750 2874.7500 L 371.6250 2874.7500 L 371.6250 2924.2500 L 396.3750 2924.2500" class="g"/>
+<text x="384" y="2977" class="lbl" text-anchor="middle">Ε U+0395</text>
+<rect x="424" y="2832" width="80" height="130" class="cell"/>
+<line x1="424" y1="2927" x2="504" y2="2927" class="bl"/>
+<line x1="424" y1="2872" x2="504" y2="2872" class="cl"/>
+<path d="M 450.2500 2874.7500 L 477.7500 2874.7500 L 450.2500 2924.2500 L 477.7500 2924.2500" class="g"/>
+<text x="464" y="2977" class="lbl" text-anchor="middle">Ζ U+0396</text>
+<rect x="504" y="2832" width="80" height="130" class="cell"/>
+<line x1="504" y1="2927" x2="584" y2="2927" class="bl"/>
+<line x1="504" y1="2872" x2="584" y2="2872" class="cl"/>
+<path d="M 530.2500 2924.2500 L 530.2500 2874.7500" class="g"/>
+<path d="M 557.7500 2874.7500 L 557.7500 2924.2500" class="g"/>
+<path d="M 530.2500 2899.5000 L 557.7500 2899.5000" class="g"/>
+<text x="544" y="2977" class="lbl" text-anchor="middle">Η U+0397</text>
+<rect x="584" y="2832" width="80" height="130" class="cell"/>
+<line x1="584" y1="2927" x2="664" y2="2927" class="bl"/>
+<line x1="584" y1="2872" x2="664" y2="2872" class="cl"/>
+<path d="M 610.2500 2910.5000 A 13.7500 13.7500 0 0 0 637.7500 2910.5000 L 637.7500 2888.5000 A 13.7500 13.7500 0 0 0 610.2500 2888.5000 L 610.2500 2910.5000" class="g"/>
+<path d="M 621.2500 2899.5000 L 626.7500 2899.5000" class="g"/>
+<text x="624" y="2977" class="lbl" text-anchor="middle">Θ U+0398</text>
+<rect x="664" y="2832" width="80" height="130" class="cell"/>
+<line x1="664" y1="2927" x2="744" y2="2927" class="bl"/>
+<line x1="664" y1="2872" x2="744" y2="2872" class="cl"/>
+<path d="M 704.0000 2924.2500 L 704.0000 2874.7500" class="g"/>
+<text x="704" y="2977" class="lbl" text-anchor="middle">Ι U+0399</text>
+<rect x="744" y="2832" width="80" height="130" class="cell"/>
+<line x1="744" y1="2927" x2="824" y2="2927" class="bl"/>
+<line x1="744" y1="2872" x2="824" y2="2872" class="cl"/>
+<path d="M 771.6250 2924.2500 L 771.6250 2874.7500" class="g"/>
+<path d="M 796.3750 2874.7500 L 771.6250 2905.0000" class="g"/>
+<path d="M 796.3750 2924.2500 L 780.3003 2894.3969" class="g"/>
+<text x="784" y="2977" class="lbl" text-anchor="middle">Κ U+039A</text>
+<rect x="824" y="2832" width="80" height="130" class="cell"/>
+<line x1="824" y1="2927" x2="904" y2="2927" class="bl"/>
+<line x1="824" y1="2872" x2="904" y2="2872" class="cl"/>
+<path d="M 847.5000 2924.2500 L 864.0000 2874.7500 L 880.5000 2924.2500" class="g"/>
+<text x="864" y="2977" class="lbl" text-anchor="middle">Λ U+039B</text>
+<rect x="904" y="2832" width="80" height="130" class="cell"/>
+<line x1="904" y1="2927" x2="984" y2="2927" class="bl"/>
+<line x1="904" y1="2872" x2="984" y2="2872" class="cl"/>
+<path d="M 927.5000 2924.2500 L 927.5000 2874.7500 L 944.0000 2902.2500 L 960.5000 2874.7500 L 960.5000 2924.2500" class="g"/>
+<text x="944" y="2977" class="lbl" text-anchor="middle">Μ U+039C</text>
+<rect x="984" y="2832" width="80" height="130" class="cell"/>
+<line x1="984" y1="2927" x2="1064" y2="2927" class="bl"/>
+<line x1="984" y1="2872" x2="1064" y2="2872" class="cl"/>
+<path d="M 1010.2500 2924.2500 L 1010.2500 2874.7500 L 1037.7500 2924.2500 L 1037.7500 2874.7500" class="g"/>
+<text x="1024" y="2977" class="lbl" text-anchor="middle">Ν U+039D</text>
+<rect x="1064" y="2832" width="80" height="130" class="cell"/>
+<line x1="1064" y1="2927" x2="1144" y2="2927" class="bl"/>
+<line x1="1064" y1="2872" x2="1144" y2="2872" class="cl"/>
+<path d="M 1090.2500 2924.2500 L 1117.7500 2924.2500" class="g"/>
+<path d="M 1098.5000 2899.5000 L 1109.5000 2899.5000" class="g"/>
+<path d="M 1090.2500 2874.7500 L 1117.7500 2874.7500" class="g"/>
+<text x="1104" y="2977" class="lbl" text-anchor="middle">Ξ U+039E</text>
+<rect x="1144" y="2832" width="80" height="130" class="cell"/>
+<line x1="1144" y1="2927" x2="1224" y2="2927" class="bl"/>
+<line x1="1144" y1="2872" x2="1224" y2="2872" class="cl"/>
+<path d="M 1170.2500 2910.5000 A 13.7500 13.7500 0 0 0 1197.7500 2910.5000 L 1197.7500 2888.5000 A 13.7500 13.7500 0 0 0 1170.2500 2888.5000 L 1170.2500 2910.5000" class="g"/>
+<text x="1184" y="2977" class="lbl" text-anchor="middle">Ο U+039F</text>
+<rect x="1224" y="2832" width="80" height="130" class="cell"/>
+<line x1="1224" y1="2927" x2="1304" y2="2927" class="bl"/>
+<line x1="1224" y1="2872" x2="1304" y2="2872" class="cl"/>
+<path d="M 1250.2500 2924.2500 L 1250.2500 2874.7500 L 1277.7500 2874.7500 L 1277.7500 2924.2500" class="g"/>
+<text x="1264" y="2977" class="lbl" text-anchor="middle">Π U+03A0</text>
+<rect x="24" y="2984" width="80" height="130" class="cell"/>
+<line x1="24" y1="3079" x2="104" y2="3079" class="bl"/>
+<line x1="24" y1="3024" x2="104" y2="3024" class="cl"/>
+<path d="M 50.2500 3076.2500 L 50.2500 3026.7500 L 65.3750 3026.7500 A 12.3750 12.3750 0 0 1 65.3750 3051.5000 L 50.2500 3051.5000" class="g"/>
+<text x="64" y="3129" class="lbl" text-anchor="middle">Ρ U+03A1</text>
+<rect x="104" y="2984" width="80" height="130" class="cell"/>
+<line x1="104" y1="3079" x2="184" y2="3079" class="bl"/>
+<line x1="104" y1="3024" x2="184" y2="3024" class="cl"/>
+<path d="M 157.7500 3026.7500 L 130.2500 3026.7500 L 141.2500 3051.5000 L 130.2500 3076.2500 L 157.7500 3076.2500" class="g"/>
+<text x="144" y="3129" class="lbl" text-anchor="middle">Σ U+03A3</text>
+<rect x="184" y="2984" width="80" height="130" class="cell"/>
+<line x1="184" y1="3079" x2="264" y2="3079" class="bl"/>
+<line x1="184" y1="3024" x2="264" y2="3024" class="cl"/>
+<path d="M 224.0000 3026.7500 L 224.0000 3076.2500" class="g"/>
+<path d="M 210.2500 3026.7500 L 237.7500 3026.7500" class="g"/>
+<text x="224" y="3129" class="lbl" text-anchor="middle">Τ U+03A4</text>
+<rect x="264" y="2984" width="80" height="130" class="cell"/>
+<line x1="264" y1="3079" x2="344" y2="3079" class="bl"/>
+<line x1="264" y1="3024" x2="344" y2="3024" class="cl"/>
+<path d="M 304.0000 3048.7500 L 290.2500 3026.7500" class="g"/>
+<path d="M 317.7500 3026.7500 L 304.0000 3048.7500" class="g"/>
+<path d="M 304.0000 3048.7500 L 304.0000 3076.2500" class="g"/>
+<text x="304" y="3129" class="lbl" text-anchor="middle">Υ U+03A5</text>
+<rect x="344" y="2984" width="80" height="130" class="cell"/>
+<line x1="344" y1="3079" x2="424" y2="3079" class="bl"/>
+<line x1="344" y1="3024" x2="424" y2="3024" class="cl"/>
+<path d="M 373.0000 3076.2500 L 384.0000 3076.2500 L 384.0000 3026.7500 L 395.0000 3026.7500" class="g"/>
+<path d="M 386.7500 3035.0000 A 16.5000 16.5000 0 0 1 386.7500 3068.0000 L 381.2500 3068.0000 A 16.5000 16.5000 0 0 1 381.2500 3035.0000 L 386.7500 3035.0000" class="g"/>
+<text x="384" y="3129" class="lbl" text-anchor="middle">Φ U+03A6</text>
+<rect x="424" y="2984" width="80" height="130" class="cell"/>
+<line x1="424" y1="3079" x2="504" y2="3079" class="bl"/>
+<line x1="424" y1="3024" x2="504" y2="3024" class="cl"/>
+<path d="M 450.2500 3076.2500 L 477.7500 3026.7500" class="g"/>
+<path d="M 450.2500 3026.7500 L 477.7500 3076.2500" class="g"/>
+<text x="464" y="3129" class="lbl" text-anchor="middle">Χ U+03A7</text>
+<rect x="504" y="2984" width="80" height="130" class="cell"/>
+<line x1="504" y1="3079" x2="584" y2="3079" class="bl"/>
+<line x1="504" y1="3024" x2="584" y2="3024" class="cl"/>
+<path d="M 544.0000 3076.2500 L 544.0000 3026.7500" class="g"/>
+<path d="M 527.5000 3026.7500 L 527.5000 3046.0000 A 16.5000 16.5000 0 0 0 560.5000 3046.0000 L 560.5000 3026.7500" class="g"/>
+<text x="544" y="3129" class="lbl" text-anchor="middle">Ψ U+03A8</text>
+<rect x="584" y="2984" width="80" height="130" class="cell"/>
+<line x1="584" y1="3079" x2="664" y2="3079" class="bl"/>
+<line x1="584" y1="3024" x2="664" y2="3024" class="cl"/>
+<path d="M 640.5000 3076.2500 L 632.2500 3076.2500 L 632.2500 3063.0394 A 16.5000 16.5000 0 0 0 640.5000 3048.7500 L 640.5000 3043.2500 A 16.5000 16.5000 0 0 0 607.5000 3043.2500 L 607.5000 3048.7500 A 16.5000 16.5000 0 0 0 615.7500 3063.0394 L 615.7500 3076.2500 L 607.5000 3076.2500" class="g"/>
+<text x="624" y="3129" class="lbl" text-anchor="middle">Ω U+03A9</text>
+<text x="24" y="3154" class="ttl">Greek (LC)</text>
+<rect x="24" y="3164" width="80" height="130" class="cell"/>
+<line x1="24" y1="3259" x2="104" y2="3259" class="bl"/>
+<line x1="24" y1="3204" x2="104" y2="3204" class="cl"/>
+<path d="M 79.1250 3256.2500 L 76.3750 3256.2500 L 64.7404 3228.3269 A 8.2500 8.2500 0 0 0 48.8750 3231.5000 L 48.8750 3248.0000 A 8.2500 8.2500 0 0 0 64.7404 3251.1731 L 76.3750 3223.2500" class="g"/>
+<text x="64" y="3309" class="lbl" text-anchor="middle">α U+03B1</text>
+<rect x="104" y="3164" width="80" height="130" class="cell"/>
+<line x1="104" y1="3259" x2="184" y2="3259" class="bl"/>
+<line x1="104" y1="3204" x2="184" y2="3204" class="cl"/>
+<path d="M 130.2500 3272.7500 L 130.2500 3217.7500 A 11.0000 11.0000 0 0 1 141.2500 3206.7500 L 146.7500 3206.7500 A 8.2500 8.2500 0 0 1 155.0000 3215.0000 L 155.0000 3220.5000 A 8.2500 8.2500 0 0 1 146.7500 3228.7500 A 11.0000 11.0000 0 0 1 157.7500 3239.7500 L 157.7500 3245.2500 A 11.0000 11.0000 0 0 1 146.7500 3256.2500" class="g"/>
+<text x="144" y="3309" class="lbl" text-anchor="middle">β U+03B2</text>
+<rect x="184" y="3164" width="80" height="130" class="cell"/>
+<line x1="184" y1="3259" x2="264" y2="3259" class="bl"/>
+<line x1="184" y1="3204" x2="264" y2="3204" class="cl"/>
+<path d="M 237.7500 3223.2500 A 53.8214 53.8214 0 0 0 218.5000 3264.5000 A 8.2500 8.2500 0 0 0 235.0000 3264.5000 A 46.7500 46.7500 0 0 0 210.2500 3223.2500" class="g"/>
+<text x="224" y="3309" class="lbl" text-anchor="middle">γ U+03B3</text>
+<rect x="264" y="3164" width="80" height="130" class="cell"/>
+<line x1="264" y1="3259" x2="344" y2="3259" class="bl"/>
+<line x1="264" y1="3204" x2="344" y2="3204" class="cl"/>
+<path d="M 312.2500 3206.7500 L 298.5000 3206.7500 A 5.5000 5.5000 0 0 0 295.8103 3217.0474 L 309.3795 3224.6551 A 11.0000 11.0000 0 0 1 315.0000 3234.2500 L 315.0000 3245.2500 A 11.0000 11.0000 0 0 1 293.0000 3245.2500 L 293.0000 3234.2500 A 11.0000 11.0000 0 0 1 309.3795 3224.6551" class="g"/>
+<text x="304" y="3309" class="lbl" text-anchor="middle">δ U+03B4</text>
+<rect x="344" y="3164" width="80" height="130" class="cell"/>
+<line x1="344" y1="3259" x2="424" y2="3259" class="bl"/>
+<line x1="344" y1="3204" x2="424" y2="3204" class="cl"/>
+<path d="M 384.0000 3239.7500 L 381.2500 3239.7500 A 8.2500 8.2500 0 0 0 381.2500 3256.2500 A 35.7500 35.7500 0 0 0 395.0000 3253.5000" class="g"/>
+<path d="M 395.0000 3226.0000 A 35.7500 35.7500 0 0 0 381.2500 3223.2500 A 8.2500 8.2500 0 0 0 381.2500 3239.7500" class="g"/>
+<text x="384" y="3309" class="lbl" text-anchor="middle">ε U+03B5</text>
+<rect x="424" y="3164" width="80" height="130" class="cell"/>
+<line x1="424" y1="3259" x2="504" y2="3259" class="bl"/>
+<line x1="424" y1="3204" x2="504" y2="3204" class="cl"/>
+<path d="M 470.8750 3272.7500 A 5.5000 5.5000 0 0 0 476.3750 3267.2500 L 476.3750 3261.7500 A 5.5000 5.5000 0 0 0 470.8750 3256.2500 L 462.6250 3256.2500 A 8.2500 8.2500 0 0 1 454.9699 3244.9239 L 473.6250 3198.5000 L 459.8750 3198.5000 A 5.5000 5.5000 0 0 1 454.3750 3193.0000 L 454.3750 3190.2500" class="g"/>
+<text x="464" y="3309" class="lbl" text-anchor="middle">ζ U+03B6</text>
+<rect x="504" y="3164" width="80" height="130" class="cell"/>
+<line x1="504" y1="3259" x2="584" y2="3259" class="bl"/>
+<line x1="504" y1="3204" x2="584" y2="3204" class="cl"/>
+<path d="M 535.7500 3256.2500 L 535.7500 3228.7500 A 5.5000 5.5000 0 0 0 530.2500 3223.2500" class="g"/>
+<path d="M 557.7500 3272.7500 L 557.7500 3234.2500 A 11.0000 11.0000 0 0 0 535.7500 3234.2500" class="g"/>
+<text x="544" y="3309" class="lbl" text-anchor="middle">η U+03B7</text>
+<rect x="584" y="3164" width="80" height="130" class="cell"/>
+<line x1="584" y1="3259" x2="664" y2="3259" class="bl"/>
+<line x1="584" y1="3204" x2="664" y2="3204" class="cl"/>
+<path d="M 606.1250 3239.7500 L 608.8750 3239.7500 A 5.5000 5.5000 0 0 1 614.3750 3245.2500 A 11.0000 11.0000 0 0 0 636.3750 3245.2500 L 636.3750 3216.3750 A 9.6250 9.6250 0 1 0 626.7500 3226.0000 L 641.8750 3226.0000" class="g"/>
+<text x="624" y="3309" class="lbl" text-anchor="middle">θ U+03B8</text>
+<rect x="664" y="3164" width="80" height="130" class="cell"/>
+<line x1="664" y1="3259" x2="744" y2="3259" class="bl"/>
+<line x1="664" y1="3204" x2="744" y2="3204" class="cl"/>
+<path d="M 694.3750 3223.2500 L 694.3750 3244.5625 A 11.6875 11.6875 0 0 0 713.6250 3253.4735" class="g"/>
+<text x="704" y="3309" class="lbl" text-anchor="middle">ι U+03B9</text>
+<rect x="744" y="3164" width="80" height="130" class="cell"/>
+<line x1="744" y1="3259" x2="824" y2="3259" class="bl"/>
+<line x1="744" y1="3204" x2="824" y2="3204" class="cl"/>
+<path d="M 770.2500 3223.2500 A 5.5000 5.5000 0 0 1 775.7500 3228.7500 L 775.7500 3256.2500" class="g"/>
+<path d="M 795.0000 3223.2500 L 775.7500 3245.2500" class="g"/>
+<path d="M 782.1436 3237.9430 L 793.2347 3253.8903 A 5.5000 5.5000 0 0 0 797.7500 3256.2500" class="g"/>
+<text x="784" y="3309" class="lbl" text-anchor="middle">κ U+03BA</text>
+<rect x="824" y="3164" width="80" height="130" class="cell"/>
+<line x1="824" y1="3259" x2="904" y2="3259" class="bl"/>
+<line x1="824" y1="3204" x2="904" y2="3204" class="cl"/>
+<path d="M 853.0000 3206.7500 A 2.7500 2.7500 0 0 1 855.5295 3208.4209 L 875.2205 3254.5791 A 2.7500 2.7500 0 0 0 877.7500 3256.2500" class="g"/>
+<path d="M 850.2500 3256.2500 L 863.4989 3227.1023" class="g"/>
+<text x="864" y="3309" class="lbl" text-anchor="middle">λ U+03BB</text>
+<rect x="904" y="3164" width="80" height="130" class="cell"/>
+<line x1="904" y1="3259" x2="984" y2="3259" class="bl"/>
+<line x1="904" y1="3204" x2="984" y2="3204" class="cl"/>
+<path d="M 930.2500 3223.2500 L 930.2500 3272.7500" class="g"/>
+<path d="M 930.2500 3245.2500 A 11.0000 11.0000 0 0 0 952.2500 3245.2500 L 952.2500 3223.2500" class="g"/>
+<path d="M 957.7500 3256.2500 A 5.5000 5.5000 0 0 1 954.4500 3255.1500 L 950.0500 3251.8500" class="g"/>
+<text x="944" y="3309" class="lbl" text-anchor="middle">μ U+03BC</text>
+<rect x="984" y="3164" width="80" height="130" class="cell"/>
+<line x1="984" y1="3259" x2="1064" y2="3259" class="bl"/>
+<line x1="984" y1="3204" x2="1064" y2="3204" class="cl"/>
+<path d="M 1010.2500 3223.2500 A 5.5000 5.5000 0 0 1 1015.6471 3227.6912 L 1021.2500 3256.2500 A 44.9541 44.9541 0 0 0 1037.7500 3223.2500" class="g"/>
+<text x="1024" y="3309" class="lbl" text-anchor="middle">ν U+03BD</text>
+<rect x="1064" y="3164" width="80" height="130" class="cell"/>
+<line x1="1064" y1="3259" x2="1144" y2="3259" class="bl"/>
+<line x1="1064" y1="3204" x2="1144" y2="3204" class="cl"/>
+<path d="M 1112.2500 3272.7500 A 5.5000 5.5000 0 0 0 1117.7500 3267.2500 L 1117.7500 3261.7500 A 5.5000 5.5000 0 0 0 1112.2500 3256.2500 L 1104.0000 3256.2500 A 13.7500 13.7500 0 0 1 1104.0000 3228.7500 L 1112.2500 3228.7500" class="g"/>
+<path d="M 1104.0000 3212.2500 A 8.2500 8.2500 0 0 0 1104.0000 3228.7500" class="g"/>
+<path d="M 1090.2500 3206.7500 A 5.5000 5.5000 0 0 0 1095.7500 3212.2500 L 1112.2500 3212.2500" class="g"/>
+<text x="1104" y="3309" class="lbl" text-anchor="middle">ξ U+03BE</text>
+<rect x="1144" y="3164" width="80" height="130" class="cell"/>
+<line x1="1144" y1="3259" x2="1224" y2="3259" class="bl"/>
+<line x1="1144" y1="3204" x2="1224" y2="3204" class="cl"/>
+<path d="M 1173.0000 3245.2500 A 11.0000 11.0000 0 0 0 1195.0000 3245.2500 L 1195.0000 3234.2500 A 11.0000 11.0000 0 0 0 1173.0000 3234.2500 L 1173.0000 3245.2500" class="g"/>
+<text x="1184" y="3309" class="lbl" text-anchor="middle">ο U+03BF</text>
+<rect x="1224" y="3164" width="80" height="130" class="cell"/>
+<line x1="1224" y1="3259" x2="1304" y2="3259" class="bl"/>
+<line x1="1224" y1="3204" x2="1304" y2="3204" class="cl"/>
+<path d="M 1250.2500 3256.2500 A 5.5000 5.5000 0 0 0 1255.7500 3250.7500 L 1255.7500 3223.2500" class="g"/>
+<path d="M 1277.7500 3256.2500 A 5.5000 5.5000 0 0 1 1272.2500 3250.7500 L 1272.2500 3223.2500" class="g"/>
+<path d="M 1247.5000 3223.2500 L 1280.5000 3223.2500" class="g"/>
+<text x="1264" y="3309" class="lbl" text-anchor="middle">π U+03C0</text>
+<rect x="24" y="3316" width="80" height="130" class="cell"/>
+<line x1="24" y1="3411" x2="104" y2="3411" class="bl"/>
+<line x1="24" y1="3356" x2="104" y2="3356" class="cl"/>
+<path d="M 58.5000 3424.4940 A 14.4577 14.4577 0 0 0 56.5647 3405.3566 A 11.0000 11.0000 0 0 1 53.0000 3397.2500 L 53.0000 3386.2500 A 11.0000 11.0000 0 0 1 75.0000 3386.2500 L 75.0000 3397.2500 A 11.0000 11.0000 0 0 1 56.5647 3405.3566" class="g"/>
+<text x="64" y="3461" class="lbl" text-anchor="middle">ρ U+03C1</text>
+<rect x="104" y="3316" width="80" height="130" class="cell"/>
+<line x1="104" y1="3411" x2="184" y2="3411" class="bl"/>
+<line x1="104" y1="3356" x2="184" y2="3356" class="cl"/>
+<path d="M 150.8750 3386.2500 A 11.0000 11.0000 0 0 0 139.8750 3375.2500" class="g"/>
+<path d="M 150.8750 3386.2500 L 150.8750 3397.2500" class="g"/>
+<path d="M 128.8750 3397.2500 A 11.0000 11.0000 0 0 0 150.8750 3397.2500" class="g"/>
+<path d="M 128.8750 3397.2500 L 128.8750 3386.2500" class="g"/>
+<path d="M 139.8750 3375.2500 A 11.0000 11.0000 0 0 0 128.8750 3386.2500" class="g"/>
+<path d="M 139.8750 3375.2500 L 153.6250 3375.2500" class="g"/>
+<path d="M 153.6250 3375.2500 A 5.5000 5.5000 0 0 0 159.1250 3369.7500" class="g"/>
+<text x="144" y="3461" class="lbl" text-anchor="middle">σ U+03C3</text>
+<rect x="184" y="3316" width="80" height="130" class="cell"/>
+<line x1="184" y1="3411" x2="264" y2="3411" class="bl"/>
+<line x1="184" y1="3356" x2="264" y2="3356" class="cl"/>
+<path d="M 208.8750 3375.2500 L 239.1250 3375.2500" class="g"/>
+<path d="M 222.6250 3375.2500 L 222.6250 3400.0000 A 8.2500 8.2500 0 0 0 230.8750 3408.2500" class="g"/>
+<text x="224" y="3461" class="lbl" text-anchor="middle">τ U+03C4</text>
+<rect x="264" y="3316" width="80" height="130" class="cell"/>
+<line x1="264" y1="3411" x2="344" y2="3411" class="bl"/>
+<line x1="264" y1="3356" x2="344" y2="3356" class="cl"/>
+<path d="M 287.5000 3375.2500 A 5.5000 5.5000 0 0 1 293.0000 3380.7500 L 293.0000 3400.0000 A 8.2500 8.2500 0 0 0 301.2500 3408.2500 L 312.2500 3408.2500 A 8.2500 8.2500 0 0 0 320.5000 3400.0000 L 320.5000 3375.2500" class="g"/>
+<text x="304" y="3461" class="lbl" text-anchor="middle">υ U+03C5</text>
+<rect x="344" y="3316" width="80" height="130" class="cell"/>
+<line x1="344" y1="3411" x2="424" y2="3411" class="bl"/>
+<line x1="344" y1="3356" x2="424" y2="3356" class="cl"/>
+<path d="M 367.5000 3375.2500 L 367.5000 3391.7500 A 16.5000 16.5000 0 0 0 400.5000 3391.7500 L 400.5000 3383.5000 A 8.2500 8.2500 0 0 0 384.0000 3383.5000 L 384.0000 3424.7500" class="g"/>
+<text x="384" y="3461" class="lbl" text-anchor="middle">φ U+03C6</text>
+<rect x="424" y="3316" width="80" height="130" class="cell"/>
+<line x1="424" y1="3411" x2="504" y2="3411" class="bl"/>
+<line x1="424" y1="3356" x2="504" y2="3356" class="cl"/>
+<path d="M 454.3750 3424.7500 L 476.3750 3375.2500" class="g"/>
+<path d="M 451.6250 3375.2500 A 2.7500 2.7500 0 0 1 454.0984 3376.7979 L 476.6516 3423.2021 A 2.7500 2.7500 0 0 0 479.1250 3424.7500" class="g"/>
+<text x="464" y="3461" class="lbl" text-anchor="middle">χ U+03C7</text>
+<rect x="504" y="3316" width="80" height="130" class="cell"/>
+<line x1="504" y1="3411" x2="584" y2="3411" class="bl"/>
+<line x1="504" y1="3356" x2="584" y2="3356" class="cl"/>
+<path d="M 527.5000 3375.2500 L 527.5000 3391.7500 A 16.5000 16.5000 0 0 0 560.5000 3391.7500 L 560.5000 3375.2500" class="g"/>
+<path d="M 544.0000 3424.7500 L 544.0000 3364.2500" class="g"/>
+<text x="544" y="3461" class="lbl" text-anchor="middle">ψ U+03C8</text>
+<rect x="584" y="3316" width="80" height="130" class="cell"/>
+<line x1="584" y1="3411" x2="664" y2="3411" class="bl"/>
+<line x1="584" y1="3356" x2="664" y2="3356" class="cl"/>
+<path d="M 610.2500 3375.2500 A 52.4219 52.4219 0 0 0 604.7500 3398.6250 A 9.6250 9.6250 0 0 0 624.0000 3398.6250 L 624.0000 3391.7500" class="g"/>
+<path d="M 637.7500 3375.2500 A 52.4219 52.4219 0 0 1 643.2500 3398.6250 A 9.6250 9.6250 0 0 1 624.0000 3398.6250" class="g"/>
+<text x="624" y="3461" class="lbl" text-anchor="middle">ω U+03C9</text>
+</svg>
