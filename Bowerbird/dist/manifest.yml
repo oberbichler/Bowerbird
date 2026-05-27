@@ -1,9 +1,9 @@
 ---
 name: Bowerbird
-version: 0.0.0+0
+version: $version
 authors:
 - Thomas Oberbichler
 description: Bowerbird is a digital fabrication and computational geometry plugin for Rhino and Grasshopper. It excels at automatic generation of waffle and layer models, advanced curve-on-surface analysis, and fabrication-ready single-line text rendering.
 url: https://github.com/oberbichler/Bowerbird
-secret:
-  id: 6ad6b4dc-e6e6-40a4-9198-3a2c55b9ad30
+keywords:
+- guid:6ad6b4dc-e6e6-40a4-9198-3a2c55b9ad30
