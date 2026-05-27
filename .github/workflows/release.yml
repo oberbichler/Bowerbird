@@ -37,6 +37,7 @@ jobs:
         run: |
           mkdir -p yak-package/misc
           cp Bowerbird/bin/publish/Bowerbird.gha yak-package/
+          cp Bowerbird/bin/publish/*.dll yak-package/
           cp Bowerbird/dist/manifest.yml yak-package/
           cp README.md yak-package/misc/
           cp LICENSE yak-package/misc/LICENSE.txt
