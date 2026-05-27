@@ -46,6 +46,18 @@ The easiest way to install Bowerbird is through the **Rhino Package Manager**:
 | **CNC Single-Line Text** | Render CNC-compliant **single-line fonts** for engraving and fabrication labels. <br><br> ![Text](https://raw.githubusercontent.com/oberbichler/Bowerbird/main/docs/images/Example_BBText.png?sanitize=true&max-age=0) |
 | **Boolean Polylines** | Perform efficient **boolean polyline** operations. |
 
+## Typeface
+
+Bowerbird ships two built-in single-line fonts for CNC engraving and fabrication labels.
+
+### Regular
+
+![Bowerbird Regular charset](https://raw.githubusercontent.com/oberbichler/Bowerbird/main/docs/bowerbird_regular_charset.svg?sanitize=true&max-age=0)
+
+### Bold
+
+![Bowerbird Bold charset](https://raw.githubusercontent.com/oberbichler/Bowerbird/main/docs/bowerbird_bold_charset.svg?sanitize=true&max-age=0)
+
 ## Reference
 
 If you use Bowerbird, please refer to the official GitHub repository:
