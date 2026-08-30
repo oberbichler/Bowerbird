@@ -198,6 +198,8 @@ public static class BBCavalier
             polyline.AddVertex(new PlineVertex<double>(finalU, finalV, 0.0));
         }
 
+        polyline = SplitArcsWiderThanHalfCircle(polyline);
+
         // Enforce standard Counter-Clockwise orientation for closed polylines.
         // This is extremely reliable as it is calculated directly on the 2D plane coordinates
         // and guarantees that Cavalier's offset and self-intersection pruning work perfectly.
@@ -210,6 +212,75 @@ public static class BBCavalier
         }
 
         return polyline;
+    }
+
+    /// <summary>
+    /// Returns a polyline in which every arc sweeping more than a half circle has been replaced by
+    /// two halves.
+    /// </summary>
+    /// <remarks>
+    /// <para>
+    /// Cavalier Contours requires <c>-1 &lt;= bulge &lt;= 1</c>, that is no segment sweeping more
+    /// than a half circle. Its own notes state the algorithms rely on that to keep the chord
+    /// between the two vertexes, and upstream issue 15 tracks lifting the restriction. Rhino places
+    /// no such limit on an arc, so a wider one has to be split before it is handed over. Feeding a
+    /// wider sweep in does not fail loudly: the arc is silently treated as its minor complement and
+    /// the results are wrong by a wide margin without any error being raised.
+    /// </para>
+    /// <para>
+    /// Both formulas are exact and need no trigonometry. With <c>b = tan(sweep / 4)</c> the two
+    /// halves sweep half as far and therefore share the bulge <c>tan(sweep / 8)</c>, which the
+    /// tangent half angle identity gives as <c>(sqrt(1 + b^2) - 1) / b</c>. The point where they
+    /// meet is the chord midpoint displaced by the sagitta, <c>b / 2</c> times the perpendicular
+    /// chord.
+    /// </para>
+    /// </remarks>
+    internal static Polyline<double> SplitArcsWiderThanHalfCircle(Polyline<double> polyline)
+    {
+        bool anyWiderThanHalfCircle = false;
+        for (int i = 0; i < polyline.VertexCount; i++)
+        {
+            if (Math.Abs(polyline.Get(i).Bulge) > 1.0)
+            {
+                anyWiderThanHalfCircle = true;
+                break;
+            }
+        }
+
+        if (!anyWiderThanHalfCircle)
+            return polyline;
+
+        var result = new Polyline<double>();
+        result.SetIsClosed(polyline.IsClosed);
+
+        // The last vertex of an open polyline starts no segment, so its bulge carries no arc.
+        int segmentCount = polyline.IsClosed ? polyline.VertexCount : polyline.VertexCount - 1;
+
+        for (int i = 0; i < segmentCount; i++)
+        {
+            var start = polyline.Get(i);
+            var end = polyline.Get((i + 1) % polyline.VertexCount);
+
+            if (Math.Abs(start.Bulge) <= 1.0)
+            {
+                result.AddVertex(start);
+                continue;
+            }
+
+            double halfBulge = (Math.Sqrt(1.0 + start.Bulge * start.Bulge) - 1.0) / start.Bulge;
+            double midX = (start.X + end.X) / 2.0 + (start.Bulge / 2.0) * (end.Y - start.Y);
+            double midY = (start.Y + end.Y) / 2.0 - (start.Bulge / 2.0) * (end.X - start.X);
+
+            result.AddVertex(new PlineVertex<double>(start.X, start.Y, halfBulge));
+            result.AddVertex(new PlineVertex<double>(midX, midY, halfBulge));
+        }
+
+        if (!polyline.IsClosed)
+        {
+            result.AddVertex(polyline.Get(polyline.VertexCount - 1));
+        }
+
+        return result;
     }
 
     public static Curve ToCurve(Polyline<double> pline, Plane plane)
