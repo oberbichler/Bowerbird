@@ -543,6 +543,50 @@ public class BBCavalierTests
     }
 
     [Fact]
+    public void TestMultiCurveIntersection()
+    {
+        // Boundary A: large square [-50, 50] x [-50, 50]
+        var boundary = new Polyline<double>();
+        boundary.SetIsClosed(true);
+        boundary.AddVertex(new PlineVertex<double>(-50.0, -50.0, 0.0));
+        boundary.AddVertex(new PlineVertex<double>(50.0, -50.0, 0.0));
+        boundary.AddVertex(new PlineVertex<double>(50.0, 50.0, 0.0));
+        boundary.AddVertex(new PlineVertex<double>(-50.0, 50.0, 0.0));
+
+        // Shape B1: circle at (-20, 0) r=10 (partially overlaps boundary if placed at (-50, 0))
+        var b1 = new Polyline<double>();
+        b1.SetIsClosed(true);
+        b1.AddVertex(new PlineVertex<double>(-60.0, 0.0, 1.0));
+        b1.AddVertex(new PlineVertex<double>(-40.0, 0.0, 1.0));
+
+        // Shape B2: square at (0, 0) [-10, 10] (fully inside)
+        var b2 = new Polyline<double>();
+        b2.SetIsClosed(true);
+        b2.AddVertex(new PlineVertex<double>(-10.0, -10.0, 0.0));
+        b2.AddVertex(new PlineVertex<double>(10.0, -10.0, 0.0));
+        b2.AddVertex(new PlineVertex<double>(10.0, 10.0, 0.0));
+        b2.AddVertex(new PlineVertex<double>(-10.0, 10.0, 0.0));
+
+        // Shape B3: circle at (50, 0) r=10 (partially overlaps boundary)
+        var b3 = new Polyline<double>();
+        b3.SetIsClosed(true);
+        b3.AddVertex(new PlineVertex<double>(40.0, 0.0, 1.0));
+        b3.AddVertex(new PlineVertex<double>(60.0, 0.0, 1.0));
+
+        var booleanOpts = new PlineBooleanOptions<double>();
+        var results = new List<Polyline<double>>();
+
+        foreach (var b in new[] { b1, b2, b3 })
+        {
+            var res = PlineBoolean.PolylineBoolean<Polyline<double>, double>(boundary, b, BooleanOp.And, booleanOpts);
+            foreach (var p in res.PosPlines) results.Add(p.Pline);
+        }
+
+        // All 3 shapes produce an intersection with the boundary
+        Assert.Equal(3, results.Count);
+    }
+
+    [Fact]
     public void TestBBCavalierBooleanMethod()
     {
         // Test with null curvesA throws ArgumentNullException
