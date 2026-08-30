@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 using CavalierContours;
 using CavalierContours.Polyline;
@@ -587,52 +588,190 @@ public class BBCavalierTests
     }
 
     [Fact]
-    public void TestBBCavalierBooleanMethod()
+    public void TestBooleanArgumentValidation()
     {
-        // Test with null curvesA throws ArgumentNullException
+        // RhinoCommon's native library is unavailable outside the Rhino host process, so these
+        // assertions deliberately stay on paths that return before any Rhino geometry is touched.
         Assert.Throws<ArgumentNullException>(() => BBCavalier.Boolean(BooleanOp.Or, null!, [], Plane.WorldXY, 0.01));
+        Assert.Empty(BBCavalier.Boolean(BooleanOp.Or, [], [], null, 0.01));
+        Assert.Empty(BBCavalier.Boolean(BooleanOp.Or, [], null!, null, 0.01));
 
-        // Test with empty curves returns empty list
-        var emptyCurves = BBCavalier.Boolean(BooleanOp.Or, [], [], null, 0.01);
-        Assert.Empty(emptyCurves);
+        Assert.Throws<ArgumentNullException>(() => BBCavalier.BooleanPlines(BooleanOp.Or, null!, []));
+        Assert.Throws<ArgumentNullException>(() => BBCavalier.BooleanPlines(BooleanOp.Or, [], null!));
+    }
 
-        var emptyWithNullB = BBCavalier.Boolean(BooleanOp.Or, [], null!, null, 0.01);
-        Assert.Empty(emptyWithNullB);
+    // --- BooleanPlines: the Rhino-independent core of BBCavalier.Boolean ---
 
-        try
+    private static Polyline<double> Rect(double x0, double y0, double x1, double y1)
+    {
+        var p = new Polyline<double>();
+        p.SetIsClosed(true);
+        p.AddVertex(new PlineVertex<double>(x0, y0, 0.0));
+        p.AddVertex(new PlineVertex<double>(x1, y0, 0.0));
+        p.AddVertex(new PlineVertex<double>(x1, y1, 0.0));
+        p.AddVertex(new PlineVertex<double>(x0, y1, 0.0));
+        return p;
+    }
+
+    private static Polyline<double> Circ(double cx, double cy, double r)
+    {
+        var p = new Polyline<double>();
+        p.SetIsClosed(true);
+        p.AddVertex(new PlineVertex<double>(cx - r, cy, 1.0));
+        p.AddVertex(new PlineVertex<double>(cx + r, cy, 1.0));
+        return p;
+    }
+
+    private static void AssertNoDegenerateLoops(List<Polyline<double>> loops)
+    {
+        foreach (var loop in loops)
         {
-            // Create Rhino circles: Circle A at (-3, 0, 0) r=5, Circle B at (3, 0, 0) r=5
-            var circleA = new ArcCurve(new Circle(new Point3d(-3, 0, 0), 5));
-            var circleB = new ArcCurve(new Circle(new Point3d(3, 0, 0), 5));
-
-            // Union
-            var unionCurves = BBCavalier.Boolean(BooleanOp.Or, [circleA], [circleB], Plane.WorldXY, 0.01);
-            Assert.Single(unionCurves);
-            Assert.True(unionCurves[0].IsClosed);
-
-            // Difference
-            var diffCurves = BBCavalier.Boolean(BooleanOp.Not, [circleA], [circleB], Plane.WorldXY, 0.01);
-            Assert.Single(diffCurves);
-            Assert.True(diffCurves[0].IsClosed);
-
-            // Intersection
-            var intersectCurves = BBCavalier.Boolean(BooleanOp.And, [circleA], [circleB], Plane.WorldXY, 0.01);
-            Assert.Single(intersectCurves);
-            Assert.True(intersectCurves[0].IsClosed);
-
-            // Xor
-            var xorCurves = BBCavalier.Boolean(BooleanOp.Xor, [circleA], [circleB], Plane.WorldXY, 0.01);
-            Assert.Equal(2, xorCurves.Count);
-            Assert.All(xorCurves, c => Assert.True(c.IsClosed));
-
-            // Test with null curvesB
-            var onlyACurves = BBCavalier.Boolean(BooleanOp.Or, [circleA], null!, Plane.WorldXY, 0.01);
-            Assert.Single(onlyACurves);
+            Assert.True(loop.VertexCount >= 2, "result loop has fewer than 2 vertexes");
+            Assert.True(Math.Abs(loop.Area()) > 1e-9, $"result loop has degenerate area {loop.Area()}");
         }
-        catch (DllNotFoundException)
+    }
+
+    [Fact]
+    public void BooleanPlines_UnionOfOverlappingCircles_MergesIntoOneLoop()
+    {
+        var result = BBCavalier.BooleanPlines(BooleanOp.Or, [Circ(-3, 0, 5)], [Circ(3, 0, 5)]);
+
+        Assert.Single(result);
+        AssertNoDegenerateLoops(result);
+    }
+
+    [Fact]
+    public void BooleanPlines_UnionOfDisjointCircles_KeepsBothLoops()
+    {
+        var result = BBCavalier.BooleanPlines(BooleanOp.Or, [Circ(-20, 0, 5)], [Circ(20, 0, 5)]);
+
+        Assert.Equal(2, result.Count);
+        AssertNoDegenerateLoops(result);
+    }
+
+    [Fact]
+    public void BooleanPlines_UnionOfEdgeAdjacentRectangles_EmitsNoZeroAreaSliver()
+    {
+        // Cavalier's Or on two rectangles sharing the edge x=10 returns the merged outline plus a
+        // zero-area two-vertex sliver. The sliver must never reach the output.
+        var result = BBCavalier.BooleanPlines(BooleanOp.Or, [Rect(0, 0, 10, 10)], [Rect(10, 0, 20, 10)]);
+
+        AssertNoDegenerateLoops(result);
+        Assert.Single(result);
+        Assert.Equal(200.0, result[0].Area(), 1e-6);
+    }
+
+    [Fact]
+    public void BooleanPlines_UnionFormingRing_ReturnsOuterLoopAndHole()
+    {
+        // Four bars welded into a square frame: one solid outline plus one clockwise hole.
+        var bars = new List<Polyline<double>>
         {
-            // Rhino native library (rhcommon_c) is only present inside running Rhino host process on macOS
-        }
+            Rect(-10, -10, 10, -5),
+            Rect(-10, 5, 10, 10),
+            Rect(-10, -10, -5, 10),
+            Rect(5, -10, 10, 10)
+        };
+
+        var result = BBCavalier.BooleanPlines(BooleanOp.Or, bars, []);
+
+        AssertNoDegenerateLoops(result);
+        Assert.Equal(2, result.Count);
+        Assert.Single(result, p => p.Orientation() == PlineOrientation.CounterClockwise);
+        Assert.Single(result, p => p.Orientation() == PlineOrientation.Clockwise);
+    }
+
+    [Fact]
+    public void BooleanPlines_DifferenceWithTwoDisjointHoles_KeepsOneOutlineAndTwoHoles()
+    {
+        // Regression: holes produced by the first clip must not be clipped again as if they were
+        // solid material, and the outline must not be duplicated per clip.
+        var solid = new List<Polyline<double>> { Rect(-20, -20, 20, 20) };
+        var clips = new List<Polyline<double>> { Circ(-8, 0, 4), Circ(8, 0, 4) };
+
+        var result = BBCavalier.BooleanPlines(BooleanOp.Not, solid, clips);
+
+        AssertNoDegenerateLoops(result);
+        Assert.Equal(3, result.Count);
+        Assert.Single(result, p => p.Orientation() == PlineOrientation.CounterClockwise);
+        Assert.Equal(2, result.Count(p => p.Orientation() == PlineOrientation.Clockwise));
+        Assert.Equal(1600.0 - 2 * Math.PI * 16.0, result.Sum(p => p.Area()), 1e-3);
+    }
+
+    [Fact]
+    public void BooleanPlines_IntersectionWithSeparateShapes_ReturnsEveryOverlap()
+    {
+        // Regression for the reported defect: only a single overlap survived.
+        var boundary = new List<Polyline<double>> { Rect(-50, -50, 50, 50) };
+        var shapes = new List<Polyline<double>>
+        {
+            Circ(-50, 0, 10),      // straddles the left edge, so only half of it counts
+            Rect(-10, -10, 10, 10) // fully inside
+        };
+
+        var result = BBCavalier.BooleanPlines(BooleanOp.And, boundary, shapes);
+
+        AssertNoDegenerateLoops(result);
+        Assert.Equal(2, result.Count);
+        Assert.Equal(Math.PI * 100.0 / 2.0 + 400.0, result.Sum(p => Math.Abs(p.Area())), 1e-3);
+    }
+
+    [Fact]
+    public void BooleanPlines_IntersectionWithMutuallyOverlappingShapes_CoversTheirWholeUnion()
+    {
+        // Every shape of B lies inside A, so A n B must cover exactly the same area as B on its own.
+        // This is the configuration the reported defect showed: B's members overlap each other, and
+        // collapsing them with a lossy pre-union silently drops material.
+        var boundary = new List<Polyline<double>> { Rect(-50, -50, 50, 50) };
+        var shapes = new List<Polyline<double>>
+        {
+            Circ(-6, 0, 10),
+            Circ(0, 0, 10),
+            Circ(6, 0, 10),
+            Circ(0, 8, 10)
+        };
+
+        var intersection = BBCavalier.BooleanPlines(BooleanOp.And, boundary, shapes);
+        var shapesAlone = BBCavalier.BooleanPlines(BooleanOp.Or, shapes, []);
+
+        AssertNoDegenerateLoops(intersection);
+        Assert.NotEmpty(intersection);
+        Assert.Equal(shapesAlone.Sum(p => p.Area()), intersection.Sum(p => p.Area()), 1e-6);
+    }
+
+    [Fact]
+    public void BooleanPlines_IntersectionOfDisjointShapes_ReturnsNothing()
+    {
+        var result = BBCavalier.BooleanPlines(BooleanOp.And, [Circ(-20, 0, 5)], [Circ(20, 0, 5)]);
+
+        Assert.Empty(result);
+    }
+
+    [Fact]
+    public void BooleanPlines_XorOfOverlappingCircles_ReturnsTwoLunes()
+    {
+        var result = BBCavalier.BooleanPlines(BooleanOp.Xor, [Circ(-3, 0, 5)], [Circ(3, 0, 5)]);
+
+        AssertNoDegenerateLoops(result);
+        Assert.Equal(2, result.Count);
+    }
+
+    [Fact(Timeout = 30000)]
+    public async Task BooleanPlines_UnionOfEdgeAdjacentGrid_Terminates()
+    {
+        // Edge-adjacent tiles are the configuration where the pairwise Or does not reduce the loop
+        // count. Without the "a merge must reduce the solid count" rule this loops forever and
+        // would hang Rhino, so the timeout is the assertion that matters here.
+        var tiles = new List<Polyline<double>>();
+        for (int x = 0; x < 4; x++)
+            for (int y = 0; y < 4; y++)
+                tiles.Add(Rect(x * 10, y * 10, (x + 1) * 10, (y + 1) * 10));
+
+        var result = await Task.Run(() => BBCavalier.BooleanPlines(BooleanOp.Or, tiles, []));
+
+        AssertNoDegenerateLoops(result);
+        Assert.NotEmpty(result);
+        Assert.Equal(1600.0, result.Sum(p => Math.Abs(p.Area())), 1e-6);
     }
 }
 

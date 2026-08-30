@@ -384,118 +384,211 @@ public static class BBCavalier
             return new List<Curve>();
 
         var refPlane = GetPlane(listA.Concat(listB), plane);
-        var boolOpts = new PlineBooleanOptions<double>();
 
-        var plinesA = listA.Select(c => ToPolyline(c, refPlane, tolerance)).ToList();
-        var plinesB = listB.Select(c => ToPolyline(c, refPlane, tolerance)).ToList();
+        var plinesA = listA.Select(c => ToPolyline(c, refPlane, tolerance)).Where(IsUsableLoop).ToList();
+        var plinesB = listB.Select(c => ToPolyline(c, refPlane, tolerance)).Where(IsUsableLoop).ToList();
 
-        // Helper to iteratively union all overlapping polylines until no further merges are possible
-        List<Polyline<double>> UnionAll(List<Polyline<double>> inputPlines)
-        {
-            if (inputPlines.Count <= 1)
-                return new List<Polyline<double>>(inputPlines);
+        var outputPlines = BooleanPlines(operation, plinesA, plinesB);
 
-            var current = new List<Polyline<double>>(inputPlines);
-            bool changed = true;
-
-            while (changed)
-            {
-                changed = false;
-                for (int i = 0; i < current.Count; i++)
-                {
-                    for (int j = i + 1; j < current.Count; j++)
-                    {
-                        var res = PlineBoolean.PolylineBoolean<Polyline<double>, double>(current[i], current[j], BooleanOp.Or, boolOpts);
-                        if (res.PosPlines.Count > 0 && res.ResultInfo != BooleanResultInfo.Disjoint && res.ResultInfo != BooleanResultInfo.InvalidInput)
-                        {
-                            current.RemoveAt(j);
-                            current.RemoveAt(i);
-                            foreach (var p in res.PosPlines) current.Add(p.Pline);
-                            foreach (var n in res.NegPlines) current.Add(n.Pline);
-                            changed = true;
-                            break;
-                        }
-                    }
-                    if (changed) break;
-                }
-            }
-
-            return current;
-        }
-
-        // Helper to perform multi-curve difference: subjects minus clips
-        List<Polyline<double>> DifferenceAll(List<Polyline<double>> subjects, List<Polyline<double>> clips)
-        {
-            var currentSubjects = new List<Polyline<double>>(subjects);
-            var accumulatedHoles = new List<Polyline<double>>();
-
-            foreach (var clip in clips)
-            {
-                var nextSubjects = new List<Polyline<double>>();
-                foreach (var subj in currentSubjects)
-                {
-                    var res = PlineBoolean.PolylineBoolean<Polyline<double>, double>(subj, clip, BooleanOp.Not, boolOpts);
-                    if (res.ResultInfo == BooleanResultInfo.Disjoint)
-                    {
-                        nextSubjects.Add(subj);
-                    }
-                    else
-                    {
-                        foreach (var p in res.PosPlines) nextSubjects.Add(p.Pline);
-                        foreach (var n in res.NegPlines) accumulatedHoles.Add(n.Pline);
-                    }
-                }
-                currentSubjects = nextSubjects;
-            }
-
-            currentSubjects.AddRange(accumulatedHoles);
-            return currentSubjects;
-        }
-
-        var results = new List<Curve>();
-        var outputPlines = new List<Polyline<double>>();
-
-        switch (operation)
-        {
-            case BooleanOp.Or:
-                outputPlines = UnionAll(plinesA.Concat(plinesB).ToList());
-                break;
-
-            case BooleanOp.Not:
-                if (plinesB.Count == 0)
-                {
-                    outputPlines = plinesA;
-                }
-                else
-                {
-                    outputPlines = DifferenceAll(plinesA, plinesB);
-                }
-                break;
-
-            case BooleanOp.And:
-                foreach (var a in plinesA)
-                {
-                    foreach (var b in plinesB)
-                    {
-                        var res = PlineBoolean.PolylineBoolean<Polyline<double>, double>(a, b, BooleanOp.And, boolOpts);
-                        foreach (var p in res.PosPlines) outputPlines.Add(p.Pline);
-                        foreach (var n in res.NegPlines) outputPlines.Add(n.Pline);
-                    }
-                }
-                break;
-
-            case BooleanOp.Xor:
-                var diffAB = DifferenceAll(plinesA, plinesB);
-                var diffBA = DifferenceAll(plinesB, plinesA);
-                outputPlines = diffAB.Concat(diffBA).ToList();
-                break;
-        }
-
+        var results = new List<Curve>(outputPlines.Count);
         foreach (var pline in outputPlines)
         {
             results.Add(ToCurve(pline, refPlane));
         }
 
         return results;
+    }
+
+    /// <summary>
+    /// Area below which a resulting loop is considered degenerate and dropped. Cavalier's boolean
+    /// stitching can emit zero-area slivers (for example when two inputs share an edge exactly);
+    /// those would turn into invalid Rhino curves.
+    /// </summary>
+    private const double DegenerateAreaTolerance = 1e-9;
+
+    private static bool IsUsableLoop(Polyline<double> pline)
+        => pline != null
+        && pline.IsClosed
+        && pline.VertexCount >= 2
+        && Math.Abs(pline.Area()) > DegenerateAreaTolerance;
+
+    /// <summary>
+    /// Returns a copy of <paramref name="pline"/> wound counter-clockwise for a solid and clockwise
+    /// for a hole.
+    /// </summary>
+    /// <remarks>
+    /// Cavalier reports holes through <c>NegPlines</c> but hands them back with their original
+    /// winding, so the loop geometry alone does not say whether it is material or a cutout. This
+    /// encodes that distinction in the orientation, matching the convention used by
+    /// <see cref="CreateShape"/> and by Rhino's own planar boolean output.
+    /// </remarks>
+    private static Polyline<double> AsOrientedLoop(Polyline<double> pline, bool isSolid)
+    {
+        var copy = new Polyline<double>(pline.IterVertexes(), pline.IsClosed);
+        var wanted = isSolid ? PlineOrientation.CounterClockwise : PlineOrientation.Clockwise;
+
+        if (copy.Orientation() != wanted)
+            copy.InvertDirection();
+
+        return copy;
+    }
+
+    /// <summary>
+    /// Performs a boolean operation between two sets of closed polylines.
+    /// </summary>
+    /// <remarks>
+    /// Cavalier Contours only provides a boolean between two simple closed loops, so sets are
+    /// resolved pairwise. Solid loops (counter-clockwise) and hole loops (clockwise) are tracked
+    /// separately; holes are never fed back in as solids. Loops that the pairwise primitive cannot
+    /// merge into a single solid are kept side by side: the covered area is still correct, the
+    /// result is just not welded into one loop.
+    /// </remarks>
+    public static List<Polyline<double>> BooleanPlines(BooleanOp operation, List<Polyline<double>> plinesA, List<Polyline<double>> plinesB)
+    {
+        ArgumentNullException.ThrowIfNull(plinesA);
+        ArgumentNullException.ThrowIfNull(plinesB);
+
+        var boolOpts = new PlineBooleanOptions<double>();
+
+        // Merges overlapping solids until no further merge reduces the solid count.
+        // The solid count is strictly decreasing per accepted merge, which guarantees termination.
+        (List<Polyline<double>> Solids, List<Polyline<double>> Holes) UnionAll(List<Polyline<double>> inputPlines)
+        {
+            var solids = inputPlines.Where(IsUsableLoop).ToList();
+            var holes = new List<Polyline<double>>();
+
+            bool changed = true;
+            while (changed)
+            {
+                changed = false;
+
+                for (int i = 0; i < solids.Count && !changed; i++)
+                {
+                    for (int j = i + 1; j < solids.Count; j++)
+                    {
+                        var res = PlineBoolean.PolylineBoolean<Polyline<double>, double>(solids[i], solids[j], BooleanOp.Or, boolOpts);
+
+                        if (res.ResultInfo == BooleanResultInfo.Disjoint || res.ResultInfo == BooleanResultInfo.InvalidInput)
+                            continue;
+
+                        var pos = res.PosPlines.Select(p => p.Pline).Where(IsUsableLoop).ToList();
+                        var neg = res.NegPlines.Select(p => p.Pline).Where(IsUsableLoop).ToList();
+
+                        // Accept only when the two solids collapse into at most one solid.
+                        // Anything else would leave the solid count unchanged and could loop forever.
+                        if (pos.Count > 1)
+                            continue;
+
+                        solids.RemoveAt(j);
+                        solids.RemoveAt(i);
+                        solids.AddRange(pos);
+                        holes.AddRange(neg);
+                        changed = true;
+                        break;
+                    }
+                }
+            }
+
+            return (solids, holes);
+        }
+
+        // Subtracts every clip from every subject. Holes produced along the way are collected and
+        // never used as subjects again, otherwise they would be clipped like solid material.
+        (List<Polyline<double>> Solids, List<Polyline<double>> Holes) DifferenceAll(List<Polyline<double>> subjects, List<Polyline<double>> clips)
+        {
+            var currentSubjects = subjects.Where(IsUsableLoop).ToList();
+            var holes = new List<Polyline<double>>();
+
+            foreach (var clip in clips)
+            {
+                var nextSubjects = new List<Polyline<double>>();
+
+                foreach (var subject in currentSubjects)
+                {
+                    var res = PlineBoolean.PolylineBoolean<Polyline<double>, double>(subject, clip, BooleanOp.Not, boolOpts);
+
+                    if (res.ResultInfo == BooleanResultInfo.Disjoint || res.ResultInfo == BooleanResultInfo.InvalidInput)
+                    {
+                        nextSubjects.Add(subject);
+                        continue;
+                    }
+
+                    nextSubjects.AddRange(res.PosPlines.Select(p => p.Pline).Where(IsUsableLoop));
+                    holes.AddRange(res.NegPlines.Select(p => p.Pline).Where(IsUsableLoop));
+                }
+
+                currentSubjects = nextSubjects;
+            }
+
+            return (currentSubjects, holes);
+        }
+
+        var solidLoops = new List<Polyline<double>>();
+        var holeLoops = new List<Polyline<double>>();
+
+        switch (operation)
+        {
+            case BooleanOp.Or:
+                {
+                    var (solids, holes) = UnionAll(plinesA.Concat(plinesB).ToList());
+                    solidLoops.AddRange(solids);
+                    holeLoops.AddRange(holes);
+                    break;
+                }
+
+            case BooleanOp.Not:
+                {
+                    if (plinesB.Count == 0)
+                    {
+                        solidLoops.AddRange(plinesA.Where(IsUsableLoop));
+                        break;
+                    }
+
+                    var (solids, holes) = DifferenceAll(plinesA, plinesB);
+                    solidLoops.AddRange(solids);
+                    holeLoops.AddRange(holes);
+                    break;
+                }
+
+            case BooleanOp.And:
+                {
+                    // (A1 u A2 u ...) n (B1 u B2 u ...) == union of all pairwise intersections.
+                    // The pairwise pass comes first so that no input is lost to a pre-union that the
+                    // pairwise primitive cannot express; overlapping results are welded afterwards.
+                    var overlaps = new List<Polyline<double>>();
+
+                    foreach (var a in plinesA)
+                    {
+                        foreach (var b in plinesB)
+                        {
+                            var res = PlineBoolean.PolylineBoolean<Polyline<double>, double>(a, b, BooleanOp.And, boolOpts);
+                            overlaps.AddRange(res.PosPlines.Select(p => p.Pline).Where(IsUsableLoop));
+                            holeLoops.AddRange(res.NegPlines.Select(p => p.Pline).Where(IsUsableLoop));
+                        }
+                    }
+
+                    var (weldedSolids, weldedHoles) = UnionAll(overlaps);
+                    solidLoops.AddRange(weldedSolids);
+                    holeLoops.AddRange(weldedHoles);
+                    break;
+                }
+
+            case BooleanOp.Xor:
+                {
+                    var (solidsAb, holesAb) = DifferenceAll(plinesA, plinesB);
+                    var (solidsBa, holesBa) = DifferenceAll(plinesB, plinesA);
+                    solidLoops.AddRange(solidsAb);
+                    solidLoops.AddRange(solidsBa);
+                    holeLoops.AddRange(holesAb);
+                    holeLoops.AddRange(holesBa);
+                    break;
+                }
+        }
+
+        var output = new List<Polyline<double>>(solidLoops.Count + holeLoops.Count);
+        output.AddRange(solidLoops.Select(p => AsOrientedLoop(p, isSolid: true)));
+        output.AddRange(holeLoops.Select(p => AsOrientedLoop(p, isSolid: false)));
+
+        return output;
     }
 }
