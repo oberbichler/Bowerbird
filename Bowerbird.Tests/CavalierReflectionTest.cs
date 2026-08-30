@@ -453,6 +453,96 @@ public class BBCavalierTests
     }
 
     [Fact]
+    public void TestMultiCurveDifferenceTwoHoles()
+    {
+        // Solid square: [-20, 20] x [-20, 20]
+        var solid = new Polyline<double>();
+        solid.SetIsClosed(true);
+        solid.AddVertex(new PlineVertex<double>(-20.0, -20.0, 0.0));
+        solid.AddVertex(new PlineVertex<double>(20.0, -20.0, 0.0));
+        solid.AddVertex(new PlineVertex<double>(20.0, 20.0, 0.0));
+        solid.AddVertex(new PlineVertex<double>(-20.0, 20.0, 0.0));
+
+        // Hole 1: Circle at (-8, 0) radius 4
+        var hole1 = new Polyline<double>();
+        hole1.SetIsClosed(true);
+        hole1.AddVertex(new PlineVertex<double>(-12.0, 0.0, 1.0));
+        hole1.AddVertex(new PlineVertex<double>(-4.0, 0.0, 1.0));
+
+        // Hole 2: Circle at (8, 0) radius 4
+        var hole2 = new Polyline<double>();
+        hole2.SetIsClosed(true);
+        hole2.AddVertex(new PlineVertex<double>(4.0, 0.0, 1.0));
+        hole2.AddVertex(new PlineVertex<double>(12.0, 0.0, 1.0));
+
+        var booleanOpts = new PlineBooleanOptions<double>();
+
+        // Step 1: solid minus hole1 -> 1 pos (outer boundary), 1 neg (hole1)
+        var res1 = PlineBoolean.PolylineBoolean<Polyline<double>, double>(solid, hole1, BooleanOp.Not, booleanOpts);
+        Assert.Single(res1.PosPlines);
+        Assert.Single(res1.NegPlines);
+
+        // Step 2: solid minus hole2 -> 1 pos, 1 neg (hole2)
+        var res2 = PlineBoolean.PolylineBoolean<Polyline<double>, double>(solid, hole2, BooleanOp.Not, booleanOpts);
+        Assert.Single(res2.PosPlines);
+        Assert.Single(res2.NegPlines);
+    }
+
+    [Fact]
+    public void TestMultiCurveUnionFormingHole()
+    {
+        // 4 overlapping bars forming a square frame with a center hole
+        // Bottom bar: [-10, 10] x [-10, -5]
+        var b1 = new Polyline<double>();
+        b1.SetIsClosed(true);
+        b1.AddVertex(new PlineVertex<double>(-10.0, -10.0, 0.0));
+        b1.AddVertex(new PlineVertex<double>(10.0, -10.0, 0.0));
+        b1.AddVertex(new PlineVertex<double>(10.0, -5.0, 0.0));
+        b1.AddVertex(new PlineVertex<double>(-10.0, -5.0, 0.0));
+
+        // Top bar: [-10, 10] x [5, 10]
+        var b2 = new Polyline<double>();
+        b2.SetIsClosed(true);
+        b2.AddVertex(new PlineVertex<double>(-10.0, 5.0, 0.0));
+        b2.AddVertex(new PlineVertex<double>(10.0, 5.0, 0.0));
+        b2.AddVertex(new PlineVertex<double>(10.0, 10.0, 0.0));
+        b2.AddVertex(new PlineVertex<double>(-10.0, 10.0, 0.0));
+
+        // Left bar: [-10, -5] x [-10, 10]
+        var b3 = new Polyline<double>();
+        b3.SetIsClosed(true);
+        b3.AddVertex(new PlineVertex<double>(-10.0, -10.0, 0.0));
+        b3.AddVertex(new PlineVertex<double>(-5.0, -10.0, 0.0));
+        b3.AddVertex(new PlineVertex<double>(-5.0, 10.0, 0.0));
+        b3.AddVertex(new PlineVertex<double>(-10.0, 10.0, 0.0));
+
+        // Right bar: [5, 10] x [-10, 10]
+        var b4 = new Polyline<double>();
+        b4.SetIsClosed(true);
+        b4.AddVertex(new PlineVertex<double>(5.0, -10.0, 0.0));
+        b4.AddVertex(new PlineVertex<double>(10.0, -10.0, 0.0));
+        b4.AddVertex(new PlineVertex<double>(10.0, 10.0, 0.0));
+        b4.AddVertex(new PlineVertex<double>(5.0, 10.0, 0.0));
+
+        var booleanOpts = new PlineBooleanOptions<double>();
+
+        // Union b1 and b3 (L-shape)
+        var u1 = PlineBoolean.PolylineBoolean<Polyline<double>, double>(b1, b3, BooleanOp.Or, booleanOpts);
+        Assert.Single(u1.PosPlines);
+        Assert.Empty(u1.NegPlines);
+
+        // Union (b1+b3) and b2 (U-shape)
+        var u2 = PlineBoolean.PolylineBoolean<Polyline<double>, double>(u1.PosPlines[0].Pline, b2, BooleanOp.Or, booleanOpts);
+        Assert.Single(u2.PosPlines);
+        Assert.Empty(u2.NegPlines);
+
+        // Union (b1+b3+b2) and b4 (Closed frame with central hole)
+        var u3 = PlineBoolean.PolylineBoolean<Polyline<double>, double>(u2.PosPlines[0].Pline, b4, BooleanOp.Or, booleanOpts);
+        Assert.Single(u3.PosPlines); // Outer boundary [-10, 10]
+        Assert.Single(u3.NegPlines); // Inner hole [-5, 5]
+    }
+
+    [Fact]
     public void TestBBCavalierBooleanMethod()
     {
         // Test with null curvesA throws ArgumentNullException

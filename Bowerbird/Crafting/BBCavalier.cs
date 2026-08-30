@@ -270,10 +270,13 @@ public static class BBCavalier
     {
         ArgumentNullException.ThrowIfNull(curves);
 
-        var refPlane = plane ?? Plane.WorldXY;
+        var validCurves = curves.Where(c => c is not null).ToList();
+        if (validCurves.Count == 0)
+            return new List<Curve>();
+
+        var refPlane = GetPlane(validCurves, plane);
         var results = new List<Curve>();
 
-        var validCurves = curves.Where(c => c is not null).ToList();
         var openCurves = new List<Curve>();
         var closedCurves = new List<Curve>();
 
@@ -386,92 +389,108 @@ public static class BBCavalier
         var plinesA = listA.Select(c => ToPolyline(c, refPlane, tolerance)).ToList();
         var plinesB = listB.Select(c => ToPolyline(c, refPlane, tolerance)).ToList();
 
-        List<Polyline<double>> UnionAll(List<Polyline<double>> inputPlines)
+        // Helper to perform multi-curve union on a list of polylines
+        (List<Polyline<double>> Pos, List<Polyline<double>> Neg) UnionAll(List<Polyline<double>> inputPlines)
         {
-            if (inputPlines.Count == 0) return new List<Polyline<double>>();
-            var acc = new List<Polyline<double>> { inputPlines[0] };
+            if (inputPlines.Count == 0)
+                return (new List<Polyline<double>>(), new List<Polyline<double>>());
+
+            var posList = new List<Polyline<double>> { inputPlines[0] };
+            var negList = new List<Polyline<double>>();
 
             for (int i = 1; i < inputPlines.Count; i++)
             {
-                var next = inputPlines[i];
-                var nextAcc = new List<Polyline<double>>();
-                var subject = next;
+                var subject = inputPlines[i];
+                var nextPos = new List<Polyline<double>>();
+                bool merged = false;
 
-                for (int j = 0; j < acc.Count; j++)
+                for (int j = 0; j < posList.Count; j++)
                 {
-                    var target = acc[j];
-                    if (subject == null)
+                    var target = posList[j];
+                    if (!merged)
                     {
-                        nextAcc.Add(target);
-                        continue;
+                        var res = PlineBoolean.PolylineBoolean<Polyline<double>, double>(target, subject, BooleanOp.Or, boolOpts);
+                        if (res.PosPlines.Count > 0 && res.ResultInfo != BooleanResultInfo.Disjoint && res.ResultInfo != BooleanResultInfo.InvalidInput)
+                        {
+                            // Merge occurred
+                            foreach (var p in res.PosPlines)
+                                nextPos.Add(p.Pline);
+                            foreach (var n in res.NegPlines)
+                                negList.Add(n.Pline);
+                            merged = true;
+                            continue;
+                        }
                     }
-
-                    var res = PlineBoolean.PolylineBoolean<Polyline<double>, double>(target, subject, BooleanOp.Or, boolOpts);
-                    if (res.PosPlines.Count == 1 && res.NegPlines.Count == 0)
-                    {
-                        subject = res.PosPlines[0].Pline;
-                    }
-                    else
-                    {
-                        nextAcc.Add(target);
-                    }
+                    nextPos.Add(target);
                 }
 
-                if (subject != null)
+                if (!merged)
                 {
-                    nextAcc.Add(subject);
+                    nextPos.Add(subject);
                 }
 
-                acc = nextAcc;
+                posList = nextPos;
             }
 
-            return acc;
+            return (posList, negList);
         }
 
-        List<Polyline<double>> DifferenceAll(List<Polyline<double>> subjects, List<Polyline<double>> clips)
+        // Helper to perform multi-curve difference: subjects minus clips
+        (List<Polyline<double>> Pos, List<Polyline<double>> Neg) DifferenceAll(List<Polyline<double>> subjects, List<Polyline<double>> clips)
         {
             var currentSubjects = subjects;
+            var accumulatedHoles = new List<Polyline<double>>();
+
             foreach (var clip in clips)
             {
                 var nextSubjects = new List<Polyline<double>>();
                 foreach (var subj in currentSubjects)
                 {
                     var res = PlineBoolean.PolylineBoolean<Polyline<double>, double>(subj, clip, BooleanOp.Not, boolOpts);
-                    foreach (var p in res.PosPlines) nextSubjects.Add(p.Pline);
-                    foreach (var n in res.NegPlines) nextSubjects.Add(n.Pline);
+                    foreach (var p in res.PosPlines)
+                        nextSubjects.Add(p.Pline);
+                    foreach (var n in res.NegPlines)
+                        accumulatedHoles.Add(n.Pline);
                 }
                 currentSubjects = nextSubjects;
             }
-            return currentSubjects;
+
+            return (currentSubjects, accumulatedHoles);
         }
 
         var results = new List<Curve>();
-        var unionA = UnionAll(plinesA);
-        var unionB = UnionAll(plinesB);
+        var (unionAPos, unionANeg) = UnionAll(plinesA);
+        var (unionBPos, unionBNeg) = UnionAll(plinesB);
 
-        List<Polyline<double>> outputPlines = new();
+        var outputPlines = new List<Polyline<double>>();
 
         switch (operation)
         {
             case BooleanOp.Or:
-                outputPlines = UnionAll(plinesA.Concat(plinesB).ToList());
+                var (mergedPos, mergedNeg) = UnionAll(plinesA.Concat(plinesB).ToList());
+                outputPlines.AddRange(mergedPos);
+                outputPlines.AddRange(mergedNeg);
                 break;
 
             case BooleanOp.Not:
-                if (unionB.Count == 0)
+                if (unionBPos.Count == 0)
                 {
-                    outputPlines = unionA;
+                    outputPlines.AddRange(unionAPos);
+                    outputPlines.AddRange(unionANeg);
                 }
                 else
                 {
-                    outputPlines = DifferenceAll(unionA, unionB);
+                    var (diffPos, diffNeg) = DifferenceAll(unionAPos, unionBPos);
+                    outputPlines.AddRange(diffPos);
+                    outputPlines.AddRange(diffNeg);
+                    outputPlines.AddRange(unionANeg);
                 }
                 break;
 
             case BooleanOp.And:
-                foreach (var a in unionA)
+                foreach (var a in unionAPos)
                 {
-                    foreach (var b in unionB)
+                    foreach (var b in unionBPos)
                     {
                         var res = PlineBoolean.PolylineBoolean<Polyline<double>, double>(a, b, BooleanOp.And, boolOpts);
                         foreach (var p in res.PosPlines) outputPlines.Add(p.Pline);
@@ -481,9 +500,12 @@ public static class BBCavalier
                 break;
 
             case BooleanOp.Xor:
-                var diffAB = DifferenceAll(unionA, unionB);
-                var diffBA = DifferenceAll(unionB, unionA);
-                outputPlines = diffAB.Concat(diffBA).ToList();
+                var (diffABPos, diffABNeg) = DifferenceAll(unionAPos, unionBPos);
+                var (diffBAPos, diffBANeg) = DifferenceAll(unionBPos, unionAPos);
+                outputPlines.AddRange(diffABPos);
+                outputPlines.AddRange(diffABNeg);
+                outputPlines.AddRange(diffBAPos);
+                outputPlines.AddRange(diffBANeg);
                 break;
         }
 
