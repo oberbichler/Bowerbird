@@ -46,11 +46,12 @@ public class BBCavalierBooleanComponent : GH_Component
         pManager.AddCurveParameter("Curves A", "A", "First set of planar closed curves", GH_ParamAccess.list);
         pManager.AddCurveParameter("Curves B", "B", "Second set of planar closed curves", GH_ParamAccess.list);
         
-        var opIndex = pManager.AddIntegerParameter("Operation", "O", "Boolean operation: 0 = Union (Or), 1 = Intersection (And), 2 = Difference (Not), 3 = Xor", GH_ParamAccess.item, 0);
+        var opIndex = pManager.AddIntegerParameter("Operation", "O", "Boolean operation: 0 = Union (Or), 1 = Intersection (And), 2 = Difference (Not), 3 = Xor", GH_ParamAccess.item);
         pManager.AddPlaneParameter("Plane", "P", "Projection plane (optional, auto-detected if not specified)", GH_ParamAccess.item);
         pManager.AddNumberParameter("Tolerance", "T", "Simplification/flattening tolerance", GH_ParamAccess.item, 0.01);
 
         pManager[1].Optional = true;
+        pManager[opIndex].Optional = true;
         pManager[3].Optional = true;
 
         pManager[opIndex].AddNamedValues<BooleanOp>();
@@ -95,9 +96,10 @@ public class BBCavalierBooleanComponent : GH_Component
         if (!DA.GetDataList(0, curvesA)) return;
         DA.GetDataList(1, curvesB);
 
+        var operation = Operation;
         if (DA.GetData(2, ref opInt))
         {
-            Operation = (BooleanOp)opInt;
+            operation = (BooleanOp)opInt;
         }
 
         Plane? plane = null;
@@ -110,7 +112,7 @@ public class BBCavalierBooleanComponent : GH_Component
 
         try
         {
-            var result = BBCavalier.Boolean(Operation, curvesA, curvesB, plane, tolerance);
+            var result = BBCavalier.Boolean(operation, curvesA, curvesB, plane, tolerance);
             DA.SetDataList(0, result);
         }
         catch (Exception ex)
