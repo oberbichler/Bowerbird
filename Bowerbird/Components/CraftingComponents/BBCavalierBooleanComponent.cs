@@ -29,43 +29,23 @@ public class BBCavalierBooleanComponent : GH_Component
         }
     }
 
-    private void UpdateMessage()
-    {
-        Message = Operation switch
-        {
-            BooleanOp.Or => "Union (Or)",
-            BooleanOp.And => "Intersection (And)",
-            BooleanOp.Not => "Difference (Not)",
-            BooleanOp.Xor => "Xor",
-            _ => Operation.ToString()
-        };
-    }
+    // Or, And, Not and Xor are exactly the captions wanted, so no mapping table can drift here.
+    private void UpdateMessage() => Message = Operation.ToString().ToUpperInvariant();
 
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
         pManager.AddCurveParameter("Curves A", "A", "First set of planar closed curves", GH_ParamAccess.list);
         pManager.AddCurveParameter("Curves B", "B", "Second set of planar closed curves", GH_ParamAccess.list);
-        
-        var opIndex = pManager.AddIntegerParameter("Operation", "O", "Boolean operation: 0 = Union (Or), 1 = Intersection (And), 2 = Difference (Not), 3 = Xor", GH_ParamAccess.item);
         pManager.AddPlaneParameter("Plane", "P", "Projection plane (optional, auto-detected if not specified)", GH_ParamAccess.item);
         pManager.AddNumberParameter("Tolerance", "T", "Simplification/flattening tolerance", GH_ParamAccess.item, 0.01);
 
         pManager[1].Optional = true;
-        pManager[opIndex].Optional = true;
-        pManager[3].Optional = true;
-
-        pManager[opIndex].AddNamedValues<BooleanOp>();
+        pManager[2].Optional = true;
     }
 
     protected override void RegisterOutputParams(GH_OutputParamManager pManager)
     {
         pManager.AddCurveParameter("Curves", "C", "Resulting boolean curves", GH_ParamAccess.list);
-    }
-
-    public override void AddedToDocument(GH_Document document)
-    {
-        base.AddedToDocument(document);
-        Params.Input[2].SetInputValueList<BooleanOp>();
     }
 
     protected override void AppendAdditionalComponentMenuItems(ToolStripDropDown menu)
@@ -89,30 +69,23 @@ public class BBCavalierBooleanComponent : GH_Component
     {
         var curvesA = new List<Curve>();
         var curvesB = new List<Curve>();
-        var opInt = default(int);
         var planeInput = default(Plane);
         var tolerance = default(double);
 
         if (!DA.GetDataList(0, curvesA)) return;
         DA.GetDataList(1, curvesB);
 
-        var operation = Operation;
-        if (DA.GetData(2, ref opInt))
-        {
-            operation = (BooleanOp)opInt;
-        }
-
         Plane? plane = null;
-        if (DA.GetData(3, ref planeInput))
+        if (DA.GetData(2, ref planeInput))
         {
             plane = planeInput;
         }
 
-        if (!DA.GetData(4, ref tolerance)) return;
+        if (!DA.GetData(3, ref tolerance)) return;
 
         try
         {
-            var result = BBCavalier.Boolean(operation, curvesA, curvesB, plane, tolerance);
+            var result = BBCavalier.Boolean(Operation, curvesA, curvesB, plane, tolerance);
             DA.SetDataList(0, result);
         }
         catch (Exception ex)
@@ -121,7 +94,7 @@ public class BBCavalierBooleanComponent : GH_Component
         }
     }
 
-    protected override System.Drawing.Bitmap? Icon => Bowerbird.Properties.Resources.icon_boolean;
+    protected override System.Drawing.Bitmap? Icon => Bowerbird.Properties.Resources.icon_cavalier_boolean;
 
     public override GH_Exposure Exposure => GH_Exposure.primary;
 
