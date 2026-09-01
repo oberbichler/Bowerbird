@@ -23,6 +23,7 @@
     <!-- Shared source file, keine Grasshopper-Abhaengigkeit -->
     <Compile Include="..\Bowerbird\Migration\LegacyEnumMapping.cs" Link="LegacyEnumMapping.cs" />
     <Compile Include="..\Bowerbird\Crafting\BBCavalier.cs" Link="BBCavalier.cs" />
+    <Compile Include="..\Bowerbird\Crafting\BBPolyline.cs" Link="BBPolyline.cs" />
   </ItemGroup>
 
 </Project>

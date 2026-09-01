@@ -106,15 +106,26 @@ public class BBBooleanComponent : GH_Component
     {
         var curvesA = new List<Curve>();
         var curvesB = new List<Curve>();
-        var plane = default(Plane?);
+        var planeInput = default(Plane);
 
         DA.GetDataList(0, curvesA);
         DA.GetDataList(1, curvesB);
-        DA.GetData(2, ref plane);
 
-        var result = BBPolyline.Boolean(Operation, FillRule, curvesA, curvesB, plane);
+        Plane? plane = null;
+        if (DA.GetData(2, ref planeInput))
+        {
+            plane = planeInput;
+        }
 
-        DA.SetDataList(0, result);
+        try
+        {
+            var result = BBPolyline.Boolean(Operation, FillRule, curvesA, curvesB, plane);
+            DA.SetDataList(0, result);
+        }
+        catch (Exception ex)
+        {
+            AddRuntimeMessage(GH_RuntimeMessageLevel.Error, ex.Message);
+        }
     }
 
     protected override System.Drawing.Bitmap? Icon => Bowerbird.Properties.Resources.icon_boolean;

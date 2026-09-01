@@ -68,14 +68,25 @@ public class BBUnionComponent : GH_Component
     protected override void SolveInstance(IGH_DataAccess DA)
     {
         var curves = new List<Curve>();
-        var plane = default(Plane?);
+        var planeInput = default(Plane);
 
         if (!DA.GetDataList(0, curves)) return;
-        DA.GetData(1, ref plane);
 
-        var result = BBPolyline.Boolean(ClipType.Union, FillRule, curves, Array.Empty<Curve>(), plane);
+        Plane? plane = null;
+        if (DA.GetData(1, ref planeInput))
+        {
+            plane = planeInput;
+        }
 
-        DA.SetDataList(0, result);
+        try
+        {
+            var result = BBPolyline.Boolean(ClipType.Union, FillRule, curves, Array.Empty<Curve>(), plane);
+            DA.SetDataList(0, result);
+        }
+        catch (Exception ex)
+        {
+            AddRuntimeMessage(GH_RuntimeMessageLevel.Error, ex.Message);
+        }
     }
 
     protected override System.Drawing.Bitmap? Icon => Bowerbird.Properties.Resources.icon_union;

@@ -51,7 +51,7 @@ public class BBOffsetComponent : GH_Component
     {
         var curves = new List<Curve>();
         var distance = default(double);
-        var plane = default(Plane?);
+        var planeInput = default(Plane);
         var endTypeInt = default(int);
         var joinTypeInt = default(int);
         var miter = default(double);
@@ -59,7 +59,13 @@ public class BBOffsetComponent : GH_Component
 
         if (!DA.GetDataList(0, curves)) return;
         if (!DA.GetData(1, ref distance)) return;
-        DA.GetData(2, ref plane);
+
+        Plane? plane = null;
+        if (DA.GetData(2, ref planeInput))
+        {
+            plane = planeInput;
+        }
+
         if (!DA.GetData(3, ref endTypeInt)) return;
         if (!DA.GetData(4, ref joinTypeInt)) return;
         if (!DA.GetData(5, ref miter)) return;
@@ -68,9 +74,15 @@ public class BBOffsetComponent : GH_Component
         var endType = (EndType)endTypeInt;
         var joinType = (JoinType)joinTypeInt;
 
-        var result = BBPolyline.Offset(curves, distance, joinType, endType, miter, arcTolerance, plane);
-
-        DA.SetDataList(0, result);
+        try
+        {
+            var result = BBPolyline.Offset(curves, distance, joinType, endType, miter, arcTolerance, plane);
+            DA.SetDataList(0, result);
+        }
+        catch (Exception ex)
+        {
+            AddRuntimeMessage(GH_RuntimeMessageLevel.Error, ex.Message);
+        }
     }
 
     protected override System.Drawing.Bitmap? Icon => Bowerbird.Properties.Resources.icon_offset;
