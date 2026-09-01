@@ -60,16 +60,44 @@ public static class BBPolyline
         var curveList = curves as IList<Curve> ?? curves.ToList();
         plane = GetPlane(curveList, plane);
 
-        var paths = new PathsD();
+        var closedPaths = new PathsD();
+        var openPaths = new PathsD();
+
         foreach (var curve in curveList)
         {
-            var path = ToPathD(curve, plane.Value);
-            if (path != null && path.Count > 0)
-                paths.Add(path);
+            var path = ToPathD(curve, plane.Value, arcTolerance > 0 ? arcTolerance : 0.01);
+            if (path == null || path.Count == 0)
+                continue;
+
+            if (curve.IsClosed)
+                closedPaths.Add(path);
+            else
+                openPaths.Add(path);
         }
 
-        // Use Clipper2's native static InflatePaths method for double precision paths
-        var solution = Clipper.InflatePaths(paths, distance, joinType, endType, miter, 3);
+        const int precision = 3;
+        double scale = Math.Pow(10, precision);
+        var offset = new ClipperOffset(miter, arcTolerance * scale);
+
+        var effectiveClosedEndType = (endType == EndType.Joined) ? EndType.Joined : EndType.Polygon;
+        var effectiveOpenEndType = (endType == EndType.Polygon || endType == EndType.Joined) ? EndType.Round : endType;
+
+        if (closedPaths.Count > 0)
+        {
+            var scaledClosed = Clipper.ScalePaths64(closedPaths, scale);
+            offset.AddPaths(scaledClosed, joinType, effectiveClosedEndType);
+        }
+
+        if (openPaths.Count > 0)
+        {
+            var scaledOpen = Clipper.ScalePaths64(openPaths, scale);
+            offset.AddPaths(scaledOpen, joinType, effectiveOpenEndType);
+        }
+
+        var solution64 = new Paths64();
+        offset.Execute(distance * scale, solution64);
+
+        var solution = Clipper.ScalePathsD(solution64, 1.0 / scale);
         return ToCurves(solution, plane.Value);
     }
 
@@ -87,15 +115,25 @@ public static class BBPolyline
         return Plane.WorldXY;
     }
 
-    public static PathD? ToPathD(Curve curve, Plane plane)
+    public static PathD? ToPathD(Curve curve, Plane plane, double tolerance = 0.01)
     {
-        if (!curve.TryGetPolyline(out var polyline))
-            return null;
+        Polyline polyline;
+        if (!curve.TryGetPolyline(out polyline))
+        {
+            var polylineCurve = curve.ToPolyline(tolerance, 0, 0, 0);
+            if (polylineCurve == null || !polylineCurve.TryGetPolyline(out polyline))
+                return null;
+        }
 
         var points = new List<Point3d>(polyline);
 
         if (curve.IsClosed)
         {
+            if (points.Count > 1 && points[0].DistanceTo(points[points.Count - 1]) < 1e-9)
+            {
+                points.RemoveAt(points.Count - 1);
+            }
+
             if (curve.ClosedCurveOrientation(plane.ZAxis) == CurveOrientation.Clockwise)
             {
                 points.Reverse();
@@ -114,12 +152,12 @@ public static class BBPolyline
         return path;
     }
 
-    public static PathsD ToPathsD(IEnumerable<Curve> curves, Plane plane)
+    public static PathsD ToPathsD(IEnumerable<Curve> curves, Plane plane, double tolerance = 0.01)
     {
         var paths = new PathsD();
         foreach (var curve in curves)
         {
-            var path = ToPathD(curve, plane);
+            var path = ToPathD(curve, plane, tolerance);
             if (path != null && path.Count > 0)
                 paths.Add(path);
         }
