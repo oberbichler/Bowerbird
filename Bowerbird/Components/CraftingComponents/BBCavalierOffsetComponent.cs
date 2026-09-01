@@ -1,16 +1,13 @@
 using Bowerbird.Crafting;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Bowerbird.Components.CraftingComponents;
 
 public class BBCavalierOffsetComponent : GH_Component
 {
     public BBCavalierOffsetComponent()
-        : base("BB Cavalier Contours", "BBCavalier", "Offset lines and arcs, keeping arcs as arcs, using Cavalier Contours. Closed curves are offset together with their nesting detected automatically, so an inner loop acts as a hole; open curves are offset individually" + Util.InfoString, "Bowerbird", "Polyline")
+        : base("BB Cavalier Contours Offset", "BBCavalierOffset", "Offset lines and arcs, keeping arcs as arcs, using Cavalier Contours. Closed curves are offset together with their nesting detected automatically, so an inner loop acts as a hole; open curves are offset individually" + Util.InfoString, "Bowerbird", "Polyline")
     {
     }
 
@@ -71,9 +68,9 @@ public class BBCavalierOffsetComponent : GH_Component
         }
     }
 
-    protected override System.Drawing.Bitmap? Icon => Bowerbird.Properties.Resources.icon_cavalier_offset;
+    protected override System.Drawing.Bitmap? Icon => Properties.Resources.icon_cavalier_offset;
 
-    public override GH_Exposure Exposure => GH_Exposure.primary;
+    public override GH_Exposure Exposure => GH_Exposure.tertiary;
 
-    public override Guid ComponentGuid => new ("{7D391A2E-2A4B-4D1D-9B8A-EC9D5D38A201}");
+    public override Guid ComponentGuid { get; } = new("{7D391A2E-2A4B-4D1D-9B8A-EC9D5D38A201}");
 }

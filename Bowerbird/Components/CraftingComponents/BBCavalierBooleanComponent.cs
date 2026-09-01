@@ -3,8 +3,6 @@ using CavalierContours.Polyline;
 using GH_IO.Serialization;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
-using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Bowerbird.Components.CraftingComponents;
@@ -12,7 +10,7 @@ namespace Bowerbird.Components.CraftingComponents;
 public class BBCavalierBooleanComponent : GH_Component
 {
     public BBCavalierBooleanComponent()
-        : base("BB Cavalier Boolean", "BBCavalierBoolean", "Perform high-precision 2D boolean operations preserving circular arcs using Cavalier Contours" + Util.InfoString, "Bowerbird", "Polyline")
+        : base("BB Cavalier Contours Boolean", "BBCavalierBoolean", "Perform high-precision 2D boolean operations preserving circular arcs using Cavalier Contours" + Util.InfoString, "Bowerbird", "Polyline")
     {
         UpdateMessage();
     }
@@ -29,7 +27,6 @@ public class BBCavalierBooleanComponent : GH_Component
         }
     }
 
-    // Or, And, Not and Xor are exactly the captions wanted, so no mapping table can drift here.
     private void UpdateMessage() => Message = Operation.ToString().ToUpperInvariant();
 
     protected override void RegisterInputParams(GH_InputParamManager pManager)
@@ -94,9 +91,9 @@ public class BBCavalierBooleanComponent : GH_Component
         }
     }
 
-    protected override System.Drawing.Bitmap? Icon => Bowerbird.Properties.Resources.icon_cavalier_boolean;
+    protected override System.Drawing.Bitmap? Icon => Properties.Resources.icon_cavalier_boolean;
 
-    public override GH_Exposure Exposure => GH_Exposure.primary;
+    public override GH_Exposure Exposure => GH_Exposure.tertiary;
 
-    public override Guid ComponentGuid => new ("{4F14E363-2287-4CE3-B974-C567FDC7B4F9}");
+    public override Guid ComponentGuid { get; } = new("{4F14E363-2287-4CE3-B974-C567FDC7B4F9}");
 }
