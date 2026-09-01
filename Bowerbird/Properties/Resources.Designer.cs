@@ -127,6 +127,26 @@ namespace Bowerbird.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_cavalier_boolean {
+            get {
+                object obj = ResourceManager.GetObject("icon_cavalier_boolean", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_cavalier_offset {
+            get {
+                object obj = ResourceManager.GetObject("icon_cavalier_offset", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.

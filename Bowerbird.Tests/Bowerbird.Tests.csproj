@@ -6,6 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
+    <NoWarn>$(NoWarn);NU1701</NoWarn>
+    <ShouldRemoveRhinoReferences>false</ShouldRemoveRhinoReferences>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,11 +15,14 @@
     <PackageReference Include="xunit" Version="2.*" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.*" />
     <PackageReference Include="Clipper2" Version="1.3.0" />
+    <PackageReference Include="CavalierContours" Version="2.0.0" />
+    <PackageReference Include="RhinoCommon" Version="8.0.23304.9001" />
   </ItemGroup>
 
   <ItemGroup>
     <!-- Shared source file, keine Grasshopper-Abhaengigkeit -->
     <Compile Include="..\Bowerbird\Migration\LegacyEnumMapping.cs" Link="LegacyEnumMapping.cs" />
+    <Compile Include="..\Bowerbird\Crafting\BBCavalier.cs" Link="BBCavalier.cs" />
   </ItemGroup>
 
 </Project>
