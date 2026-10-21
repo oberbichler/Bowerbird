@@ -74,7 +74,10 @@ public class ConstructCurveOnSurfaceComponent : GH_Component
 
         if (surface == null || curve == null) return;
 
-        surface = (Surface)surface.Duplicate();
+        // BrepFace.Duplicate() returns null, so extract the face's surface explicitly
+        surface = surface is BrepFace face ? face.DuplicateSurface() : (Surface)surface.Duplicate();
+
+        if (surface == null) return;
         var parameterCurve = curve;
 
         if (Space == SpaceTypes.XYZ)
