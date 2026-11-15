@@ -1,6 +1,6 @@
 using Bowerbird.Crafting;
 using Bowerbird.Components;
-using Clipper2Lib;
+using Bowerbird.Clipper2Lib;
 using GH_IO.Serialization;
 using Grasshopper.Kernel;
 using Rhino.Geometry;

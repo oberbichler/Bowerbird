@@ -1,4 +1,4 @@
-using Clipper2Lib;
+using Bowerbird.Clipper2Lib;
 using Xunit;
 
 namespace Bowerbird.Tests;

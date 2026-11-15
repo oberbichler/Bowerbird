@@ -1,7 +1,7 @@
 using Bowerbird.Crafting;
 using Bowerbird.Components;
 using Bowerbird.Migration;
-using Clipper2Lib;
+using Bowerbird.Clipper2Lib;
 using GH_IO.Serialization;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
@@ -66,7 +66,7 @@ public class BBBooleanComponent : GH_Component
     protected override void AppendAdditionalComponentMenuItems(ToolStripDropDown menu)
     {
         GHUtility.SetMenuList(this, menu, "Change operation", () => Operation, o => Operation = o,
-            o => o != ClipType.None);
+            o => o != ClipType.NoClip);
         GH_DocumentObject.Menu_AppendSeparator(menu);
         GHUtility.SetMenuList(this, menu, "Change fill rule", () => FillRule, o => FillRule = o);
     }
