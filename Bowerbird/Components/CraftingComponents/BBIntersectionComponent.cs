@@ -10,7 +10,7 @@ namespace Bowerbird.Components.CraftingComponents;
 public class BBIntersectionComponent : GH_Component
 {
     public BBIntersectionComponent() 
-        : base("BB Intersection", "BBInt", "Intersection of a set of planar closed polylines" + Util.InfoString, "Bowerbird", "Polyline") 
+        : base("BB Clipper Intersection", "BBClipperInt", "Intersection of two sets of planar closed polylines using Clipper" + Util.InfoString, "Bowerbird", "Polyline") 
     { 
     }
 
@@ -54,7 +54,7 @@ public class BBIntersectionComponent : GH_Component
         }
     }
 
-    protected override System.Drawing.Bitmap? Icon => Bowerbird.Properties.Resources.icon_intersection;
+    protected override System.Drawing.Bitmap? Icon => Bowerbird.Properties.Resources.icon_clipper_and;
 
     public override GH_Exposure Exposure => GH_Exposure.secondary;
 

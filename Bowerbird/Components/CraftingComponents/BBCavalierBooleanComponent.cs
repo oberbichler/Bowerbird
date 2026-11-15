@@ -80,6 +80,8 @@ public class BBCavalierBooleanComponent : GH_Component
 
         if (!DA.GetData(3, ref tolerance)) return;
 
+        this.WarnAboutOpenCurves(curvesA.Concat(curvesB));
+
         try
         {
             var result = BBCavalier.Boolean(Operation, curvesA, curvesB, plane, tolerance);
