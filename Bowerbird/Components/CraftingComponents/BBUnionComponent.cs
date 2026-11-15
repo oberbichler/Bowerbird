@@ -13,7 +13,7 @@ namespace Bowerbird.Components.CraftingComponents;
 public class BBUnionComponent : GH_Component
 {
     public BBUnionComponent() 
-        : base("BB Union", "BBUnion", "Union of a set of planar closed polylines" + Util.InfoString, "Bowerbird", "Polyline")
+        : base("BB Clipper Union", "BBClipperUnion", "Union of a set of planar closed polylines using Clipper" + Util.InfoString, "Bowerbird", "Polyline")
     {
         UpdateMessage();
     }
@@ -89,7 +89,7 @@ public class BBUnionComponent : GH_Component
         }
     }
 
-    protected override System.Drawing.Bitmap? Icon => Bowerbird.Properties.Resources.icon_union;
+    protected override System.Drawing.Bitmap? Icon => Bowerbird.Properties.Resources.icon_clipper_or;
 
     public override GH_Exposure Exposure => GH_Exposure.secondary;
 

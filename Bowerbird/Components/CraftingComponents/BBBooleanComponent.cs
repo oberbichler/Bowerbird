@@ -13,8 +13,8 @@ namespace Bowerbird.Components.CraftingComponents;
 
 public class BBBooleanComponent : GH_Component
 {
-    public BBBooleanComponent() 
-        : base("BB Boolean", "BBBool", "Boolean operation between two sets of planar closed polylines" + Util.InfoString, "Bowerbird", "Polyline")
+    public BBBooleanComponent()
+        : base("BB Clipper Boolean", "BBClipperBool", "Boolean operation between two sets of planar closed polylines using Clipper" + Util.InfoString, "Bowerbird", "Polyline")
     {
         UpdateMessage();
     }
@@ -128,7 +128,7 @@ public class BBBooleanComponent : GH_Component
         }
     }
 
-    protected override System.Drawing.Bitmap? Icon => Bowerbird.Properties.Resources.icon_boolean;
+    protected override System.Drawing.Bitmap? Icon => Bowerbird.Properties.Resources.icon_clipper_boolean;
 
     public override GH_Exposure Exposure => GH_Exposure.primary;
 

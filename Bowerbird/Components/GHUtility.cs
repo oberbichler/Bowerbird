@@ -12,6 +12,21 @@ namespace Bowerbird.Components;
 
 public static class GHUtility
 {
+    /// <summary>
+    /// Boolean operations only work on closed curves and drop open ones. Say so instead of
+    /// silently returning less than the user wired in.
+    /// </summary>
+    public static void WarnAboutOpenCurves(this GH_ActiveObject component, IEnumerable<Rhino.Geometry.Curve?> curves)
+    {
+        var openCount = curves.Count(c => c is not null && !c.IsClosed);
+        if (openCount > 0)
+        {
+            component.AddRuntimeMessage(
+                GH_RuntimeMessageLevel.Warning,
+                $"{openCount} open curve(s) ignored. Boolean operations need closed curves.");
+        }
+    }
+
     public static void SetEnum2D<T>(this IGH_DataAccess DA, int index, IEnumerable<IEnumerable<T>> data)
     {
         var tree = new DataTree<T>();

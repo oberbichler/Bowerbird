@@ -83,11 +83,15 @@ public static class BBCavalier
     {
         ArgumentNullException.ThrowIfNull(curve);
 
-        // 1. Convert freeform curve into a PolyCurve composed strictly of lines and arcs
-        // We use standard tolerances: angle tolerance of 0.1 radians, min length 0.001, max length 0.0
-        var lineArcCurve = curve.ToArcsAndLines(tolerance, 0.1, 0.001, 0.0);
+        // 1. Project onto the plane first. An arc in a plane tilted against `plane` projects to an
+        // ellipse, and the three-point bulge below would wrongly turn it back into a circular arc.
+        var projected = Curve.ProjectToPlane(curve, plane) ?? curve;
 
-        var simplified = lineArcCurve ?? (curve.Duplicate() as Curve);
+        // 2. Convert freeform curve into a PolyCurve composed strictly of lines and arcs
+        // We use standard tolerances: angle tolerance of 0.1 radians, min length 0.001, max length 0.0
+        var lineArcCurve = projected.ToArcsAndLines(tolerance, 0.1, 0.001, 0.0);
+
+        var simplified = lineArcCurve ?? (projected.Duplicate() as Curve);
         if (simplified == null)
             throw new InvalidOperationException("Failed to convert or duplicate curve.");
 

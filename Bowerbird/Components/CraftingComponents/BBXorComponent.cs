@@ -10,7 +10,7 @@ namespace Bowerbird.Components.CraftingComponents;
 public class BBXorComponent : GH_Component
 {
     public BBXorComponent() 
-        : base("BB XOR", "BBXor", "XOR of a set of planar closed polylines" + Util.InfoString, "Bowerbird", "Polyline") 
+        : base("BB Clipper XOR", "BBClipperXor", "XOR of two sets of planar closed polylines using Clipper" + Util.InfoString, "Bowerbird", "Polyline") 
     { 
     }
 
@@ -54,7 +54,7 @@ public class BBXorComponent : GH_Component
         }
     }
 
-    protected override System.Drawing.Bitmap? Icon => Bowerbird.Properties.Resources.icon_xor;
+    protected override System.Drawing.Bitmap? Icon => Bowerbird.Properties.Resources.icon_clipper_xor;
 
     public override GH_Exposure Exposure => GH_Exposure.secondary;
 

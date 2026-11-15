@@ -10,7 +10,7 @@ namespace Bowerbird.Components.CraftingComponents;
 public class BBDifferenceComponent : GH_Component
 {
     public BBDifferenceComponent() 
-        : base("BB Difference", "BBDiff", "Difference of a set of planar closed polylines" + Util.InfoString, "Bowerbird", "Polyline") 
+        : base("BB Clipper Difference", "BBClipperDiff", "Difference of two sets of planar closed polylines using Clipper" + Util.InfoString, "Bowerbird", "Polyline") 
     { 
     }
 
@@ -54,7 +54,7 @@ public class BBDifferenceComponent : GH_Component
         }
     }
 
-    protected override System.Drawing.Bitmap? Icon => Bowerbird.Properties.Resources.icon_difference;
+    protected override System.Drawing.Bitmap? Icon => Bowerbird.Properties.Resources.icon_clipper_not;
 
     public override GH_Exposure Exposure => GH_Exposure.secondary;
 

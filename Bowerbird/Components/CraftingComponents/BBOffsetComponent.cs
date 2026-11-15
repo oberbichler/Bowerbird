@@ -9,9 +9,9 @@ namespace Bowerbird.Components.CraftingComponents;
 
 public class BBOffsetComponent : GH_Component
 {
-    public BBOffsetComponent() 
-        : base("BB Offset", "BBOffset", "Offset a polyline with a specified distance" + Util.InfoString, "Bowerbird", "Polyline") 
-    { 
+    public BBOffsetComponent()
+        : base("BB Clipper Offset", "BBClipperOffset", "Offset a polyline with a specified distance using Clipper" + Util.InfoString, "Bowerbird", "Polyline")
+    {
     }
 
     protected override void RegisterInputParams(GH_InputParamManager pManager)
@@ -19,10 +19,10 @@ public class BBOffsetComponent : GH_Component
         pManager.AddCurveParameter("Curves", "C", "Curves to offset", GH_ParamAccess.list);
         pManager.AddNumberParameter("Distance", "D", "Offset distance", GH_ParamAccess.item);
         pManager.AddPlaneParameter("Plane", "P", "Plane for offset operation", GH_ParamAccess.item);
-        
+
         var eIndex = pManager.AddIntegerParameter("End Type", "E", "End Cap Type (0 = Polygon, 1 = Joined, 2 = Butt, 3 = Square, 4 = Round)", GH_ParamAccess.item, 4); // Default to Round (4)
         var jIndex = pManager.AddIntegerParameter("Join Type", "J", "Corner Join Type (0 = Miter, 1 = Square, 2 = Bevel, 3 = Round)", GH_ParamAccess.item, 3); // Default to Round
-        
+
         pManager.AddNumberParameter("Miter Limit", "M", "Miter Limit", GH_ParamAccess.item, 2.0);
         pManager.AddNumberParameter("Arc Tolerance", "A", "The maximum distance that the flattened path will deviate from the 'true' arc", GH_ParamAccess.item, 0.25);
 
@@ -85,7 +85,7 @@ public class BBOffsetComponent : GH_Component
         }
     }
 
-    protected override System.Drawing.Bitmap? Icon => Bowerbird.Properties.Resources.icon_offset;
+    protected override System.Drawing.Bitmap? Icon => Bowerbird.Properties.Resources.icon_clipper_offset;
 
     public override GH_Exposure Exposure => GH_Exposure.primary;
 
