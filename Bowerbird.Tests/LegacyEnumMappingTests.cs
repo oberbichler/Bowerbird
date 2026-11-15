@@ -1,5 +1,5 @@
 using Bowerbird.Migration;
-using Clipper2Lib;
+using Bowerbird.Clipper2Lib;
 using Xunit;
 
 namespace Bowerbird.Tests;
@@ -44,7 +44,7 @@ public class LegacyEnumMappingTests
     [Fact]
     public void Clipper2_ClipType_IntegerValuesStable()
     {
-        Assert.Equal(0, (int)ClipType.None);
+        Assert.Equal(0, (int)ClipType.NoClip);
         Assert.Equal(1, (int)ClipType.Intersection);
         Assert.Equal(2, (int)ClipType.Union);
         Assert.Equal(3, (int)ClipType.Difference);
