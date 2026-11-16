@@ -18,27 +18,36 @@ public static class BBCavalier
         if (plineList.Count == 0)
             return Shape<double>.Empty();
 
+        var depths = NestingDepths(plineList);
         var orientedPolylines = new List<Polyline<double>>(plineList.Count);
-        var containsOptions = new PlineContainsOptions<double>();
 
-        // Precompute approximate bounding boxes for fast broad-phase filtering
-        var extents = new (double MinX, double MinY, double MaxX, double MaxY)[plineList.Count];
         for (int i = 0; i < plineList.Count; i++)
         {
-            var box = plineList[i].Extents();
-            if (box.HasValue)
-            {
-                extents[i] = (box.Value.MinX, box.Value.MinY, box.Value.MaxX, box.Value.MaxY);
-            }
+            // Island (even depth: 0, 2, ...) -> CounterClockwise, hole (odd depth) -> Clockwise
+            orientedPolylines.Add(AsOrientedLoop(plineList[i], isSolid: depths[i] % 2 == 0));
         }
 
-        for (int i = 0; i < plineList.Count; i++)
-        {
-            var current = plineList[i];
-            var (cMinX, cMinY, cMaxX, cMaxY) = extents[i];
-            int depth = 0;
+        return Shape<double>.FromPlines(orientedPolylines);
+    }
 
-            for (int j = 0; j < plineList.Count; j++)
+    /// <summary>
+    /// Returns, for every loop, how many of the other loops strictly contain it.
+    /// </summary>
+    /// <remarks>
+    /// Even depth (0, 2, ...) marks material, odd depth marks a hole. Loops that touch or cross
+    /// do not contain each other.
+    /// </remarks>
+    private static int[] NestingDepths(IReadOnlyList<Polyline<double>> plines)
+    {
+        var containsOptions = new PlineContainsOptions<double>();
+        var extents = plines.Select(Extents).ToArray();
+        var depths = new int[plines.Count];
+
+        for (int i = 0; i < plines.Count; i++)
+        {
+            var (cMinX, cMinY, cMaxX, cMaxY) = extents[i];
+
+            for (int j = 0; j < plines.Count; j++)
             {
                 if (i == j) continue;
                 var (oMinX, oMinY, oMaxX, oMaxY) = extents[j];
@@ -47,37 +56,22 @@ public static class BBCavalier
                 if (cMinX < oMinX || cMaxX > oMaxX || cMinY < oMinY || cMaxY > oMaxY)
                     continue;
 
-                var other = plineList[j];
-                var containsResult = PlineContains.PolylineContains(other, current, containsOptions);
-                if (containsResult == PlineContainsResult.Pline2InsidePline1)
-                {
-                    depth++;
-                }
+                if (PlineContains.PolylineContains(plines[j], plines[i], containsOptions) == PlineContainsResult.Pline2InsidePline1)
+                    depths[i]++;
             }
-
-            var oriented = new Polyline<double>(current.IterVertexes(), current.IsClosed);
-            var orientation = oriented.Orientation();
-
-            if (depth % 2 == 0) // Island (even depth: 0, 2, ...) -> CounterClockwise
-            {
-                if (orientation == PlineOrientation.Clockwise)
-                {
-                    oriented.InvertDirection();
-                }
-            }
-            else // Hole (odd depth: 1, 3, ...) -> Clockwise
-            {
-                if (orientation == PlineOrientation.CounterClockwise)
-                {
-                    oriented.InvertDirection();
-                }
-            }
-
-            orientedPolylines.Add(oriented);
         }
 
-        return Shape<double>.FromPlines(orientedPolylines);
+        return depths;
     }
+
+    private static (double MinX, double MinY, double MaxX, double MaxY) Extents(Polyline<double> pline)
+    {
+        var box = pline.Extents();
+        return box.HasValue ? (box.Value.MinX, box.Value.MinY, box.Value.MaxX, box.Value.MaxY) : default;
+    }
+
+    private static bool ExtentsOverlap((double MinX, double MinY, double MaxX, double MaxY) a, (double MinX, double MinY, double MaxX, double MaxY) b, double eps)
+        => a.MinX <= b.MaxX + eps && b.MinX <= a.MaxX + eps && a.MinY <= b.MaxY + eps && b.MinY <= a.MaxY + eps;
 
     public static Polyline<double> ToPolyline(Curve curve, Plane plane, double tolerance)
     {
@@ -512,11 +506,24 @@ public static class BBCavalier
     /// Performs a boolean operation between two sets of closed polylines.
     /// </summary>
     /// <remarks>
-    /// Cavalier Contours only provides a boolean between two simple closed loops, so sets are
-    /// resolved pairwise. Solid loops (counter-clockwise) and hole loops (clockwise) are tracked
-    /// separately; holes are never fed back in as solids. Loops that the pairwise primitive cannot
-    /// merge into a single solid are kept side by side: the covered area is still correct, the
-    /// result is just not welded into one loop.
+    /// <para>
+    /// Each set describes a region the same way <see cref="CreateShape"/> does: loops are classified
+    /// by nesting depth, so a loop inside one other loop is a hole, a loop inside a hole is an
+    /// island again, and so on. Loops on the same level that overlap are merged. The winding of the
+    /// input loops does not matter.
+    /// </para>
+    /// <para>
+    /// Cavalier Contours only provides a boolean between two simple closed loops. The sets are
+    /// therefore handled as even-odd parity sets of loops, where a point belongs to the region when
+    /// it lies inside an odd number of loops. In that form the operations reduce to pairwise
+    /// intersections and a symmetric difference:
+    /// <c>A xor B</c>, <c>A and B = xor of all a n b</c>, <c>A not B = A xor (A and B)</c> and
+    /// <c>A or B = A xor B xor (A and B)</c>. The parity set is finally resolved into loops that
+    /// neither cross nor share edges, which are classified by nesting depth again.
+    /// </para>
+    /// <para>
+    /// The result holds the solids wound counter-clockwise followed by the holes wound clockwise.
+    /// </para>
     /// </remarks>
     public static List<Polyline<double>> BooleanPlines(BooleanOp operation, List<Polyline<double>> plinesA, List<Polyline<double>> plinesB)
     {
@@ -525,145 +532,280 @@ public static class BBCavalier
 
         var boolOpts = new PlineBooleanOptions<double>();
 
-        // Merges overlapping solids until no further merge reduces the solid count.
-        // The solid count is strictly decreasing per accepted merge, which guarantees termination.
-        (List<Polyline<double>> Solids, List<Polyline<double>> Holes) UnionAll(List<Polyline<double>> inputPlines)
-        {
-            var solids = inputPlines.Where(IsUsableLoop).ToList();
-            var holes = new List<Polyline<double>>();
+        var regionA = RegionLoops(plinesA, boolOpts);
+        var regionB = RegionLoops(plinesB, boolOpts);
 
-            bool changed = true;
-            while (changed)
-            {
-                changed = false;
-
-                for (int i = 0; i < solids.Count && !changed; i++)
-                {
-                    for (int j = i + 1; j < solids.Count; j++)
-                    {
-                        var res = PlineBoolean.PolylineBoolean<Polyline<double>, double>(solids[i], solids[j], BooleanOp.Or, boolOpts);
-
-                        if (res.ResultInfo == BooleanResultInfo.Disjoint || res.ResultInfo == BooleanResultInfo.InvalidInput)
-                            continue;
-
-                        var pos = res.PosPlines.Select(p => p.Pline).Where(IsUsableLoop).ToList();
-                        var neg = res.NegPlines.Select(p => p.Pline).Where(IsUsableLoop).ToList();
-
-                        // Accept only when the two solids collapse into at most one solid.
-                        // Anything else would leave the solid count unchanged and could loop forever.
-                        if (pos.Count > 1)
-                            continue;
-
-                        solids.RemoveAt(j);
-                        solids.RemoveAt(i);
-                        solids.AddRange(pos);
-                        holes.AddRange(neg);
-                        changed = true;
-                        break;
-                    }
-                }
-            }
-
-            return (solids, holes);
-        }
-
-        // Subtracts every clip from every subject. Holes produced along the way are collected and
-        // never used as subjects again, otherwise they would be clipped like solid material.
-        (List<Polyline<double>> Solids, List<Polyline<double>> Holes) DifferenceAll(List<Polyline<double>> subjects, List<Polyline<double>> clips)
-        {
-            var currentSubjects = subjects.Where(IsUsableLoop).ToList();
-            var holes = new List<Polyline<double>>();
-
-            foreach (var clip in clips)
-            {
-                var nextSubjects = new List<Polyline<double>>();
-
-                foreach (var subject in currentSubjects)
-                {
-                    var res = PlineBoolean.PolylineBoolean<Polyline<double>, double>(subject, clip, BooleanOp.Not, boolOpts);
-
-                    if (res.ResultInfo == BooleanResultInfo.Disjoint || res.ResultInfo == BooleanResultInfo.InvalidInput)
-                    {
-                        nextSubjects.Add(subject);
-                        continue;
-                    }
-
-                    nextSubjects.AddRange(res.PosPlines.Select(p => p.Pline).Where(IsUsableLoop));
-                    holes.AddRange(res.NegPlines.Select(p => p.Pline).Where(IsUsableLoop));
-                }
-
-                currentSubjects = nextSubjects;
-            }
-
-            return (currentSubjects, holes);
-        }
-
-        var solidLoops = new List<Polyline<double>>();
-        var holeLoops = new List<Polyline<double>>();
+        List<Polyline<double>> parity;
 
         switch (operation)
         {
             case BooleanOp.Or:
+                if (IsFlat(regionA) && IsFlat(regionB))
                 {
-                    var (solids, holes) = UnionAll(plinesA.Concat(plinesB).ToList());
-                    solidLoops.AddRange(solids);
-                    holeLoops.AddRange(holes);
-                    break;
+                    // Plain solids on both sides: merging them directly gives the cleanest outline.
+                    var (solids, holes) = UnionAll(regionA.Concat(regionB).ToList(), boolOpts);
+                    parity = solids.Concat(holes).ToList();
                 }
-
-            case BooleanOp.Not:
+                else
                 {
-                    if (plinesB.Count == 0)
-                    {
-                        solidLoops.AddRange(plinesA.Where(IsUsableLoop));
-                        break;
-                    }
-
-                    var (solids, holes) = DifferenceAll(plinesA, plinesB);
-                    solidLoops.AddRange(solids);
-                    holeLoops.AddRange(holes);
-                    break;
+                    parity = regionA.Concat(regionB).Concat(IntersectRegions(regionA, regionB, boolOpts)).ToList();
                 }
+                break;
 
             case BooleanOp.And:
-                {
-                    // (A1 u A2 u ...) n (B1 u B2 u ...) == union of all pairwise intersections.
-                    // The pairwise pass comes first so that no input is lost to a pre-union that the
-                    // pairwise primitive cannot express; overlapping results are welded afterwards.
-                    var overlaps = new List<Polyline<double>>();
+                parity = IntersectRegions(regionA, regionB, boolOpts);
+                break;
 
-                    foreach (var a in plinesA)
-                    {
-                        foreach (var b in plinesB)
-                        {
-                            var res = PlineBoolean.PolylineBoolean<Polyline<double>, double>(a, b, BooleanOp.And, boolOpts);
-                            overlaps.AddRange(res.PosPlines.Select(p => p.Pline).Where(IsUsableLoop));
-                            holeLoops.AddRange(res.NegPlines.Select(p => p.Pline).Where(IsUsableLoop));
-                        }
-                    }
-
-                    var (weldedSolids, weldedHoles) = UnionAll(overlaps);
-                    solidLoops.AddRange(weldedSolids);
-                    holeLoops.AddRange(weldedHoles);
-                    break;
-                }
+            case BooleanOp.Not:
+                parity = regionA.Concat(IntersectRegions(regionA, regionB, boolOpts)).ToList();
+                break;
 
             case BooleanOp.Xor:
-                {
-                    var (solidsAb, holesAb) = DifferenceAll(plinesA, plinesB);
-                    var (solidsBa, holesBa) = DifferenceAll(plinesB, plinesA);
-                    solidLoops.AddRange(solidsAb);
-                    solidLoops.AddRange(solidsBa);
-                    holeLoops.AddRange(holesAb);
-                    holeLoops.AddRange(holesBa);
-                    break;
-                }
+                parity = regionA.Concat(regionB).ToList();
+                break;
+
+            default:
+                parity = new List<Polyline<double>>();
+                break;
         }
 
-        var output = new List<Polyline<double>>(solidLoops.Count + holeLoops.Count);
-        output.AddRange(solidLoops.Select(p => AsOrientedLoop(p, isSolid: true)));
-        output.AddRange(holeLoops.Select(p => AsOrientedLoop(p, isSolid: false)));
+        return ClassifyLoops(ResolveParity(parity, boolOpts));
+    }
 
-        return output;
+    /// <summary>
+    /// True when no loop of the resolved region lies inside another, that is the region has no
+    /// holes.
+    /// </summary>
+    private static bool IsFlat(List<Polyline<double>> loops) => NestingDepths(loops).All(d => d == 0);
+
+    /// <summary>
+    /// Turns a set of input loops into an equivalent parity set of loops that neither cross nor
+    /// share edges.
+    /// </summary>
+    /// <remarks>
+    /// Loops are grouped by nesting depth. Every level is merged on its own, so overlapping loops
+    /// on the same level add up instead of cancelling, and the levels are then combined by parity:
+    /// holes cut the level above them, islands fill the level above them.
+    /// </remarks>
+    private static List<Polyline<double>> RegionLoops(List<Polyline<double>> plines, PlineBooleanOptions<double> boolOpts)
+    {
+        var loops = CounterClockwiseLoops(plines);
+        if (loops.Count <= 1)
+            return loops;
+
+        var depths = NestingDepths(loops);
+        var parity = new List<Polyline<double>>();
+
+        foreach (var level in Enumerable.Range(0, loops.Count).GroupBy(i => depths[i]))
+        {
+            var (solids, holes) = UnionAll(level.Select(i => loops[i]).ToList(), boolOpts);
+            parity.AddRange(solids);
+            parity.AddRange(holes);
+        }
+
+        return ResolveParity(parity, boolOpts);
+    }
+
+    /// <summary>
+    /// Intersection of two parity sets: the parity set of all pairwise loop intersections.
+    /// </summary>
+    private static List<Polyline<double>> IntersectRegions(List<Polyline<double>> loopsA, List<Polyline<double>> loopsB, PlineBooleanOptions<double> boolOpts)
+    {
+        var result = new List<Polyline<double>>();
+        var extentsB = loopsB.Select(Extents).ToArray();
+
+        foreach (var a in loopsA)
+        {
+            var extentsA = Extents(a);
+
+            for (int j = 0; j < loopsB.Count; j++)
+            {
+                if (!ExtentsOverlap(extentsA, extentsB[j], boolOpts.PosEqualEps))
+                    continue;
+
+                var res = PlineBoolean.PolylineBoolean<Polyline<double>, double>(a, loopsB[j], BooleanOp.And, boolOpts);
+                result.AddRange(CounterClockwiseLoops(res.PosPlines.Select(p => p.Pline).Concat(res.NegPlines.Select(p => p.Pline))));
+            }
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Rewrites a parity set of loops until no two loops cross or share an edge.
+    /// </summary>
+    /// <remarks>
+    /// Any two interacting loops are replaced by their symmetric difference, which leaves the
+    /// parity region unchanged. Crossing loops lose their overlap, loops sharing an edge are welded
+    /// into one outline, and identical loops cancel. A replacement is only accepted when it
+    /// changes something, so loops that merely touch at points are left alone.
+    /// </remarks>
+    private static List<Polyline<double>> ResolveParity(List<Polyline<double>> input, PlineBooleanOptions<double> boolOpts)
+    {
+        var loops = CounterClockwiseLoops(input);
+        var extents = loops.Select(Extents).ToList();
+
+        // Every accepted step removes overlap or welds loops; the cap only guards against
+        // numerical ping-pong.
+        int budget = 1000 + 16 * loops.Count * loops.Count;
+        bool changed = true;
+
+        while (changed && budget-- > 0)
+        {
+            changed = false;
+
+            for (int i = 0; i < loops.Count && !changed; i++)
+            {
+                for (int j = i + 1; j < loops.Count; j++)
+                {
+                    if (!ExtentsOverlap(extents[i], extents[j], boolOpts.PosEqualEps))
+                        continue;
+
+                    var res = PlineBoolean.PolylineBoolean<Polyline<double>, double>(loops[i], loops[j], BooleanOp.Xor, boolOpts);
+
+                    List<Polyline<double>> replacement;
+                    if (res.ResultInfo == BooleanResultInfo.Overlapping)
+                    {
+                        replacement = new List<Polyline<double>>();
+                    }
+                    else if (res.ResultInfo == BooleanResultInfo.Intersected)
+                    {
+                        replacement = CounterClockwiseLoops(res.PosPlines.Select(p => p.Pline).Concat(res.NegPlines.Select(p => p.Pline)));
+
+                        double before = Math.Abs(loops[i].Area()) + Math.Abs(loops[j].Area());
+                        double eps = 1e-7 * Math.Max(1.0, before);
+
+                        if (replacement.Count >= 2 && Math.Abs(before - replacement.Sum(p => Math.Abs(p.Area()))) <= eps)
+                        {
+                            // Nothing overlaps, the loops only touch. The symmetric difference
+                            // hands both back unchanged, so weld loops sharing an edge with a union.
+                            var welded = WeldTouching(loops[i], loops[j], before, eps, boolOpts);
+                            if (welded is null)
+                                continue;
+
+                            replacement = welded;
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
+
+                    loops.RemoveAt(j);
+                    loops.RemoveAt(i);
+                    extents.RemoveAt(j);
+                    extents.RemoveAt(i);
+                    loops.AddRange(replacement);
+                    extents.AddRange(replacement.Select(Extents));
+                    changed = true;
+                    break;
+                }
+            }
+        }
+
+        return loops;
+    }
+
+    /// <summary>
+    /// Union of two loops whose interiors do not overlap, or <see langword="null"/> when the union
+    /// does not join them into a single outline (for example when they only touch at points).
+    /// </summary>
+    private static List<Polyline<double>>? WeldTouching(Polyline<double> a, Polyline<double> b, double coveredArea, double eps, PlineBooleanOptions<double> boolOpts)
+    {
+        var res = PlineBoolean.PolylineBoolean<Polyline<double>, double>(a, b, BooleanOp.Or, boolOpts);
+        if (res.ResultInfo != BooleanResultInfo.Intersected)
+            return null;
+
+        var pos = res.PosPlines.Select(p => p.Pline).Where(IsUsableLoop).ToList();
+        var neg = res.NegPlines.Select(p => p.Pline).Where(IsUsableLoop).ToList();
+        if (pos.Count != 1)
+            return null;
+
+        double covered = Math.Abs(pos[0].Area()) - neg.Sum(p => Math.Abs(p.Area()));
+        if (Math.Abs(covered - coveredArea) > eps)
+            return null;
+
+        // Loops sharing an edge lose it twice; loops touching at points keep their full length and
+        // would only be pinched into one self touching outline.
+        double lengthBefore = a.PathLength() + b.PathLength();
+        double lengthAfter = pos[0].PathLength() + neg.Sum(p => p.PathLength());
+        if (lengthBefore - lengthAfter <= 1e-6 * lengthBefore)
+            return null;
+
+        return CounterClockwiseLoops(pos.Concat(neg));
+    }
+
+    /// <summary>
+    /// Usable loops, all wound counter-clockwise. Inside a parity set winding carries no meaning,
+    /// and the pairwise boolean expects both inputs to share an orientation.
+    /// </summary>
+    private static List<Polyline<double>> CounterClockwiseLoops(IEnumerable<Polyline<double>> plines)
+        => plines.Where(IsUsableLoop).Select(p => AsOrientedLoop(p, isSolid: true)).ToList();
+
+    /// <summary>
+    /// Orients loops that neither cross nor share edges by nesting depth and returns the solids
+    /// followed by the holes.
+    /// </summary>
+    private static List<Polyline<double>> ClassifyLoops(List<Polyline<double>> loops)
+    {
+        var depths = NestingDepths(loops);
+        var solids = new List<Polyline<double>>();
+        var holes = new List<Polyline<double>>();
+
+        for (int i = 0; i < loops.Count; i++)
+        {
+            bool isSolid = depths[i] % 2 == 0;
+            (isSolid ? solids : holes).Add(AsOrientedLoop(loops[i], isSolid));
+        }
+
+        solids.AddRange(holes);
+        return solids;
+    }
+
+    /// <summary>
+    /// Merges overlapping loops until no further merge reduces the loop count, returning the
+    /// merged outlines and the holes enclosed by them.
+    /// </summary>
+    /// <remarks>
+    /// The solid count is strictly decreasing per accepted merge, which guarantees termination.
+    /// </remarks>
+    private static (List<Polyline<double>> Solids, List<Polyline<double>> Holes) UnionAll(List<Polyline<double>> inputPlines, PlineBooleanOptions<double> boolOpts)
+    {
+        var solids = CounterClockwiseLoops(inputPlines);
+        var holes = new List<Polyline<double>>();
+
+        bool changed = true;
+        while (changed)
+        {
+            changed = false;
+
+            for (int i = 0; i < solids.Count && !changed; i++)
+            {
+                for (int j = i + 1; j < solids.Count; j++)
+                {
+                    var res = PlineBoolean.PolylineBoolean<Polyline<double>, double>(solids[i], solids[j], BooleanOp.Or, boolOpts);
+
+                    if (res.ResultInfo == BooleanResultInfo.Disjoint || res.ResultInfo == BooleanResultInfo.InvalidInput)
+                        continue;
+
+                    var pos = CounterClockwiseLoops(res.PosPlines.Select(p => p.Pline));
+                    var neg = CounterClockwiseLoops(res.NegPlines.Select(p => p.Pline));
+
+                    // Accept only when the two solids collapse into at most one solid.
+                    // Anything else would leave the solid count unchanged and could loop forever.
+                    if (pos.Count > 1)
+                        continue;
+
+                    solids.RemoveAt(j);
+                    solids.RemoveAt(i);
+                    solids.AddRange(pos);
+                    holes.AddRange(neg);
+                    changed = true;
+                    break;
+                }
+            }
+        }
+
+        return (solids, holes);
     }
 }
