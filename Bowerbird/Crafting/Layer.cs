@@ -16,6 +16,8 @@ public class Layer : CraftingBase
         var origin = corners[0];
         var unitZ = box.Plane.ZAxis;
 
+        var slicer = new MeshSlicer(mesh, unit);
+
         var layerCount = (int)Math.Round(box.Z.Length / thickness);
         if (layerCount < 1)
             layerCount = 1;
@@ -33,7 +35,7 @@ public class Layer : CraftingBase
             var sectionPlane = new Plane(sectionOrigin, unitZ);
             planes[i] = sectionPlane;
 
-            var ol = mesh.Section(sectionPlane, unit);
+            var ol = slicer.Section(sectionPlane, unit);
             olines[i] = ol;
 
             if (border > 0)

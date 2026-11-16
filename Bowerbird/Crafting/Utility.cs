@@ -34,7 +34,12 @@ public static class Util
 
     public static Paths64 Section(this Mesh mesh, Plane plane, double tolerance, List<Curve>? curves = null)
     {
-        var sections = Intersection.MeshPlane(mesh, plane);
+        return new MeshSlicer(mesh, tolerance).Section(plane, tolerance, curves);
+    }
+
+    public static Paths64 Section(this MeshSlicer slicer, Plane plane, double tolerance, List<Curve>? curves = null)
+    {
+        var sections = slicer.Slice(plane);
         if (sections == null || sections.Length == 0)
             return new Paths64();
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Rhino.Geometry;
 
 namespace Bowerbird.Crafting;
@@ -10,6 +11,7 @@ public class Waffle : CraftingBase
     protected Waffle(Mesh mesh, Plane plane, double thickness, double deeper, int countX, int countY, double unit, bool project, double projectSpace)
     {
         var box = mesh.Box(plane);
+        var slicer = new MeshSlicer(mesh, unit);
 
         var unitX = box.Plane.XAxis;
         var unitY = box.Plane.YAxis;
@@ -25,30 +27,38 @@ public class Waffle : CraftingBase
         var vecX = valX.Select(o => o * unitX).ToArray();
         var plnX = vecX.Select(o => new Plane(origin + o, unitY, unitZ)).ToArray();
         
-        // Ultra-Performance Parallelized Slicing for X-Planes
-        var sltX = plnX.AsParallel().AsOrdered().Select(o => new SlitPlane(mesh, o, unit)).ToArray();
+        var sltX = plnX.AsParallel().AsOrdered().Select(o => new SlitPlane(slicer, o, unit)).ToArray();
 
         var valY = Enumerable.Range(1, countY).Select(o => o * lenY / (countY + 1)).ToArray();
         var vecY = valY.Select(o => o * unitY).ToArray();
         var plnY = vecY.Select(o => new Plane(origin + o, unitX, unitZ)).ToArray();
 
-        // Ultra-Performance Parallelized Slicing for Y-Planes
-        var sltY = plnY.AsParallel().AsOrdered().Select(o => new SlitPlane(mesh, o, unit)).ToArray();
+        var sltY = plnY.AsParallel().AsOrdered().Select(o => new SlitPlane(slicer, o, unit)).ToArray();
 
-        for (var i = 0; i < sltX.Length; i++)
+        // Each slit plane only receives its own slits, so the planes can be processed independently.
+        // The order of the slits within a plane is the same as in a sequential i/j loop.
+        Parallel.For(0, sltX.Length, i =>
         {
             for (var j = 0; j < sltY.Length; j++)
             {
                 var p0 = origin + vecX[i] + vecY[j];
                 var p1 = p0 + lenZ * unitZ;
-
                 sltX[i].AddSlit(p0, p1, thickness, deeper);
+            }
+        });
+
+        Parallel.For(0, sltY.Length, j =>
+        {
+            for (var i = 0; i < sltX.Length; i++)
+            {
+                var p0 = origin + vecX[i] + vecY[j];
+                var p1 = p0 + lenZ * unitZ;
                 sltY[j].AddSlit(p1, p0, thickness, deeper);
             }
-        }
+        });
 
-        CurvesX = sltX.Select(o => o.GetResult()).ToArray();
-        CurvesY = sltY.Select(o => o.GetResult()).ToArray();
+        CurvesX = sltX.AsParallel().AsOrdered().Select(o => o.GetResult()).ToArray();
+        CurvesY = sltY.AsParallel().AsOrdered().Select(o => o.GetResult()).ToArray();
         PlanesX = plnX;
         PlanesY = plnY;
 

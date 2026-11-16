@@ -8,6 +8,11 @@ namespace Bowerbird.Crafting;
 public class SlitPlane
 {
     public SlitPlane(Mesh volume, Plane plane, double unit)
+        : this(new MeshSlicer(volume, unit), plane, unit)
+    {
+    }
+
+    public SlitPlane(MeshSlicer volume, Plane plane, double unit)
     {
         Plane = plane;
         Unit = unit;
