@@ -34,7 +34,12 @@ public static class Util
 
     public static Paths64 Section(this Mesh mesh, Plane plane, double tolerance, List<Curve>? curves = null)
     {
-        var sections = Intersection.MeshPlane(mesh, plane);
+        return new MeshSlicer(mesh, tolerance).Section(plane, tolerance, curves);
+    }
+
+    public static Paths64 Section(this MeshSlicer slicer, Plane plane, double tolerance, List<Curve>? curves = null)
+    {
+        var sections = slicer.Slice(plane);
         if (sections == null || sections.Length == 0)
             return new Paths64();
 
@@ -107,8 +112,20 @@ public static class Util
             var o = list[i] - plane.Origin;
             var x = (o * plane.XAxis) / unit;
             var y = (o * plane.YAxis) / unit;
-            path.Add(new Point64(x, y));
+            var point = new Point64(x, y);
+
+            // Points closer than one unit collapse onto the same grid point. Keeping the duplicates
+            // produces zero-length edges, which Rhino reports as self-intersections.
+            if (path.Count > 0 && path[path.Count - 1] == point)
+                continue;
+
+            path.Add(point);
         }
+
+        // The closing point is implicit for Clipper.
+        if (path.Count > 1 && path[0] == path[path.Count - 1])
+            path.RemoveAt(path.Count - 1);
+
         return path;
     }
 
@@ -124,6 +141,11 @@ public static class Util
         for (int i = 0; i < polygon.Count; i++)
         {
             var pt = polygon[i];
+
+            // Skip repeated grid points; zero-length segments are reported as self-intersections.
+            if (i > 0 && pt == polygon[i - 1])
+                continue;
+
             points.Add(plane.Origin + pt.X * unit * plane.XAxis + pt.Y * unit * plane.YAxis);
         }
 

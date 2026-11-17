@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Rhino.Geometry;
 
 namespace Bowerbird.Crafting;
@@ -10,6 +11,7 @@ public class Radial : CraftingBase
     protected Radial(Mesh mesh, Plane plane, double thickness, double deeper, double radius, int countA, int countZ, double unit, bool project, double projectSpace)
     {
         var box = mesh.Box(plane);
+        var slicer = new MeshSlicer(mesh, unit);
 
         var unitX = box.Plane.XAxis;
         var unitY = box.Plane.YAxis;
@@ -29,34 +31,39 @@ public class Radial : CraftingBase
         var rayA = valA.Select(o => unitX * Math.Cos(o) + unitY * Math.Sin(o)).ToArray();
         var plnA = rayA.Select(o => new Plane(center + o * r1, o, unitZ)).ToArray();
 
-        // Ultra-Performance Parallelized Slicing for Radial Planes
-        var sltA = plnA.AsParallel().AsOrdered().Select(o => new SlitPlane(mesh, o, unit)).ToArray();
+        var sltA = plnA.AsParallel().AsOrdered().Select(o => new SlitPlane(slicer, o, unit)).ToArray();
 
         var valZ = Enumerable.Range(1, countZ).Select(o => o * lenZ / (countZ + 1)).ToArray();
         var pntZ = valZ.Select(o => corners[0] + o * unitZ).ToArray();
         var plnZ = pntZ.Select(o => new Plane(o, unitX, unitY)).ToArray();
 
-        // Ultra-Performance Parallelized Slicing for Z-Planes
-        var sltZ = plnZ.AsParallel().AsOrdered().Select(o => new SlitPlane(mesh, o, unit)).ToArray();
+        var sltZ = plnZ.AsParallel().AsOrdered().Select(o => new SlitPlane(slicer, o, unit)).ToArray();
 
-        for (var i = 0; i < sltA.Length; i++)
+        // Each slit plane only receives its own slits, so the planes can be processed independently.
+        // The order of clip and slits within a plane is the same as in a sequential i/j loop.
+        Parallel.For(0, sltA.Length, i =>
         {
             sltA[i].Clip(-unit, lenR + unit, -unit, lenZ + unit);
 
             for (var j = 0; j < sltZ.Length; j++)
             {
                 var c = center + valZ[j] * unitZ;
-
-                var p0 = c + rayA[i] * (r1 - unit);
-                var p1 = c + rayA[i] * r2;
-
-                sltA[i].AddSlit(p0, p1, thickness, deeper);
-                sltZ[j].AddSlit(p1, p0, thickness, deeper);
+                sltA[i].AddSlit(c + rayA[i] * (r1 - unit), c + rayA[i] * r2, thickness, deeper);
             }
-        }
+        });
 
-        CurvesA = sltA.Select(o => o.GetResult()).ToArray();
-        CurvesZ = sltZ.Select(o => o.GetResult()).ToArray();
+        Parallel.For(0, sltZ.Length, j =>
+        {
+            var c = center + valZ[j] * unitZ;
+
+            for (var i = 0; i < sltA.Length; i++)
+            {
+                sltZ[j].AddSlit(c + rayA[i] * r2, c + rayA[i] * (r1 - unit), thickness, deeper);
+            }
+        });
+
+        CurvesA = sltA.AsParallel().AsOrdered().Select(o => o.GetResult()).ToArray();
+        CurvesZ = sltZ.AsParallel().AsOrdered().Select(o => o.GetResult()).ToArray();
         PlanesA = plnA;
         PlanesZ = plnZ;
 
