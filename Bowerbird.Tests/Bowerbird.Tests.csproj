@@ -23,6 +23,8 @@
     <Compile Include="..\Bowerbird\Migration\LegacyEnumMapping.cs" Link="LegacyEnumMapping.cs" />
     <Compile Include="..\Bowerbird\Crafting\BBCavalier.cs" Link="BBCavalier.cs" />
     <Compile Include="..\Bowerbird\Crafting\BBPolyline.cs" Link="BBPolyline.cs" />
+    <Compile Include="..\Bowerbird\Crafting\Utility.cs" Link="Utility.cs" />
+    <Compile Include="..\Bowerbird\Crafting\MeshSlicer.cs" Link="MeshSlicer.cs" />
     <Compile Include="..\Bowerbird\ThirdParty\Clipper2Lib\*.cs" LinkBase="Clipper2Lib" />
   </ItemGroup>
 
