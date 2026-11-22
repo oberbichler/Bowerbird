@@ -29,25 +29,45 @@ public sealed class MeshSlicer
         _mesh = mesh;
         _planarTolerance = 0.1 * tolerance;
 
-        var topology = mesh.TopologyVertices;
+        // Weld mesh vertices at identical positions, like the mesh topology does, so that faces
+        // sharing a location share their edges. This is done on the managed arrays instead of
+        // querying Mesh.TopologyVertices, which is much slower for large meshes. ToPoint3dArray
+        // keeps double precision when the mesh has it (e.g. meshes far from the origin); adding
+        // 0.0 maps -0.0 to 0.0 so both get the same key.
+        var vertices = mesh.Vertices.ToPoint3dArray();
+        var weld = new Dictionary<Point3d, int>(vertices.Length);
+        var vertexMap = new int[vertices.Length];
+        var welded = new List<Point3d>(vertices.Length);
+
+        for (var k = 0; k < vertices.Length; k++)
+        {
+            var p = vertices[k];
+            var key = new Point3d(p.X + 0.0, p.Y + 0.0, p.Z + 0.0);
+
+            if (!weld.TryGetValue(key, out var index))
+            {
+                index = welded.Count;
+                weld.Add(key, index);
+                welded.Add(p);
+            }
+
+            vertexMap[k] = index;
+        }
+
         var meshFaces = mesh.Faces.ToIntArray(false);
 
-        _vertexCount = topology.Count;
+        _vertexCount = welded.Count;
         _faceCount = meshFaces.Length / 4;
 
-        // Slots [0, vertexCount) hold topology vertices, [vertexCount, vertexCount + faceCount) quad centroids.
+        // Slots [0, vertexCount) hold welded vertices, [vertexCount, vertexCount + faceCount) quad centroids.
         var count = _vertexCount + _faceCount;
         _x = new double[count];
         _y = new double[count];
         _z = new double[count];
 
-        // Topology vertices only store single-precision positions. Read the mesh vertices instead,
-        // which keep double precision when the mesh has it (e.g. meshes far from the origin).
-        var vertices = mesh.Vertices.ToPoint3dArray();
-        for (var k = 0; k < vertices.Length; k++)
+        for (var i = 0; i < _vertexCount; i++)
         {
-            var i = topology.TopologyVertexIndex(k);
-            var p = vertices[k];
+            var p = welded[i];
             _x[i] = p.X;
             _y[i] = p.Y;
             _z[i] = p.Z;
@@ -55,7 +75,7 @@ public sealed class MeshSlicer
 
         _faces = new int[meshFaces.Length];
         for (var i = 0; i < meshFaces.Length; i++)
-            _faces[i] = topology.TopologyVertexIndex(meshFaces[i]);
+            _faces[i] = vertexMap[meshFaces[i]];
 
         _planar = new bool[_faceCount];
 
