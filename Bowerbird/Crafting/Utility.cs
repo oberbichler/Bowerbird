@@ -53,8 +53,9 @@ public static class Util
         for (int i = 0; i < sections.Length; i++)
         {
             var poly = sections[i];
+            // Loops smaller than the grid unit collapse to fewer than three points and carry no area.
             var path = poly.ToPolygon(plane, tolerance);
-            if (path != null && path.Count > 0)
+            if (path != null && path.Count >= 3)
             {
                 paths.Add(path);
             }

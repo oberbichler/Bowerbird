@@ -41,9 +41,13 @@ public sealed class MeshSlicer
         _y = new double[count];
         _z = new double[count];
 
-        for (var i = 0; i < _vertexCount; i++)
+        // Topology vertices only store single-precision positions. Read the mesh vertices instead,
+        // which keep double precision when the mesh has it (e.g. meshes far from the origin).
+        var vertices = mesh.Vertices.ToPoint3dArray();
+        for (var k = 0; k < vertices.Length; k++)
         {
-            var p = topology[i];
+            var i = topology.TopologyVertexIndex(k);
+            var p = vertices[k];
             _x[i] = p.X;
             _y[i] = p.Y;
             _z[i] = p.Z;
@@ -313,10 +317,15 @@ public sealed class MeshSlicer
                 current = next;
             }
 
-            if (current == start && polyline.Count > 2)
+            if (current == start)
             {
-                if (polyline[polyline.Count - 1] == polyline[0])
+                if (polyline.Count > 1 && polyline[polyline.Count - 1] == polyline[0])
                     polyline.RemoveAt(polyline.Count - 1);
+
+                // A closed loop needs three distinct points; fewer means the plane only grazes the mesh.
+                if (polyline.Count < 3)
+                    return;
+
                 polyline.Add(polyline[0]);
             }
 
