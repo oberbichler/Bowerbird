@@ -9,8 +9,8 @@ public class Section : CraftingBase
 {
     protected Section(Mesh mesh, List<Plane> planes, double thickness, double deeper, double unit)
     {
-        // 1. Ultra-Performance Parallelized Slicing for All Section Planes
-        var slitPlanes = planes.AsParallel().AsOrdered().Select(p => new SlitPlane(mesh, p, unit)).ToArray();
+        var slicer = new MeshSlicer(mesh, unit);
+        var slitPlanes = planes.AsParallel().AsOrdered().Select(p => new SlitPlane(slicer, p, unit)).ToArray();
 
         var bbox = mesh.GetBoundingBox(false);
         var dmax = bbox.Diagonal.Length;
@@ -43,7 +43,7 @@ public class Section : CraftingBase
             }
         }
 
-        Curves = slitPlanes.Select(o => o.GetResult()).ToArray();
+        Curves = slitPlanes.AsParallel().AsOrdered().Select(o => o.GetResult()).ToArray();
     }
 
     public static Section Create(Mesh mesh, List<Plane> planes, double thickness, double deeper, double unit)
