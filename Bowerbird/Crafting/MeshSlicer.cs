@@ -94,6 +94,48 @@ public sealed class MeshSlicer
         }
     }
 
+    /// <summary>
+    /// True if every edge of the welded mesh is shared by at least two faces, which is the
+    /// definition used by <see cref="Mesh.IsClosed"/>. Edges of length zero (degenerate faces)
+    /// count as edges, like in the mesh topology. Evaluated on the welded arrays, so it avoids
+    /// building the mesh topology.
+    /// </summary>
+    public bool IsClosed
+    {
+        get
+        {
+            if (_faceCount == 0)
+                return false;
+
+            long n = _vertexCount;
+            var edges = new Dictionary<long, int>(_faces.Length);
+
+            for (var f = 0; f < _faceCount; f++)
+            {
+                var corners = _faces[4 * f + 2] == _faces[4 * f + 3] ? 3 : 4;
+
+                for (var e = 0; e < corners; e++)
+                {
+                    var u = _faces[4 * f + e];
+                    var v = _faces[4 * f + (e + 1) % corners];
+                    if (u > v)
+                        (u, v) = (v, u);
+
+                    var key = u * n + v;
+                    edges[key] = edges.TryGetValue(key, out var count) ? count + 1 : 1;
+                }
+            }
+
+            foreach (var count in edges.Values)
+            {
+                if (count < 2)
+                    return false;
+            }
+
+            return true;
+        }
+    }
+
     private bool IsPlanar(int a, int b, int c, int d)
     {
         var pa = new Point3d(_x[a], _y[a], _z[a]);

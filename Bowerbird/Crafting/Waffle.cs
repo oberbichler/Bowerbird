@@ -9,9 +9,13 @@ namespace Bowerbird.Crafting;
 public class Waffle : CraftingBase
 {
     protected Waffle(Mesh mesh, Plane plane, double thickness, double deeper, int countX, int countY, double unit, bool project, double projectSpace)
+        : this(mesh, new MeshSlicer(mesh, unit), plane, thickness, deeper, countX, countY, unit, project, projectSpace)
+    {
+    }
+
+    protected Waffle(Mesh mesh, MeshSlicer slicer, Plane plane, double thickness, double deeper, int countX, int countY, double unit, bool project, double projectSpace)
     {
         var box = mesh.Box(plane);
-        var slicer = new MeshSlicer(mesh, unit);
 
         var unitX = box.Plane.XAxis;
         var unitY = box.Plane.YAxis;
@@ -87,10 +91,14 @@ public class Waffle : CraftingBase
         if (!mesh.IsValid)
             throw new ArgumentException(@"Mesh is not valid!");
 
-        if (!mesh.IsClosed)
+        // Slicing needs the welded mesh anyway; checking closedness on it avoids building the
+        // mesh topology, which is one of the most expensive steps for large meshes.
+        var slicer = new MeshSlicer(mesh, unit);
+
+        if (!slicer.IsClosed)
             throw new ArgumentException(@"Mesh is not closed!");
 
-        return new Waffle(mesh, plane, thickness, deeper, countA, countZ, unit, project, projectSpace);
+        return new Waffle(mesh, slicer, plane, thickness, deeper, countA, countZ, unit, project, projectSpace);
     }
 
     public List<Curve>[] CurvesX { get; private set; }
