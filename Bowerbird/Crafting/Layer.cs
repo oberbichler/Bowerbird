@@ -9,14 +9,17 @@ namespace Bowerbird.Crafting;
 public class Layer : CraftingBase
 {
     protected Layer(Mesh mesh, Plane plane, double thickness, double border, double unit)
+        : this(mesh, new MeshSlicer(mesh, unit), plane, thickness, border, unit)
+    {
+    }
+
+    protected Layer(Mesh mesh, MeshSlicer slicer, Plane plane, double thickness, double border, double unit)
     {
         var box = mesh.Box(plane);
         var corners = box.GetCorners();
 
         var origin = corners[0];
         var unitZ = box.Plane.ZAxis;
-
-        var slicer = new MeshSlicer(mesh, unit);
 
         var layerCount = (int)Math.Round(box.Z.Length / thickness);
         if (layerCount < 1)
@@ -94,10 +97,14 @@ public class Layer : CraftingBase
         if (!mesh.IsValid)
             throw new ArgumentException(@"Mesh is not valid!");
 
-        if (!mesh.IsClosed)
+        // Slicing needs the welded mesh anyway; checking closedness on it avoids building the
+        // mesh topology, which is one of the most expensive steps for large meshes.
+        var slicer = new MeshSlicer(mesh, unit);
+
+        if (!slicer.IsClosed)
             throw new ArgumentException(@"Mesh is not closed!");
 
-        return new Layer(mesh, plane, thickness, border, unit);
+        return new Layer(mesh, slicer, plane, thickness, border, unit);
     }
 
     public List<Curve>[] CurvesO { get; }

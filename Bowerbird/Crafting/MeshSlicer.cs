@@ -29,25 +29,45 @@ public sealed class MeshSlicer
         _mesh = mesh;
         _planarTolerance = 0.1 * tolerance;
 
-        var topology = mesh.TopologyVertices;
+        // Weld mesh vertices at identical positions, like the mesh topology does, so that faces
+        // sharing a location share their edges. This is done on the managed arrays instead of
+        // querying Mesh.TopologyVertices, which is much slower for large meshes. ToPoint3dArray
+        // keeps double precision when the mesh has it (e.g. meshes far from the origin); adding
+        // 0.0 maps -0.0 to 0.0 so both get the same key.
+        var vertices = mesh.Vertices.ToPoint3dArray();
+        var weld = new Dictionary<Point3d, int>(vertices.Length);
+        var vertexMap = new int[vertices.Length];
+        var welded = new List<Point3d>(vertices.Length);
+
+        for (var k = 0; k < vertices.Length; k++)
+        {
+            var p = vertices[k];
+            var key = new Point3d(p.X + 0.0, p.Y + 0.0, p.Z + 0.0);
+
+            if (!weld.TryGetValue(key, out var index))
+            {
+                index = welded.Count;
+                weld.Add(key, index);
+                welded.Add(p);
+            }
+
+            vertexMap[k] = index;
+        }
+
         var meshFaces = mesh.Faces.ToIntArray(false);
 
-        _vertexCount = topology.Count;
+        _vertexCount = welded.Count;
         _faceCount = meshFaces.Length / 4;
 
-        // Slots [0, vertexCount) hold topology vertices, [vertexCount, vertexCount + faceCount) quad centroids.
+        // Slots [0, vertexCount) hold welded vertices, [vertexCount, vertexCount + faceCount) quad centroids.
         var count = _vertexCount + _faceCount;
         _x = new double[count];
         _y = new double[count];
         _z = new double[count];
 
-        // Topology vertices only store single-precision positions. Read the mesh vertices instead,
-        // which keep double precision when the mesh has it (e.g. meshes far from the origin).
-        var vertices = mesh.Vertices.ToPoint3dArray();
-        for (var k = 0; k < vertices.Length; k++)
+        for (var i = 0; i < _vertexCount; i++)
         {
-            var i = topology.TopologyVertexIndex(k);
-            var p = vertices[k];
+            var p = welded[i];
             _x[i] = p.X;
             _y[i] = p.Y;
             _z[i] = p.Z;
@@ -55,7 +75,7 @@ public sealed class MeshSlicer
 
         _faces = new int[meshFaces.Length];
         for (var i = 0; i < meshFaces.Length; i++)
-            _faces[i] = topology.TopologyVertexIndex(meshFaces[i]);
+            _faces[i] = vertexMap[meshFaces[i]];
 
         _planar = new bool[_faceCount];
 
@@ -71,6 +91,48 @@ public sealed class MeshSlicer
             _x[m] = (_x[a] + _x[b] + _x[c] + _x[d]) / 4.0;
             _y[m] = (_y[a] + _y[b] + _y[c] + _y[d]) / 4.0;
             _z[m] = (_z[a] + _z[b] + _z[c] + _z[d]) / 4.0;
+        }
+    }
+
+    /// <summary>
+    /// True if every edge of the welded mesh is shared by at least two faces, which is the
+    /// definition used by <see cref="Mesh.IsClosed"/>. Edges of length zero (degenerate faces)
+    /// count as edges, like in the mesh topology. Evaluated on the welded arrays, so it avoids
+    /// building the mesh topology.
+    /// </summary>
+    public bool IsClosed
+    {
+        get
+        {
+            if (_faceCount == 0)
+                return false;
+
+            long n = _vertexCount;
+            var edges = new Dictionary<long, int>(_faces.Length);
+
+            for (var f = 0; f < _faceCount; f++)
+            {
+                var corners = _faces[4 * f + 2] == _faces[4 * f + 3] ? 3 : 4;
+
+                for (var e = 0; e < corners; e++)
+                {
+                    var u = _faces[4 * f + e];
+                    var v = _faces[4 * f + (e + 1) % corners];
+                    if (u > v)
+                        (u, v) = (v, u);
+
+                    var key = u * n + v;
+                    edges[key] = edges.TryGetValue(key, out var count) ? count + 1 : 1;
+                }
+            }
+
+            foreach (var count in edges.Values)
+            {
+                if (count < 2)
+                    return false;
+            }
+
+            return true;
         }
     }
 

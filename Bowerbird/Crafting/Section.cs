@@ -8,8 +8,12 @@ namespace Bowerbird.Crafting;
 public class Section : CraftingBase
 {
     protected Section(Mesh mesh, List<Plane> planes, double thickness, double deeper, double unit)
+        : this(mesh, new MeshSlicer(mesh, unit), planes, thickness, deeper, unit)
     {
-        var slicer = new MeshSlicer(mesh, unit);
+    }
+
+    protected Section(Mesh mesh, MeshSlicer slicer, List<Plane> planes, double thickness, double deeper, double unit)
+    {
         var slitPlanes = planes.AsParallel().AsOrdered().Select(p => new SlitPlane(slicer, p, unit)).ToArray();
 
         var bbox = mesh.GetBoundingBox(false);
@@ -57,10 +61,14 @@ public class Section : CraftingBase
         if (!mesh.IsValid)
             throw new ArgumentException(@"Mesh is not valid!");
 
-        if (!mesh.IsClosed)
+        // Slicing needs the welded mesh anyway; checking closedness on it avoids building the
+        // mesh topology, which is one of the most expensive steps for large meshes.
+        var slicer = new MeshSlicer(mesh, unit);
+
+        if (!slicer.IsClosed)
             throw new ArgumentException(@"Mesh is not closed!");
 
-        return new Section(mesh, planes, thickness, deeper, unit);
+        return new Section(mesh, slicer, planes, thickness, deeper, unit);
     }
 
     public List<Curve>[] Curves { get; }
